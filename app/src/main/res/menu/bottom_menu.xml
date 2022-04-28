@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/item1"
+        app:showAsAction="always"
+        android:enabled="true"
+        android:icon="@drawable/ic_launcher_foreground"
+        android:title="아이템1">
+    </item>
+    <item
+        android:id="@+id/item2"
+        app:showAsAction="always"
+        android:enabled="true"
+        android:icon="@drawable/ic_launcher_foreground"
+        android:title="아이템2">
+    </item>
+    <item
+        android:id="@+id/item3"
+        app:showAsAction="always"
+        android:enabled="true"
+        android:icon="@drawable/ic_launcher_foreground"
+        android:title="아이템3">
+    </item>
+</menu>
