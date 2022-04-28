@@ -15,6 +15,7 @@
         app:itemIconTint="#FFFFFF"
         app:itemTextColor="#f6d170"
         app:labelVisibilityMode="labeled"
+        android:layout_gravity="bottom"
         app:menu="@menu/bottom_menu" />
 
     <FrameLayout
