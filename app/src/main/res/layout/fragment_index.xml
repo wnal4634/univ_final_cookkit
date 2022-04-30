@@ -7,28 +7,215 @@
     android:background="@color/white"
     tools:context=".Fragment_index">
 
+    <ImageButton
+        android:id="@+id/imgbtn4"
+        android:layout_width="100dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgbtn3"
+        tools:src="@tools:sample/avatars" />
+
+    <ImageButton
+        android:id="@+id/imgbtn5"
+        android:layout_width="100dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgbtn4"
+        tools:src="@tools:sample/avatars" />
+
+    <ImageButton
+        android:id="@+id/imgbtn3"
+        android:layout_width="100dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgbtn2"
+        tools:src="@tools:sample/avatars" />
+
+    <ImageButton
+        android:id="@+id/imgbtn1"
+        android:layout_width="100dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/reco"
+        tools:src="@tools:sample/avatars" />
+
+    <ImageButton
+        android:id="@+id/imgbtn2"
+        android:layout_width="100dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgbtn1"
+        tools:src="@tools:sample/avatars" />
 
     <Button
-        android:id="@+id/button4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_marginBottom="24dp"
-        android:text="Button"
-        app:layout_constraintBottom_toTopOf="@+id/button5"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:id="@+id/mlcheck"
+        android:layout_width="130dp"
+        android:layout_height="34dp"
+        android:layout_marginTop="36dp"
+        android:text="밀키트 판매 확인"
+        app:layout_constraintEnd_toStartOf="@+id/mealgo"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/reco"
+        android:layout_width="85dp"
+        android:layout_height="29dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="16dp"
+        android:text="추천순"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mlcheck" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="301dp"
-        android:layout_marginBottom="32dp"
-        android:text="Button"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="4dp"
+        android:clickable="true"
+        android:src="@android:drawable/ic_input_add"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgbtn5" />
+
+    <Button
+        android:id="@+id/fdnbtn1"
+        android:layout_width="140dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="128dp"
+        android:backgroundTint="#000000"
+        android:text="음식명1"
+        app:layout_constraintEnd_toStartOf="@+id/imgbtn1"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button4" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:rippleColor="#FFFFFF" />
+
+    <Button
+        android:id="@+id/fdnbtn2"
+        android:layout_width="140dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="76dp"
+        android:backgroundTint="#151414"
+        android:text="음식명2"
+        app:layout_constraintEnd_toStartOf="@+id/imgbtn2"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fdnbtn1"
+        app:rippleColor="#ECE8E8" />
+
+    <Button
+        android:id="@+id/fdnbtn3"
+        android:layout_width="140dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="84dp"
+        android:background="#000000"
+        android:backgroundTint="#121111"
+        android:text="음식명3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fdnbtn2"
+        app:rippleColor="#FFFFFF" />
+
+    <Button
+        android:id="@+id/fdnbtn4"
+        android:layout_width="140dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="80dp"
+        android:backgroundTint="#000000"
+        android:text="음식명4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fdnbtn3"
+        app:rippleColor="#FFFFFF" />
+
+    <Button
+        android:id="@+id/fdnbtn5"
+        android:layout_width="140dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="76dp"
+        android:backgroundTint="#000000"
+        android:text="음식명5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fdnbtn4"
+        app:rippleColor="#FFFFFF" />
+
+    <ImageButton
+        android:id="@+id/mealgo"
+        android:layout_width="34dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@tools:sample/avatars" />
+
+    <Button
+        android:id="@+id/caten1"
+        android:layout_width="84dp"
+        android:layout_height="19dp"
+        android:layout_marginStart="24dp"
+        android:text="카테고리1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fdnbtn1" />
+
+    <Button
+        android:id="@+id/caten2"
+        android:layout_width="84dp"
+        android:layout_height="19dp"
+        android:layout_marginStart="24dp"
+        android:text="카테고리2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fdnbtn2" />
+
+    <Button
+        android:id="@+id/ceten3"
+        android:layout_width="84dp"
+        android:layout_height="19dp"
+        android:layout_marginStart="24dp"
+        android:text="카테고리3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fdnbtn3" />
+
+    <Button
+        android:id="@+id/caten4"
+        android:layout_width="84dp"
+        android:layout_height="19dp"
+        android:layout_marginStart="24dp"
+        android:text="카테고리4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fdnbtn4" />
+
+    <Button
+        android:id="@+id/caten5"
+        android:layout_width="84dp"
+        android:layout_height="19dp"
+        android:layout_marginStart="28dp"
+        android:text="카테고리5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fdnbtn5" />
+
+    <ImageButton
+        android:id="@+id/imageButton12"
+        android:layout_width="26dp"
+        android:layout_height="17dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/caten1"
+        tools:src="@tools:sample/avatars" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
