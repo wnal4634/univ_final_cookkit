@@ -6,12 +6,11 @@
     android:background="@color/white"
     tools:context=".Fragment_index">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="메인페이지"
-        android:textColor="@android:color/black"
-        android:textSize="50sp"/>
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Button" />
 
 </LinearLayout>
