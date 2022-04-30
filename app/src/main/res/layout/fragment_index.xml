@@ -68,8 +68,8 @@
 
     <Button
         android:id="@+id/reco"
-        android:layout_width="85dp"
-        android:layout_height="29dp"
+        android:layout_width="81dp"
+        android:layout_height="25dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="16dp"
         android:text="추천순"
@@ -203,7 +203,7 @@
         android:id="@+id/caten5"
         android:layout_width="84dp"
         android:layout_height="19dp"
-        android:layout_marginStart="28dp"
+        android:layout_marginStart="24dp"
         android:text="카테고리5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fdnbtn5" />
@@ -216,6 +216,101 @@
         android:layout_marginTop="4dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/caten1"
+        tools:src="@tools:sample/avatars" />
+
+    <ImageButton
+        android:id="@+id/recobtn1"
+        android:layout_width="26dp"
+        android:layout_height="17dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/caten1"
+        tools:src="@tools:sample/avatars" />
+
+    <ImageButton
+        android:id="@+id/goodbtn1"
+        android:layout_width="26dp"
+        android:layout_height="17dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintStart_toEndOf="@+id/imageButton12"
+        app:layout_constraintTop_toBottomOf="@+id/caten1"
+        tools:src="@tools:sample/avatars" />
+
+    <ImageButton
+        android:id="@+id/recobtn2"
+        android:layout_width="26dp"
+        android:layout_height="17dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/caten2"
+        tools:src="@tools:sample/avatars" />
+
+    <ImageButton
+        android:id="@+id/goodbtn2"
+        android:layout_width="26dp"
+        android:layout_height="17dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintStart_toEndOf="@+id/recobtn2"
+        app:layout_constraintTop_toBottomOf="@+id/caten2"
+        tools:src="@tools:sample/avatars" />
+
+    <ImageButton
+        android:id="@+id/recobtn3"
+        android:layout_width="26dp"
+        android:layout_height="17dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ceten3"
+        tools:src="@tools:sample/avatars" />
+
+    <ImageButton
+        android:id="@+id/goodbtn3"
+        android:layout_width="26dp"
+        android:layout_height="17dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintStart_toEndOf="@+id/recobtn3"
+        app:layout_constraintTop_toBottomOf="@+id/ceten3"
+        tools:src="@tools:sample/avatars" />
+
+    <ImageButton
+        android:id="@+id/recobtn4"
+        android:layout_width="26dp"
+        android:layout_height="17dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/caten4"
+        tools:src="@tools:sample/avatars" />
+
+    <ImageButton
+        android:id="@+id/goodbtn4"
+        android:layout_width="26dp"
+        android:layout_height="17dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintStart_toEndOf="@+id/recobtn4"
+        app:layout_constraintTop_toBottomOf="@+id/caten4"
+        tools:src="@tools:sample/avatars" />
+
+    <ImageButton
+        android:id="@+id/recobtn5"
+        android:layout_width="26dp"
+        android:layout_height="17dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/caten5"
+        tools:src="@tools:sample/avatars" />
+
+    <ImageButton
+        android:id="@+id/goodbtn5"
+        android:layout_width="26dp"
+        android:layout_height="17dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintStart_toEndOf="@+id/recobtn5"
+        app:layout_constraintTop_toBottomOf="@+id/caten5"
         tools:src="@tools:sample/avatars" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
