@@ -12,7 +12,7 @@
         android:id="@+id/view10"
         android:layout_width="match_parent"
         android:layout_height="2px"
-        android:layout_marginBottom="22dp"
+        android:layout_marginBottom="28dp"
         android:background="#808080"
         app:layout_constraintBottom_toTopOf="@+id/imageButton5"
         tools:layout_editor_absoluteX="0dp" />
@@ -31,17 +31,26 @@
         android:layout_width="75dp"
         android:layout_height="63dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="96dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@tools:sample/avatars" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="37dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="108dp"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="140dp"
+        android:layout_marginTop="116dp"
         android:text="아이디"
         android:textColor="@android:color/black"
         android:textSize="16dp"
@@ -51,12 +60,12 @@
 
     <Button
         android:id="@+id/button13"
-        android:layout_width="wrap_content"
-        android:layout_height="20dp"
+        android:layout_width="122dp"
+        android:layout_height="39dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:text="작성한 레시피"
-        android:textColor="@android:color/black"
+        android:textColor="@color/white"
         android:textSize="14dp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -65,12 +74,12 @@
 
     <Button
         android:id="@+id/button14"
-        android:layout_width="wrap_content"
-        android:layout_height="20dp"
+        android:layout_width="132dp"
+        android:layout_height="39dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         android:text="밀키트 주문 배송"
-        android:textColor="@android:color/black"
+        android:textColor="@color/white"
         android:textSize="14dp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -87,12 +96,12 @@
 
     <Button
         android:id="@+id/button15"
-        android:layout_width="wrap_content"
-        android:layout_height="20dp"
+        android:layout_width="125dp"
+        android:layout_height="40dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         android:text="좋아요한 레시피"
-        android:textColor="@android:color/black"
+        android:textColor="@color/white"
         android:textSize="14dp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -100,12 +109,12 @@
 
     <Button
         android:id="@+id/button16"
-        android:layout_width="wrap_content"
-        android:layout_height="20dp"
+        android:layout_width="118dp"
+        android:layout_height="40dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         android:text="추천한 레시피"
-        android:textColor="@android:color/black"
+        android:textColor="@color/white"
         android:textSize="14dp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -122,12 +131,12 @@
 
     <Button
         android:id="@+id/button17"
-        android:layout_width="wrap_content"
-        android:layout_height="20dp"
+        android:layout_width="72dp"
+        android:layout_height="38dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         android:text="설정"
-        android:textColor="@android:color/black"
+        android:textColor="@color/white"
         android:textSize="14dp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -135,12 +144,12 @@
 
     <Button
         android:id="@+id/button18"
-        android:layout_width="wrap_content"
-        android:layout_height="20dp"
+        android:layout_width="98dp"
+        android:layout_height="38dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         android:text="큐앤에이"
-        android:textColor="@android:color/black"
+        android:textColor="@color/white"
         android:textSize="14dp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -148,12 +157,12 @@
 
     <Button
         android:id="@+id/button19"
-        android:layout_width="wrap_content"
-        android:layout_height="20dp"
+        android:layout_width="101dp"
+        android:layout_height="38dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         android:text="공지사항"
-        android:textColor="@android:color/black"
+        android:textColor="@color/white"
         android:textSize="14dp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -170,24 +179,15 @@
 
     <Button
         android:id="@+id/button20"
-        android:layout_width="wrap_content"
-        android:layout_height="20dp"
+        android:layout_width="103dp"
+        android:layout_height="38dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         android:text="로그아웃"
-        android:textColor="@android:color/black"
+        android:textColor="@color/white"
         android:textSize="14dp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view14" />
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="38dp"
-        android:layout_height="23dp"
-        android:layout_marginTop="140dp"
-        android:layout_marginEnd="32dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

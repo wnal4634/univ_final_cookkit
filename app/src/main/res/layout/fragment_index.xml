@@ -59,18 +59,18 @@
 
     <Button
         android:id="@+id/mlcheck"
-        android:layout_width="130dp"
-        android:layout_height="34dp"
-        android:layout_marginTop="36dp"
+        android:layout_width="128dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="20dp"
         android:text="밀키트 판매 확인"
         app:layout_constraintEnd_toStartOf="@+id/mealgo"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/reco"
-        android:layout_width="81dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="12dp"
+        android:layout_width="80dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:text="추천순"
         app:layout_constraintEnd_toEndOf="parent"
@@ -90,12 +90,13 @@
 
     <Button
         android:id="@+id/fdnbtn1"
-        android:layout_width="140dp"
-        android:layout_height="35dp"
+        android:layout_width="131dp"
+        android:layout_height="34dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="128dp"
         android:backgroundTint="#000000"
         android:text="음식명1"
+        android:textColor="#FFFFFF"
         app:layout_constraintEnd_toStartOf="@+id/imgbtn1"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -155,9 +156,9 @@
 
     <ImageButton
         android:id="@+id/mealgo"
-        android:layout_width="34dp"
-        android:layout_height="36dp"
-        android:layout_marginTop="36dp"
+        android:layout_width="37dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -165,8 +166,8 @@
 
     <Button
         android:id="@+id/caten1"
-        android:layout_width="84dp"
-        android:layout_height="19dp"
+        android:layout_width="86dp"
+        android:layout_height="29dp"
         android:layout_marginStart="24dp"
         android:text="카테고리1"
         app:layout_constraintStart_toStartOf="parent"
@@ -174,8 +175,8 @@
 
     <Button
         android:id="@+id/caten2"
-        android:layout_width="84dp"
-        android:layout_height="19dp"
+        android:layout_width="86dp"
+        android:layout_height="33dp"
         android:layout_marginStart="24dp"
         android:text="카테고리2"
         app:layout_constraintStart_toStartOf="parent"
@@ -183,8 +184,8 @@
 
     <Button
         android:id="@+id/ceten3"
-        android:layout_width="84dp"
-        android:layout_height="19dp"
+        android:layout_width="88dp"
+        android:layout_height="32dp"
         android:layout_marginStart="24dp"
         android:text="카테고리3"
         app:layout_constraintStart_toStartOf="parent"
@@ -192,8 +193,8 @@
 
     <Button
         android:id="@+id/caten4"
-        android:layout_width="84dp"
-        android:layout_height="19dp"
+        android:layout_width="90dp"
+        android:layout_height="31dp"
         android:layout_marginStart="24dp"
         android:text="카테고리4"
         app:layout_constraintStart_toStartOf="parent"
@@ -201,8 +202,8 @@
 
     <Button
         android:id="@+id/caten5"
-        android:layout_width="84dp"
-        android:layout_height="19dp"
+        android:layout_width="90dp"
+        android:layout_height="30dp"
         android:layout_marginStart="24dp"
         android:text="카테고리5"
         app:layout_constraintStart_toStartOf="parent"
