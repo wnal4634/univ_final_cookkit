@@ -16,6 +16,12 @@
             android:name=".LikeActivity"
             android:exported="true" />
         <activity
+            android:name=".RecoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LikeActivity"
+            android:exported="false" />
+        <activity
             android:name=".noticeActivity"
             android:exported="false" />
         <activity
