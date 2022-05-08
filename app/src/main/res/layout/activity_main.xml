@@ -11,11 +11,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_gravity="bottom"
-        android:background="#345E86"
+        android:background="#2E8B57"
         app:itemIconTint="#FFFFFF"
         app:itemTextColor="#f6d170"
         app:labelVisibilityMode="labeled"
+        android:layout_gravity="bottom"
         app:menu="@menu/bottom_menu" />
 
     <FrameLayout
