@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.item3:
                         getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment_mypage).commit();
                         return true;
+
                 }
                 return false;
             }
