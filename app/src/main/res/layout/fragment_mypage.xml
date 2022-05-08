@@ -165,20 +165,6 @@
         app:layout_constraintTop_toBottomOf="@+id/view13" />
 
     <Button
-        android:id="@+id/button18"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:layout_marginStart="16dp"
-        android:backgroundTint="#FFFFFF"
-        android:gravity="start"
-        android:stateListAnimator="@null"
-        android:text="Q&amp;A"
-        android:textColor="@color/black"
-        android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button17" />
-
-    <Button
         android:id="@+id/button19"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
@@ -190,7 +176,7 @@
         android:textColor="@color/black"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button18" />
+        app:layout_constraintTop_toBottomOf="@+id/button17" />
 
     <Button
         android:id="@+id/button20"
