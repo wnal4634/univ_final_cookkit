@@ -21,12 +21,12 @@
             android:layout_marginTop="50dp"
             android:layout_marginBottom="30dp">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_gravity="center"
-            android:layout_weight="2"
-            android:src="@drawable/ic_launcher_background" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
+                android:layout_weight="2"
+                android:src="@drawable/logo" />
     </LinearLayout>
 
         <LinearLayout
@@ -87,6 +87,7 @@
                 android:layout_weight="1"
                 android:background="#2E8B57"
                 android:text="로그인"
+                android:textColor="#FFFFFF"
                 android:textStyle="bold" />
 
         </LinearLayout>
