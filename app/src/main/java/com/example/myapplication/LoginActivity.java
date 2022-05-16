@@ -12,12 +12,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 public class LoginActivity extends AppCompatActivity {
 
     private EditText mIdView;
     private EditText mPasswordView;
+    private Button email_sign_up;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +25,7 @@ public class LoginActivity extends AppCompatActivity {
 
         mIdView = (EditText) findViewById(R.id.id);
         mPasswordView = (EditText) findViewById(R.id.password);
+
 
         mIdView.setOnEditorActionListener(new TextView.OnEditorActionListener()
         {
@@ -55,7 +55,11 @@ public class LoginActivity extends AppCompatActivity {
         Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button); // sign in button
 
         TextView mEmailSignUp = (TextView) findViewById(R.id.email_sign_up);// sign up button
-        TextView mEmailFind = (TextView) findViewById(R.id.email_find);
+        TextView mEmailFind = (TextView) findViewById(R.id.tvid);
+
+
+
+
 
 
         // event handler
@@ -72,7 +76,7 @@ public class LoginActivity extends AppCompatActivity {
         mEmailSignUp.setOnClickListener(new OnClickListener(){
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                Intent intent = new Intent(getApplicationContext(), SignupActivity.class);
                 startActivity(intent);
                 finish();
             }
@@ -86,6 +90,7 @@ public class LoginActivity extends AppCompatActivity {
                 finish();
             }
         });
+
 
     }
 

@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-<<<<<<< HEAD
-    tools:context=".Recoactivity">
+    android:background="#ffffff"
+    tools:context=".RecoActivity">
 
     <TextView
         android:id="@+id/textView3"
@@ -18,9 +18,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-=======
-    android:background="#ffffff"
-    tools:context=".RecoActivity">
+
 
     <TextView
         android:layout_width="wrap_content"
@@ -31,5 +29,5 @@
         android:textSize="30sp"
         tools:ignore="MissingConstraints" />
 
->>>>>>> origin/master
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,11 +9,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 public class Fragment_mypage extends Fragment {
 
     private View view;
     private Button btn_noti;
+    private Button btn_reco;
+    private Button btn_like;
+    private ImageButton imgbtn_edit;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -25,6 +29,33 @@ public class Fragment_mypage extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(),noticeActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                startActivity(intent);
+            }
+        });
+        btn_reco = (Button) view.findViewById(R.id.button16);
+        btn_reco.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(),RecoActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                startActivity(intent);
+            }
+        });
+        btn_like = (Button) view.findViewById(R.id.button15);
+        btn_like.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(),LikeActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                startActivity(intent);
+            }
+        });
+        imgbtn_edit = (ImageButton) view.findViewById(R.id.imageButton4);
+        imgbtn_edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(),MemberInfoEditActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
             }

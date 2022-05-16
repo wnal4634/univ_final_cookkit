@@ -95,7 +95,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <TextView
-                android:id="@+id/email_find"
+                android:id="@+id/tvid"
                 android:layout_marginLeft="80dp"
                 android:layout_marginTop="16dp"
                 android:layout_width="wrap_content"
@@ -113,11 +113,11 @@
 
             <TextView
                 android:id="@+id/email_sign_up"
-                android:layout_marginTop="16dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 android:text="회원가입"
-                android:textColor="#000000"/>
+                android:textColor="#000000" />
 
         </LinearLayout>
         <LinearLayout
