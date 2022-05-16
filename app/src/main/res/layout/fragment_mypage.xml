@@ -22,11 +22,11 @@
         android:layout_height="10dp"
         android:layout_marginTop="24dp"
         android:background="#DBDBDB"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton5"
+        app:layout_constraintTop_toBottomOf="@+id/imageButton13"
         tools:layout_editor_absoluteX="-16dp" />
 
     <ImageButton
-        android:id="@+id/imageButton5"
+        android:id="@+id/imageButton13"
         android:layout_width="75dp"
         android:layout_height="75dp"
         android:layout_marginStart="16dp"
@@ -57,7 +57,7 @@
         android:text="아이디"
         android:textColor="@android:color/black"
         android:textSize="16dp"
-        app:layout_constraintStart_toEndOf="@+id/imageButton5"
+        app:layout_constraintStart_toEndOf="@+id/imageButton13"
         app:layout_constraintTop_toBottomOf="@+id/view10" />
 
     <Button
