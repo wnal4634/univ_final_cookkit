@@ -52,12 +52,14 @@ public class Fragment_search extends Fragment {
                 .addToBackStack(null)
                 .commit();
 
-        return true;}
+        return true;
+    }
+
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.search_menu, menu);
         SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
-        searchView.setQueryHint("검색어를 입력하세요..");
+        searchView.setQueryHint("검색어를 입력하세요.");
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
