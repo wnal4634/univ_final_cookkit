@@ -1,0 +1,56 @@
+package com.example.myapplication;
+
+import android.content.Context;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+import java.util.ArrayList;
+
+public class LikeAdapter extends RecyclerView.Adapter<LikeAdapter.LikeViewHolder> {
+
+    private ArrayList<MainData> like;
+
+    public LikeAdapter(String[] title, String[] category) {
+    }
+
+    public static class LikeViewHolder extends RecyclerView.ViewHolder{
+        public TextView title, category;
+
+        public LikeViewHolder(View view){
+            super(view);
+            this.title = view.findViewById(R.id.meal_title);
+            this.category = view.findViewById(R.id.category);
+        }
+    }
+    public LikeAdapter(ArrayList<MainData> list) {
+        like = list ;
+    }
+
+    @NonNull
+    @Override
+    public LikeAdapter.LikeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        Context context = parent.getContext() ;
+        LayoutInflater inflater = (LayoutInflater) context.
+                getSystemService(Context.LAYOUT_INFLATER_SERVICE) ;
+        View view = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.like_holder, parent, false);
+        return new LikeAdapter.LikeViewHolder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull LikeViewHolder likeViewHolder, int position){
+        likeViewHolder.title.setText(like.get(position).getTitle());
+        likeViewHolder.category.setText(like.get(position).getCategory());
+    }
+
+    @Override
+    public int getItemCount() {
+        return like.size();
+    }
+}

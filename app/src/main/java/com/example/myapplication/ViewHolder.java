@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class ViewHolder extends RecyclerView.ViewHolder {
-
+//공지사항 뷰홀더
     TextView title;
     TextView date;
     TextView content;
