@@ -17,6 +17,7 @@ public class Fragment_mypage extends Fragment {
     private Button btn_noti;
     private Button btn_reco;
     private Button btn_like;
+    private Button btn_recipemanage;
     private ImageButton imgbtn_edit;
 
     @Override
@@ -47,6 +48,15 @@ public class Fragment_mypage extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(),LikeActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                startActivity(intent);
+            }
+        });
+        btn_recipemanage = (Button) view.findViewById(R.id.button13);
+        btn_recipemanage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(),RecipeManageActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
             }

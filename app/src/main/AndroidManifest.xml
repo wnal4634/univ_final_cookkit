@@ -10,11 +10,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
+            android:name=".RecipeManageActivity"
+            android:exported="true" />
+        <activity
             android:name=".RecipeexplanationActivity"
             android:exported="true" />
         <activity
             android:name=".RecipewriteActivity"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".RecoActivity"
             android:exported="false" />
