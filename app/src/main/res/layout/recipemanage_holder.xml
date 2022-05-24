@@ -35,6 +35,7 @@
                 android:layout_gravity="bottom"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
+                android:onClick="DialogClick"
                 android:background="#808080"
                 android:textColor="@color/white"
                 android:text="삭제" />

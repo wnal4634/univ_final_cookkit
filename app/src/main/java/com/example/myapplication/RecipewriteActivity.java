@@ -18,7 +18,14 @@ public class RecipewriteActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipewrite);
-
+        Button close;
+        close = (Button) findViewById(R.id.closebutton);
+        close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         Spinner spinner = (Spinner) findViewById(R.id.categorysellect);
         ArrayAdapter<CharSequence> spinner_adapter = ArrayAdapter.createFromResource(
