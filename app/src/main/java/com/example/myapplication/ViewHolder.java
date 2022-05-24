@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 import android.animation.ValueAnimator;
+import android.annotation.SuppressLint;
 import android.util.SparseBooleanArray;
 import android.view.View;
 import android.widget.ImageView;
@@ -10,7 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class ViewHolder extends  RecyclerView.ViewHolder {
+public class ViewHolder extends RecyclerView.ViewHolder {
 
     TextView title;
     TextView date;

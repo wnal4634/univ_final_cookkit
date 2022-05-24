@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/linearlayout"
@@ -10,7 +11,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="15dp"
+        android:padding="16dp"
         android:orientation="vertical">
 
         <GridLayout
@@ -24,15 +25,27 @@
                 android:textStyle="bold"
                 android:text="공지사항 제목"
                 android:textColor="@color/black"
-                android:textSize="16sp" />
+                android:textSize="16dp"
+                android:layout_gravity="center"/>
+
+            <ImageView
+                android:id="@+id/noti_open"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_row="0"
+                android:layout_column="1"
+                android:backgroundTint="#737373"
+                android:layout_gravity="right"
+                android:src="@drawable/ic_baseline_keyboard_arrow_down_24" />
+
         </GridLayout>
         <TextView
         android:id="@+id/noti_insert_date"
         android:layout_width="match_parent"
         android:layout_height="29dp"
-            android:textColor="@color/black"
+        android:textColor="@color/black"
         android:text="2022.04.29 10:09"
-        android:textSize="16sp"
+        android:textSize="14dp"
         />
 
     </LinearLayout>
@@ -41,7 +54,7 @@
         android:id="@+id/detail_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
+        android:padding="16dp"
         android:visibility="visible"
         android:orientation="vertical">
 
@@ -51,7 +64,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/black"
             android:text="공지 내용 들어가는 곳"
-            android:textSize="14sp"
+            android:textSize="14dp"
             />
     </LinearLayout>
 

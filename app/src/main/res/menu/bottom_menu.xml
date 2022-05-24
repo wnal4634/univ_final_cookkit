@@ -5,21 +5,21 @@
         android:id="@+id/item1"
         app:showAsAction="always"
         android:enabled="true"
-        android:icon="@drawable/ic_launcher_foreground"
+        android:icon="@drawable/ic_baseline_home_24"
         android:title="홈">
     </item>
     <item
         android:id="@+id/item2"
         app:showAsAction="always"
         android:enabled="true"
-        android:icon="@drawable/ic_launcher_foreground"
+        android:icon="@drawable/ic_baseline_search_24"
         android:title="검색">
     </item>
     <item
         android:id="@+id/item3"
         app:showAsAction="always"
         android:enabled="true"
-        android:icon="@drawable/ic_launcher_foreground"
+        android:icon="@drawable/ic_baseline_account_circle_24"
         android:title="마이페이지">
     </item>
 </menu>
