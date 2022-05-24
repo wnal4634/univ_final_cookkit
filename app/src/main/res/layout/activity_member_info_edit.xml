@@ -6,11 +6,22 @@
     android:layout_height="match_parent"
     tools:context=".MemberInfoEditActivity">
 
+    <ImageButton
+        android:id="@+id/back_mypage"
+        android:layout_width="23dp"
+        android:layout_height="23dp"
+        android:layout_marginStart="16dp"
+        android:background="@drawable/ic_baseline_arrow_back_ios_new_24"
+        android:backgroundTint="#737373"
+        app:layout_constraintBottom_toTopOf="@+id/view123"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <View
         android:id="@+id/view123"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginTop="66dp"
+        android:layout_marginTop="60dp"
         android:background="#DBDBDB"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -21,7 +32,6 @@
         android:layout_marginTop="24dp"
         android:background="@drawable/ic_launcher_background"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view123"
         tools:srcCompat="@tools:sample/avatars" />
@@ -32,99 +42,121 @@
         android:layout_height="0dp"
         android:layout_marginTop="12dp"
         android:text="아이디"
-        android:textSize="15dp"
         android:textColor="#000000"
+        android:textSize="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
+        android:orientation="vertical"
         android:layout_marginTop="20dp"
-        android:text="회원정보수정"
-        android:textSize="15dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+        app:layout_constraintTop_toBottomOf="@+id/textView7">
 
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
+            android:text="회원정보수정"
+            android:textSize="15dp"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="248dp" />
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="20dp"
+            android:text="휴대폰 번호 (선택)"
+            android:textColor="#000000"
+            android:textSize="15dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+        <EditText
+            android:id="@+id/editTextTextPersonName142"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:hint="구분없이 입력"
+            android:textSize="15dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView9" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="16dp"
-        android:text="휴대폰 번호(선택)"
-        android:textColor="#000000"
-        android:textSize="15dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
 
-    <EditText
-        android:id="@+id/editTextTextPersonName142"
-        android:layout_width="334dp"
-        android:layout_height="41dp"
-        android:layout_marginStart="44dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="구분없이 입력"
-        android:textColor="#ACA6A6"
-        android:textSize="15dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="20dp"
+            android:text="주소 (선택)"
+            android:textColor="#040404"
+            android:textSize="15dp" />
 
-    <TextView
-        android:id="@+id/textView11"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="40dp"
-        android:text="주소(선택)"
-        android:textSize="15dp"
-        android:textColor="#040404"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName142" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_weight="1">
+            <EditText
+                android:id="@+id/editTextTextPersonName145"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="8dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:hint="우편번호"
+                android:textSize="15dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView11" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="right">
+                <Button
+                    android:id="@+id/btnaddresssearch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="33dp"
+                    android:background="#BD9448"
+                    android:text="주소검색"
+                    android:layout_marginEnd="16dp"
+                    android:textColor="#FBFBFB" />
+            </LinearLayout>
+        </LinearLayout>
 
-    <EditText
-        android:id="@+id/editTextTextPersonName145"
-        android:layout_width="247dp"
-        android:layout_height="37dp"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="구분없이 입력"
-        android:textColor="#ACA6A6"
-        android:textSize="15dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView11" />
-
-    <Button
-        android:id="@+id/btnaddresssearch"
-        android:layout_width="81dp"
-        android:layout_height="44dp"
-        android:layout_marginStart="4dp"
-        android:background="#BD9448"
-        android:text="주소검색"
-        android:textColor="#FBFBFB"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.057"
-        app:layout_constraintStart_toEndOf="@+id/editTextTextPersonName145"
-        app:layout_constraintTop_toBottomOf="@+id/textView11" />
-
-    <EditText
-        android:id="@+id/editTextTextPersonName11"
-        android:layout_width="331dp"
-        android:layout_height="44dp"
-        android:layout_marginStart="44dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="상세주소"
-        android:textColor="#ACA6A6"
-        android:textSize="15dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName145" />
-
+        <EditText
+            android:id="@+id/editTextTextPersonName11"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:hint="상세주소"
+            android:textSize="15dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName145" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
