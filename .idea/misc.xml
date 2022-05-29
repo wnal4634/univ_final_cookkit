@@ -12,6 +12,7 @@
         <entry key="..\:/CookAndroid/Project/finalproject/app/src/main/res/layout/fragment_search.xml" value="0.33" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/finalproject/app/src/main/res/layout/activity_like.xml" value="0.264" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/finalproject/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/Users/PC/AndroidStudioProjects/finalproject/app/src/main/res/layout/activity_meal_order_status.xml" value="0.23076923076923078" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/finalproject/app/src/main/res/layout/activity_member_info_edit.xml" value="0.264" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/finalproject/app/src/main/res/layout/activity_notice.xml" value="0.22984244670991658" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/finalproject/app/src/main/res/layout/activity_recipe_manage.xml" value="0.264" />
@@ -19,9 +20,12 @@
         <entry key="..\:/Users/PC/AndroidStudioProjects/finalproject/app/src/main/res/layout/activity_recipewrite.xml" value="0.264" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/finalproject/app/src/main/res/layout/activity_reco.xml" value="0.264" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/finalproject/app/src/main/res/layout/fragment_index.xml" value="0.264" />
+        <entry key="..\:/Users/PC/AndroidStudioProjects/finalproject/app/src/main/res/layout/fragment_mypage.xml" value="0.264" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/finalproject/app/src/main/res/layout/fragment_search.xml" value="0.264" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/finalproject/app/src/main/res/layout/like_holder.xml" value="0.264" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/finalproject/app/src/main/res/layout/main_holder.xml" value="0.264" />
+        <entry key="..\:/Users/PC/AndroidStudioProjects/finalproject/app/src/main/res/layout/mealorderstatus_holder.xml" value="0.264" />
+        <entry key="..\:/Users/PC/AndroidStudioProjects/finalproject/app/src/main/res/layout/mlorder_holder.xml" value="0.29583333333333334" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/finalproject/app/src/main/res/layout/recipemanage_holder.xml" value="0.264" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/finalproject/app/src/main/res/layout/reco_holder.xml" value="0.264" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/finalproject/app/src/main/res/menu/bottom_menu.xml" value="0.1" />

@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
+            android:name=".MealOrderStatusActivity"
+            android:exported="true" />
+        <activity
             android:name=".RecipeManageActivity"
             android:exported="true" />
         <activity

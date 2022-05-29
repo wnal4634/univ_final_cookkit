@@ -84,7 +84,7 @@
         android:backgroundTint="#FFFFFF"
         android:gravity="start"
         android:stateListAnimator="@null"
-        android:text="밀키트 주문 배송"
+        android:text="주문한 밀키트"
         android:textColor="@color/black"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
