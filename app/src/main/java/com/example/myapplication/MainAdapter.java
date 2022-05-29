@@ -40,7 +40,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainViewHolder
     public MainAdapter(ArrayList<MainData> mainData){
         this.mDataset = mainData;
     }
-//
+    //
 //    @Override
 //    public int getItemViewType(final int position) {
 //        return R.layout.main_holder;
