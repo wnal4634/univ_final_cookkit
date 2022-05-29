@@ -28,7 +28,6 @@ public class MealOrderStatusAdapter extends RecyclerView.Adapter<MealOrderStatus
             super(view);
             this.title = view.findViewById(R.id.meal_title);
             this.image = (ImageView) view.findViewById(R.id.recipeView);
-            this.title=view.findViewById(R.id.meal_price);
         }
     }
     @NonNull
