@@ -5,38 +5,89 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/linearlayout"
+    android:background="#DBE0DD"
     android:orientation="vertical">
 
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/rounding_square"
-        android:elevation="5dp"
-        android:layout_marginTop="3dp"
+        android:layout_height="108dp"
         android:layout_marginLeft="12dp"
+        android:layout_marginTop="10dp"
         android:layout_marginRight="12dp"
-        android:layout_marginBottom="12dp">
-        <ImageView
-            android:id="@+id/recipeView"
-            android:layout_width="100dp"
-            android:layout_height="90dp"
-            android:scaleType="centerCrop"
-            android:layout_marginLeft="12dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:src="@mipmap/ic_launcher" />
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/rounding_square"
+        android:elevation="5dp">
 
-        <TextView
-            android:id="@+id/meal_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="12dp"
-            android:layout_marginTop="10dp"
-            android:text="밀키트명"
-            android:textColor="#000000"
-            android:textSize="16dp"
-            android:textStyle="bold" />
+        <LinearLayout
+            android:layout_width="135dp"
+            android:layout_height="108dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/meal_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="10dp"
+                android:layout_weight="1"
+                android:text="2021.04.04" />
+
+            <ImageView
+                android:id="@+id/recipeView"
+                android:layout_width="107dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/ic_launcher" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="144dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/mealkit_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="13dp"
+                android:textColor="@color/black"
+                android:layout_marginTop="45dp" />
+
+            <TextView
+                android:id="@+id/mealkit_set"
+                android:layout_width="91dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="10dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/horiz"
+                android:layout_width="20dp"
+                android:layout_height="15dp"
+                android:layout_gravity="right"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/ic_baseline_more_horiz_24" />
+
+            <TextView
+                android:id="@+id/mealkit_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:layout_marginTop="55dp" />
+        </LinearLayout>
+
     </LinearLayout>
 
 </LinearLayout>

@@ -15,18 +15,22 @@ import androidx.work.Data;
 import java.util.ArrayList;
 
 public class MealOrderStatusAdapter extends RecyclerView.Adapter<MealOrderStatusAdapter.MealOrderStatusHolder>{
-    private ArrayList<MainData> mDataset3;
-    public MealOrderStatusAdapter(ArrayList<MainData> mDataset3){
-        this.mDataset3 = mDataset3;
+    private ArrayList<MealOrderData> oDataset;
+    public MealOrderStatusAdapter(ArrayList<MealOrderData> oDataset){
+        this.oDataset = oDataset;
     }
 
     public class MealOrderStatusHolder extends RecyclerView.ViewHolder{
-        TextView title;
+        TextView kittitle;
+        TextView price;
+        TextView set;
         public ImageView image;
 
         public MealOrderStatusHolder(View view){
             super(view);
-            this.title = view.findViewById(R.id.meal_title);
+            this.kittitle = view.findViewById(R.id.mealkit_title);
+            this.price = view.findViewById(R.id.mealkit_price);
+            this.set = view.findViewById(R.id.mealkit_set);
             this.image = (ImageView) view.findViewById(R.id.recipeView);
         }
     }
@@ -40,11 +44,13 @@ public class MealOrderStatusAdapter extends RecyclerView.Adapter<MealOrderStatus
 
     @Override
     public void onBindViewHolder(@NonNull MealOrderStatusAdapter.MealOrderStatusHolder mealOrderStatusHolder, int position){
-        mealOrderStatusHolder.title.setText(mDataset3.get(position).title);
-        mealOrderStatusHolder.image.setImageResource(mDataset3.get(position).resId);
+        mealOrderStatusHolder.kittitle.setText(oDataset.get(position).kittitle);
+        mealOrderStatusHolder.price.setText(oDataset.get(position).price);
+        mealOrderStatusHolder.set.setText(oDataset.get(position).set);
+        mealOrderStatusHolder.image.setImageResource(oDataset.get(position).resId);
     }
     @Override
     public int getItemCount(){
-        return mDataset3.size();
+        return oDataset.size();
     }
 }

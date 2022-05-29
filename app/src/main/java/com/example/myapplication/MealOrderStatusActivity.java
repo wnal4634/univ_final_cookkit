@@ -35,9 +35,9 @@ public class MealOrderStatusActivity extends AppCompatActivity {
             }
         });
 
-        ArrayList<MainData> list4 = new ArrayList<>();
-        for (int i = 0; i < 3; i++) {
-            list4.add(new MainData("돈가스", "양식", R.drawable.porkcutlet));
+        ArrayList<MealOrderData> list4 = new ArrayList<>();
+        for (int i = 0; i < 7; i++) {
+            list4.add(new MealOrderData("1세트", "14,000원","치즈 돈가스 밀키트", R.drawable.porkcutlet));
         }
         RecyclerView recyclerView = findViewById(R.id.order_recycler) ;
         recyclerView.setLayoutManager(new LinearLayoutManager(this)) ;
