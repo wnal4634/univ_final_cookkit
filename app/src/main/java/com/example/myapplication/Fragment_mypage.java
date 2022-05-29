@@ -20,6 +20,7 @@ public class Fragment_mypage extends Fragment {
     private Button btn_recipemanage;
     private Button btn_mlorderstatus;
     private ImageButton imgbtn_edit;
+    private Button btn_setting;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -76,6 +77,15 @@ public class Fragment_mypage extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(),MemberInfoEditActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                startActivity(intent);
+            }
+        });
+        btn_setting = (Button) view.findViewById(R.id.button17);
+        btn_setting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(),SettingActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
             }

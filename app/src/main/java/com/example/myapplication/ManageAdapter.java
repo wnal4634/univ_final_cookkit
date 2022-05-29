@@ -60,4 +60,3 @@ public class ManageAdapter extends RecyclerView.Adapter<ManageAdapter.ManageView
         return mDataset.size();
     }
 }
-
