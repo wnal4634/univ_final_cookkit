@@ -4,8 +4,13 @@ package com.example.myapplication;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageButton;
+
 import androidx.appcompat.widget.Toolbar;
 
 public class noticeActivity extends AppCompatActivity {
@@ -19,10 +24,16 @@ public class noticeActivity extends AppCompatActivity {
         init();
         addDTO();
 
-        Toolbar toolbar = findViewById(R.id.toolbar2);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("공지사항");
+        ImageButton btn_back_mypage = (ImageButton) findViewById(R.id.back_mypage);
+        btn_back_mypage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(
+                        noticeActivity.this, Fragment_mypage.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                finish();
+            }
+        });
     }
 
     @Override

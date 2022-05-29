@@ -4,8 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageButton;
+
 import androidx.appcompat.widget.Toolbar;
 
 import java.util.ArrayList;
@@ -17,10 +21,17 @@ public class LikeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_like);
 
-        Toolbar toolbar = findViewById(R.id.like_toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("좋아요한 레시피");
+        ImageButton btn_back_mypage = (ImageButton) findViewById(R.id.back_mypage);
+        btn_back_mypage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(
+                        LikeActivity.this, Fragment_mypage.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                finish();
+            }
+        });
+
         RecyclerView recyclerView = findViewById(R.id.Like_recycler) ;
         recyclerView.setLayoutManager(new LinearLayoutManager(this)) ;
         LikeAdapter adapter = new LikeAdapter(list);

@@ -38,10 +38,17 @@ public class RecipeManageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Data();
         setContentView(R.layout.activity_recipe_manage);
-        Toolbar toolbar = findViewById(R.id.recipemanage_toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("작성한 레시피");
+
+        ImageButton btn_back_mypage = (ImageButton) findViewById(R.id.back_mypage);
+        btn_back_mypage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(
+                        RecipeManageActivity.this, Fragment_mypage.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                finish();
+            }
+        });
 
         recyclerView = findViewById(R.id.Recipemanage_recycler);
         ManageAdapter adapter3= new ManageAdapter(list3);

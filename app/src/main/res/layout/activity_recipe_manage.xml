@@ -9,33 +9,42 @@
     tools:layout_editor_absoluteX="10dp"
     tools:layout_editor_absoluteY="-6dp">
 
-
-
-
-    <View
-        android:id="@+id/view21"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="66dp"
-        android:background="#DBDBDB"
+    <ImageButton
+        android:id="@+id/back_mypage"
+        android:layout_width="23dp"
+        android:layout_height="23dp"
+        android:layout_marginStart="16dp"
+        android:background="@drawable/ic_baseline_arrow_back_ios_new_24"
+        android:backgroundTint="#737373"
+        app:layout_constraintBottom_toTopOf="@+id/view123"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/recipemanage_toolbar"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
+        android:text="작성한 레시피"
+        android:textSize="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/view123"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+    <View
+        android:id="@+id/view123"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="60dp"
+        android:background="#DBDBDB"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/Recipemanage_recycler"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/view21"
-        tools:layout_editor_absoluteX="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view123"
         tools:listitem="@layout/recipemanage_holder" />
 
 

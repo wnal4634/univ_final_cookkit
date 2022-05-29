@@ -5,8 +5,11 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageButton;
 
 import java.util.ArrayList;
 
@@ -16,10 +19,16 @@ public class RecoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reco);
 
-        Toolbar toolbar = findViewById(R.id.reco_toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("추천한 레시피");
+        ImageButton btn_back_mypage = (ImageButton) findViewById(R.id.back_mypage);
+        btn_back_mypage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(
+                        RecoActivity.this, Fragment_mypage.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                finish();
+            }
+        });
 
         ArrayList<MainData> list2 = new ArrayList<>();
         for (int i = 0; i < 3; i++) {

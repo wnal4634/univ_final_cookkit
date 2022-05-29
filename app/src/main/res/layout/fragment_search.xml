@@ -213,14 +213,13 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
         android:background="@null"
         android:gravity="center"
         android:hint="검색어를 입력하세요"
-        android:textSize="14dp"
         android:privateImeOptions="defaultInputmode=korean"
+        android:textSize="14dp"
         app:layout_constraintBottom_toTopOf="@+id/view"
-        app:layout_constraintEnd_toStartOf="@+id/imageButton2"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
