@@ -4,6 +4,7 @@ package com.example.myapplication;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -18,11 +19,12 @@ public class ManageAdapter extends RecyclerView.Adapter<ManageAdapter.ManageView
 
     public class ManageViewHolder extends RecyclerView.ViewHolder {
         public TextView title;
+        public ImageView image;
 
         public ManageViewHolder(View view) {
             super(view);
             title = (TextView) view.findViewById(R.id.meal_title);
-
+            image = (ImageView) view.findViewById(R.id.recipeView);
         }
 
     }
@@ -48,8 +50,8 @@ public class ManageAdapter extends RecyclerView.Adapter<ManageAdapter.ManageView
 
     @Override
     public void onBindViewHolder(@NonNull ManageViewHolder holder, int position) {
-        holder.title.setText(mDataset.get(position).getTitle());
-
+        holder.title.setText(mDataset.get(position).title);
+        holder.image.setImageResource(mDataset.get(position).resId);
 
     }
 

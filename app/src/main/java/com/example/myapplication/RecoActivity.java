@@ -23,7 +23,7 @@ public class RecoActivity extends AppCompatActivity {
 
         ArrayList<MainData> list2 = new ArrayList<>();
         for (int i = 0; i < 3; i++) {
-            list2.add(new MainData("파스타", "양식"));
+            list2.add(new MainData("돈가스", "양식",R.drawable.porkcutlet));
         }
         RecyclerView recyclerView = findViewById(R.id.Reco_recycler) ;
         recyclerView.setLayoutManager(new LinearLayoutManager(this)) ;

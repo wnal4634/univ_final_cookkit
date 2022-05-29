@@ -1,9 +1,11 @@
 package com.example.myapplication;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -20,11 +22,20 @@ public class RecoAdapter extends RecyclerView.Adapter<RecoAdapter.RecoHolder> {
     public class RecoHolder extends RecyclerView.ViewHolder{
         TextView title;
         TextView category;
+        public ImageView image;
 
         public RecoHolder(View view){
             super(view);
             this.title = view.findViewById(R.id.meal_title);
             this.category = view.findViewById(R.id.category);
+            this.image = (ImageView) view.findViewById(R.id.recipeView);
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(v.getContext(), RecipeexplanationActivity.class);
+                    v.getContext().startActivity(intent);
+                }
+            });
         }
     }
     @NonNull
@@ -37,8 +48,9 @@ public class RecoAdapter extends RecyclerView.Adapter<RecoAdapter.RecoHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull RecoHolder recoHolder, int position){
-        recoHolder.title.setText(mDataset2.get(position).getTitle());
-        recoHolder.category.setText(mDataset2.get(position).getCategory());
+        recoHolder.title.setText(mDataset2.get(position).title);
+        recoHolder.category.setText(mDataset2.get(position).category);
+        recoHolder.image.setImageResource(mDataset2.get(position).resId);
     }
     @Override
     public int getItemCount(){

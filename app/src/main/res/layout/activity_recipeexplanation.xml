@@ -136,7 +136,8 @@
                             android:id="@+id/thumbsup"
                             android:layout_width="20dp"
                             android:layout_height="20dp"
-                            android:background="@drawable/ic_outline_thumb_up_24"
+                            android:backgroundTint="@color/black"
+                            android:background="@drawable/thumb_button"
                             app:layout_constraintEnd_toStartOf="@+id/favorite"
                             app:layout_constraintTop_toTopOf="parent" />
                         <TextView
@@ -158,7 +159,8 @@
                             android:id="@+id/favorite"
                             android:layout_width="20dp"
                             android:layout_height="20dp"
-                            android:background="@drawable/ic_baseline_favorite_border_24"
+                            android:backgroundTint="@color/black"
+                            android:background="@drawable/like_button"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
                         <TextView

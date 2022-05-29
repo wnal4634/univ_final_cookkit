@@ -33,7 +33,7 @@ public class Fragment_index extends Fragment {
 
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerview);
         recyclerView.setHasFixedSize(true);
-        mAdapter = new MainAdapter(list);
+        mAdapter = new MainAdapter (list);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -67,7 +67,7 @@ public class Fragment_index extends Fragment {
     }
     private void Data(){
         for(int i=0;i<10;i++) {
-            list.add(new MainData("파스타", "양식"));
+            list.add(new MainData("돈가스", "양식", R.drawable.porkcutlet));
         }
     }
 }

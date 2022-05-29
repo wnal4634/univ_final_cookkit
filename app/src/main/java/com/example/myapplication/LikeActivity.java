@@ -30,7 +30,7 @@ public class LikeActivity extends AppCompatActivity {
     }
     private void Data1(){
         for(int i=0;i<3;i++) {
-            list.add(new MainData("파스타", "양식"));
+            list.add(new MainData("돈가스", "양식",R.drawable.porkcutlet));
         }
     }
 

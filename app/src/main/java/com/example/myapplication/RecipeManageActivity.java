@@ -32,6 +32,7 @@ public class RecipeManageActivity extends AppCompatActivity {
     ArrayList<MainData> list3 = new ArrayList<>();
     ManageAdapter maAdapter;
     ImageButton close;
+    Button modifybtn;
     @Override
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +46,7 @@ public class RecipeManageActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.Recipemanage_recycler);
         ManageAdapter adapter3= new ManageAdapter(list3);
         recyclerView.setAdapter(adapter3);
+
         recyclerView.setLayoutManager(new LinearLayoutManager(this,RecyclerView.VERTICAL,false));
     }
     @Override
@@ -59,7 +61,7 @@ public class RecipeManageActivity extends AppCompatActivity {
     }
     private void Data(){
         for(int i=0;i<3;i++) {
-            list3.add(new MainData("파스타", "양식"));
+            list3.add(new MainData("돈가스", "양식",R.drawable.porkcutlet));
 
         }
     }
@@ -81,4 +83,5 @@ public class RecipeManageActivity extends AppCompatActivity {
 
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
-    }}
+    }
+}
