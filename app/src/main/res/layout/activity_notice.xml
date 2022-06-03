@@ -23,6 +23,7 @@
         android:layout_height="wrap_content"
         android:text="공지사항"
         android:textSize="16dp"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toTopOf="@+id/view123"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

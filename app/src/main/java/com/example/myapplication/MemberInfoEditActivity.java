@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MemberInfoEditActivity extends AppCompatActivity {
 
@@ -20,6 +21,17 @@ public class MemberInfoEditActivity extends AppCompatActivity {
 
         ImageButton btn_back_mypage = (ImageButton) findViewById(R.id.back_mypage);
         btn_back_mypage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(
+                        MemberInfoEditActivity.this, Fragment_mypage.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                finish();
+            }
+        });
+
+        Button btn_info_save = (Button) findViewById(R.id.info_save);
+        btn_info_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(
