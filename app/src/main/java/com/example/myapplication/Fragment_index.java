@@ -19,8 +19,8 @@ import java.util.ArrayList;
 
 public class Fragment_index extends Fragment {
     private View view;
-    private Button btn_mlcheck;
-    private ImageButton imgbtn_mealgo;
+//    private Button btn_mlcheck;
+//    private ImageButton imgbtn_mealgo;
     private RecyclerView recyclerView;
     private ArrayList<MainData> list = new ArrayList<>();
     private MainAdapter mAdapter;
@@ -38,25 +38,25 @@ public class Fragment_index extends Fragment {
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(mAdapter);
-        btn_mlcheck = (Button) view.findViewById(R.id.mlcheck);
-        btn_mlcheck.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(),MealDetailActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                startActivity(intent);
-            }
-        });
+//        btn_mlcheck = (Button) view.findViewById(R.id.mlcheck);
+//        btn_mlcheck.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(getActivity(),MealDetailActivity.class);
+//                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+//                startActivity(intent);
+//            }
+//        });
 
-        imgbtn_mealgo = (ImageButton) view.findViewById(R.id.mealgo);
-        imgbtn_mealgo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(),MealDetailActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                startActivity(intent);
-            }
-        });
+//        imgbtn_mealgo = (ImageButton) view.findViewById(R.id.mealgo);
+//        imgbtn_mealgo.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(getActivity(),MealDetailActivity.class);
+//                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+//                startActivity(intent);
+//            }
+//        });
         return view;
     }
 

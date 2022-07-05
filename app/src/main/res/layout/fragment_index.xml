@@ -10,32 +10,32 @@
     tools:layout_editor_absoluteY="-6dp">
 
 
-    <Button
-        android:id="@+id/mlcheck"
-        android:layout_width="wrap_content"
-        android:layout_height="38dp"
-        android:backgroundTint="#FFFFFF"
-        android:gravity="right"
-        android:stateListAnimator="@null"
-        android:text="밀키트 판매 확인"
-        android:textColor="#000000"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/view21"
-        app:layout_constraintEnd_toStartOf="@+id/mealgo"
-        app:layout_constraintTop_toTopOf="parent" />
+<!--    <Button-->
+<!--        android:id="@+id/mlcheck"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="38dp"-->
+<!--        android:backgroundTint="#FFFFFF"-->
+<!--        android:gravity="right"-->
+<!--        android:stateListAnimator="@null"-->
+<!--        android:text="밀키트 판매 확인"-->
+<!--        android:textColor="#000000"-->
+<!--        android:textSize="14sp"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/view21"-->
+<!--        app:layout_constraintEnd_toStartOf="@+id/mealgo"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
 
-    <ImageButton
-        android:id="@+id/mealgo"
-        android:layout_width="23dp"
-        android:layout_height="23dp"
-        android:layout_marginEnd="14dp"
-        android:background="@drawable/ic_baseline_arrow_back_ios_new_24"
-        android:backgroundTint="#737373"
-        android:rotationY="180"
-        android:text=""
-        app:layout_constraintBottom_toTopOf="@+id/view21"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+<!--    <ImageButton-->
+<!--        android:id="@+id/mealgo"-->
+<!--        android:layout_width="23dp"-->
+<!--        android:layout_height="23dp"-->
+<!--        android:layout_marginEnd="14dp"-->
+<!--        android:background="@drawable/ic_baseline_arrow_back_ios_new_24"-->
+<!--        android:backgroundTint="#737373"-->
+<!--        android:rotationY="180"-->
+<!--        android:text=""-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/view21"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
 
     <Button
         android:id="@+id/reco"

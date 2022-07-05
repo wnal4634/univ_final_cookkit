@@ -16,6 +16,13 @@
         android:title="찾아보기">
     </item>
     <item
+        android:id="@+id/item4"
+        app:showAsAction="always"
+        android:enabled="true"
+        android:icon="@drawable/cart"
+        android:title="밀키트">
+    </item>
+    <item
         android:id="@+id/item3"
         app:showAsAction="always"
         android:enabled="true"
