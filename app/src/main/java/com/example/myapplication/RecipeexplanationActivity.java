@@ -64,23 +64,4 @@ public class RecipeexplanationActivity extends AppCompatActivity {
             }
         });
     }
-
-    public void DialogClick(View view) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("알림창").setMessage("유튜브로 이동하시겠습니까?");
-        builder.setPositiveButton("이동", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText(getApplicationContext(), "연결", Toast.LENGTH_LONG).show();
-            }
-        });
-        builder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-            }
-        });
-
-        AlertDialog alertDialog = builder.create();
-        alertDialog.show();
-    }
 }

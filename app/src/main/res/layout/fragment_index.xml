@@ -37,16 +37,17 @@
 <!--        app:layout_constraintEnd_toEndOf="parent"-->
 <!--        app:layout_constraintTop_toTopOf="parent" />-->
 
-    <Button
+    <androidx.appcompat.widget.AppCompatSpinner
         android:id="@+id/reco"
         android:layout_width="wrap_content"
         android:layout_height="37dp"
         android:layout_marginEnd="10dp"
         android:backgroundTint="#FFFFFF"
         android:gravity="right"
-        android:stateListAnimator="@null"
+        android:paddingRight="1dp"
         android:text="추천순"
         android:textColor="#000000"
+        android:spinnerMode="dropdown"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view21" />
 

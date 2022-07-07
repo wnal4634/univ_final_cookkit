@@ -10,6 +10,9 @@
         <entry key="..\:/CookAndroid/Project/finalproject/app/src/main/res/layout/fragment_index.xml" value="0.33" />
         <entry key="..\:/CookAndroid/Project/finalproject/app/src/main/res/layout/fragment_mypage.xml" value="0.5" />
         <entry key="..\:/CookAndroid/Project/finalproject/app/src/main/res/layout/fragment_search.xml" value="0.33" />
+        <entry key="..\:/Users/PC/AndroidStudioProjects/finalproject/app/src/main/res/layout/activity_consent1.xml" value="0.15870354847722828" />
+        <entry key="..\:/Users/PC/AndroidStudioProjects/finalproject/app/src/main/res/layout/activity_consent2.xml" value="0.264" />
+        <entry key="..\:/Users/PC/AndroidStudioProjects/finalproject/app/src/main/res/layout/activity_consent3.xml" value="0.264" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/finalproject/app/src/main/res/layout/activity_like.xml" value="0.2" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/finalproject/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/finalproject/app/src/main/res/layout/activity_meal_detail.xml" value="0.264321608040201" />
@@ -18,11 +21,12 @@
         <entry key="..\:/Users/PC/AndroidStudioProjects/finalproject/app/src/main/res/layout/activity_member_info_edit.xml" value="0.264" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/finalproject/app/src/main/res/layout/activity_notice.xml" value="0.22984244670991658" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/finalproject/app/src/main/res/layout/activity_recipe_manage.xml" value="0.264" />
-        <entry key="..\:/Users/PC/AndroidStudioProjects/finalproject/app/src/main/res/layout/activity_recipeexplanation.xml" value="0.2" />
+        <entry key="..\:/Users/PC/AndroidStudioProjects/finalproject/app/src/main/res/layout/activity_recipeexplanation.xml" value="0.264" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/finalproject/app/src/main/res/layout/activity_recipewrite.xml" value="0.264" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/finalproject/app/src/main/res/layout/activity_reco.xml" value="0.2" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/finalproject/app/src/main/res/layout/activity_setting.xml" value="0.2" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/finalproject/app/src/main/res/layout/activity_signup.xml" value="0.264" />
+        <entry key="..\:/Users/PC/AndroidStudioProjects/finalproject/app/src/main/res/layout/consent3.xml" value="0.264" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/finalproject/app/src/main/res/layout/fragment_index.xml" value="0.264" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/finalproject/app/src/main/res/layout/fragment_mypage.xml" value="0.264" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/finalproject/app/src/main/res/layout/fragment_search.xml" value="0.264" />

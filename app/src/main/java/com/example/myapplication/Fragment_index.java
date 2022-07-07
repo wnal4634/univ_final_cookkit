@@ -12,8 +12,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.Spinner;
 
 import java.util.ArrayList;
 
@@ -24,12 +27,22 @@ public class Fragment_index extends Fragment {
     private RecyclerView recyclerView;
     private ArrayList<MainData> list = new ArrayList<>();
     private MainAdapter mAdapter;
+    private Spinner indexSpinner;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view =  inflater.inflate(R.layout.fragment_index, container, false);
+
+        String [] values1 = {"추천순", "최신순"};
+        indexSpinner = (Spinner) view.findViewById(R.id.reco);
+        ArrayAdapter<String> adapterSpinner = new ArrayAdapter(this.getActivity(), android.R.layout.simple_spinner_item);
+        adapterSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        indexSpinner.setPrompt("추천순");
+        indexSpinner.setAdapter(adapterSpinner);
+        adapterSpinner.addAll(values1);
+
 
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerview);
         recyclerView.setHasFixedSize(true);

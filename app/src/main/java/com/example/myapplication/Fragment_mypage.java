@@ -19,7 +19,7 @@ public class Fragment_mypage extends Fragment {
     private Button btn_like;
     private Button btn_recipemanage;
     private Button btn_mlorderstatus;
-    private ImageButton imgbtn_edit;
+    private Button imgbtn_edit;
     private Button btn_setting;
 
     @Override
@@ -72,7 +72,7 @@ public class Fragment_mypage extends Fragment {
                 startActivity(intent);
             }
         });
-        imgbtn_edit = (ImageButton) view.findViewById(R.id.imageButton4);
+        imgbtn_edit = (Button) view.findViewById(R.id.imageButton4);
         imgbtn_edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

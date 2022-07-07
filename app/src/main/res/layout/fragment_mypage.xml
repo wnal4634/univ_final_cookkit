@@ -16,52 +16,8 @@
         android:background="#DBDBDB"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <View
-        android:id="@+id/view11"
-        android:layout_width="match_parent"
-        android:layout_height="10dp"
-        android:layout_marginTop="24dp"
-        android:background="#DBDBDB"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton13"
-        tools:layout_editor_absoluteX="-16dp" />
-
-    <ImageButton
-        android:id="@+id/imageButton13"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view10"
-        tools:src="@tools:sample/avatars" />
-
-    <ImageButton
-        android:id="@+id/imageButton4"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="51dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/ic_baseline_arrow_back_ios_new_24"
-        android:backgroundTint="#737373"
-        android:rotationY="180"
-        android:text=""
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view10" />
-
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="51dp"
-        android:text="아이디"
-        android:textColor="@android:color/black"
-        android:textSize="16dp"
-        app:layout_constraintStart_toEndOf="@+id/imageButton13"
-        app:layout_constraintTop_toBottomOf="@+id/view10" />
-
     <Button
-        android:id="@+id/button13"
+        android:id="@+id/imageButton4"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
@@ -69,11 +25,25 @@
         android:backgroundTint="#FFFFFF"
         android:gravity="start"
         android:stateListAnimator="@null"
+        android:text="회원정보 수정"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view10" />
+
+    <Button
+        android:id="@+id/button13"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:backgroundTint="#FFFFFF"
+        android:gravity="start"
+        android:stateListAnimator="@null"
         android:text="작성한 레시피"
         android:textColor="@color/black"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view11" />
+        app:layout_constraintTop_toBottomOf="@+id/imageButton4" />
 
 
     <Button
