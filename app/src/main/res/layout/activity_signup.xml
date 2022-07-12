@@ -226,7 +226,7 @@
                     android:layout_height="match_parent"
                     android:orientation="horizontal">
 
-                    <EditText
+                    <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/join_post"
                         android:layout_width="261dp"
                         android:layout_height="wrap_content"
@@ -246,7 +246,7 @@
                         android:paddingRight="10dp">
 
                         <Button
-                            android:id="@+id/button2"
+                            android:id="@+id/adress_detail"
                             android:layout_width="wrap_content"
                             android:layout_height="32dp"
                             android:layout_gravity="right"
@@ -264,7 +264,7 @@
                     android:orientation="vertical">
 
 
-                    <EditText
+                    <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/join_ad"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

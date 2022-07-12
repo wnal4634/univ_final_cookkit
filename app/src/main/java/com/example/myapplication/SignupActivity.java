@@ -25,6 +25,7 @@ import org.json.JSONObject;
 
 public class SignupActivity extends AppCompatActivity {
 
+    private static final int SEARCH_ADDRESS_ACTIVITY = 10000;
     private EditText join_id, join_password, join_name, join_pwck, join_email, join_phone, join_post,join_ad;
     private Button join_button, check_button;
     private AlertDialog dialog;
@@ -205,5 +206,33 @@ public class SignupActivity extends AppCompatActivity {
         });
 
 
+        join_post = (EditText) findViewById(R.id.join_post);
+        Button btn_search = (Button) findViewById(R.id.adress_detail);
+        if (btn_search != null) {
+            btn_search.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v)
+                {
+                    Intent i = new Intent(SignupActivity.this, AdressAPI.class);
+                    startActivityForResult(i, SEARCH_ADDRESS_ACTIVITY);
+                }
+            });
+        }
+
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent intent)
+    {
+        super.onActivityResult(requestCode, resultCode, intent);
+        switch (requestCode) {
+            case SEARCH_ADDRESS_ACTIVITY:
+                if (resultCode == RESULT_OK) {
+                    String data = intent.getExtras().getString("data");
+                    if (data != null) {
+                        join_post.setText(data);
+                    }
+                }
+                break;
+        }
     }
 }
