@@ -25,7 +25,7 @@ import org.json.JSONObject;
 
 public class SignupActivity extends AppCompatActivity {
 
-    private EditText join_id, join_password, join_name, join_pwck, join_email;
+    private EditText join_id, join_password, join_name, join_pwck, join_email, join_phone, join_post,join_ad;
     private Button join_button, check_button;
     private AlertDialog dialog;
     private boolean validate = false;
@@ -41,6 +41,9 @@ public class SignupActivity extends AppCompatActivity {
         join_name = findViewById( R.id.join_name );
         join_pwck = findViewById(R.id.join_pwck);
         join_email = findViewById(R.id.join_email);
+        join_phone = findViewById(R.id.join_phone);
+        join_post = findViewById(R.id.join_post);
+        join_ad = findViewById(R.id.join_ad);
 
         ImageButton btn_back_login = (ImageButton) findViewById(R.id.back_login);
         btn_back_login.setOnClickListener(new View.OnClickListener() {
@@ -108,6 +111,10 @@ public class SignupActivity extends AppCompatActivity {
                 final String UserName = join_name.getText().toString();
                 final String PassCk = join_pwck.getText().toString();
                 final String UserEmail = join_email.getText().toString();
+                final String UserPhone = join_phone.getText().toString();
+                final String UserPost = join_post.getText().toString();
+                final String UserAd = join_ad.getText().toString();
+
 
 
                 //아이디 중복체크 했는지 확인
@@ -162,7 +169,8 @@ public class SignupActivity extends AppCompatActivity {
                 };
 
                 //서버로 Volley를 이용해서 요청
-                RegisterRequest registerRequest = new RegisterRequest( UserId, UserPwd, UserName, UserEmail, responseListener);
+                RegisterRequest registerRequest = new RegisterRequest( UserId, UserPwd, UserName, UserEmail, UserPhone,
+                        UserPost, UserAd, responseListener);
                 RequestQueue queue = Volley.newRequestQueue( SignupActivity.this );
                 queue.add( registerRequest );
             }

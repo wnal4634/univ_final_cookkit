@@ -14,7 +14,8 @@ public class RegisterRequest extends StringRequest {
     private Map<String, String> map;
     //private Map<String, String>parameters;
 
-    public RegisterRequest(String UserId, String UserPwd, String UserName,  String UserEmail, Response.Listener<String> listener) {
+    public RegisterRequest(String UserId, String UserPwd, String UserName,  String UserEmail, String UserPhone,
+                           String UserPost, String UserAd, Response.Listener<String> listener) {
         super(Method.POST, URL, listener, null);
 
         map = new HashMap<>();
@@ -22,6 +23,9 @@ public class RegisterRequest extends StringRequest {
         map.put("member_pw", UserPwd);
         map.put("name", UserName);
         map.put("email", UserEmail);
+        map.put("phone_num", UserPhone);
+        map.put("post_num", UserPost);
+        map.put("member_ad", UserAd);
     }
 
     @Override
