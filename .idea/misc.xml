@@ -43,6 +43,7 @@
         <entry key="..\:/Users/ccom0/AndroidStudioProjects/finalproject/app/src/main/res/drawable/menu_item_color.xml" value="0.1905" />
         <entry key="..\:/Users/ccom0/AndroidStudioProjects/finalproject/app/src/main/res/drawable/thumb_button.xml" value="0.14" />
         <entry key="..\:/Users/ccom0/AndroidStudioProjects/finalproject/app/src/main/res/layout/activity_intro.xml" value="0.29259259259259257" />
+        <entry key="..\:/Users/ccom0/AndroidStudioProjects/finalproject/app/src/main/res/layout/activity_login.xml" value="0.2861111111111111" />
         <entry key="..\:/Users/ccom0/AndroidStudioProjects/finalproject/app/src/main/res/layout/activity_main.xml" value="0.3619791666666667" />
         <entry key="..\:/Users/ccom0/AndroidStudioProjects/finalproject/app/src/main/res/layout/activity_meal_detail.xml" value="0.3619791666666667" />
         <entry key="..\:/Users/ccom0/AndroidStudioProjects/finalproject/app/src/main/res/layout/activity_meal_order.xml" value="0.3619791666666667" />
@@ -50,6 +51,7 @@
         <entry key="..\:/Users/ccom0/AndroidStudioProjects/finalproject/app/src/main/res/layout/activity_notice.xml" value="0.325" />
         <entry key="..\:/Users/ccom0/AndroidStudioProjects/finalproject/app/src/main/res/layout/activity_recipeexplanation.xml" value="0.1" />
         <entry key="..\:/Users/ccom0/AndroidStudioProjects/finalproject/app/src/main/res/layout/activity_reco.xml" value="0.3234375" />
+        <entry key="..\:/Users/ccom0/AndroidStudioProjects/finalproject/app/src/main/res/layout/activity_signup.xml" value="0.3564102564102564" />
         <entry key="..\:/Users/ccom0/AndroidStudioProjects/finalproject/app/src/main/res/layout/fragment_index.xml" value="0.3619791666666667" />
         <entry key="..\:/Users/ccom0/AndroidStudioProjects/finalproject/app/src/main/res/layout/fragment_meal_detail.xml" value="0.3619791666666667" />
         <entry key="..\:/Users/ccom0/AndroidStudioProjects/finalproject/app/src/main/res/layout/fragment_mypage.xml" value="0.2722222222222222" />
@@ -58,6 +60,7 @@
         <entry key="..\:/Users/ccom0/AndroidStudioProjects/finalproject/app/src/main/res/layout/like_button.xml" value="0.3564102564102564" />
         <entry key="..\:/Users/ccom0/AndroidStudioProjects/finalproject/app/src/main/res/layout/like_holder.xml" value="0.18489583333333334" />
         <entry key="..\:/Users/ccom0/AndroidStudioProjects/finalproject/app/src/main/res/layout/main_holder.xml" value="0.1" />
+        <entry key="..\:/Users/ccom0/AndroidStudioProjects/finalproject/app/src/main/res/layout/ooooo.xml" value="0.2" />
         <entry key="..\:/Users/ccom0/AndroidStudioProjects/finalproject/app/src/main/res/layout/recipemanage_holder.xml" value="0.21666666666666667" />
         <entry key="..\:/Users/ccom0/AndroidStudioProjects/finalproject/app/src/main/res/layout/reco_holder.xml" value="0.1" />
         <entry key="..\:/Users/ccom0/AndroidStudioProjects/finalproject/app/src/main/res/menu/bottom_menu.xml" value="0.34739583333333335" />
