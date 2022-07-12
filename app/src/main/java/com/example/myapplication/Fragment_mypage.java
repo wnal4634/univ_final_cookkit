@@ -14,13 +14,8 @@ import android.widget.ImageButton;
 public class Fragment_mypage extends Fragment {
 
     private View view;
-    private Button btn_noti;
-    private Button btn_reco;
-    private Button btn_like;
-    private Button btn_recipemanage;
-    private Button btn_mlorderstatus;
-    private Button imgbtn_edit;
-    private Button btn_setting;
+    private Button btn_noti, btn_reco, btn_like, btn_recipemanage, btn_mlorderstatus;
+    private Button imgbtn_edit, btn_setting, btn_logout;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -90,8 +85,19 @@ public class Fragment_mypage extends Fragment {
                 startActivity(intent);
             }
         });
+
+        btn_logout = (Button) view.findViewById(R.id.logout);
+        btn_logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(),LoginActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                startActivity(intent);
+            }
+        });
         // Inflate the layout for this fragment
         return view;
+
 
 
     }
