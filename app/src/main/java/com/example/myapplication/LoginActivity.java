@@ -64,6 +64,7 @@ public class LoginActivity extends AppCompatActivity {
                                 intent.putExtra( "name", UserName );
 
                                 startActivity( intent );
+                                finish();
 
                             } else {//로그인 실패시
                                 Toast.makeText( getApplicationContext(), "로그인에 실패하셨습니다.", Toast.LENGTH_SHORT ).show();

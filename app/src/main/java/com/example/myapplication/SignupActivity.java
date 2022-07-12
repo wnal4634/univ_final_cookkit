@@ -126,7 +126,8 @@ public class SignupActivity extends AppCompatActivity {
                 }
 
                 //한 칸이라도 입력 안했을 경우
-                if (UserId.equals("") || UserPwd.equals("") || UserName.equals("") || UserEmail.equals("")) {
+                if (UserId.equals("") || UserPwd.equals("") || UserName.equals("") || UserEmail.equals("") || UserPhone.equals("") ||
+                UserPost.equals("") || UserAd.equals("")) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(SignupActivity.this);
                     dialog = builder.setMessage("모두 입력해주세요.").setNegativeButton("확인", null).create();
                     dialog.show();
