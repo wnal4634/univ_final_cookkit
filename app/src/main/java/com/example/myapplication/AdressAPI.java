@@ -43,6 +43,6 @@ public class AdressAPI extends AppCompatActivity {
             }
         });
 
-        browser.loadUrl("http://서버주소/daum.html");
+        browser.loadUrl("http://admin0000.dothome.co.kr/daum.html");
     }
 }
