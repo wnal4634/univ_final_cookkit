@@ -11,18 +11,18 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="108dp"
         android:layout_marginLeft="12dp"
         android:layout_marginTop="10dp"
         android:layout_marginRight="12dp"
-        android:layout_marginBottom="7dp"
+        android:layout_marginBottom="12dp"
         android:background="@drawable/rounding_square"
         android:orientation="horizontal"
         android:elevation="5dp">
 
     <LinearLayout
         android:layout_width="135dp"
-        android:layout_height="wrap_content"
+        android:layout_height="108dp"
         android:orientation="vertical">
 
         <TextView
@@ -31,21 +31,22 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="12dp"
             android:layout_marginTop="10dp"
+            android:layout_weight="1"
             android:text="2021.04.04" />
 
         <ImageView
             android:id="@+id/recipeView"
-            android:layout_width="110dp"
-            android:layout_height="70dp"
+            android:layout_width="107dp"
+            android:layout_height="60dp"
             android:layout_marginLeft="12dp"
-            android:layout_marginTop="7dp"
+            android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:scaleType="centerCrop"
             android:src="@mipmap/ic_launcher" />
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="144dp"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
@@ -54,30 +55,53 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:textSize="14dp"
+            android:textSize="13dp"
             android:textColor="@color/black"
-            android:layout_marginTop="38dp" />
-        <LinearLayout
+            android:layout_marginTop="45dp" />
+
+        <TextView
+            android:id="@+id/mealkit_set"
+            android:layout_width="91dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="10dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/horiz"
+            android:layout_width="20dp"
+            android:layout_height="15dp"
+            android:layout_gravity="right"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/ic_baseline_more_horiz_24" />
+
+        <TextView
+            android:id="@+id/mealkit_price"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:layout_marginBottom="10dp">
-                <TextView
-                    android:id="@+id/mealkit_set"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"/>
-                <TextView
-                    android:id="@+id/mealkit_price"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/black"
-                    android:layout_marginLeft="8dp"
-                    android:layout_gravity="bottom"/>
-        </LinearLayout>
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:layout_marginTop="55dp" />
     </LinearLayout>
 
 
+    <TextView
+        android:id="@+id/meal_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="10dp"
+        android:text="밀키트명"
+        android:textColor="#000000"
+        android:textSize="16dp"
+        android:textStyle="bold" />
+
+
     </LinearLayout>
 
-</LinearLayout>
+    </LinearLayout>
