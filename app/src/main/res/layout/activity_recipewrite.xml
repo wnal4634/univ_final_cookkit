@@ -58,6 +58,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
                     <EditText
+                        android:id="@+id/recipe_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
@@ -100,6 +101,7 @@
                     android:textSize="14dp"
                     android:textStyle="bold"/>
                 <EditText
+                    android:id="@+id/recipe_mat"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingTop="16dp"
@@ -156,7 +158,7 @@
                     android:layout_weight="1">
 
                     <EditText
-                        android:id="@+id/textView4"
+                        android:id="@+id/recipe_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="16dp"
