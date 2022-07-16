@@ -11,13 +11,14 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import android.util.Log;
 public class RecipeexplanationActivity extends AppCompatActivity {
 
     private View view;
     private ImageButton btn_back_index;
     private Button btn_like, btn_thumbs;
     private TextView thumsup_count, favorite_count;
+    private int count=0;
     boolean selected = false;
     boolean selected2 = false;
     private Button share;
@@ -26,7 +27,11 @@ public class RecipeexplanationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipeexplanation);
 
-
+        thumsup_count=findViewById(R.id.thumsup_count);
+        thumsup_count.setText(count+"");
+        favorite_count=findViewById(R.id.favorite_count);
+        favorite_count.setText(count+"");
+        btn_like=findViewById(R.id.thumbsup);
         ImageButton btn_back_index = findViewById(R.id.back_index);
         btn_back_index.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,21 +49,31 @@ public class RecipeexplanationActivity extends AppCompatActivity {
                 if (selected){
                     btn_thumbs.setSelected(false);
                     selected = false;
+                    count--;
+                    thumsup_count.setText(count+"");
                 }else {
+                    count++;
+                    thumsup_count.setText(count+"");
                     btn_thumbs.setSelected(true);
                     selected =true;
 
-                }
-            }
+                }}
+
         });
         Button btn_like = findViewById(R.id.favorite);
         btn_like.setOnClickListener(new View.OnClickListener() {
+            private int count=0;
             @Override
             public void onClick(View v) {
                 if (selected2){
                     btn_like.setSelected(false);
                     selected2 = false;
+                    count--;
+                    favorite_count.setText(count+"");
+
                 }else {
+                    count++;
+                    favorite_count.setText(count+"");
                     btn_like.setSelected(true);
                     selected2 = true;
                 }
