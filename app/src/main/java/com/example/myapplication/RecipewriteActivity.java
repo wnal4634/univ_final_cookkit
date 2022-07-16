@@ -3,16 +3,27 @@ package com.example.myapplication;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.io.InputStream;
 
 public class RecipewriteActivity extends AppCompatActivity {
+
+    private static final int REQUST_CODE=0;
+
+    ImageView main, image1, image2, image3, image4, image5, image6;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +57,25 @@ public class RecipewriteActivity extends AppCompatActivity {
             }
         });
 
+        main = findViewById(R.id.recipegallery_main);
+        image1 = findViewById(R.id.recipegallery1);
+        image2 = findViewById(R.id.recipegallery2);
+        image3 = findViewById(R.id.recipegallery3);
+        image4 = findViewById(R.id.recipegallery4);
+        image5 = findViewById(R.id.recipegallery5);
+        image6 = findViewById(R.id.recipegallery6);
+
+        main.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(intent, REQUST_CODE);
+            }
+        });
+
+
 
         Button button_upload = findViewById(R.id.upload);
         button_upload.setOnClickListener(new View.OnClickListener() {
@@ -56,6 +86,27 @@ public class RecipewriteActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUST_CODE) {
+            if (resultCode == RESULT_OK) {
+                try {
+                    InputStream in = getContentResolver().openInputStream(data.getData());
+
+                    Bitmap img = BitmapFactory.decodeStream(in);
+                    in.close();
+
+                    main.setImageBitmap(img);
+                } catch (Exception e) {
+
+                }
+            }
+        } else if (resultCode == RESULT_CANCELED) {
+            Toast.makeText(this, "사진 선택 취소", Toast.LENGTH_LONG).show();
+        }
     }
 
 }
