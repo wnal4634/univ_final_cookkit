@@ -9,11 +9,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Button;
 import android.widget.Toast;
 
 public class MealOrderActivity extends AppCompatActivity {
+    private static final int SEARCH_ADDRESS_ACTIVITY = 10000;
+    private EditText meal_post,editTextNumber3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,5 +34,33 @@ public class MealOrderActivity extends AppCompatActivity {
                 finish();
             }
         });
+        meal_post = (EditText) findViewById(R.id.editTextTextPersonName145);
+        Button btn_search1 = (Button) findViewById(R.id.button4);
+        if (btn_search1 != null) {
+            btn_search1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v)
+                {
+                    Intent i = new Intent(MealOrderActivity.this, AdressAPI.class);
+                    startActivityForResult(i, SEARCH_ADDRESS_ACTIVITY);
+                }
+            });
+        }
+
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent intent)
+    {
+        super.onActivityResult(requestCode, resultCode, intent);
+        switch (requestCode) {
+            case SEARCH_ADDRESS_ACTIVITY:
+                if (resultCode == RESULT_OK) {
+                    String data = intent.getExtras().getString("data");
+                    if (data != null) {
+                        meal_post.setText(data);
+                    }
+                }
+                break;
+        }
     }
 }
