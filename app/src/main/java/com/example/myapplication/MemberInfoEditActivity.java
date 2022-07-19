@@ -11,15 +11,43 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+
+import java.net.URL;
+
 public class MemberInfoEditActivity extends AppCompatActivity {
     private static final int SEARCH_ADDRESS_ACTIVITY = 10000;
-    private EditText correction_post,correction_ad;
-    private Button correction_button;
+    private EditText postNum;
+
+    String member_id, phone_num, post_num, member_ad = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_member_info_edit);
+
+        member_id = getIntent().getStringExtra("member_id");
+        phone_num = getIntent().getStringExtra("phone_num");
+        post_num = getIntent().getStringExtra("post_num");
+        member_ad = getIntent().getStringExtra("member_ad");
+
+        Intent intent = getIntent();
+
+        String hi_ID = intent.getStringExtra("member_id");
+        TextView textview = (TextView)findViewById(R.id.memberID);
+        textview.setText(hi_ID);
+
+        String savePhone = intent.getStringExtra("phone_num");
+        EditText editText = (EditText)findViewById(R.id.phoneNumber);
+        editText.setText(savePhone);
+
+        String savePost = intent.getStringExtra("post_num");
+        EditText editText2 = (EditText)findViewById(R.id.postNum);
+        editText2.setText(savePost);
+
+        String saveAdress = intent.getStringExtra("member_ad");
+        EditText editText3 = (EditText)findViewById(R.id.Adress);
+        editText3.setText(saveAdress);
 
 
 
@@ -27,9 +55,8 @@ public class MemberInfoEditActivity extends AppCompatActivity {
         btn_back_mypage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final String UserPost = correction_post.getText().toString();
-                final String UserAd = correction_ad.getText().toString();
-
+//                final String UserPost = correction_post.getText().toString();
+//                final String UserAd = correction_ad.getText().toString();
                 Intent intent = new Intent(
                         MemberInfoEditActivity.this, Fragment_mypage.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -47,10 +74,11 @@ public class MemberInfoEditActivity extends AppCompatActivity {
                 finish();
             }
         });
-        correction_post = (EditText) findViewById(R.id.editTextTextPersonName145);
-        Button btn_search1 = (Button) findViewById(R.id.btnaddresssearch);
-        if (btn_search1 != null) {
-            btn_search1.setOnClickListener(new View.OnClickListener() {
+
+        postNum = (EditText) findViewById(R.id.postNum);
+        Button btn_search = (Button) findViewById(R.id.adress_detail);
+        if (btn_search != null) {
+            btn_search.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v)
                 {
@@ -70,11 +98,11 @@ public class MemberInfoEditActivity extends AppCompatActivity {
                 if (resultCode == RESULT_OK) {
                     String data = intent.getExtras().getString("data");
                     if (data != null) {
-                        correction_post.setText(data);
+                        postNum.setText(data);
                     }
                 }
                 break;
         }
-
     }
+
 }

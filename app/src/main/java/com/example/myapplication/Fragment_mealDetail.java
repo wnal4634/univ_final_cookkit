@@ -20,11 +20,21 @@ public class Fragment_mealDetail extends Fragment {
         // Inflate the layout for this fragment
         view =  inflater.inflate(R.layout.fragment_meal_detail, container, false);
 
+//        Bundle bundle = getArguments();
+//        String member_id = bundle.getString("member_id");
+//        String phone_num = bundle.getString("phone_num");
+//        String post_num = bundle.getString("post_num");
+//        String member_ad = bundle.getString("member_ad");
+
         Button btn_ordergo = (Button) view.findViewById(R.id.ordergo);
         btn_ordergo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), MealOrderActivity.class);
+//                intent.putExtra("member_id", (String) member_id);
+//                intent.putExtra("phone_num", (String) phone_num);
+//                intent.putExtra("post_num", (String) post_num);
+//                intent.putExtra("member_ad", (String) member_ad);
                 startActivity(intent);
             }
         });

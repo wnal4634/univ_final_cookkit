@@ -18,9 +18,11 @@ import android.util.Log;
 public class MealOrderActivity extends AppCompatActivity {
     private TextView meal_count;
     private static final int SEARCH_ADDRESS_ACTIVITY = 10000;
-    private EditText meal_post;
+    private EditText postNum;
     private ImageButton meal_minus, meal_plus;
     private int count=0;
+    String member_id, phone_num, post_num, member_ad = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,10 +59,22 @@ public class MealOrderActivity extends AppCompatActivity {
                 });
             }
         });
-        meal_post = (EditText) findViewById(R.id.editTextTextPersonName145);
-        Button btn_search1 = (Button) findViewById(R.id.button4);
-        if (btn_search1 != null) {
-            btn_search1.setOnClickListener(new View.OnClickListener() {
+
+        ImageButton btn_back_index = (ImageButton) findViewById(R.id.back_index);
+        btn_back_index.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(
+                        MealOrderActivity.this, Fragment_mealDetail.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                finish();
+            }
+        });
+
+        postNum = (EditText) findViewById(R.id.postNum);
+        Button btn_search = (Button) findViewById(R.id.adress_detail);
+        if (btn_search != null) {
+            btn_search.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v)
                 {
@@ -69,6 +83,25 @@ public class MealOrderActivity extends AppCompatActivity {
                 }
             });
         }
+
+
+//        member_id = getIntent().getStringExtra("member_id");
+//        phone_num = getIntent().getStringExtra("phone_num");
+//        post_num = getIntent().getStringExtra("post_num");
+//        member_ad = getIntent().getStringExtra("member_ad");
+//        Intent intent = getIntent();
+//        String hi_ID = intent.getStringExtra("member_id");
+//        TextView textview = (TextView)findViewById(R.id.memberID);
+//        textview.setText(hi_ID);
+//        String savePhone = intent.getStringExtra("phone_num");
+//        EditText editText = (EditText)findViewById(R.id.phoneNumber);
+//        editText.setText(savePhone);
+//        String savePost = intent.getStringExtra("post_num");
+//        EditText editText2 = (EditText)findViewById(R.id.postNum);
+//        editText2.setText(savePost);
+//        String saveAdress = intent.getStringExtra("member_ad");
+//        EditText editText3 = (EditText)findViewById(R.id.Adress);
+//        editText3.setText(saveAdress);
 
     }
 
@@ -80,10 +113,12 @@ public class MealOrderActivity extends AppCompatActivity {
                 if (resultCode == RESULT_OK) {
                     String data = intent.getExtras().getString("data");
                     if (data != null) {
-                        meal_post.setText(data);
+                        postNum.setText(data);
                     }
                 }
                 break;
         }
     }
+
 }
+

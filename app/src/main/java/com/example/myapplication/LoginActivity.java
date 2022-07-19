@@ -55,12 +55,18 @@ public class LoginActivity extends AppCompatActivity {
                                 String UserId = jsonObject.getString( "member_id" );
                                 String UserPwd = jsonObject.getString( "member_pw" );
                                 String UserName = jsonObject.getString( "name" );
+                                String UserNum = jsonObject.getString( "phone_num" );
+                                String UserPost = jsonObject.getString( "post_num" );
+                                String UserAd = jsonObject.getString( "member_ad" );
 
                                 Toast.makeText( getApplicationContext(), String.format(UserId+ "님 환영합니다."), Toast.LENGTH_SHORT ).show();
                                 Intent intent = new Intent( LoginActivity.this, MainActivity.class );
                                 intent.putExtra( "member_id", UserId );
                                 intent.putExtra( "member_pw", UserPwd );
                                 intent.putExtra( "name", UserName );
+                                intent.putExtra("phone_num", UserNum);
+                                intent.putExtra("post_num", UserPost);
+                                intent.putExtra("member_ad", UserAd);
 
                                 startActivity( intent );
                                 finish();
@@ -112,7 +118,7 @@ public class LoginActivity extends AppCompatActivity {
 
 //        Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button); // sign in button
         TextView mEmailSignUp = (TextView) findViewById(R.id.join_button);// sign up button
-        TextView mEmailFind = (TextView) findViewById(R.id.tvid);
+//        TextView mEmailFind = (TextView) findViewById(R.id.tvid);
 
         // event handler
 
