@@ -32,6 +32,11 @@ public class RecyclerVierAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, @SuppressLint("RecyclerView") final int position) {
         ViewHolder viewHolder = (ViewHolder)holder;
+        ItemDTO itemDTO = listData.get(position);
+        viewHolder.title.setText(itemDTO.getTitle());
+        viewHolder.date.setText(itemDTO.getDate());
+        viewHolder.content.setText(itemDTO.getDate());
+
         viewHolder.onBind(listData.get(position),position, selectedItems);
         viewHolder.setOnViewHolderItemClickListener(new OnViewHolderItemClickListener() {
             @Override
