@@ -167,7 +167,7 @@
                     android:layout_weight="1">
 
                     <EditText
-                        android:id="@+id/recipe_text"
+                        android:id="@+id/recipe_text1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="16dp"
@@ -222,7 +222,7 @@
                     android:layout_weight="1">
 
                     <EditText
-                        android:id="@+id/textView5"
+                        android:id="@+id/recipe_text2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="16dp"
@@ -276,7 +276,7 @@
                     android:layout_weight="1">
 
                     <EditText
-                        android:id="@+id/textView6"
+                        android:id="@+id/recipe_text3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="16dp"
@@ -330,7 +330,7 @@
                     android:orientation="vertical">
 
                     <EditText
-                        android:id="@+id/textView7"
+                        android:id="@+id/recipe_text4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="16dp"
@@ -384,7 +384,7 @@
                     android:orientation="vertical">
 
                     <EditText
-                        android:id="@+id/textView8"
+                        android:id="@+id/recipe_text5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="16dp"
@@ -438,7 +438,7 @@
                     android:orientation="vertical">
 
                     <EditText
-                        android:id="@+id/textView9"
+                        android:id="@+id/recipe_text6"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="16dp"
