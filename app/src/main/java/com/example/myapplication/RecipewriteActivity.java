@@ -1,15 +1,23 @@
 package com.example.myapplication;
 
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.content.ClipData;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.ImageDecoder;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.ContactsContract;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -22,24 +30,45 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
+import java.util.HashMap;
+import java.util.Map;
 
 public class RecipewriteActivity extends AppCompatActivity {
 
-//    private static int REQUST_CODE = 0;
-
     ImageView main, image1, image2, image3, image4, image5, image6;
     EditText recipe_title, recipe_mat, recipe_text;
+    String member_id;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipewrite);
+
+        member_id = getIntent().getStringExtra("member_id");
+        Intent intent = getIntent();
+        String hi_ID = intent.getStringExtra("member_id");
+        TextView textview = (TextView)findViewById(R.id.memberID);
+        textview.setText(hi_ID);
+
         Button close;
         close = (Button) findViewById(R.id.closebutton);
         close.setOnClickListener(new View.OnClickListener() {
@@ -146,7 +175,7 @@ public class RecipewriteActivity extends AppCompatActivity {
         button_upload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                insertToDatabase(recipe_title.getText().toString(), recipe_mat.getText().toString(),
+                insertToDatabase((String) textview.getText(), recipe_title.getText().toString(), recipe_mat.getText().toString(),
                         recipe_text.getText().toString());
                 Intent intent = new Intent(RecipewriteActivity.this, RecipeexplanationActivity.class);
                 startActivity(intent);
@@ -155,7 +184,7 @@ public class RecipewriteActivity extends AppCompatActivity {
             }
         });
     }
-    private void insertToDatabase(final String ed1, String ed2, String ed3) {
+    private void insertToDatabase(final String ed1, String ed2, String ed3, String ed4) {
         class InsertData extends AsyncTask<String, Void, String> {
             ProgressDialog loading;
 
@@ -178,11 +207,13 @@ public class RecipewriteActivity extends AppCompatActivity {
                     String edt1Text = (String) params[0];
                     String edt2Text = (String) params[1];
                     String edt3Text = (String) params[2];
+                    String edt4Text = (String) params[3];
 
                     String link = "http://admin0000.dothome.co.kr/insert.php";
-                    String data = URLEncoder.encode("recipe_title", "UTF-8") + "=" + URLEncoder.encode(edt1Text, "UTF-8");
-                    data += "&" + URLEncoder.encode("recipe_material", "UTF-8") + "=" + URLEncoder.encode(edt2Text, "UTF-8");
-                    data += "&" + URLEncoder.encode("recipe_text", "UTF-8") + "=" + URLEncoder.encode(edt3Text, "UTF-8");
+                    String data = URLEncoder.encode("member_id", "UTF-8") + "=" + URLEncoder.encode(edt1Text, "UTF-8");
+                    data += "&" + URLEncoder.encode("recipe_title", "UTF-8") + "=" + URLEncoder.encode(edt2Text, "UTF-8");
+                    data += "&" + URLEncoder.encode("recipe_material", "UTF-8") + "=" + URLEncoder.encode(edt3Text, "UTF-8");
+                    data += "&" + URLEncoder.encode("recipe_text", "UTF-8") + "=" + URLEncoder.encode(edt4Text, "UTF-8");
 
                     URL url = new URL(link);
                     URLConnection conn = url.openConnection();
@@ -211,14 +242,15 @@ public class RecipewriteActivity extends AppCompatActivity {
             }
         }
         InsertData task = new InsertData();
-        task.execute(ed1,ed2,ed3);
+        task.execute(ed1,ed2,ed3,ed4);
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 0) {
             if (resultCode == RESULT_OK) {
+                Uri uri = data.getData();
 
                 try {
                         InputStream in = getContentResolver().openInputStream(data.getData());
@@ -298,5 +330,9 @@ public class RecipewriteActivity extends AppCompatActivity {
         else if (resultCode == RESULT_CANCELED) {
             Toast.makeText(this, "사진 선택 취소", Toast.LENGTH_LONG).show();
         }
-        }
     }
+
+
+
+}
+
