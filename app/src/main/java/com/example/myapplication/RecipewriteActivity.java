@@ -80,6 +80,7 @@ public class RecipewriteActivity extends AppCompatActivity {
         });
 
         Spinner spinner = (Spinner) findViewById(R.id.categorysellect);
+
         ArrayAdapter<CharSequence> spinner_adapter = ArrayAdapter.createFromResource(
                 this, R.array.spinnerArray, android.R.layout.simple_spinner_item);
 
@@ -113,6 +114,7 @@ public class RecipewriteActivity extends AppCompatActivity {
         recipe_text4 = findViewById(R.id.recipe_text4);
         recipe_text5 = findViewById(R.id.recipe_text5);
         recipe_text6 = findViewById(R.id.recipe_text6);
+
         main.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -182,7 +184,7 @@ public class RecipewriteActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 insertToDatabase((String) textview.getText(), recipe_title.getText().toString(), recipe_mat.getText().toString(),
-                        recipe_text1.getText().toString(), recipe_text2.getText().toString(), recipe_text3.getText().toString(),
+                        spinner.getSelectedItem().toString(), recipe_text1.getText().toString(), recipe_text2.getText().toString(), recipe_text3.getText().toString(),
                         recipe_text4.getText().toString(), recipe_text5.getText().toString(), recipe_text6.getText().toString());
                 Intent intent = new Intent(RecipewriteActivity.this, RecipeexplanationActivity.class);
                 startActivity(intent);
@@ -191,7 +193,7 @@ public class RecipewriteActivity extends AppCompatActivity {
             }
         });
     }
-    private void insertToDatabase(final String ed1, String ed2, String ed3, String ed4, String ed5, String ed6, String ed7, String ed8, String ed9) {
+    private void insertToDatabase(final String ed1, String ed2, String ed3, String ed4, String ed5, String ed6, String ed7, String ed8, String ed9, String ed10) {
         class InsertData extends AsyncTask<String, Void, String> {
             ProgressDialog loading;
 
@@ -214,23 +216,25 @@ public class RecipewriteActivity extends AppCompatActivity {
                     String edt1Text = (String) params[0];
                     String edt2Text = (String) params[1];
                     String edt3Text = (String) params[2];
-                    String edt4Text = (String) params[3]; //text1
-                    String edt5Text = (String) params[4];
+                    String edt4Text = (String) params[3];
+                    String edt5Text = (String) params[4]; //text1
                     String edt6Text = (String) params[5];
                     String edt7Text = (String) params[6];
                     String edt8Text = (String) params[7];
                     String edt9Text = (String) params[8];
+                    String edt10Text = (String) params[9];
 
                     String link = "http://admin0000.dothome.co.kr/insert.php";
                     String data = URLEncoder.encode("member_id", "UTF-8") + "=" + URLEncoder.encode(edt1Text, "UTF-8");
                     data += "&" + URLEncoder.encode("recipe_title", "UTF-8") + "=" + URLEncoder.encode(edt2Text, "UTF-8");
                     data += "&" + URLEncoder.encode("recipe_material", "UTF-8") + "=" + URLEncoder.encode(edt3Text, "UTF-8");
-                    data += "&" + URLEncoder.encode("recipe_text1", "UTF-8") + "=" + URLEncoder.encode(edt4Text, "UTF-8");
-                    data += "&" + URLEncoder.encode("recipe_text2", "UTF-8") + "=" + URLEncoder.encode(edt5Text, "UTF-8");
-                    data += "&" + URLEncoder.encode("recipe_text3", "UTF-8") + "=" + URLEncoder.encode(edt6Text, "UTF-8");
-                    data += "&" + URLEncoder.encode("recipe_text4", "UTF-8") + "=" + URLEncoder.encode(edt7Text, "UTF-8");
-                    data += "&" + URLEncoder.encode("recipe_text5", "UTF-8") + "=" + URLEncoder.encode(edt8Text, "UTF-8");
-                    data += "&" + URLEncoder.encode("recipe_text6", "UTF-8") + "=" + URLEncoder.encode(edt9Text, "UTF-8");
+                    data += "&" + URLEncoder.encode("recipe_category", "UTF-8") + "=" + URLEncoder.encode(edt4Text, "UTF-8");
+                    data += "&" + URLEncoder.encode("recipe_text1", "UTF-8") + "=" + URLEncoder.encode(edt5Text, "UTF-8");
+                    data += "&" + URLEncoder.encode("recipe_text2", "UTF-8") + "=" + URLEncoder.encode(edt6Text, "UTF-8");
+                    data += "&" + URLEncoder.encode("recipe_text3", "UTF-8") + "=" + URLEncoder.encode(edt7Text, "UTF-8");
+                    data += "&" + URLEncoder.encode("recipe_text4", "UTF-8") + "=" + URLEncoder.encode(edt8Text, "UTF-8");
+                    data += "&" + URLEncoder.encode("recipe_text5", "UTF-8") + "=" + URLEncoder.encode(edt9Text, "UTF-8");
+                    data += "&" + URLEncoder.encode("recipe_text6", "UTF-8") + "=" + URLEncoder.encode(edt10Text, "UTF-8");
 
                     URL url = new URL(link);
                     URLConnection conn = url.openConnection();
@@ -259,7 +263,7 @@ public class RecipewriteActivity extends AppCompatActivity {
             }
         }
         InsertData task = new InsertData();
-        task.execute(ed1,ed2,ed3,ed4,ed5,ed6,ed7,ed8,ed9);
+        task.execute(ed1,ed2,ed3,ed4,ed5,ed6,ed7,ed8,ed9,ed10);
     }
 
     @Override
