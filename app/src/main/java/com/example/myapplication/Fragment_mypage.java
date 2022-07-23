@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 public class Fragment_mypage extends Fragment {
 
@@ -17,10 +18,19 @@ public class Fragment_mypage extends Fragment {
     private Button btn_noti, btn_reco, btn_like, btn_recipemanage, btn_mlorderstatus;
     private Button imgbtn_edit, btn_setting, btn_logout;
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_mypage,container,false);
+
+        Bundle bundle = getArguments();
+        String member_id = bundle.getString("member_id");
+        String phone_num = bundle.getString("phone_num");
+        String post_num = bundle.getString("post_num");
+        String member_ad = bundle.getString("member_ad");
+
+
 
         btn_noti = (Button) view.findViewById(R.id.button19);
         btn_noti.setOnClickListener(new View.OnClickListener() {
@@ -73,6 +83,12 @@ public class Fragment_mypage extends Fragment {
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(),MemberInfoEditActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+//                String member_id = intent.getStringExtra("member_id");
+//                intent.putExtra("member_id", member_id);
+                intent.putExtra("member_id", (String) member_id);
+                intent.putExtra("phone_num", (String) phone_num);
+                intent.putExtra("post_num", (String) post_num);
+                intent.putExtra("member_ad", (String) member_ad);
                 startActivity(intent);
             }
         });

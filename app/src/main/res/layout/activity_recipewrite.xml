@@ -10,6 +10,15 @@
         layout="@layout/lb_control_bar"
         app:title="@{title}"/>
 
+    <TextView
+        android:id="@+id/memberID"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text=""
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <Button
         android:id="@+id/closebutton"
         android:layout_width="25dp"
@@ -58,6 +67,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
                     <EditText
+                        android:id="@+id/recipe_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
@@ -100,6 +110,7 @@
                     android:textSize="14dp"
                     android:textStyle="bold"/>
                 <EditText
+                    android:id="@+id/recipe_mat"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingTop="16dp"
@@ -156,7 +167,7 @@
                     android:layout_weight="1">
 
                     <EditText
-                        android:id="@+id/textView4"
+                        android:id="@+id/recipe_text1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="16dp"
@@ -211,7 +222,7 @@
                     android:layout_weight="1">
 
                     <EditText
-                        android:id="@+id/textView5"
+                        android:id="@+id/recipe_text2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="16dp"
@@ -265,7 +276,7 @@
                     android:layout_weight="1">
 
                     <EditText
-                        android:id="@+id/textView6"
+                        android:id="@+id/recipe_text3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="16dp"
@@ -319,7 +330,7 @@
                     android:orientation="vertical">
 
                     <EditText
-                        android:id="@+id/textView7"
+                        android:id="@+id/recipe_text4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="16dp"
@@ -373,7 +384,7 @@
                     android:orientation="vertical">
 
                     <EditText
-                        android:id="@+id/textView8"
+                        android:id="@+id/recipe_text5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="16dp"
@@ -427,7 +438,7 @@
                     android:orientation="vertical">
 
                     <EditText
-                        android:id="@+id/textView9"
+                        android:id="@+id/recipe_text6"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="16dp"
@@ -486,7 +497,6 @@
         android:text="업로드"
         android:textColor="#FFFFFF"
         android:textSize="16dp" />
-
 
 
 

@@ -19,6 +19,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import java.util.Stack;
 
@@ -42,6 +43,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Intent intent = getIntent();
+        String id = intent.getStringExtra("member_id");
+        String phone = intent.getStringExtra("phone_num");
+        String post = intent.getStringExtra("post_num");
+        String ad = intent.getStringExtra("member_ad");
+
         fragment_index = new Fragment_index();
         fragment_search = new Fragment_search();
         fragment_mealDetail = new Fragment_mealDetail();
@@ -52,6 +60,13 @@ public class MainActivity extends AppCompatActivity {
         manager = getSupportFragmentManager();
         manager.beginTransaction().replace(R.id.container, fragment_index).commit();
         fab = (FloatingActionButton)findViewById(R.id.fab);
+
+        Bundle bundle = new Bundle();
+        bundle.putString("member_id", id);
+        bundle.putString("phone_num", phone);
+        bundle.putString("post_num", post);
+        bundle.putString("member_ad", ad);
+        fragment_mypage.setArguments(bundle);
 
         getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment_index).commit();
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_menu);
@@ -85,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this,RecipewriteActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                intent.putExtra("member_id", (String) id);
                 startActivity(intent);
             }
         });

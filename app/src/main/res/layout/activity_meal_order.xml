@@ -6,10 +6,12 @@
     android:layout_height="match_parent"
     android:background="#DBE0DD"
     tools:context=".MealOrderActivity">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:background="@color/white">
+
         <ImageButton
             android:id="@+id/back_index"
             android:layout_gravity="center_vertical"
@@ -167,7 +169,7 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <Button
+                <!--<Button
                     android:id="@+id/btnaddresssearch"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -179,7 +181,7 @@
                     android:stateListAnimator="@null"
                     android:text="기존배송지 >"
                     android:textColor="#818181"
-                    android:textSize="12dp" />
+                    android:textSize="12dp" />-->
             </LinearLayout>
 
         </LinearLayout>
@@ -205,7 +207,7 @@
             android:orientation="vertical"/>
 
         <EditText
-            android:id="@+id/editTextNumber"
+            android:id="@+id/phoneNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -213,7 +215,8 @@
             android:layout_weight="1"
             android:background="@drawable/input_box_border"
             android:ems="10"
-            android:padding="3dp"
+            android:textSize="15dp"
+            android:padding="4dp"
             android:paddingLeft="5dp"
             android:inputType="number" />
     </LinearLayout>
@@ -239,20 +242,21 @@
                 android:orientation="vertical"/>
 
             <EditText
-                android:id="@+id/editTextNumber2"
+                android:id="@+id/postNum"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
                 android:background="@drawable/input_box_border"
                 android:ems="10"
+                android:textSize="15dp"
                 android:padding="3dp"
                 android:paddingLeft="5dp"
                 android:inputType="textPostalAddress" />
 
             <Button
-                android:id="@+id/button4"
+                android:id="@+id/adress_detail"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:layout_gravity="center"
@@ -276,7 +280,7 @@
                 android:orientation="vertical"/>
 
             <EditText
-                android:id="@+id/editTextNumber3"
+                android:id="@+id/Adress"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="69dp"
@@ -284,7 +288,8 @@
                 android:layout_weight="1"
                 android:background="@drawable/input_box_border"
                 android:ems="10"
-                android:padding="3dp"
+                android:padding="4dp"
+                android:textSize="15dp"
                 android:paddingLeft="5dp"
                 android:inputType="text" />
 

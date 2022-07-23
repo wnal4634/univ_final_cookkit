@@ -17,6 +17,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 import com.example.myapplication.Register.LoginRequest;
+import com.google.android.material.textfield.TextInputEditText;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -33,7 +34,6 @@ public class LoginActivity extends AppCompatActivity {
 
         login_email = findViewById( R.id.login_email );
         login_password = findViewById( R.id.login_password );
-
 
 
         login_button = findViewById( R.id.login_button );
@@ -55,16 +55,22 @@ public class LoginActivity extends AppCompatActivity {
                                 String UserId = jsonObject.getString( "member_id" );
                                 String UserPwd = jsonObject.getString( "member_pw" );
                                 String UserName = jsonObject.getString( "name" );
+                                String UserNum = jsonObject.getString( "phone_num" );
+                                String UserPost = jsonObject.getString( "post_num" );
+                                String UserAd = jsonObject.getString( "member_ad" );
 
-                                Toast.makeText( getApplicationContext(), String.format("환영합니다."), Toast.LENGTH_SHORT ).show();
+                                Toast.makeText( getApplicationContext(), String.format(UserId+ "님 환영합니다."), Toast.LENGTH_SHORT ).show();
                                 Intent intent = new Intent( LoginActivity.this, MainActivity.class );
-
                                 intent.putExtra( "member_id", UserId );
                                 intent.putExtra( "member_pw", UserPwd );
                                 intent.putExtra( "name", UserName );
+                                intent.putExtra("phone_num", UserNum);
+                                intent.putExtra("post_num", UserPost);
+                                intent.putExtra("member_ad", UserAd);
 
                                 startActivity( intent );
                                 finish();
+
 
                             } else {//로그인 실패시
                                 Toast.makeText( getApplicationContext(), "로그인에 실패하셨습니다.", Toast.LENGTH_SHORT ).show();
@@ -112,7 +118,7 @@ public class LoginActivity extends AppCompatActivity {
 
 //        Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button); // sign in button
         TextView mEmailSignUp = (TextView) findViewById(R.id.join_button);// sign up button
-        TextView mEmailFind = (TextView) findViewById(R.id.tvid);
+//        TextView mEmailFind = (TextView) findViewById(R.id.tvid);
 
         // event handler
 
@@ -124,6 +130,7 @@ public class LoginActivity extends AppCompatActivity {
                 finish();
             }
         });
+
 
 //        mEmailFind.setOnClickListener(new OnClickListener() {
 //            @Override
