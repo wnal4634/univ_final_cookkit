@@ -1,12 +1,13 @@
 package com.example.myapplication;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
-import android.os.AsyncTask;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,20 +15,29 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.json.JSONArray;
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.myapplication.Register.RegisterRequest;
+import com.example.myapplication.Register.UpdateRequest;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.net.URL;
-import java.net.URLConnection;
-import java.net.URLEncoder;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class MemberInfoEditActivity extends AppCompatActivity {
     private static final int SEARCH_ADDRESS_ACTIVITY = 10000;
-    private EditText postNum;
+    private EditText postNum, phoneNumber, Address;
+    private TextView textview;
+    private AlertDialog dialog;
 
-    String member_id, phone_num, post_num, member_ad = "";
+    String member_id, phone_num, post_num, member_ad;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,23 +49,21 @@ public class MemberInfoEditActivity extends AppCompatActivity {
         post_num = getIntent().getStringExtra("post_num");
         member_ad = getIntent().getStringExtra("member_ad");
 
-        Intent intent = getIntent();
+        textview = findViewById(R.id.memberID);
+        textview.setText(member_id);
 
-        String hi_ID = intent.getStringExtra("member_id");
-        TextView textview = (TextView)findViewById(R.id.memberID);
-        textview.setText(hi_ID);
+        postNum = findViewById( R.id.postNum );
+        phoneNumber = findViewById( R.id.phoneNumber );
+        Address = findViewById(R.id.Address);
 
-        String savePhone = intent.getStringExtra("phone_num");
-        EditText editText = (EditText)findViewById(R.id.phoneNumber);
-        editText.setText(savePhone);
-
-        String savePost = intent.getStringExtra("post_num");
-        EditText editText2 = (EditText)findViewById(R.id.postNum);
-        editText2.setText(savePost);
-
-        String saveAdress = intent.getStringExtra("member_ad");
-        EditText editText3 = (EditText)findViewById(R.id.Adress);
-        editText3.setText(saveAdress);
+//        EditText editText = (EditText)findViewById(R.id.phoneN);
+//        editText.setText(phone_num);
+//
+//        EditText editText2 = (EditText)findViewById(R.id.postN);
+//        editText2.setText(post_num);
+//
+//        EditText editText3 = (EditText)findViewById(R.id.AddressN);
+//        editText3.setText(member_ad);
 
 
 
@@ -63,8 +71,8 @@ public class MemberInfoEditActivity extends AppCompatActivity {
         btn_back_mypage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                final String UserPost = correction_post.getText().toString();
-//                final String UserAd = correction_ad.getText().toString();
+////                final String UserPost = correction_post.getText().toString();
+////                final String UserAd = correction_ad.getText().toString();
                 Intent intent = new Intent(
                         MemberInfoEditActivity.this, Fragment_mypage.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -76,10 +84,56 @@ public class MemberInfoEditActivity extends AppCompatActivity {
         btn_info_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(
-                        MemberInfoEditActivity.this, Fragment_mypage.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                finish();
+//                Intent intent = new Intent(
+//                        MemberInfoEditActivity.this, Fragment_mypage.class);
+//                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                finish();
+                final String UserPhone = postNum.getText().toString();
+                final String UserPost = phoneNumber.getText().toString();
+                final String UserAd = Address.getText().toString();
+                final String UserId = (String) textview.getText();
+
+
+                //한 칸이라도 입력 안했을 경우
+                if (UserPhone.equals("") || UserPost.equals("") || UserAd.equals("")) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(MemberInfoEditActivity.this);
+                    dialog = builder.setMessage("모두 입력해주세요.").setNegativeButton("확인", null).create();
+                    dialog.show();
+                    return;
+                }
+
+                Response.Listener<String> responseListener = new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                        try {
+                            JSONObject jsonObject = new JSONObject( response );
+                            boolean success = jsonObject.getBoolean( "success" );
+
+                            if (success) {
+
+                                Toast.makeText(getApplicationContext(), String.format("수정되었습니다."), Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(MemberInfoEditActivity.this, Fragment_mypage.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                finish();
+
+                                //회원가입 실패시
+                            } else {
+                                Toast.makeText(getApplicationContext(), "실패하였습니다.", Toast.LENGTH_SHORT).show();
+                                return;
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                };
+
+                //서버로 Volley를 이용해서 요청
+                UpdateRequest updateRequest = new UpdateRequest( UserPhone, UserPost, UserAd, UserId, responseListener);
+                RequestQueue queue = Volley.newRequestQueue( MemberInfoEditActivity.this );
+                queue.add( updateRequest );
             }
         });
 
@@ -112,5 +166,6 @@ public class MemberInfoEditActivity extends AppCompatActivity {
                 break;
         }
     }
+
 
 }

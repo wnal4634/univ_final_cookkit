@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.content.ClipData;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
@@ -58,6 +59,7 @@ public class RecipewriteActivity extends AppCompatActivity {
     EditText recipe_title, recipe_mat, recipe_text1, recipe_text2, recipe_text3, recipe_text4
             ,recipe_text5, recipe_text6;
     String member_id;
+    String imagepath = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,10 +67,9 @@ public class RecipewriteActivity extends AppCompatActivity {
         setContentView(R.layout.activity_recipewrite);
 
         member_id = getIntent().getStringExtra("member_id");
-        Intent intent = getIntent();
-        String hi_ID = intent.getStringExtra("member_id");
         TextView textview = (TextView)findViewById(R.id.memberID);
-        textview.setText(hi_ID);
+        textview.setText(member_id);
+
 
         Button close;
         close = (Button) findViewById(R.id.closebutton);
@@ -122,6 +123,7 @@ public class RecipewriteActivity extends AppCompatActivity {
                 intent.setType("image/*");
                 intent.setAction(Intent.ACTION_GET_CONTENT);
                 startActivityForResult(intent, 0);
+
             }
         });
         image1.setOnClickListener(new View.OnClickListener() {
@@ -185,7 +187,8 @@ public class RecipewriteActivity extends AppCompatActivity {
             public void onClick(View view) {
                 insertToDatabase((String) textview.getText(), recipe_title.getText().toString(), recipe_mat.getText().toString(),
                         spinner.getSelectedItem().toString(), recipe_text1.getText().toString(), recipe_text2.getText().toString(), recipe_text3.getText().toString(),
-                        recipe_text4.getText().toString(), recipe_text5.getText().toString(), recipe_text6.getText().toString());
+                        recipe_text4.getText().toString(), recipe_text5.getText().toString(), recipe_text6.getText().toString(),
+                        main.toString());
                 Intent intent = new Intent(RecipewriteActivity.this, RecipeexplanationActivity.class);
                 startActivity(intent);
                 finish();
@@ -193,7 +196,9 @@ public class RecipewriteActivity extends AppCompatActivity {
             }
         });
     }
-    private void insertToDatabase(final String ed1, String ed2, String ed3, String ed4, String ed5, String ed6, String ed7, String ed8, String ed9, String ed10) {
+
+    private void insertToDatabase(final String ed1, String ed2, String ed3, String ed4, String ed5, String ed6, String ed7, String ed8, String ed9, String ed10,
+                                  String ed11) {
         class InsertData extends AsyncTask<String, Void, String> {
             ProgressDialog loading;
 
@@ -223,6 +228,7 @@ public class RecipewriteActivity extends AppCompatActivity {
                     String edt8Text = (String) params[7];
                     String edt9Text = (String) params[8];
                     String edt10Text = (String) params[9];
+                    String edt11Text = (String) params[10];
 
                     String link = "http://admin0000.dothome.co.kr/insert.php";
                     String data = URLEncoder.encode("member_id", "UTF-8") + "=" + URLEncoder.encode(edt1Text, "UTF-8");
@@ -235,6 +241,7 @@ public class RecipewriteActivity extends AppCompatActivity {
                     data += "&" + URLEncoder.encode("recipe_text4", "UTF-8") + "=" + URLEncoder.encode(edt8Text, "UTF-8");
                     data += "&" + URLEncoder.encode("recipe_text5", "UTF-8") + "=" + URLEncoder.encode(edt9Text, "UTF-8");
                     data += "&" + URLEncoder.encode("recipe_text6", "UTF-8") + "=" + URLEncoder.encode(edt10Text, "UTF-8");
+                    data += "&" + URLEncoder.encode("image_main", "UTF-8") + "=" + URLEncoder.encode(edt11Text, "UTF-8");
 
                     URL url = new URL(link);
                     URLConnection conn = url.openConnection();
@@ -263,7 +270,7 @@ public class RecipewriteActivity extends AppCompatActivity {
             }
         }
         InsertData task = new InsertData();
-        task.execute(ed1,ed2,ed3,ed4,ed5,ed6,ed7,ed8,ed9,ed10);
+        task.execute(ed1,ed2,ed3,ed4,ed5,ed6,ed7,ed8,ed9,ed10,ed11);
     }
 
     @Override
@@ -271,13 +278,17 @@ public class RecipewriteActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 0) {
             if (resultCode == RESULT_OK) {
-                Uri uri = data.getData();
+//                Uri uri = data.getData();
 
                 try {
                         InputStream in = getContentResolver().openInputStream(data.getData());
                         Bitmap img = BitmapFactory.decodeStream(in);
                         in.close();
                         main.setImageBitmap(img);
+//                    BitmapDrawable drawable = (BitmapDrawable) main.getDrawable();
+//                    Bitmap bitmap = drawable.getBitmap();
+//                    bitmapToByteArray(bitmap);
+                        imagepath = BitmapToString(img);
 
                 } catch (Exception e) {
                 }
@@ -353,6 +364,14 @@ public class RecipewriteActivity extends AppCompatActivity {
         }
     }
 
+
+    public static String BitmapToString(Bitmap bitmap) {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 70, baos);
+        byte[] bytes = baos.toByteArray();
+        String temp = Base64.encodeToString(bytes, Base64.DEFAULT);
+        return temp;
+    }
 
 
 }
