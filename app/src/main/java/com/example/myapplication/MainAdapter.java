@@ -12,7 +12,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainViewHolder>{
     private Context context;
@@ -57,11 +56,16 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainViewHolder
     public void onBindViewHolder(@NonNull MainViewHolder holder, int position) {
         holder.title.setText(mDataset.get(position).title);
         holder.category.setText(mDataset.get(position).category);
-        holder.image.setImageResource(mDataset.get(position).resId);
+        holder.image.setImageBitmap(mDataset.get(position).getImage());
     }
 
     @Override
     public int getItemCount() {
         return mDataset.size();
+    }
+
+    void addItem(MainData data) {
+        // 외부에서 item을 추가시킬 함수입니다.
+        mDataset.add(data);
     }
 }

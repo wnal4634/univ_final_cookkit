@@ -25,9 +25,9 @@ public class LikeActivity extends AppCompatActivity {
         btn_back_mypage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(
-                        LikeActivity.this, Fragment_mypage.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                Intent intent = new Intent(
+//                        LikeActivity.this, Fragment_mypage.class);
+//                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 finish();
             }
         });
@@ -40,9 +40,9 @@ public class LikeActivity extends AppCompatActivity {
 
     }
     private void Data1(){
-        for(int i=0;i<3;i++) {
-            list.add(new MainData("돈가스", "양식",R.drawable.porkcutlet));
-        }
+//        for(int i=0;i<3;i++) {
+//            list.add(new MainData("돈가스", "양식",R.drawable.porkcutlet));
+//        }
     }
 
     @Override

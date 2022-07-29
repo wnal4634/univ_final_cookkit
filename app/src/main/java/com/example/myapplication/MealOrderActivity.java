@@ -64,9 +64,9 @@ public class MealOrderActivity extends AppCompatActivity {
         btn_back_index.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(
-                        MealOrderActivity.this, Fragment_mealDetail.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                Intent intent = new Intent(
+//                        MealOrderActivity.this, Fragment_mealDetail.class);
+//                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 finish();
             }
         });

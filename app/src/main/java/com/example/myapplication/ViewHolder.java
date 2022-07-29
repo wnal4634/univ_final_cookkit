@@ -48,7 +48,7 @@ public class ViewHolder extends RecyclerView.ViewHolder {
         // ValueAnimator.ofInt(int... values)는 View가 변할 값을 지정, 인자는 int 배열
         ValueAnimator va = isExpanded ? ValueAnimator.ofInt(0, 600) : ValueAnimator.ofInt(600, 0);
         // Animation이 실행되는 시간, n/1000초
-        va.setDuration(500);
+        va.setDuration(300);
         va.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {

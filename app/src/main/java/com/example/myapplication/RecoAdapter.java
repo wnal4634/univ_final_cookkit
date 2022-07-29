@@ -50,7 +50,7 @@ public class RecoAdapter extends RecyclerView.Adapter<RecoAdapter.RecoHolder> {
     public void onBindViewHolder(@NonNull RecoHolder recoHolder, int position){
         recoHolder.title.setText(mDataset2.get(position).title);
         recoHolder.category.setText(mDataset2.get(position).category);
-        recoHolder.image.setImageResource(mDataset2.get(position).resId);
+        recoHolder.image.setImageBitmap(mDataset2.get(position).image);
     }
     @Override
     public int getItemCount(){

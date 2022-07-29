@@ -73,9 +73,9 @@ public class MemberInfoEditActivity extends AppCompatActivity {
             public void onClick(View view) {
 ////                final String UserPost = correction_post.getText().toString();
 ////                final String UserAd = correction_ad.getText().toString();
-                Intent intent = new Intent(
-                        MemberInfoEditActivity.this, Fragment_mypage.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                Intent intent = new Intent(
+//                        MemberInfoEditActivity.this, Fragment_mypage.class);
+//                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 finish();
             }
         });

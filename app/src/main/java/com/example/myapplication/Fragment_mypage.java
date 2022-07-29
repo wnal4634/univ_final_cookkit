@@ -1,16 +1,25 @@
 package com.example.myapplication;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.URL;
+import java.net.URLConnection;
+import java.net.URLEncoder;
 
 public class Fragment_mypage extends Fragment {
 
@@ -65,6 +74,7 @@ public class Fragment_mypage extends Fragment {
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(),RecipeManageActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                intent.putExtra("member_id", (String) member_id);
                 startActivity(intent);
             }
         });
@@ -117,4 +127,5 @@ public class Fragment_mypage extends Fragment {
 
 
     }
+
 }

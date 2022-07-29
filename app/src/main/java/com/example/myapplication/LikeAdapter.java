@@ -57,7 +57,7 @@ public class LikeAdapter extends RecyclerView.Adapter<LikeAdapter.LikeViewHolder
     public void onBindViewHolder(@NonNull LikeViewHolder likeViewHolder, int position){
         likeViewHolder.title.setText(like.get(position).title);
         likeViewHolder.category.setText(like.get(position).category);
-        likeViewHolder.image.setImageResource(like.get(position).resId);
+        likeViewHolder.image.setImageBitmap(like.get(position).image);
     }
 
     @Override
