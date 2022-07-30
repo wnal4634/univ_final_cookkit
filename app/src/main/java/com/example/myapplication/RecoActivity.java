@@ -23,17 +23,17 @@ public class RecoActivity extends AppCompatActivity {
         btn_back_mypage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(
-                        RecoActivity.this, Fragment_mypage.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                Intent intent = new Intent(
+//                        RecoActivity.this, Fragment_mypage.class);
+//                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 finish();
             }
         });
 
         ArrayList<MainData> list2 = new ArrayList<>();
-        for (int i = 0; i < 3; i++) {
-            list2.add(new MainData("돈가스", "양식",R.drawable.porkcutlet));
-        }
+//        for (int i = 0; i < 3; i++) {
+//            list2.add(new MainData("돈가스", "양식",R.drawable.porkcutlet));
+//        }
         RecyclerView recyclerView = findViewById(R.id.Reco_recycler) ;
         recyclerView.setLayoutManager(new LinearLayoutManager(this)) ;
         RecoAdapter adapter2 = new RecoAdapter(list2);

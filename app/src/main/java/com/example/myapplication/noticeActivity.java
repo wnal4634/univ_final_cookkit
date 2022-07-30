@@ -63,9 +63,9 @@ public class noticeActivity extends AppCompatActivity {
         btn_back_mypage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(
-                        noticeActivity.this, Fragment_mypage.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                Intent intent = new Intent(
+//                        noticeActivity.this, Fragment_mypage.class);
+//                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 finish();
             }
         });
@@ -191,12 +191,12 @@ public class noticeActivity extends AppCompatActivity {
 //    }
 
     //임의로 dto 10개 생성해서 adapter에 있는 array에 추가
-    private void addDTO() {
-        for (int i = 0; i < 3; i++) {
-            ItemDTO itemData = new ItemDTO("문의내용", "2022/04/29 14:00", "asdaaaa");
-            adapter.addItem(itemData);
-        }
-    }
+//    private void addDTO() {
+//        for (int i = 0; i < 3; i++) {
+//            ItemDTO itemData = new ItemDTO("문의내용", "2022/04/29 14:00", "asdaaaa");
+//            adapter.addItem(itemData);
+//        }
+//    }
 
 }
 

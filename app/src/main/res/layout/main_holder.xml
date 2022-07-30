@@ -55,26 +55,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical">
-
-                <ImageButton
-                    android:id="@+id/reco"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="23dp"
-                    android:background="@drawable/ic_outline_thumb_up_24"
-                    android:backgroundTint="#CCCCCC" />
-
-                <ImageButton
-                    android:id="@+id/like"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginLeft="3dp"
-                    android:layout_marginTop="23dp"
-                    android:background="@drawable/ic_baseline_favorite_border_24"
-                    android:backgroundTint="#CCCCCC" />
-            </LinearLayout>
+                android:layout_gravity="center_vertical"/>
         </LinearLayout>
 
 

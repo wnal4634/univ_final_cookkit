@@ -36,9 +36,9 @@ public class RecipeexplanationActivity extends AppCompatActivity {
         btn_back_index.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(
-                        RecipeexplanationActivity.this, Fragment_index.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                Intent intent = new Intent(
+//                        RecipeexplanationActivity.this, Fragment_index.class);
+//                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 finish();
             }
         });

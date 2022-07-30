@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,7 +16,9 @@ import java.util.Random;
 
 public class ManageAdapter extends RecyclerView.Adapter<ManageAdapter.ManageViewHolder> {
 
-    private ArrayList<MainData> mDataset;
+//    private ArrayList<MainData> mDataset;
+    private ArrayList<ManageData> mDataset;
+
 
     public class ManageViewHolder extends RecyclerView.ViewHolder {
         public TextView title;
@@ -31,8 +34,8 @@ public class ManageAdapter extends RecyclerView.Adapter<ManageAdapter.ManageView
 
 
 
-    public ManageAdapter(ArrayList<MainData> mainData){
-        this.mDataset = mainData;
+    public ManageAdapter(ArrayList<ManageData> manageData){
+        this.mDataset = manageData;
     }
     //
 //    @Override
@@ -51,12 +54,24 @@ public class ManageAdapter extends RecyclerView.Adapter<ManageAdapter.ManageView
     @Override
     public void onBindViewHolder(@NonNull ManageViewHolder holder, int position) {
         holder.title.setText(mDataset.get(position).title);
-        holder.image.setImageResource(mDataset.get(position).resId);
-
+        holder.image.setImageBitmap(mDataset.get(position).image);
     }
 
     @Override
     public int getItemCount() {
         return mDataset.size();
+    }
+
+    void addItem(ManageData data) {
+        // 외부에서 item을 추가시킬 함수입니다.
+        mDataset.add(data);
+    }
+
+    public String getItem(int position) {
+        return mDataset.get(position).getTitle();
+    }
+
+    public long getItemId(int position) {
+        return position;
     }
 }
