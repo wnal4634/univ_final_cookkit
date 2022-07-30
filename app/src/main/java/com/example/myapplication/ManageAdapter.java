@@ -4,6 +4,7 @@ package com.example.myapplication;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -14,10 +15,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class ManageAdapter extends RecyclerView.Adapter<ManageAdapter.ManageViewHolder> {
+public class ManageAdapter extends RecyclerView.Adapter<ManageAdapter.ManageViewHolder>  {
 
 //    private ArrayList<MainData> mDataset;
     private ArrayList<ManageData> mDataset;
+    Button deletebtn;
 
 
     public class ManageViewHolder extends RecyclerView.ViewHolder {
@@ -55,6 +57,7 @@ public class ManageAdapter extends RecyclerView.Adapter<ManageAdapter.ManageView
     public void onBindViewHolder(@NonNull ManageViewHolder holder, int position) {
         holder.title.setText(mDataset.get(position).title);
         holder.image.setImageBitmap(mDataset.get(position).image);
+        holder.title.setTag(position);
     }
 
     @Override
@@ -74,4 +77,6 @@ public class ManageAdapter extends RecyclerView.Adapter<ManageAdapter.ManageView
     public long getItemId(int position) {
         return position;
     }
+
 }
+

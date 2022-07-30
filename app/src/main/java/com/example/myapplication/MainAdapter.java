@@ -30,7 +30,10 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainViewHolder
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    int pos = getAbsoluteAdapterPosition();
+                    MainData mainData = mDataset.get(pos);
                     Intent intent = new Intent(v.getContext(), RecipeexplanationActivity.class);
+                    intent.putExtra("title", mainData.getTitle());
                     v.getContext().startActivity(intent);
                 }
             });

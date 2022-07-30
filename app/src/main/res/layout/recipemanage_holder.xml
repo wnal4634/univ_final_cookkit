@@ -35,17 +35,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"/>
+
                 <Button
                     android:id="@+id/deletebtn"
-                    android:layout_width="50dp"
+                    android:layout_width="43dp"
                     android:layout_height="35dp"
                     android:layout_gravity="bottom"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="6dp"
-                    android:onClick="DialogClick"
                     android:background="#808080"
-                    android:textColor="@color/white"
-                    android:text="삭제" />
+                    android:onClick="DialogClick"
+                    android:text="삭제"
+                    android:textColor="@color/white" />
 
                 <Button
                     android:id="@+id/modifybtn"
