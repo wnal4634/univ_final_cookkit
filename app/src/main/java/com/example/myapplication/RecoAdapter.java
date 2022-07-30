@@ -57,4 +57,3 @@ public class RecoAdapter extends RecyclerView.Adapter<RecoAdapter.RecoHolder> {
         return mDataset2.size();
     }
 }
-

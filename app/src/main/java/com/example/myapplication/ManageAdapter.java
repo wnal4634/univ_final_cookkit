@@ -17,7 +17,7 @@ import java.util.Random;
 
 public class ManageAdapter extends RecyclerView.Adapter<ManageAdapter.ManageViewHolder>  {
 
-//    private ArrayList<MainData> mDataset;
+    //    private ArrayList<MainData> mDataset;
     private ArrayList<ManageData> mDataset;
     Button deletebtn;
 
@@ -79,4 +79,3 @@ public class ManageAdapter extends RecyclerView.Adapter<ManageAdapter.ManageView
     }
 
 }
-
