@@ -108,7 +108,7 @@ public class RecipeManageActivity extends AppCompatActivity {
                         Bitmap image_bit = StringToBitmap(image);
 
                         ManageData manageData = new ManageData(title, category, image_bit, id);
-                        if(id.contains(member_id)) {
+                        if(id.equals(member_id)) {
                             maAdapter.addItem(manageData);
                         }
                     }
@@ -158,7 +158,7 @@ public class RecipeManageActivity extends AppCompatActivity {
         builder.setPositiveButton("삭제", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int position) {
-//                Toast.makeText(getApplicationContext(), "레시피가 성공적으로 삭제되었습니다.", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "레시피가 성공적으로 삭제되었습니다.", Toast.LENGTH_LONG).show();
 
 
 //                member_id = getIntent().getStringExtra("member_id");
