@@ -138,6 +138,14 @@ public class SignupActivity extends AppCompatActivity {
                     return;
                 }
 
+                if(checkBox.isChecked()){
+                } else {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(SignupActivity.this);
+                    dialog = builder.setMessage("동의사항을 체크해주세요.").setNegativeButton("확인", null).create();
+                    dialog.show();
+                    return;
+                }
+
 
                 Response.Listener<String> responseListener = new Response.Listener<String>() {
                     @Override
