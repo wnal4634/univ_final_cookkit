@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
@@ -45,6 +46,7 @@ public class SignupActivity extends AppCompatActivity {
         join_phone = findViewById(R.id.join_phone);
         join_post = findViewById(R.id.join_post);
         join_ad = findViewById(R.id.join_ad);
+        CheckBox checkBox = findViewById(R.id.checkBox);
 
         ImageButton btn_back_login = (ImageButton) findViewById(R.id.back_login);
         btn_back_login.setOnClickListener(new View.OnClickListener() {
@@ -132,6 +134,14 @@ public class SignupActivity extends AppCompatActivity {
                 UserPost.equals("") || UserAd.equals("")) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(SignupActivity.this);
                     dialog = builder.setMessage("모두 입력해주세요.").setNegativeButton("확인", null).create();
+                    dialog.show();
+                    return;
+                }
+
+                if(checkBox.isChecked()){
+                } else {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(SignupActivity.this);
+                    dialog = builder.setMessage("동의사항을 체크해주세요.").setNegativeButton("확인", null).create();
                     dialog.show();
                     return;
                 }
