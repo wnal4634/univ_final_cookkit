@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,11 +26,24 @@ public class ManageAdapter extends RecyclerView.Adapter<ManageAdapter.ManageView
     public class ManageViewHolder extends RecyclerView.ViewHolder {
         public TextView title;
         public ImageView image;
+        public Button modifybtn;
 
         public ManageViewHolder(View view) {
             super(view);
             title = (TextView) view.findViewById(R.id.meal_title);
             image = (ImageView) view.findViewById(R.id.recipeView);
+            modifybtn = view.findViewById(R.id.modifybtn);
+            modifybtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int pos = getAbsoluteAdapterPosition();
+                    ManageData manageData = mDataset.get(pos);
+                    Intent intent = new Intent(view.getContext(), RecipeEditActivity.class);
+                    intent.putExtra("title", manageData.getTitle());
+                    intent.putExtra("id", manageData.getMember_id());
+                    view.getContext().startActivity(intent);
+                }
+            });
         }
 
     }

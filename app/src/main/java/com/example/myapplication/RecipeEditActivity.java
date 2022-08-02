@@ -1,28 +1,16 @@
 package com.example.myapplication;
 
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Dialog;
-import android.app.ProgressDialog;
-import android.content.ClipData;
-import android.content.Context;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.ImageDecoder;
-import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
-import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.provider.MediaStore;
 import android.util.Base64;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -34,61 +22,45 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.myapplication.Register.RecipeEditRequest;
 import com.example.myapplication.Register.RecipewriteRequest;
 import com.example.myapplication.Register.UpdateRequest;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.net.URL;
-import java.net.URLConnection;
-import java.net.URLEncoder;
-import java.util.HashMap;
-import java.util.Map;
 
-public class RecipewriteActivity extends AppCompatActivity {
-
+public class RecipeEditActivity extends AppCompatActivity {
     ImageView main, image1, image2, image3, image4, image5, image6;
-    EditText recipe_title, recipe_mat, recipe_text1, recipe_text2, recipe_text3, recipe_text4
-            ,recipe_text5, recipe_text6;
-    String member_id;
-    //    String imagepath;
+    EditText recipe_title, recipe_mat, recipe_text1, recipe_text2, recipe_text3, recipe_text4,
+            recipe_text5, recipe_text6, rid;
+    Button closebutton;
     TextView imgpath;
     private AlertDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_recipewrite);
+        setContentView(R.layout.activity_recipe_edit);
 
-        member_id = getIntent().getStringExtra("member_id");
-        TextView textview = (TextView)findViewById(R.id.memberID);
-        textview.setText(member_id);
-
-
-        Button close;
-        close = (Button) findViewById(R.id.closebutton);
-        close.setOnClickListener(new View.OnClickListener() {
+        closebutton = findViewById(R.id.closebutton);
+        closebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
             }
         });
 
-        Spinner spinner = (Spinner) findViewById(R.id.categorysellect);
-
+        Spinner spinner = findViewById(R.id.categorysellect);
         ArrayAdapter<CharSequence> spinner_adapter = ArrayAdapter.createFromResource(
                 this, R.array.spinnerArray, android.R.layout.simple_spinner_item);
 
@@ -107,13 +79,6 @@ public class RecipewriteActivity extends AppCompatActivity {
             }
         });
 
-        main = findViewById(R.id.recipegallery_main);
-        image1 = findViewById(R.id.recipegallery1);
-        image2 = findViewById(R.id.recipegallery2);
-        image3 = findViewById(R.id.recipegallery3);
-        image4 = findViewById(R.id.recipegallery4);
-        image5 = findViewById(R.id.recipegallery5);
-        image6 = findViewById(R.id.recipegallery6);
         recipe_title = findViewById(R.id.recipe_title);
         recipe_mat = findViewById(R.id.recipe_mat);
         recipe_text1 = findViewById(R.id.recipe_text1);
@@ -122,7 +87,72 @@ public class RecipewriteActivity extends AppCompatActivity {
         recipe_text4 = findViewById(R.id.recipe_text4);
         recipe_text5 = findViewById(R.id.recipe_text5);
         recipe_text6 = findViewById(R.id.recipe_text6);
+        main = findViewById(R.id.recipegallery_main);
+        image1 = findViewById(R.id.recipegallery1);
+        image2 = findViewById(R.id.recipegallery2);
+        image3 = findViewById(R.id.recipegallery3);
+        image4 = findViewById(R.id.recipegallery4);
+        image5 = findViewById(R.id.recipegallery5);
+        image6 = findViewById(R.id.recipegallery6);
         imgpath = findViewById(R.id.imgpath);
+        rid = findViewById(R.id.recipeID);
+
+
+        String serverUrl = "http://admin0000.dothome.co.kr/recipe_edit_import.php";
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST, serverUrl, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                String tt = getIntent().getStringExtra("title");
+                String ii = getIntent().getStringExtra("id");
+
+                try {
+
+                    for(int i=0; i< response.length(); i++){
+                        JSONObject jsonObject= response.getJSONObject(i);
+
+                        String r_id = jsonObject.getString("recipe_id");
+                        String id1 = jsonObject.getString("member_id");
+                        String title1 = jsonObject.getString("recipe_title");
+                        String mat1 = jsonObject.getString("recipe_material");
+                        String cate1 = jsonObject.getString("recipe_category");
+                        String t1 = jsonObject.getString("recipe_text1");
+                        String t2 = jsonObject.getString("recipe_text2");
+                        String t3 = jsonObject.getString("recipe_text3");
+                        String t4 = jsonObject.getString("recipe_text4");
+                        String t5 = jsonObject.getString("recipe_text5");
+                        String t6 = jsonObject.getString("recipe_text6");
+                        String image = jsonObject.getString("image_main");
+
+                        Bitmap image_bit = StringToBitmap(image);
+
+                        if (tt.equals(title1) && ii.equals(id1)) {
+                            rid.setText(r_id);
+                            recipe_title.setText(title1);
+                            recipe_mat.setText(mat1);
+                            recipe_text1.setText(t1);
+                            recipe_text2.setText(t2);
+                            recipe_text3.setText(t3);
+                            recipe_text4.setText(t4);
+                            recipe_text5.setText(t5);
+                            recipe_text6.setText(t6);
+                            main.setImageBitmap(image_bit);
+                        }
+
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(RecipeEditActivity.this, "ERROR", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        RequestQueue requestQueue= Volley.newRequestQueue(this);
+        requestQueue.add(jsonArrayRequest);
+
 
         main.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -189,15 +219,15 @@ public class RecipewriteActivity extends AppCompatActivity {
             }
         });
 
-        Button button_upload = findViewById(R.id.upload);
-        button_upload.setOnClickListener(new View.OnClickListener() {
+        String member_id = getIntent().getStringExtra("id");
+        TextView textview = findViewById(R.id.memberID);
+        textview.setText(member_id);
+
+        Button update = findViewById(R.id.update);
+        update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                insertToDatabase((String) textview.getText(), recipe_title.getText().toString(), recipe_mat.getText().toString(),
-//                        spinner.getSelectedItem().toString(), recipe_text1.getText().toString(), recipe_text2.getText().toString(), recipe_text3.getText().toString(),
-//                        recipe_text4.getText().toString(), recipe_text5.getText().toString(), recipe_text6.getText().toString(),
-//                        imgpath.getText().toString());
-
+                final String r_id = rid.getText().toString();
                 final String id = (String) textview.getText();
                 final String title = recipe_title.getText().toString();
                 final String mat = recipe_mat.getText().toString();
@@ -211,14 +241,14 @@ public class RecipewriteActivity extends AppCompatActivity {
                 final String image_main = imgpath.getText().toString();
 
                 if (title.equals("") || mat.equals("") || text1.equals("") || text2.equals("") || text3.equals("") || text4.equals("") || text5.equals("") || text6.equals("")) {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(RecipewriteActivity.this);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(RecipeEditActivity.this);
                     dialog = builder.setMessage("모두 입력해주세요.").setNegativeButton("확인", null).create();
                     dialog.show();
                     return;
                 }
 
                 if (cate.equals("--카테고리 선택--")) {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(RecipewriteActivity.this);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(RecipeEditActivity.this);
                     dialog = builder.setMessage("카테고리를 선택해주세요.").setNegativeButton("확인", null).create();
                     dialog.show();
                     return;
@@ -234,8 +264,8 @@ public class RecipewriteActivity extends AppCompatActivity {
 
                             if (success) {
 
-                                Toast.makeText(getApplicationContext(), String.format("업로드 완료."), Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(RecipewriteActivity.this, Fragment_index.class);
+                                Toast.makeText(getApplicationContext(), String.format("수정 완료."), Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(RecipeEditActivity.this, Fragment_mypage.class);
                                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                 finish();
 
@@ -252,93 +282,25 @@ public class RecipewriteActivity extends AppCompatActivity {
                 };
 
                 //서버로 Volley를 이용해서 요청
-                RecipewriteRequest recipewriteRequest = new RecipewriteRequest( id, title, mat, cate, text1, text2, text3, text4, text5, text6, image_main, responseListener);
-                RequestQueue queue = Volley.newRequestQueue( RecipewriteActivity.this );
-                queue.add( recipewriteRequest );
+                RecipeEditRequest recipeEditRequest = new RecipeEditRequest( r_id, id, title, mat, cate, text1, text2, text3, text4, text5, text6, image_main, responseListener);
+                RequestQueue queue = Volley.newRequestQueue( RecipeEditActivity.this );
+                queue.add( recipeEditRequest );
             }
-
-//                Intent intent = new Intent(RecipewriteActivity.this, RecipeexplanationActivity.class);
-//                startActivity(intent);
-//                finish();
-
         });
     }
 
-//    private void insertToDatabase(final String ed1, String ed2, String ed3, String ed4, String ed5, String ed6, String ed7, String ed8, String ed9, String ed10,
-//                                  String ed11) {
-//        class InsertData extends AsyncTask<String, Void, String> {
-//            ProgressDialog loading;
-//
-//            @Override
-//            protected void onPreExecute() {
-//                super.onPreExecute();
-//                loading = ProgressDialog.show(RecipewriteActivity.this, "Please Wait", null, true, true);
-//            }
-//            @Override
-//            protected void onPostExecute(String s) {
-//                super.onPostExecute(s);
-//                loading.dismiss();
-//                //Log.d("Tag : ", s); // php에서 가져온 값을 최종 출력함
-//                Toast.makeText(getApplicationContext(), s, Toast.LENGTH_LONG).show();
-//            }
-//            @Override
-//            protected String doInBackground(String... params) {
-//
-//                try {
-//                    String edt1Text = (String) params[0];
-//                    String edt2Text = (String) params[1];
-//                    String edt3Text = (String) params[2];
-//                    String edt4Text = (String) params[3];
-//                    String edt5Text = (String) params[4]; //text1
-//                    String edt6Text = (String) params[5];
-//                    String edt7Text = (String) params[6];
-//                    String edt8Text = (String) params[7];
-//                    String edt9Text = (String) params[8];
-//                    String edt10Text = (String) params[9];
-//                    String edt11Text = (String) params[10];
-//
-//                    String link = "http://admin0000.dothome.co.kr/insert.php";
-//                    String data = URLEncoder.encode("member_id", "UTF-8") + "=" + URLEncoder.encode(edt1Text, "UTF-8");
-//                    data += "&" + URLEncoder.encode("recipe_title", "UTF-8") + "=" + URLEncoder.encode(edt2Text, "UTF-8");
-//                    data += "&" + URLEncoder.encode("recipe_material", "UTF-8") + "=" + URLEncoder.encode(edt3Text, "UTF-8");
-//                    data += "&" + URLEncoder.encode("recipe_category", "UTF-8") + "=" + URLEncoder.encode(edt4Text, "UTF-8");
-//                    data += "&" + URLEncoder.encode("recipe_text1", "UTF-8") + "=" + URLEncoder.encode(edt5Text, "UTF-8");
-//                    data += "&" + URLEncoder.encode("recipe_text2", "UTF-8") + "=" + URLEncoder.encode(edt6Text, "UTF-8");
-//                    data += "&" + URLEncoder.encode("recipe_text3", "UTF-8") + "=" + URLEncoder.encode(edt7Text, "UTF-8");
-//                    data += "&" + URLEncoder.encode("recipe_text4", "UTF-8") + "=" + URLEncoder.encode(edt8Text, "UTF-8");
-//                    data += "&" + URLEncoder.encode("recipe_text5", "UTF-8") + "=" + URLEncoder.encode(edt9Text, "UTF-8");
-//                    data += "&" + URLEncoder.encode("recipe_text6", "UTF-8") + "=" + URLEncoder.encode(edt10Text, "UTF-8");
-//                    data += "&" + URLEncoder.encode("image_main", "UTF-8") + "=" + URLEncoder.encode(edt11Text, "UTF-8");
-//
-//                    URL url = new URL(link);
-//                    URLConnection conn = url.openConnection();
-//
-//                    conn.setDoOutput(true);
-//                    OutputStreamWriter outputStreamWriter = new OutputStreamWriter(conn.getOutputStream());
-//                    outputStreamWriter.write(data);
-//                    outputStreamWriter.flush();
-//
-//                    BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-//
-//                    StringBuilder sb = new StringBuilder();
-//                    String line = null;
-//
-//                    // Read Server Response
-//                    while ((line = reader.readLine()) != null) {
-//                        sb.append(line);
-//                        break;
-//                    }
-//                    Log.d("tag : ", sb.toString()); // php에서 결과값을 리턴
-//                    return sb.toString();
-//
-//                } catch (Exception e) {
-//                    return new String("Exception: " + e.getMessage());
-//                }
-//            }
-//        }
-//        InsertData task = new InsertData();
-//        task.execute(ed1,ed2,ed3,ed4,ed5,ed6,ed7,ed8,ed9,ed10,ed11);
-//    }
+    public static Bitmap StringToBitmap(String encodedString) {
+        try {
+            byte[] encodeByte = Base64.decode(encodedString, Base64.DEFAULT);
+            Bitmap bitmap = BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
+            return bitmap;
+        } catch (Exception e) {
+            e.getMessage();
+            return null;
+        }
+    }
+
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -434,15 +396,4 @@ public class RecipewriteActivity extends AppCompatActivity {
             Toast.makeText(this, "사진 선택 취소", Toast.LENGTH_LONG).show();
         }
     }
-
-
-    public static String BitmapToString(Bitmap bitmap) {
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 70, baos);
-        byte[] bytes = baos.toByteArray();
-        String temp = Base64.encodeToString(bytes, Base64.DEFAULT);
-        return temp;
-    }
-
-
 }
