@@ -147,7 +147,7 @@ public class RecipeManageActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-//    private void Data(){
+    //    private void Data(){
 //        for(int i=0;i<3;i++) {
 //            list3.add(new MainData("돈가스", "양식",R.drawable.porkcutlet));
 //        }
