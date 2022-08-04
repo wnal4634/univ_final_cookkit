@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -49,8 +50,9 @@ public class RecipeManageActivity extends AppCompatActivity {
     ArrayList<ManageData> list3 = new ArrayList<>();
     ManageAdapter maAdapter;
     ImageButton close;
-    Button modifybtn;
+    Button modifybtn, deletebtn;
     String member_id;
+    Activity activity;
 
     @Override
     protected void onCreate (Bundle savedInstanceState) {

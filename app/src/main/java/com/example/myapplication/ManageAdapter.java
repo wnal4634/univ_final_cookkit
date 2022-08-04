@@ -2,6 +2,9 @@ package com.example.myapplication;
 
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +17,13 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.toolbox.Volley;
+import com.example.myapplication.Register.DeleteRequest;
+
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -21,19 +31,21 @@ public class ManageAdapter extends RecyclerView.Adapter<ManageAdapter.ManageView
 
     //    private ArrayList<MainData> mDataset;
     private ArrayList<ManageData> mDataset;
-    Button deletebtn;
-
+    TextView member_id;
+//    Activity activity;
+    AlertDialog.Builder dialog;
 
     public class ManageViewHolder extends RecyclerView.ViewHolder {
-        public TextView title;
-        public ImageView image;
-        public Button modifybtn;
-
+        TextView title;
+        ImageView image;
+        Button modifybtn;
+        Button deletebtn;
         public ManageViewHolder(View view) {
             super(view);
             title = (TextView) view.findViewById(R.id.meal_title);
             image = (ImageView) view.findViewById(R.id.recipeView);
             deletebtn = (Button) view.findViewById(R.id.deletebtn);
+            member_id = (TextView)view.findViewById(R.id.memberID);
             modifybtn = view.findViewById(R.id.modifybtn);
             modifybtn.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -46,20 +58,24 @@ public class ManageAdapter extends RecyclerView.Adapter<ManageAdapter.ManageView
                     view.getContext().startActivity(intent);
                 }
             });
+            deletebtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int pos = getAbsoluteAdapterPosition();
+                    ManageData manageData = mDataset.get(pos);
+                    Intent intent = new Intent(v.getContext(), DeleteDialogActivity.class);
+                    intent.putExtra("title", manageData.getTitle());
+                    intent.putExtra("id", manageData.getMember_id());
+                    v.getContext().startActivity(intent);
+                }
+            });
         }
 
     }
 
-
-
     public ManageAdapter(ArrayList<ManageData> manageData){
         this.mDataset = manageData;
     }
-    //
-//    @Override
-//    public int getItemViewType(final int position) {
-//        return R.layout.main_holder;
-//    }
     @NonNull
     @Override
     public ManageViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -74,14 +90,6 @@ public class ManageAdapter extends RecyclerView.Adapter<ManageAdapter.ManageView
         holder.title.setText(mDataset.get(position).title);
         holder.image.setImageBitmap(mDataset.get(position).image);
         holder.title.setTag(position);
-        deletebtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mDataset.remove(position);
-                notifyItemRemoved(position);
-                notifyItemRangeChanged(position, mDataset.size());
-            }
-        });
     }
 
     @Override

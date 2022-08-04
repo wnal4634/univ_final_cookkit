@@ -9,6 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -44,7 +45,6 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="6dp"
                     android:background="#808080"
-                    android:onClick="DialogClick"
                     android:text="삭제"
                     android:textColor="@color/white" />
 

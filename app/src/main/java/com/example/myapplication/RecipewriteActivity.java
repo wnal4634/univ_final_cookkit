@@ -49,6 +49,7 @@ import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
@@ -444,5 +445,28 @@ public class RecipewriteActivity extends AppCompatActivity {
         return temp;
     }
 
-
+    private Bitmap resize(Context context,Uri uri,int resize){
+        Bitmap resizeBitmap=null;
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        try {
+            BitmapFactory.decodeStream(context.getContentResolver().openInputStream(uri), null, options);
+            int width = options.outWidth;
+            int height = options.outHeight;
+            int samplesize = 1;
+            while (true) {
+                if (width / 2 < resize || height / 2 < resize)
+                    break;
+                width /= 2;
+                height /= 2;
+                samplesize *= 2;
+            }
+            options.inSampleSize = samplesize;
+            Bitmap bitmap = BitmapFactory.decodeStream(context.getContentResolver().openInputStream(uri), null, options);
+            resizeBitmap=bitmap;
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return resizeBitmap;
+    }
 }
