@@ -62,49 +62,77 @@ public class Fragment_search extends Fragment {
         korean.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(getActivity(), CategoryActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                String result = korean.getText().toString();
+                intent.putExtra("cate", (String) result);
+                startActivity(intent);
             }
         });
 
         chinese.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(getActivity(), CategoryActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                String result = chinese.getText().toString();
+                intent.putExtra("cate", (String) result);
+                startActivity(intent);
             }
         });
 
         japanese.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(getActivity(), CategoryActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                String result = japanese.getText().toString();
+                intent.putExtra("cate", (String) result);
+                startActivity(intent);
             }
         });
 
         western.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(getActivity(), CategoryActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                String result = western.getText().toString();
+                intent.putExtra("cate", (String) result);
+                startActivity(intent);
             }
         });
 
         school.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(getActivity(), CategoryActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                String result = school.getText().toString();
+                intent.putExtra("cate", (String) result);
+                startActivity(intent);
             }
         });
 
         asian.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(getActivity(), CategoryActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                String result = asian.getText().toString();
+                intent.putExtra("cate", (String) result);
+                startActivity(intent);
             }
         });
 
         snack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(getActivity(), CategoryActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                String result = snack.getText().toString();
+                intent.putExtra("cate", (String) result);
+                startActivity(intent);
             }
         });
 

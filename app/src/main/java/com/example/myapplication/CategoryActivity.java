@@ -46,7 +46,7 @@ public class CategoryActivity extends AppCompatActivity {
             }
         });
 
-        String result2 = getIntent().getStringExtra("result");
+        String result2 = getIntent().getStringExtra("cate");
         result = findViewById(R.id.result);
         result.setText(result2);
 
@@ -60,7 +60,7 @@ public class CategoryActivity extends AppCompatActivity {
 
 
 
-        String serverUrl = "http://admin0000.dothome.co.kr/Search.php";
+        String serverUrl = "http://admin0000.dothome.co.kr/cate_search.php";
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST, serverUrl, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
@@ -79,7 +79,7 @@ public class CategoryActivity extends AppCompatActivity {
                         Bitmap image_bit = StringToBitmap(image);
 
                         MainData mainData = new MainData(title, category, image_bit);
-                        if(title.contains(result2)) {
+                        if(category.equals(result2)) {
                             caAdapter.addItem(mainData);
                         }
                     }
