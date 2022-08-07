@@ -22,7 +22,7 @@
         app:layout_constraintTop_toBottomOf="@+id/view" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/korean"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
@@ -37,7 +37,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <Button
-        android:id="@+id/button7"
+        android:id="@+id/chinese"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_marginStart="215dp"
@@ -52,7 +52,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <Button
-        android:id="@+id/button8"
+        android:id="@+id/western"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_marginStart="215dp"
@@ -67,7 +67,7 @@
         app:layout_constraintTop_toBottomOf="@+id/view3" />
 
     <Button
-        android:id="@+id/button10"
+        android:id="@+id/asian"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_marginStart="215dp"
@@ -82,7 +82,7 @@
         app:layout_constraintTop_toBottomOf="@+id/view7" />
 
     <Button
-        android:id="@+id/button11"
+        android:id="@+id/school"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
@@ -97,7 +97,7 @@
         app:layout_constraintTop_toBottomOf="@+id/view4" />
 
     <Button
-        android:id="@+id/button12"
+        android:id="@+id/snack"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
@@ -112,7 +112,7 @@
         app:layout_constraintTop_toBottomOf="@+id/view5" />
 
     <Button
-        android:id="@+id/button9"
+        android:id="@+id/japanese"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
@@ -143,7 +143,7 @@
         android:layout_marginStart="16dp"
         android:background="#DBDBDB"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button3" />
+        app:layout_constraintTop_toBottomOf="@+id/korean" />
 
     <View
         android:id="@+id/view4"
@@ -152,7 +152,7 @@
         android:layout_marginStart="16dp"
         android:background="#DBDBDB"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button9" />
+        app:layout_constraintTop_toBottomOf="@+id/japanese" />
 
     <View
         android:id="@+id/view5"
@@ -161,7 +161,7 @@
         android:layout_marginStart="16dp"
         android:background="#DBDBDB"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button11" />
+        app:layout_constraintTop_toBottomOf="@+id/school" />
 
     <View
         android:id="@+id/view19"
@@ -170,7 +170,7 @@
         android:layout_marginStart="16dp"
         android:background="#DBDBDB"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button12" />
+        app:layout_constraintTop_toBottomOf="@+id/snack" />
 
     <View
         android:id="@+id/view3"
@@ -179,7 +179,7 @@
         android:layout_marginEnd="16dp"
         android:background="#DBDBDB"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button7" />
+        app:layout_constraintTop_toBottomOf="@+id/chinese" />
 
     <View
         android:id="@+id/view6"
@@ -188,7 +188,7 @@
         android:layout_marginEnd="16dp"
         android:background="#DBDBDB"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button10" />
+        app:layout_constraintTop_toBottomOf="@+id/asian" />
 
     <View
         android:id="@+id/view7"
@@ -197,7 +197,7 @@
         android:layout_marginEnd="16dp"
         android:background="#DBDBDB"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button8" />
+        app:layout_constraintTop_toBottomOf="@+id/western" />
 
     <ImageButton
         android:id="@+id/search_btn"

@@ -82,9 +82,6 @@ public class RecipeManageActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(maAdapter);
-//        ManageAdapter adapter3= new ManageAdapter(list3);
-//        recyclerView.setAdapter(adapter3);
-//        recyclerView.setLayoutManager(new LinearLayoutManager(this,RecyclerView.VERTICAL,false));
     }
 
     @Override
@@ -148,66 +145,5 @@ public class RecipeManageActivity extends AppCompatActivity {
             }
         }
         return super.onOptionsItemSelected(item);
-    }
-    //    private void Data(){
-//        for(int i=0;i<3;i++) {
-//            list3.add(new MainData("돈가스", "양식",R.drawable.porkcutlet));
-//        }
-//    }
-    public void DialogClick(View view) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("레시피 삭제").setMessage("작성한 레시피를 삭제하시겠습니까?");
-        builder.setPositiveButton("삭제", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int position) {
-                Toast.makeText(getApplicationContext(), "레시피가 성공적으로 삭제되었습니다.", Toast.LENGTH_LONG).show();
-
-
-//                member_id = getIntent().getStringExtra("member_id");
-//                TextView textview = (TextView)findViewById(R.id.memberID);
-//                textview.setText(member_id);
-//                String id = (String) textview.getText();
-//
-//                Response.Listener<String> responseListener = new Response.Listener<String>() {
-//                    @Override
-//                    public void onResponse(String response) {
-//
-//                        try {
-//                            JSONObject jsonObject = new JSONObject( response );
-//                            boolean success = jsonObject.getBoolean( "success" );
-//
-//                            if (success) {
-//
-//                                Toast.makeText(getApplicationContext(), String.format("삭제"), Toast.LENGTH_SHORT).show();
-////                                Intent intent = new Intent(RecipeManageActivity.this, Fragment_mypage.class);
-////                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//                                finish();
-//
-//                            } else {
-//                                Toast.makeText(getApplicationContext(), "실패하였습니다.", Toast.LENGTH_SHORT).show();
-//                                return;
-//                            }
-//
-//                        } catch (JSONException e) {
-//                            e.printStackTrace();
-//                        }
-//
-//                    }
-//                };
-//
-//                DeleteRequest deleteRequest = new DeleteRequest( id, title, responseListener);
-//                RequestQueue queue = Volley.newRequestQueue( RecipeManageActivity.this );
-//                queue.add( deleteRequest );
-            }
-        });
-
-        builder.setNeutralButton("취소", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-            }
-        });
-
-        AlertDialog alertDialog = builder.create();
-        alertDialog.show();
     }
 }
