@@ -30,7 +30,7 @@ public class CategoryActivity extends AppCompatActivity {
     View view;
     RecyclerView recyclerView;
     ArrayList<MainData> list5 = new ArrayList<>();
-    SearchAdapter caAdapter;
+    CateAdapter caAdapter;
     TextView result;
 
     @Override
@@ -50,9 +50,9 @@ public class CategoryActivity extends AppCompatActivity {
         result = findViewById(R.id.result);
         result.setText(result2);
 
-        recyclerView = findViewById(R.id.Search_recycler);
+        recyclerView = findViewById(R.id.Cate_recycler);
         recyclerView.setHasFixedSize(true);
-        caAdapter = new SearchAdapter(list5);
+        caAdapter = new CateAdapter(list5);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());

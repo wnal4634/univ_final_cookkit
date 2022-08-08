@@ -124,19 +124,14 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:layout_gravity="right">
-                <TextView
-                    android:id="@+id/meal_total_price"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="#,###"
-                    android:textSize="14dp" />
-                <TextView
-                    android:id="@+id/textView21"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="20dp"
-                    android:text="원"
-                    android:textSize="14dp" />
+
+                    <TextView
+                        android:id="@+id/meal_total_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="20dp"
+                        android:text="#,###"
+                        android:textSize="14dp" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
@@ -195,11 +190,11 @@
 
         </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="14dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="14dp">
             <TextView
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
@@ -210,25 +205,25 @@
                 android:layout_marginLeft="20dp"
                 android:textSize="14dp" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"/>
 
-        <EditText
-            android:id="@+id/phoneNumber"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="20dp"
-            android:layout_weight="1"
-            android:background="@drawable/input_box_border"
-            android:ems="10"
-            android:textSize="15dp"
-            android:padding="4dp"
-            android:paddingLeft="5dp"
-            android:inputType="number" />
-    </LinearLayout>
+            <EditText
+                android:id="@+id/phoneNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="20dp"
+                android:layout_weight="1"
+                android:background="@drawable/input_box_border"
+                android:ems="10"
+                android:textSize="15dp"
+                android:padding="4dp"
+                android:paddingLeft="5dp"
+                android:inputType="number" />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"

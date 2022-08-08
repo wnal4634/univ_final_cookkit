@@ -30,6 +30,8 @@ public class MealOrderActivity extends AppCompatActivity {
     Button payment;
     static final int SMS_SEND_PERMISSION = 1;
     static final int SMS_RECIVE_PERMISSION = 1;
+    int sum = 0;
+    int price = 3000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,13 +41,16 @@ public class MealOrderActivity extends AppCompatActivity {
         meal_count.setText(count+"");
         meal_plus = findViewById(R.id.meal_plus);
         meal_minus = findViewById(R.id.meal_minus);
+        meal_total_price = findViewById(R.id.meal_total_price);
+        meal_total_price.setText(sum+"원");
 
         meal_plus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 count++;
                 meal_count.setText(count+"");
+                sum = price * count;
+                meal_total_price.setText(sum+"원");
             }
         });
 
@@ -55,16 +60,8 @@ public class MealOrderActivity extends AppCompatActivity {
                 if(count>0) {
                     count--;
                     meal_count.setText(count + "");}
-                ImageButton btn_back_index = (ImageButton) findViewById(R.id.back_index);
-                btn_back_index.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Intent intent = new Intent(
-                                MealOrderActivity.this, Fragment_index.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        finish();
-                    }
-                });
+                sum -= price;
+                meal_total_price.setText(sum+"원");
             }
         });
 
@@ -120,7 +117,6 @@ public class MealOrderActivity extends AppCompatActivity {
 
         phoneNumber = findViewById(R.id.phoneNumber);
         Address = findViewById(R.id.Address);
-        meal_total_price = findViewById(R.id.meal_total_price);
         meal_name = findViewById(R.id.meal_name);
 
         payment = findViewById(R.id.payment);
@@ -136,7 +132,7 @@ public class MealOrderActivity extends AppCompatActivity {
                 String count = (String) meal_count.getText();
 
                 String txt = "CookKit 밀키트 구매 안내\n\n" + name + "\n" + count + "세트, "
-                        + price + "원\n" + "주소: " + postNo + ", " + add;
+                        + price + "\n" + "주소: " + postNo + ", " + add;
 
                 try {
                     SmsManager smsManager = SmsManager.getDefault();

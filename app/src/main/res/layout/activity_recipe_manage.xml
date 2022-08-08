@@ -54,17 +54,16 @@
         app:layout_constraintTop_toBottomOf="@id/view123"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/Recipemanage_recycler"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view123"
-        app:layout_constraintVertical_bias="0.0"
-        tools:listitem="@layout/recipemanage_holder" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/Recipemanage_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view123"
+            app:layout_constraintVertical_bias="0.0"
+            tools:listitem="@layout/recipemanage_holder" />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
