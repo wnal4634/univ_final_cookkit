@@ -57,7 +57,7 @@ public class DeleteDialogActivity extends Activity {
 
                             if (success) {
 
-                                Toast.makeText(getApplicationContext(), String.format("레시피를 삭제했습니다. 해당 페이지를 새로고침 해주세요"), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), String.format("레시피를 삭제했습니다.\n해당 페이지를 새로고침 해주세요"), Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(DeleteDialogActivity.this, Fragment_mypage.class);
                                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                 finish();

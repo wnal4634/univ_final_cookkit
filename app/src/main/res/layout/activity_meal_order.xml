@@ -119,16 +119,25 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="right">
                 <TextView
                     android:id="@+id/meal_total_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginRight="10dp"
-                    android:text="#,###원"
+                    android:text="#,###"
                     android:textSize="14dp" />
+                <TextView
+                    android:id="@+id/textView21"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="20dp"
+                    android:text="원"
+                    android:textSize="14dp" />
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
 
@@ -280,7 +289,7 @@
                 android:orientation="vertical"/>
 
             <EditText
-                android:id="@+id/Adress"
+                android:id="@+id/Address"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="69dp"

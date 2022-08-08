@@ -5,9 +5,14 @@ import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.telephony.SmsManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,21 +21,24 @@ import android.widget.Toast;
 import android.widget.TextView;
 import android.util.Log;
 public class MealOrderActivity extends AppCompatActivity {
-    private TextView meal_count;
+    private TextView meal_count, meal_total_price, meal_name;
     private static final int SEARCH_ADDRESS_ACTIVITY = 10000;
-    private EditText postNum;
+    private EditText postNum, phoneNumber, Address;
     private ImageButton meal_minus, meal_plus;
     private int count=0;
     String member_id, phone_num, post_num, member_ad = "";
+    Button payment;
+    static final int SMS_SEND_PERMISSION = 1;
+    static final int SMS_RECIVE_PERMISSION = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meal_order);
-        meal_count=findViewById(R.id.meal_count);
+        meal_count = findViewById(R.id.meal_count);
         meal_count.setText(count+"");
-        meal_plus=findViewById(R.id.meal_plus);
-        meal_minus=findViewById(R.id.meal_minus);
+        meal_plus = findViewById(R.id.meal_plus);
+        meal_minus = findViewById(R.id.meal_minus);
 
         meal_plus.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,24 +92,63 @@ public class MealOrderActivity extends AppCompatActivity {
             });
         }
 
+        int permissonCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS);
+        if(permissonCheck == PackageManager.PERMISSION_GRANTED){
+            Toast.makeText(getApplicationContext(), "SMS 발신권한 있음", Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(getApplicationContext(), "SMS 발신권한 없음", Toast.LENGTH_SHORT).show();
+            if(ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.SEND_SMS)){
+                Toast.makeText(getApplicationContext(), "SMS 권한이 필요합니다", Toast.LENGTH_SHORT).show();
+                ActivityCompat.requestPermissions(this, new String[]{ Manifest.permission.SEND_SMS}, SMS_SEND_PERMISSION);
+            }else{
+                ActivityCompat.requestPermissions(this, new String[]{ Manifest.permission.SEND_SMS}, SMS_SEND_PERMISSION);
+            }
+        }
 
-//        member_id = getIntent().getStringExtra("member_id");
-//        phone_num = getIntent().getStringExtra("phone_num");
-//        post_num = getIntent().getStringExtra("post_num");
-//        member_ad = getIntent().getStringExtra("member_ad");
-//        Intent intent = getIntent();
-//        String hi_ID = intent.getStringExtra("member_id");
-//        TextView textview = (TextView)findViewById(R.id.memberID);
-//        textview.setText(hi_ID);
-//        String savePhone = intent.getStringExtra("phone_num");
-//        EditText editText = (EditText)findViewById(R.id.phoneNumber);
-//        editText.setText(savePhone);
-//        String savePost = intent.getStringExtra("post_num");
-//        EditText editText2 = (EditText)findViewById(R.id.postNum);
-//        editText2.setText(savePost);
-//        String saveAdress = intent.getStringExtra("member_ad");
-//        EditText editText3 = (EditText)findViewById(R.id.Adress);
-//        editText3.setText(saveAdress);
+        int permissonCheck2 = ContextCompat.checkSelfPermission(this, Manifest.permission.RECEIVE_SMS);
+        if(permissonCheck2 == PackageManager.PERMISSION_GRANTED){
+            Toast.makeText(getApplicationContext(), "SMS 수신권한 있음", Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(getApplicationContext(), "SMS 수신권한 없음", Toast.LENGTH_SHORT).show();
+            if(ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.RECEIVE_SMS)){
+                Toast.makeText(getApplicationContext(), "SMS 권한이 필요합니다", Toast.LENGTH_SHORT).show();
+                ActivityCompat.requestPermissions(this, new String[]{ Manifest.permission.RECEIVE_SMS}, SMS_RECIVE_PERMISSION);
+            }else{
+                ActivityCompat.requestPermissions(this, new String[]{ Manifest.permission.RECEIVE_SMS}, SMS_RECIVE_PERMISSION);
+            }
+        }
+
+        phoneNumber = findViewById(R.id.phoneNumber);
+        Address = findViewById(R.id.Address);
+        meal_total_price = findViewById(R.id.meal_total_price);
+        meal_name = findViewById(R.id.meal_name);
+
+        payment = findViewById(R.id.payment);
+        payment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                String phoneNo = phoneNumber.getText().toString();
+                String add = Address.getText().toString();
+                String postNo = postNum.getText().toString();
+                String price = (String) meal_total_price.getText();
+                String name = (String) meal_name.getText();
+                String count = (String) meal_count.getText();
+
+                String txt = "CookKit 밀키트 구매 안내\n\n" + name + "\n" + count + "세트, "
+                        + price + "원\n" + "주소: " + postNo + ", " + add;
+
+                try {
+                    SmsManager smsManager = SmsManager.getDefault();
+                    smsManager.sendTextMessage(phoneNo, null, txt, null, null);
+                    Toast.makeText(getApplicationContext(), "전송 완료!", Toast.LENGTH_SHORT).show();
+                } catch (Exception e) {
+                    Toast.makeText(getApplicationContext(), "전송 오류!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_SHORT).show();//오류 원인이 찍힌다.
+                    e.printStackTrace();
+                }
+            }
+        });
 
     }
 
