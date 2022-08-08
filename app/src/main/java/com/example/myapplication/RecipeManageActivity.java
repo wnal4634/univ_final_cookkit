@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -17,14 +18,17 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -49,10 +53,8 @@ public class RecipeManageActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     ArrayList<ManageData> list3 = new ArrayList<>();
     ManageAdapter maAdapter;
-    ImageButton close;
-    Button modifybtn, deletebtn;
     String member_id;
-    Activity activity;
+    private SwipeRefreshLayout mysrl;
 
     @Override
     protected void onCreate (Bundle savedInstanceState) {
@@ -82,6 +84,50 @@ public class RecipeManageActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(maAdapter);
+
+        mysrl =  findViewById(R.id.swipe_layout);
+        mysrl.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                String serverUrl = "http://admin0000.dothome.co.kr/write_recipe_my.php";
+                JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST, serverUrl, null, new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        list3.clear();
+                        maAdapter.notifyDataSetChanged();
+
+                        try {
+
+                            for (int i = 0; i < response.length(); i++) {
+                                JSONObject jsonObject = response.getJSONObject(i);
+
+                                String title = jsonObject.getString("recipe_title");
+                                String category = jsonObject.getString("recipe_category");
+                                String image = jsonObject.getString("image_main");
+                                String id = jsonObject.getString("member_id");
+
+                                Bitmap image_bit = StringToBitmap(image);
+
+                                ManageData manageData = new ManageData(title, category, image_bit, id);
+                                if(id.equals(member_id)) {
+                                    maAdapter.addItem(manageData);
+                                }
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                    }
+                });
+
+                RequestQueue requestQueue = Volley.newRequestQueue(RecipeManageActivity.this);
+                requestQueue.add(jsonArrayRequest);
+                mysrl.setRefreshing(false);
+            }
+        });
     }
 
     @Override
@@ -146,4 +192,5 @@ public class RecipeManageActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
 }

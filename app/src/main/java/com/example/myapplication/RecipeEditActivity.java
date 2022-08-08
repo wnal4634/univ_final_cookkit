@@ -264,13 +264,13 @@ public class RecipeEditActivity extends AppCompatActivity {
 
                             if (success) {
 
-                                Toast.makeText(getApplicationContext(), String.format("수정 완료."), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), String.format("수정했습니다."), Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(RecipeEditActivity.this, Fragment_mypage.class);
                                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                 finish();
 
                             } else {
-                                Toast.makeText(getApplicationContext(), "실패하였습니다.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), "실패했습니다.", Toast.LENGTH_SHORT).show();
                                 return;
                             }
 

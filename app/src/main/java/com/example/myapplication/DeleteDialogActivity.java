@@ -44,8 +44,6 @@ public class DeleteDialogActivity extends Activity {
         ok_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "레시피가 삭제되었습니다.", Toast.LENGTH_LONG).show();
-
                 String title = getIntent().getStringExtra("title");
                 String id = getIntent().getStringExtra("id");
 
@@ -59,13 +57,13 @@ public class DeleteDialogActivity extends Activity {
 
                             if (success) {
 
-                                Toast.makeText(getApplicationContext(), String.format("삭제"), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), String.format("레시피를 삭제했습니다. 해당 페이지를 새로고침 해주세요"), Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(DeleteDialogActivity.this, Fragment_mypage.class);
                                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                 finish();
 
                             } else {
-                                Toast.makeText(getApplicationContext(), "실패하였습니다.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), "실패했습니다.", Toast.LENGTH_SHORT).show();
                                 return;
                             }
 

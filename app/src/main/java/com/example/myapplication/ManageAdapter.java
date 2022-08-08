@@ -4,9 +4,11 @@ package com.example.myapplication;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -29,11 +31,9 @@ import java.util.Random;
 
 public class ManageAdapter extends RecyclerView.Adapter<ManageAdapter.ManageViewHolder>  {
 
-    //    private ArrayList<MainData> mDataset;
     private ArrayList<ManageData> mDataset;
     TextView member_id;
-//    Activity activity;
-    AlertDialog.Builder dialog;
+    Context context;
 
     public class ManageViewHolder extends RecyclerView.ViewHolder {
         TextView title;
