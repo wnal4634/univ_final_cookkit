@@ -128,9 +128,26 @@ public class Fragment_index extends Fragment {
             public void onErrorResponse(VolleyError error) {
             }
         });
-
         RequestQueue requestQueue = Volley.newRequestQueue(this.getActivity());
         requestQueue.add(jsonArrayRequest);
+
+        String serverUrl2 = "http://admin0000.dothome.co.kr/del_overlab.php";
+        JsonArrayRequest jsonArrayRequest2 = new JsonArrayRequest(Request.Method.POST, serverUrl2, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+
+                try {
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+            }
+        });
+        RequestQueue requestQueue2 = Volley.newRequestQueue(this.getActivity());
+        requestQueue2.add(jsonArrayRequest2);
     }
 
     public static Bitmap StringToBitmap(String encodedString) {
