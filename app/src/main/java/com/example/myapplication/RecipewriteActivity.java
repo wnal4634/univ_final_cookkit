@@ -68,6 +68,7 @@ public class RecipewriteActivity extends AppCompatActivity {
     //    String imagepath;
     TextView imgpath;
     private AlertDialog dialog;
+    ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -224,6 +225,8 @@ public class RecipewriteActivity extends AppCompatActivity {
                     dialog.show();
                     return;
                 }
+
+                progressDialog = ProgressDialog.show(RecipewriteActivity.this, "", "업로드 중...", true);
 
                 Response.Listener<String> responseListener = new Response.Listener<String>() {
                     @Override

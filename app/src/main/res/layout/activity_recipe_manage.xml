@@ -52,6 +52,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/view123"
+        android:paddingBottom="60dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <androidx.recyclerview.widget.RecyclerView
@@ -59,11 +60,20 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/view123"
             app:layout_constraintVertical_bias="0.0"
+
             tools:listitem="@layout/recipemanage_holder" />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+    <View
+        android:id="@+id/view32"
+        android:layout_width="match_parent"
+        android:layout_height="0.1px"
+        android:background="#ffffff"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_gravity="center_horizontal" />
 </androidx.constraintlayout.widget.ConstraintLayout>
