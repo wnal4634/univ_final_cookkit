@@ -1,63 +1,43 @@
 package com.example.myapplication;
 
-import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.app.Dialog;
+import android.Manifest;
 import android.app.ProgressDialog;
-import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Configuration;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.ImageDecoder;
-import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.provider.MediaStore;
 import android.util.Base64;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.myapplication.Register.RecipewriteRequest;
-import com.example.myapplication.Register.UpdateRequest;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.net.URL;
-import java.net.URLConnection;
-import java.net.URLEncoder;
-import java.util.HashMap;
-import java.util.Map;
 
 public class RecipewriteActivity extends AppCompatActivity {
 
@@ -67,6 +47,7 @@ public class RecipewriteActivity extends AppCompatActivity {
     String member_id;
     //    String imagepath;
     TextView imgpath;
+    String imgPath;
     private AlertDialog dialog;
     ProgressDialog progressDialog;
 
@@ -75,10 +56,17 @@ public class RecipewriteActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipewrite);
 
+        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.M){
+            int permissionResult= checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+            if(permissionResult== PackageManager.PERMISSION_DENIED){
+                String[] permissions= new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
+                requestPermissions(permissions,10);
+            }
+        }
+
         member_id = getIntent().getStringExtra("member_id");
         TextView textview = (TextView)findViewById(R.id.memberID);
         textview.setText(member_id);
-
 
         Button close;
         close = (Button) findViewById(R.id.closebutton);
@@ -226,7 +214,7 @@ public class RecipewriteActivity extends AppCompatActivity {
                     return;
                 }
 
-                progressDialog = ProgressDialog.show(RecipewriteActivity.this, "", "업로드 중...", true);
+                progressDialog = ProgressDialog.show(RecipewriteActivity.this, "", "업로드 중입니다.\n시간이 걸리는 작업이니 잠시만 기다려주세요.", true);
 
                 Response.Listener<String> responseListener = new Response.Listener<String>() {
                     @Override
@@ -238,7 +226,7 @@ public class RecipewriteActivity extends AppCompatActivity {
 
                             if (success) {
 
-                                Toast.makeText(getApplicationContext(), String.format("업로드 완료."), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), String.format("업로드를 완료했습니다."), Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(RecipewriteActivity.this, Fragment_index.class);
                                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                 finish();
@@ -471,5 +459,19 @@ public class RecipewriteActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         return resizeBitmap;
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch(requestCode){
+            case 10:
+                if(grantResults[0]==PackageManager.PERMISSION_GRANTED){
+                    Toast.makeText(this, "외부 메모리 읽기/쓰기 사용 가능", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(this, "외부 메모리 읽기/쓰기 제한", Toast.LENGTH_SHORT).show();
+                }
+                break;
+        }
     }
 }

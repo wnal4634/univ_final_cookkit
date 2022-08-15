@@ -1,26 +1,21 @@
 package com.example.myapplication;
 
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Base64;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.util.Base64;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.Spinner;
-import android.widget.Toast;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -43,6 +38,7 @@ public class Fragment_index extends Fragment {
     private ArrayList<MainData> list = new ArrayList<>();
     private MainAdapter mAdapter;
     private Spinner indexSpinner;
+    private SwipeRefreshLayout mysrl;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -86,6 +82,47 @@ public class Fragment_index extends Fragment {
 //                startActivity(intent);
 //            }
 //        });
+
+        mysrl =  view.findViewById(R.id.swipe_layout);
+        mysrl.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                String serverUrl = "http://admin0000.dothome.co.kr/index.php";
+                JsonArrayRequest jsonArrayRequest3 = new JsonArrayRequest(Request.Method.POST, serverUrl, null, new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        list.clear();
+                        mAdapter.notifyDataSetChanged();
+
+                        try {
+
+                            for (int i = 0; i < response.length(); i++) {
+                                JSONObject jsonObject = response.getJSONObject(i);
+
+                                String title = jsonObject.getString("recipe_title");
+                                String category = jsonObject.getString("recipe_category");
+                                String image = jsonObject.getString("image_main");
+
+                                Bitmap image_bit = StringToBitmap(image);
+
+                                MainData mainData = new MainData(title, category, image_bit);
+                                mAdapter.addItem(mainData);
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                    }
+                });
+                RequestQueue requestQueue3 = Volley.newRequestQueue(getActivity());
+                requestQueue3.add(jsonArrayRequest3);
+                mysrl.setRefreshing(false);
+            }
+        });
+
         return view;
     }
 
