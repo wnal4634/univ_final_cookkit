@@ -89,9 +89,6 @@
             android:name=".SignupActivity"
             android:exported="false" />
         <activity
-            android:name=".MealDetailActivity"
-            android:exported="false" />
-        <activity
             android:name=".MealOrderActivity"
             android:exported="false" />
     </application>
