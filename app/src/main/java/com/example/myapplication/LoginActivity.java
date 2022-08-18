@@ -2,13 +2,17 @@ package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,18 +30,30 @@ public class LoginActivity extends AppCompatActivity {
 
     private EditText login_email, login_password;
     private Button login_button, join_button;
+    private CheckBox autoLogin;
+    String id,pw;
+    private Boolean saveLoginData;
+    SharedPreferences pref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        login_email = findViewById( R.id.login_email );
-        login_password = findViewById( R.id.login_password );
+        pref = getSharedPreferences("pref", Activity.MODE_PRIVATE);
+        load();
+        login_email = findViewById(R.id.login_email);
+        login_password = findViewById(R.id.login_password);
+        autoLogin = findViewById(R.id.checkBox);
+        login_button = findViewById(R.id.login_button);
 
+        if (saveLoginData) {
+            login_email.setText(id);
+            login_password.setText(pw);
+            autoLogin.setChecked(saveLoginData);
+        }
 
-        login_button = findViewById( R.id.login_button );
-        login_button.setOnClickListener( new View.OnClickListener() {
+        login_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String UserId = login_email.getText().toString();
@@ -47,33 +63,33 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         try {
-                            JSONObject jsonObject = new JSONObject( response );
-                            boolean success = jsonObject.getBoolean( "success" );
+                            JSONObject jsonObject = new JSONObject(response);
+                            boolean success = jsonObject.getBoolean("success");
 
-                            if(success) {//로그인 성공시
+                            if (success) {//로그인 성공시
 
-                                String UserId = jsonObject.getString( "member_id" );
-                                String UserPwd = jsonObject.getString( "member_pw" );
-                                String UserName = jsonObject.getString( "name" );
-                                String UserNum = jsonObject.getString( "phone_num" );
-                                String UserPost = jsonObject.getString( "post_num" );
-                                String UserAd = jsonObject.getString( "member_ad" );
+                                String UserId = jsonObject.getString("member_id");
+                                String UserPwd = jsonObject.getString("member_pw");
+                                String UserName = jsonObject.getString("name");
+                                String UserNum = jsonObject.getString("phone_num");
+                                String UserPost = jsonObject.getString("post_num");
+                                String UserAd = jsonObject.getString("member_ad");
 
-                                Toast.makeText( getApplicationContext(), String.format(UserId+ "님 환영합니다."), Toast.LENGTH_SHORT ).show();
-                                Intent intent = new Intent( LoginActivity.this, MainActivity.class );
-                                intent.putExtra( "member_id", UserId );
-                                intent.putExtra( "member_pw", UserPwd );
-                                intent.putExtra( "name", UserName );
+                                Toast.makeText(getApplicationContext(), String.format(UserId + "님 환영합니다."), Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                intent.putExtra("member_id", UserId);
+                                intent.putExtra("member_pw", UserPwd);
+                                intent.putExtra("name", UserName);
                                 intent.putExtra("phone_num", UserNum);
                                 intent.putExtra("post_num", UserPost);
                                 intent.putExtra("member_ad", UserAd);
-
-                                startActivity( intent );
+                                save();
+                                startActivity(intent);
                                 finish();
 
 
                             } else {//로그인 실패시
-                                Toast.makeText( getApplicationContext(), "로그인에 실패하셨습니다.", Toast.LENGTH_SHORT ).show();
+                                Toast.makeText(getApplicationContext(), "로그인에 실패하셨습니다.", Toast.LENGTH_SHORT).show();
                                 return;
                             }
 
@@ -82,13 +98,21 @@ public class LoginActivity extends AppCompatActivity {
                         }
                     }
                 };
-                LoginRequest loginRequest = new LoginRequest( UserId, UserPwd, responseListener );
-                RequestQueue queue = Volley.newRequestQueue( LoginActivity.this );
-                queue.add( loginRequest );
+                LoginRequest loginRequest = new LoginRequest(UserId, UserPwd, responseListener);
+                RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
+                queue.add(loginRequest);
 
             }
         });
+        id = pref.getString("id",null);
+        pw = pref.getString("pw",null);
 
+        autoLogin.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+            }
+        });
 
 
 //        mIdView.setOnEditorActionListener(new TextView.OnEditorActionListener()
@@ -122,7 +146,7 @@ public class LoginActivity extends AppCompatActivity {
 
         // event handler
 
-        mEmailSignUp.setOnClickListener(new OnClickListener(){
+        mEmailSignUp.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), SignupActivity.class);
@@ -130,18 +154,21 @@ public class LoginActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
+    private void save(){
+        SharedPreferences.Editor editor = pref.edit();
 
+        editor.putBoolean("save", autoLogin.isChecked());
+        editor.putString("id",login_email.getText().toString().trim());
+        editor.putString("pw",login_password.getText().toString().trim());
 
-//        mEmailFind.setOnClickListener(new OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-//                startActivity(intent);
-//                finish();
-//            }
-//        });
-
-
+        editor.apply();
+    }
+    private void load(){
+        saveLoginData = pref.getBoolean("save", false);
+        id = pref.getString("id","");
+        pw = pref.getString("pw","");
     }
 
 }
+
