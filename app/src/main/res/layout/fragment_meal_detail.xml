@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#DBE0DD"
-    tools:context=".MealDetailActivity">
+    tools:context=".Fragment_mealDetail">
 
     <LinearLayout
         android:id="@+id/linearLayout4"
@@ -120,7 +120,7 @@
             android:layout_gravity="bottom|center_horizontal"
             android:gravity="center"
             android:paddingBottom="24dp"
-            android:text="2022. 04. 19 ~ 2022. 06. 20"
+            android:text="밀키트 판매기간을 넣는 곳입니다."
             android:textColor="#000000"
             android:textSize="14dp" />
 

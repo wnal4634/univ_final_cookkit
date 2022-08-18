@@ -26,6 +26,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -55,6 +56,7 @@ public class MealOrderActivity extends AppCompatActivity {
         meal_minus = findViewById(R.id.meal_minus);
         meal_price_fix = findViewById(R.id.meal_price_fix);
         meal_total_price = findViewById(R.id.meal_total_price);
+        meal_detail_img = findViewById(R.id.meal_detail_img);
 //        meal_total_price.setText(String.valueOf(sum));
 
         String serverUrl = "http://admin0000.dothome.co.kr/meal_ex.php";
@@ -71,7 +73,8 @@ public class MealOrderActivity extends AppCompatActivity {
                         String ex = jsonObject.getString("meal_text");
                         String sale = jsonObject.getString("meal_sale_period");
                         String price = jsonObject.getString("meal_price");
-//                        String image = jsonObject.getString("meal_image");
+                        String image = jsonObject.getString("meal_image");
+                        Glide.with(getApplicationContext()).load(image).into(meal_detail_img);
 //
 //                        Bitmap image_bit = StringToBitmap(image);
 

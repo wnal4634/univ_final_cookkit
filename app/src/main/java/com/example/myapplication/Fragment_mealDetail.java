@@ -21,6 +21,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -81,14 +82,15 @@ public class Fragment_mealDetail extends Fragment {
                         String ex = jsonObject.getString("meal_text");
                         String sale = jsonObject.getString("meal_sale_period");
                         String price = jsonObject.getString("meal_price");
-//                        String image = jsonObject.getString("meal_image");
-//
+                        String image = jsonObject.getString("meal_image");
+                        Glide.with(getActivity()).load(image).into(meal_detail_img);
 //                        Bitmap image_bit = StringToBitmap(image);
 
                         meal_name.setText(title);
                         meal_explain.setText(ex);
                         meal_sale_date.setText(sale);
 //                        meal_detail_img.setImageBitmap(image_bit);
+
 
                     }
                 } catch (JSONException e) {
