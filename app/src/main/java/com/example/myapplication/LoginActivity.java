@@ -47,10 +47,13 @@ public class LoginActivity extends AppCompatActivity {
         autoLogin = findViewById(R.id.checkBox);
         login_button = findViewById(R.id.login_button);
 
-        if (saveLoginData) {
-            login_email.setText(id);
-            login_password.setText(pw);
-            autoLogin.setChecked(saveLoginData);
+
+        if (shared_preferences.get_user_email(LoginActivity.this).length() != 0) {//로그인 고유데이터(현재는 이메일) 길이 0 아닐시
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            startActivity(intent);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);//액티비티 스택제거
+            Toast.makeText(getApplicationContext(), "자동 로그인 되었습니다", Toast.LENGTH_SHORT).show();
+            finish();
         }
 
         login_button.setOnClickListener(new View.OnClickListener() {
@@ -105,12 +108,11 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
         id = pref.getString("id",null);
-        pw = pref.getString("pw",null);
 
         autoLogin.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-
+                shared_preferences.set_user_email(LoginActivity.this, id);
             }
         });
 
@@ -160,14 +162,12 @@ public class LoginActivity extends AppCompatActivity {
 
         editor.putBoolean("save", autoLogin.isChecked());
         editor.putString("id",login_email.getText().toString().trim());
-        editor.putString("pw",login_password.getText().toString().trim());
 
         editor.apply();
     }
     private void load(){
         saveLoginData = pref.getBoolean("save", false);
         id = pref.getString("id","");
-        pw = pref.getString("pw","");
     }
 
 }

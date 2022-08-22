@@ -116,6 +116,7 @@ public class Fragment_mypage extends Fragment {
         btn_logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                shared_preferences.clear_user(getActivity());
                 Intent intent = new Intent(getActivity(),LoginActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
