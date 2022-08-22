@@ -33,8 +33,9 @@ public class RecipeexplanationActivity extends AppCompatActivity {
     private View view;
     private ImageButton btn_back_index;
     private Button btn_like, btn_thumbs;
-    private TextView thumsup_count, favorite_count, title_main, id, title, cate, mat, text1, text2, text3, text4, text5, text6;
-    ImageView image_main;
+    private TextView thumsup_count, favorite_count, title_main,
+            id, title, cate, mat, text1, text2, text3, text4, text5, text6, see_count;
+    ImageView image_main, watch;
     private int count=0;
     boolean selected = false;
     boolean selected2 = false;
@@ -57,6 +58,8 @@ public class RecipeexplanationActivity extends AppCompatActivity {
         text5 = findViewById(R.id.text5);
         text6 = findViewById(R.id.text6);
         image_main = findViewById(R.id.image_main);
+        see_count = findViewById(R.id.click);
+        watch = findViewById(R.id.watch);
 
         thumsup_count=findViewById(R.id.thumsup_count);
         thumsup_count.setText(count+"");
@@ -146,6 +149,8 @@ public class RecipeexplanationActivity extends AppCompatActivity {
                         String t5 = jsonObject.getString("recipe_text5");
                         String t6 = jsonObject.getString("recipe_text6");
                         String image = jsonObject.getString("image_main");
+                        int click = jsonObject.getInt("click_count");
+
 
                         Bitmap image_bit = StringToBitmap(image);
 
@@ -162,6 +167,7 @@ public class RecipeexplanationActivity extends AppCompatActivity {
                             text5.setText(t5);
                             text6.setText(t6);
                             image_main.setImageBitmap(image_bit);
+                            see_count.setText(click+"");
                         }
 
                     }

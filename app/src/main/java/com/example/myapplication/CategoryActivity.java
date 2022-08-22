@@ -75,10 +75,11 @@ public class CategoryActivity extends AppCompatActivity {
                         String title = jsonObject.getString("recipe_title");
                         String category = jsonObject.getString("recipe_category");
                         String image = jsonObject.getString("image_main");
+                        int click = jsonObject.getInt("click_count");
 
                         Bitmap image_bit = StringToBitmap(image);
 
-                        MainData mainData = new MainData(title, category, image_bit);
+                        MainData mainData = new MainData(title, category, click, image_bit);
                         if(category.equals(result2)) {
                             caAdapter.addItem(mainData);
                         }

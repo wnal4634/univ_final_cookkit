@@ -4,6 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+    <EditText
+        android:id="@+id/recipeID"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text=""
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <include
         android:id="@+id/toolbar_title"
@@ -168,6 +176,23 @@
                                 app:layout_constraintStart_toEndOf="@+id/thumbsup"
                                 app:layout_constraintTop_toTopOf="parent" />
 
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:id="@+id/watch"
+                                app:layout_constraintEnd_toStartOf="@+id/favorite"
+                                android:backgroundTint="@color/black"
+                                android:background="@drawable/eye"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/click"
+                                android:text="0"
+                                android:textSize="14dp"
+                                android:layout_marginLeft="4dp"
+                                android:layout_marginRight="8dp"
+                                app:layout_constraintStart_toEndOf="@+id/watch"
+                                app:layout_constraintTop_toTopOf="parent"/>
                             <Button
                                 android:id="@+id/favorite"
                                 android:layout_width="20dp"
