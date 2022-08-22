@@ -57,7 +57,6 @@ public class MealOrderActivity extends AppCompatActivity {
         meal_price_fix = findViewById(R.id.meal_price_fix);
         meal_total_price = findViewById(R.id.meal_total_price);
         meal_detail_img = findViewById(R.id.meal_detail_img);
-//        meal_total_price.setText(String.valueOf(sum));
 
         String serverUrl = "http://admin0000.dothome.co.kr/meal_ex.php";
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST, serverUrl, null, new Response.Listener<JSONArray>() {
@@ -75,13 +74,10 @@ public class MealOrderActivity extends AppCompatActivity {
                         String price = jsonObject.getString("meal_price");
                         String image = jsonObject.getString("meal_image");
                         Glide.with(getApplicationContext()).load(image).into(meal_detail_img);
-//
-//                        Bitmap image_bit = StringToBitmap(image);
 
                         meal_name.setText(title);
                         meal_total_price.setText(price);
                         meal_price_fix.setText(price);
-//                        meal_detail_img.setImageBitmap(image_bit);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

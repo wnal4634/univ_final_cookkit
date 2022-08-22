@@ -158,23 +158,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:orientation="horizontal">
-                            <Button
-                                android:id="@+id/thumbsup"
-                                android:layout_width="20dp"
-                                android:layout_height="20dp"
-                                android:backgroundTint="@color/black"
-                                android:background="@drawable/thumb_button"
-                                app:layout_constraintEnd_toStartOf="@+id/favorite"
-                                app:layout_constraintTop_toTopOf="parent" />
-                            <TextView
-                                android:id="@+id/thumsup_count"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="0"
-                                android:textSize="14dp"
-                                android:layout_marginRight="8dp"
-                                app:layout_constraintStart_toEndOf="@+id/thumbsup"
-                                app:layout_constraintTop_toTopOf="parent" />
 
                             <ImageView
                                 android:layout_width="20dp"
@@ -189,27 +172,27 @@
                                 android:id="@+id/click"
                                 android:text="0"
                                 android:textSize="14dp"
-                                android:layout_marginLeft="4dp"
-                                android:layout_marginRight="8dp"
+                                android:layout_marginLeft="3dp"
+                                android:layout_marginRight="10dp"
                                 app:layout_constraintStart_toEndOf="@+id/watch"
                                 app:layout_constraintTop_toTopOf="parent"/>
                             <Button
                                 android:id="@+id/favorite"
                                 android:layout_width="20dp"
                                 android:layout_height="20dp"
+                                android:layout_marginRight="3dp"
                                 android:backgroundTint="@color/black"
                                 android:background="@drawable/like_button"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
                             <TextView
-                                android:id="@+id/favorite_count"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="0"
+                                android:text="좋아요"
                                 android:textSize="14dp"
                                 android:layout_marginRight="16dp"
-                                app:layout_constraintStart_toEndOf="@+id/favorite"
-                                app:layout_constraintTop_toTopOf="parent" />
+                                app:layout_constraintStart_toEndOf="@+id/watch"
+                                app:layout_constraintTop_toTopOf="parent"/>
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>

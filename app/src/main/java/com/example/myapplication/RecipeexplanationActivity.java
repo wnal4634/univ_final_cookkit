@@ -1,9 +1,5 @@
 package com.example.myapplication;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -15,7 +11,8 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.util.Log;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -36,10 +33,7 @@ public class RecipeexplanationActivity extends AppCompatActivity {
     private TextView thumsup_count, favorite_count, title_main,
             id, title, cate, mat, text1, text2, text3, text4, text5, text6, see_count;
     ImageView image_main, watch;
-    private int count=0;
-    boolean selected = false;
     boolean selected2 = false;
-    private Button share;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,72 +54,6 @@ public class RecipeexplanationActivity extends AppCompatActivity {
         image_main = findViewById(R.id.image_main);
         see_count = findViewById(R.id.click);
         watch = findViewById(R.id.watch);
-
-        thumsup_count=findViewById(R.id.thumsup_count);
-        thumsup_count.setText(count+"");
-        favorite_count=findViewById(R.id.favorite_count);
-        favorite_count.setText(count+"");
-        btn_like=findViewById(R.id.thumbsup);
-        ImageButton btn_back_index = findViewById(R.id.back_index);
-        btn_back_index.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
-        Button btn_thumbs = findViewById(R.id.thumbsup);
-        btn_thumbs.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (selected){
-                    btn_thumbs.setSelected(false);
-                    selected = false;
-                    count--;
-                    thumsup_count.setText(count+"");
-                }else {
-                    count++;
-                    thumsup_count.setText(count+"");
-                    btn_thumbs.setSelected(true);
-                    selected =true;
-
-                }}
-
-        });
-        Button btn_like = findViewById(R.id.favorite);
-        btn_like.setOnClickListener(new View.OnClickListener() {
-            private int count=0;
-            @Override
-            public void onClick(View v) {
-                if (selected2){
-                    btn_like.setSelected(false);
-                    selected2 = false;
-                    count--;
-                    favorite_count.setText(count+"");
-
-                }else {
-                    count++;
-                    favorite_count.setText(count+"");
-                    btn_like.setSelected(true);
-                    selected2 = true;
-                }
-            }
-        });
-        Button share=findViewById(R.id.share);
-        share.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                Intent Sharing_intent=new Intent(Intent.ACTION_SEND);
-                Sharing_intent.setType("text/plain");
-
-                String Test_Message = "공유할 text";
-
-                Sharing_intent.putExtra(Intent.EXTRA_TEXT, Test_Message);
-
-                Intent Sharing = Intent.createChooser(Sharing_intent, "공유하기");
-                startActivity(Sharing);
-            }
-
-        });
 
         String serverUrl = "http://admin0000.dothome.co.kr/explain.php";
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST, serverUrl, null, new Response.Listener<JSONArray>() {
@@ -185,15 +113,50 @@ public class RecipeexplanationActivity extends AppCompatActivity {
         RequestQueue requestQueue= Volley.newRequestQueue(this);
         requestQueue.add(jsonArrayRequest);
 
+        ImageButton btn_back_index = findViewById(R.id.back_index);
+        btn_back_index.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
+        Button btn_like = findViewById(R.id.favorite);
+        btn_like.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (selected2){
+                    btn_like.setSelected(false);
+                    selected2 = false;
+                    MyDatabaseHelper myDb = new MyDatabaseHelper(RecipeexplanationActivity.this);
+                    myDb.delLike((String) id.getText(), (String) title.getText());
+                }else {
+                    btn_like.setSelected(true);
+                    selected2 = true;
+                    MyDatabaseHelper myDb = new MyDatabaseHelper(RecipeexplanationActivity.this);
+                    myDb.addLike((String) id.getText(), (String) title.getText());
+                }
+            }
+        });
+
+        Button share=findViewById(R.id.share);
+        share.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent Sharing_intent=new Intent(Intent.ACTION_SEND);
+                Sharing_intent.setType("text/plain");
+
+                String Test_Message = "공유할 text";
+
+                Sharing_intent.putExtra(Intent.EXTRA_TEXT, Test_Message);
+
+                Intent Sharing = Intent.createChooser(Sharing_intent, "공유하기");
+                startActivity(Sharing);
+            }
+
+        });
 
     }
-
-
-//    @Override
-//    protected void onStart() {
-//        super.onStart();
-//
-//    }
 
     public static Bitmap StringToBitmap(String encodedString) {
         try {
