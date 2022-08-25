@@ -82,11 +82,11 @@
         android:id="@+id/view13"
         android:layout_width="380dp"
         android:layout_height="2px"
-        android:layout_marginTop="8dp"
         android:background="#DBDBDB"
+        android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button16" />
+        app:layout_constraintTop_toBottomOf="@+id/button15" />
 
     <View
         android:id="@+id/view14"
@@ -112,20 +112,6 @@
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view12" />
-
-    <Button
-        android:id="@+id/button16"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:layout_marginStart="16dp"
-        android:backgroundTint="@color/white"
-        android:gravity="start"
-        android:stateListAnimator="@null"
-        android:text="추천한 레시피"
-        android:textColor="@color/black"
-        android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button15" />
 
     <Button
         android:id="@+id/button17"

@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -34,6 +35,7 @@ public class RecipeexplanationActivity extends AppCompatActivity {
             id, title, cate, mat, text1, text2, text3, text4, text5, text6, see_count;
     ImageView image_main, watch;
     boolean selected2 = false;
+    MyDatabaseHelper myDb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +56,10 @@ public class RecipeexplanationActivity extends AppCompatActivity {
         image_main = findViewById(R.id.image_main);
         see_count = findViewById(R.id.click);
         watch = findViewById(R.id.watch);
+        Button btn_like = findViewById(R.id.favorite);
+
+        myDb = new MyDatabaseHelper(this);
+        myDb.getWritableDatabase();
 
         String serverUrl = "http://admin0000.dothome.co.kr/explain.php";
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST, serverUrl, null, new Response.Listener<JSONArray>() {
@@ -63,8 +69,8 @@ public class RecipeexplanationActivity extends AppCompatActivity {
 
                 try {
 
-                    for(int i=0; i< response.length(); i++){
-                        JSONObject jsonObject= response.getJSONObject(i);
+                    for(int i=0; i< response.length(); i++) {
+                        JSONObject jsonObject = response.getJSONObject(i);
 
                         String id1 = jsonObject.getString("member_id");
                         String title1 = jsonObject.getString("recipe_title");
@@ -95,8 +101,19 @@ public class RecipeexplanationActivity extends AppCompatActivity {
                             text5.setText(t5);
                             text6.setText(t6);
                             image_main.setImageBitmap(image_bit);
-                            see_count.setText(click+"");
+                            see_count.setText(click + "");
+
+                            Cursor cursor = myDb.AllView();
+                            while (cursor.moveToNext()) {
+                                String sql_mid = cursor.getString(1);
+                                String sql_title = cursor.getString(2);
+                                if (sql_mid.equals(id1) && sql_title.equals(title1) && !selected2) {
+                                    btn_like.setSelected(true);
+                                    selected2 = true;
+                                }
+                            }
                         }
+
 
                     }
                 } catch (JSONException e) {
@@ -121,7 +138,9 @@ public class RecipeexplanationActivity extends AppCompatActivity {
             }
         });
 
-        Button btn_like = findViewById(R.id.favorite);
+
+
+
         btn_like.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -52,12 +52,13 @@ public class MyDatabaseHelper extends SQLiteOpenHelper
         if (result == -1) {
             Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(context, "좋아요 성공", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "레시피에 좋아요를 눌렀습니다", Toast.LENGTH_SHORT).show();
         }
     }
 
     public Integer delLike(String id, String title) {
         SQLiteDatabase db = this.getWritableDatabase();
+        Toast.makeText(context, "좋아요를 취소했습니다", Toast.LENGTH_SHORT).show();
         return db.delete(TABLE_NAME, "m_id = ? and title = ?", new String[] {id, title});
     }
 
