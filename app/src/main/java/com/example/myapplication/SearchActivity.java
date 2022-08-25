@@ -34,7 +34,7 @@ public class SearchActivity extends AppCompatActivity {
     ArrayList<MainData> list4 = new ArrayList<>();
     SearchAdapter saAdapter;
     TextView result;
-
+    String result2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,7 +48,7 @@ public class SearchActivity extends AppCompatActivity {
             }
         });
 
-        String result2 = getIntent().getStringExtra("result");
+         result2 = getIntent().getStringExtra("result");
         result = findViewById(R.id.result);
         result.setText(result2);
 
@@ -62,6 +62,47 @@ public class SearchActivity extends AppCompatActivity {
 
 
 
+        String serverUrl = "http://admin0000.dothome.co.kr/Search.php";
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST, serverUrl, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                list4.clear();
+                saAdapter.notifyDataSetChanged();
+
+                try {
+
+                    for (int i = 0; i < response.length(); i++) {
+                        JSONObject jsonObject = response.getJSONObject(i);
+
+                        String title = jsonObject.getString("recipe_title");
+                        String category = jsonObject.getString("recipe_category");
+                        String image = jsonObject.getString("image_main");
+                        int click = jsonObject.getInt("click_count");
+
+                        Bitmap image_bit = StringToBitmap(image);
+
+                        MainData mainData = new MainData(title, category, click, image_bit);
+                        if(title.contains(result2)) {
+                            saAdapter.addItem(mainData);
+                        }
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+            }
+        });
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(jsonArrayRequest);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
         String serverUrl = "http://admin0000.dothome.co.kr/Search.php";
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST, serverUrl, null, new Response.Listener<JSONArray>() {
             @Override
@@ -95,9 +136,9 @@ public class SearchActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
             }
         });
-
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        RequestQueue requestQueue = Volley.newRequestQueue(SearchActivity.this);
         requestQueue.add(jsonArrayRequest);
+
     }
 
     public static Bitmap StringToBitmap(String encodedString) {

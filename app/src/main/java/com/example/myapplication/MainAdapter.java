@@ -49,7 +49,6 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainViewHolder
                     MainData mainData = mDataset.get(pos);
                     Intent intent = new Intent(v.getContext(), RecipeexplanationActivity.class);
                     intent.putExtra("title", mainData.getTitle());
-                    intent.putExtra("count", mainData.getClick());
                     v.getContext().startActivity(intent);
 
                         Response.Listener<String> responseListener = new Response.Listener<String>() {
