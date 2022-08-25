@@ -43,7 +43,7 @@ public class RecipeManageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe_manage);
 
-        member_id = getIntent().getStringExtra("member_id");
+        member_id = shared_preferences.get_user_email(RecipeManageActivity.this);
         TextView textview = (TextView)findViewById(R.id.memberID);
         textview.setText(member_id);
 
@@ -51,6 +51,7 @@ public class RecipeManageActivity extends AppCompatActivity {
         btn_back_mypage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 finish();
             }
         });

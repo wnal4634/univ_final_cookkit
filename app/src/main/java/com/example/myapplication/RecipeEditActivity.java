@@ -103,7 +103,7 @@ public class RecipeEditActivity extends AppCompatActivity {
             @Override
             public void onResponse(JSONArray response) {
                 String tt = getIntent().getStringExtra("title");
-                String ii = getIntent().getStringExtra("id");
+                String ii = shared_preferences.get_user_email(RecipeEditActivity.this);
 
                 try {
 

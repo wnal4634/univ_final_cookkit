@@ -64,7 +64,7 @@ public class RecipewriteActivity extends AppCompatActivity {
             }
         }
 
-        member_id = getIntent().getStringExtra("member_id");
+        member_id = shared_preferences.get_user_email(RecipewriteActivity.this);
         TextView textview = (TextView)findViewById(R.id.memberID);
         textview.setText(member_id);
 

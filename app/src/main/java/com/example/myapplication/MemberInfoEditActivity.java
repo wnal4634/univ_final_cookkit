@@ -44,7 +44,7 @@ public class MemberInfoEditActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_member_info_edit);
 
-        member_id = getIntent().getStringExtra("member_id");
+        member_id = shared_preferences.get_user_email(MemberInfoEditActivity.this);
         phone_num = getIntent().getStringExtra("phone_num");
         post_num = getIntent().getStringExtra("post_num");
         member_ad = getIntent().getStringExtra("member_ad");
