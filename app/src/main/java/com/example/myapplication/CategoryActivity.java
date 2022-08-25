@@ -57,47 +57,8 @@ public class CategoryActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(caAdapter);
-
-
-
-        String serverUrl = "http://admin0000.dothome.co.kr/cate_search.php";
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST, serverUrl, null, new Response.Listener<JSONArray>() {
-            @Override
-            public void onResponse(JSONArray response) {
-                list5.clear();
-                caAdapter.notifyDataSetChanged();
-
-                try {
-
-                    for (int i = 0; i < response.length(); i++) {
-                        JSONObject jsonObject = response.getJSONObject(i);
-
-                        String title = jsonObject.getString("recipe_title");
-                        String category = jsonObject.getString("recipe_category");
-                        String image = jsonObject.getString("image_main");
-                        int click = jsonObject.getInt("click_count");
-
-                        Bitmap image_bit = StringToBitmap(image);
-
-                        MainData mainData = new MainData(title, category, click, image_bit);
-                        if(category.equals(result2)) {
-                            caAdapter.addItem(mainData);
-                        }
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-            }
-        });
-
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(jsonArrayRequest);
     }
+
     @Override
     public void onStart() {
         super.onStart();

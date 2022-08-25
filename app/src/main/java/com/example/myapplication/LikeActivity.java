@@ -42,9 +42,6 @@ public class LikeActivity extends AppCompatActivity {
         btn_back_mypage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent intent = new Intent(
-//                        LikeActivity.this, Fragment_mypage.class);
-//                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 finish();
             }
         });
@@ -57,6 +54,12 @@ public class LikeActivity extends AppCompatActivity {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
 
+
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
         myDb = new MyDatabaseHelper(this);
         myDb.getWritableDatabase();
 
@@ -101,7 +104,6 @@ public class LikeActivity extends AppCompatActivity {
         });
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(jsonArrayRequest);
-
     }
 
     @Override
