@@ -70,6 +70,7 @@ public class MealOrderStatusActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        String member_id = shared_preferences.get_user_email(MealOrderStatusActivity.this);
         String serverUrl = "http://admin0000.dothome.co.kr/meal_order_list.php";
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST, serverUrl, null, new Response.Listener<JSONArray>() {
             @Override
@@ -90,7 +91,8 @@ public class MealOrderStatusActivity extends AppCompatActivity {
                         String image = jsonObject.getString("meal_image");
 
                         MealOrderData mealOrderData = new MealOrderData(title, count, price, date, image);
-                        adapter4.addItem(mealOrderData);
+                        if (m_id.equals(member_id))
+                            adapter4.addItem(mealOrderData);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
