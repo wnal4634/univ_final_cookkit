@@ -95,8 +95,6 @@ public class MealOrderActivity extends AppCompatActivity {
         requestQueue.add(jsonArrayRequest);
 
 
-
-
         meal_plus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -182,49 +180,52 @@ public class MealOrderActivity extends AppCompatActivity {
         phoneNumber = findViewById(R.id.phoneNumber);
         Address = findViewById(R.id.Address);
         meal_name = findViewById(R.id.meal_name);
+
         payment = findViewById(R.id.payment);
-
-    }
-
-    public void DialogClick(View view) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("밀키트 구매").setMessage("밀키트를 구매하시겠습니까?");
-        builder.setPositiveButton("구매", new DialogInterface.OnClickListener() {
+        payment.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
-                String phoneNo = phoneNumber.getText().toString();
-                String add = Address.getText().toString();
-                String postNo = postNum.getText().toString();
-                String price = (String) meal_total_price.getText();
-                String name = (String) meal_name.getText();
-                String count = (String) meal_count.getText();
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(MealOrderActivity.this);
+                builder.setTitle("밀키트 구매").setMessage("밀키트를 구매하시겠습니까?");
+                builder.setPositiveButton("구매", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String phoneNo = phoneNumber.getText().toString();
+                        String add = Address.getText().toString();
+                        String postNo = postNum.getText().toString();
+                        String price = (String) meal_total_price.getText();
+                        String name = (String) meal_name.getText();
+                        String count = (String) meal_count.getText();
 
-                String txt = "CookKit 밀키트 구매 안내\n\n" + name + "\n" + count + "세트, "
-                        + price + "원\n" + "주소: " + postNo + ", " + add;
+                        String txt = "CookKit 밀키트 구매 안내\n\n" + name + "\n" + count + "세트, "
+                                + price + "원\n" + "주소: " + postNo + ", " + add;
 
-                try {
-                    SmsManager smsManager = SmsManager.getDefault();
-                    smsManager.sendTextMessage(phoneNo, null, txt, null, null);
-                    Toast.makeText(getApplicationContext(), "밀키트를 구매했습니다", Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(
-                            MealOrderActivity.this, Fragment_mealDetail.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    finish();
+                        try {
+                            SmsManager smsManager = SmsManager.getDefault();
+                            smsManager.sendTextMessage(phoneNo, null, txt, null, null);
+                            Toast.makeText(getApplicationContext(), "밀키트를 구매했습니다", Toast.LENGTH_LONG).show();
+                            Intent intent = new Intent(
+                                    MealOrderActivity.this, Fragment_mealDetail.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            finish();
 
-                } catch (Exception e) {
-                    Toast.makeText(getApplicationContext(), "전송 오류!", Toast.LENGTH_SHORT).show();
-                    Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_SHORT).show();//오류 원인이 찍힌다.
-                    e.printStackTrace();
-                }
+                        } catch (Exception e) {
+                            Toast.makeText(getApplicationContext(), "전송 오류!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_SHORT).show();//오류 원인이 찍힌다.
+                            e.printStackTrace();
+                        }
+                    }
+                });
+                builder.setNeutralButton("취소", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                });
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
             }
         });
-        builder.setNeutralButton("취소", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-            }
-        });
-        AlertDialog alertDialog = builder.create();
-        alertDialog.show();
+
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent intent)
