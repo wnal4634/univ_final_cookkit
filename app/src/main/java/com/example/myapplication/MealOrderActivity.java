@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 import android.Manifest;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -16,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -180,12 +182,16 @@ public class MealOrderActivity extends AppCompatActivity {
         phoneNumber = findViewById(R.id.phoneNumber);
         Address = findViewById(R.id.Address);
         meal_name = findViewById(R.id.meal_name);
-
         payment = findViewById(R.id.payment);
-        payment.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
+    }
+
+    public void DialogClick(View view) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("밀키트 구매").setMessage("밀키트를 구매하시겠습니까?");
+        builder.setPositiveButton("구매", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
                 String phoneNo = phoneNumber.getText().toString();
                 String add = Address.getText().toString();
                 String postNo = postNum.getText().toString();
@@ -194,12 +200,17 @@ public class MealOrderActivity extends AppCompatActivity {
                 String count = (String) meal_count.getText();
 
                 String txt = "CookKit 밀키트 구매 안내\n\n" + name + "\n" + count + "세트, "
-                        + price + "\n" + "주소: " + postNo + ", " + add;
+                        + price + "원\n" + "주소: " + postNo + ", " + add;
 
                 try {
                     SmsManager smsManager = SmsManager.getDefault();
                     smsManager.sendTextMessage(phoneNo, null, txt, null, null);
-                    Toast.makeText(getApplicationContext(), "전송 완료!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "밀키트를 구매했습니다", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(
+                            MealOrderActivity.this, Fragment_mealDetail.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    finish();
+
                 } catch (Exception e) {
                     Toast.makeText(getApplicationContext(), "전송 오류!", Toast.LENGTH_SHORT).show();
                     Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_SHORT).show();//오류 원인이 찍힌다.
@@ -207,7 +218,13 @@ public class MealOrderActivity extends AppCompatActivity {
                 }
             }
         });
-
+        builder.setNeutralButton("취소", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent intent)
