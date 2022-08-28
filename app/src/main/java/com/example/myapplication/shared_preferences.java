@@ -6,7 +6,7 @@ import android.preference.PreferenceManager;
 
 public class shared_preferences {
 
-    static String pref_user_email = "user_email";
+    static String pref_user_email = "member_id";
 
     static public SharedPreferences get_shared_preferences(Context ctx) {//모든 액티비티에서 인스턴스 얻음
         return PreferenceManager.getDefaultSharedPreferences(ctx);

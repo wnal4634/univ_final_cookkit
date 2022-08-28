@@ -24,6 +24,7 @@ import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 import com.example.myapplication.Register.DeleteRequest;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -63,10 +64,57 @@ public class ManageAdapter extends RecyclerView.Adapter<ManageAdapter.ManageView
                 public void onClick(View v) {
                     int pos = getAbsoluteAdapterPosition();
                     ManageData manageData = mDataset.get(pos);
-                    Intent intent = new Intent(v.getContext(), DeleteDialogActivity.class);
-                    intent.putExtra("title", manageData.getTitle());
-                    intent.putExtra("id", manageData.getMember_id());
-                    v.getContext().startActivity(intent);
+//                    Intent intent = new Intent(view.getContext(), DeleteDialogActivity.class);
+//                    intent.putExtra("title", manageData.getTitle());
+//                    intent.putExtra("id", manageData.getMember_id());
+//                    v.getContext().startActivity(intent);
+
+
+                    AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+                    builder.setTitle("삭제하시겠습니까?");
+                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Response.Listener<String> responseListener = new Response.Listener<String>() {
+                                @Override
+                                public void onResponse(String response) {
+
+                                    try {
+                                        JSONObject jsonObject = new JSONObject( response );
+                                        boolean success = jsonObject.getBoolean( "success" );
+
+                                        if (success) {
+
+                                            Toast.makeText(v.getContext(), String.format("레시피를 삭제했습니다."), Toast.LENGTH_SHORT).show();
+                                            Intent intent = new Intent(v.getContext(), RecipeManageActivity.class);
+                                            intent.putExtra("title", manageData.getTitle());
+                                            intent.putExtra("id", manageData.getMember_id());
+                                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                            mDataset.remove(getAbsoluteAdapterPosition());
+                                            notifyDataSetChanged();
+                                        }
+
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+
+                                }
+                            };
+
+                            DeleteRequest deleteRequest = new DeleteRequest(manageData.member_id, manageData.title, responseListener);
+                            RequestQueue queue = Volley.newRequestQueue( v.getContext());
+                            queue.add( deleteRequest );
+                        }
+                    });
+                    builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Toast.makeText(v.getContext(), String.format("취소"), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
+
                 }
             });
         }

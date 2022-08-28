@@ -107,7 +107,7 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
-        id = pref.getString("id",null);
+        id = pref.getString("member_id",null);
 
         autoLogin.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -161,13 +161,13 @@ public class LoginActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = pref.edit();
 
         editor.putBoolean("save", autoLogin.isChecked());
-        editor.putString("id",login_email.getText().toString().trim());
+        editor.putString("member_id",login_email.getText().toString().trim());
 
         editor.apply();
     }
     private void load(){
         saveLoginData = pref.getBoolean("save", false);
-        id = pref.getString("id","");
+        id = pref.getString("member_id","");
     }
 
 }
