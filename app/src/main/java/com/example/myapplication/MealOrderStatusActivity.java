@@ -1,19 +1,36 @@
 package com.example.myapplication;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
 
 public class MealOrderStatusActivity extends AppCompatActivity {
+    RecyclerView recyclerView;
+    ArrayList<MealOrderData> list4 = new ArrayList<>();
+    MealOrderStatusAdapter adapter4;
+    ImageView recipeView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,22 +41,21 @@ public class MealOrderStatusActivity extends AppCompatActivity {
         btn_back_mypage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent intent = new Intent(
-//                        MealOrderStatusActivity.this, Fragment_mypage.class);
-//                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 finish();
             }
         });
 
-        ArrayList<MealOrderData> list4 = new ArrayList<>();
-        for (int i = 0; i < 7; i++) {
-            list4.add(new MealOrderData("1세트", "14,000원","치즈 돈가스 밀키트", R.drawable.porkcutlet));
-        }
-        RecyclerView recyclerView = findViewById(R.id.order_recycler) ;
-        recyclerView.setLayoutManager(new LinearLayoutManager(this)) ;
-        MealOrderStatusAdapter adapter4 = new MealOrderStatusAdapter(list4);
-        recyclerView.setAdapter(adapter4) ;
+        recyclerView = findViewById(R.id.order_recycler);
+        recyclerView.setHasFixedSize(true);
+        adapter4 = new MealOrderStatusAdapter(list4);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setAdapter(adapter4);
+
+        recipeView = findViewById(R.id.recipeView);
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -49,5 +65,45 @@ public class MealOrderStatusActivity extends AppCompatActivity {
             }
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        String serverUrl = "http://admin0000.dothome.co.kr/meal_order_list.php";
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST, serverUrl, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                list4.clear();
+                adapter4.notifyDataSetChanged();
+
+                try {
+
+                    for(int i=0; i< response.length(); i++){
+                        JSONObject jsonObject= response.getJSONObject(i);
+
+                        String m_id = jsonObject.getString("member_id");
+                        String title = jsonObject.getString("meal_title");
+                        String date = jsonObject.getString("buy_date");
+                        String count = jsonObject.getString("meal_set_count");
+                        String price = jsonObject.getString("meal_price");
+                        String image = jsonObject.getString("meal_image");
+
+                        MealOrderData mealOrderData = new MealOrderData(title, count, price, date, image);
+                        adapter4.addItem(mealOrderData);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(MealOrderStatusActivity.this, "ERROR", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        RequestQueue requestQueue= Volley.newRequestQueue(this);
+        requestQueue.add(jsonArrayRequest);
     }
 }

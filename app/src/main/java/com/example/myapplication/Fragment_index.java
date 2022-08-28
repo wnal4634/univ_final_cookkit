@@ -84,7 +84,7 @@ public class Fragment_index extends Fragment {
 
                                 Bitmap image_bit = StringToBitmap(image);
 
-                                MainData mainData = new MainData(title, category, click,image_bit);
+                                MainData mainData = new MainData(title, category, click, image_bit);
                                 mAdapter.addItem(mainData);
                             }
                         } catch (JSONException e) {
