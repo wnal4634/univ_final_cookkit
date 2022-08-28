@@ -29,13 +29,14 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
+import com.example.myapplication.Register.MealOrderRequest;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 public class MealOrderActivity extends AppCompatActivity {
-    private TextView meal_count, meal_total_price, meal_name, meal_price_fix;
+    private TextView meal_count, meal_total_price, meal_name, meal_price_fix, meal_id, saving_image;
     private static final int SEARCH_ADDRESS_ACTIVITY = 10000;
     private EditText postNum, phoneNumber, Address;
     private ImageButton meal_minus, meal_plus;
@@ -59,6 +60,8 @@ public class MealOrderActivity extends AppCompatActivity {
         meal_price_fix = findViewById(R.id.meal_price_fix);
         meal_total_price = findViewById(R.id.meal_total_price);
         meal_detail_img = findViewById(R.id.meal_detail_img);
+        meal_id = findViewById(R.id.meal_id);
+        saving_image = findViewById(R.id.saving_image);
 
         String serverUrl = "http://admin0000.dothome.co.kr/meal_ex.php";
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST, serverUrl, null, new Response.Listener<JSONArray>() {
@@ -70,6 +73,7 @@ public class MealOrderActivity extends AppCompatActivity {
                     for(int i=0; i< response.length(); i++){
                         JSONObject jsonObject= response.getJSONObject(i);
 
+                        int id = jsonObject.getInt("meal_id");
                         String title = jsonObject.getString("meal_title");
                         String ex = jsonObject.getString("meal_text");
                         String sale = jsonObject.getString("meal_sale_period");
@@ -77,6 +81,8 @@ public class MealOrderActivity extends AppCompatActivity {
                         String image = jsonObject.getString("meal_image");
                         Glide.with(getApplicationContext()).load(image).into(meal_detail_img);
 
+                        saving_image.setText(image);
+                        meal_id.setText(id+"");
                         meal_name.setText(title);
                         meal_total_price.setText(price);
                         meal_price_fix.setText(price);
@@ -197,6 +203,10 @@ public class MealOrderActivity extends AppCompatActivity {
                         String name = (String) meal_name.getText();
                         String count = (String) meal_count.getText();
 
+                        String image = (String) saving_image.getText();
+                        String m_id2 = shared_preferences.get_user_email(MealOrderActivity.this);
+                        String m_id1 = (String) meal_id.getText();
+
                         String txt = "CookKit 밀키트 구매 안내\n\n" + name + "\n" + count + "세트, "
                                 + price + "원\n" + "주소: " + postNo + ", " + add;
 
@@ -204,10 +214,36 @@ public class MealOrderActivity extends AppCompatActivity {
                             SmsManager smsManager = SmsManager.getDefault();
                             smsManager.sendTextMessage(phoneNo, null, txt, null, null);
                             Toast.makeText(getApplicationContext(), "밀키트를 구매했습니다", Toast.LENGTH_LONG).show();
-                            Intent intent = new Intent(
-                                    MealOrderActivity.this, Fragment_mealDetail.class);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            finish();
+                            Response.Listener<String> responseListener = new Response.Listener<String>() {
+                                @Override
+                                public void onResponse(String response) {
+                                    try {
+                                        JSONObject jsonObject = new JSONObject( response );
+                                        boolean success = jsonObject.getBoolean( "success" );
+
+                                        if (success) {
+
+                                            Toast.makeText(getApplicationContext(), String.format("업로드를 완료했습니다."), Toast.LENGTH_SHORT).show();
+                                            Intent intent = new Intent(MealOrderActivity.this, Fragment_mealDetail.class);
+                                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                            finish();
+
+                                        } else {
+                                            Toast.makeText(getApplicationContext(), "실패하였습니다.", Toast.LENGTH_SHORT).show();
+                                            return;
+                                        }
+
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+
+                                }
+                            };
+
+                            //서버로 Volley를 이용해서 요청
+                            MealOrderRequest mealOrderRequest = new MealOrderRequest( m_id1, m_id2, name, count, price, image, responseListener);
+                            RequestQueue queue = Volley.newRequestQueue( MealOrderActivity.this );
+                            queue.add( mealOrderRequest );
 
                         } catch (Exception e) {
                             Toast.makeText(getApplicationContext(), "전송 오류!", Toast.LENGTH_SHORT).show();
