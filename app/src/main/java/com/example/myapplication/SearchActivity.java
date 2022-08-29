@@ -1,19 +1,17 @@
 package com.example.myapplication;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Base64;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -78,10 +76,11 @@ public class SearchActivity extends AppCompatActivity {
                         String category = jsonObject.getString("recipe_category");
                         String image = jsonObject.getString("image_main");
                         int click = jsonObject.getInt("click_count");
+                        int r_id = jsonObject.getInt("recipe_id");
 
                         Bitmap image_bit = StringToBitmap(image);
 
-                        MainData mainData = new MainData(title, category, click, image_bit);
+                        MainData mainData = new MainData(title, category, click, image_bit, r_id);
                         if(title.contains(result2)) {
                             saAdapter.addItem(mainData);
                         }
@@ -119,10 +118,11 @@ public class SearchActivity extends AppCompatActivity {
                         String category = jsonObject.getString("recipe_category");
                         String image = jsonObject.getString("image_main");
                         int click = jsonObject.getInt("click_count");
+                        int r_id = jsonObject.getInt("recipe_id");
 
                         Bitmap image_bit = StringToBitmap(image);
 
-                        MainData mainData = new MainData(title, category,click, image_bit);
+                        MainData mainData = new MainData(title, category,click, image_bit, r_id);
                         if(title.contains(result2)) {
                             saAdapter.addItem(mainData);
                         }

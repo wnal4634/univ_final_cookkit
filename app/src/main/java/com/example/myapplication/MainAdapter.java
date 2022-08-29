@@ -2,13 +2,11 @@ package com.example.myapplication;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,7 +15,6 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 import com.example.myapplication.Register.ClickRequest;
-import com.example.myapplication.Register.RecipewriteRequest;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -48,7 +45,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainViewHolder
                     int pos = getAbsoluteAdapterPosition();
                     MainData mainData = mDataset.get(pos);
                     Intent intent = new Intent(v.getContext(), RecipeexplanationActivity.class);
-                    intent.putExtra("title", mainData.getTitle());
+                    intent.putExtra("r_id", mainData.getRecipe_id());
                     v.getContext().startActivity(intent);
 
                         Response.Listener<String> responseListener = new Response.Listener<String>() {
@@ -72,7 +69,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainViewHolder
                         };
 
                         //서버로 Volley를 이용해서 요청
-                        ClickRequest clickRequest = new ClickRequest(mainData.title, click_count, responseListener);
+                        ClickRequest clickRequest = new ClickRequest(String.valueOf(mainData.recipe_id), click_count, responseListener);
                         RequestQueue queue = Volley.newRequestQueue(v.getContext());
                         queue.add( clickRequest );
                     }

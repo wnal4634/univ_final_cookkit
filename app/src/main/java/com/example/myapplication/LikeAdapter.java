@@ -35,7 +35,7 @@ public class LikeAdapter extends RecyclerView.Adapter<LikeAdapter.LikeViewHolder
                     int pos = getAbsoluteAdapterPosition();
                     MainData mainData = like.get(pos);
                     Intent intent = new Intent(v.getContext(), RecipeexplanationActivity.class);
-                    intent.putExtra("title", mainData.getTitle());
+                    intent.putExtra("r_id", mainData.getRecipe_id());
                     v.getContext().startActivity(intent);
                 }
             });

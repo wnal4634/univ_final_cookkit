@@ -14,11 +14,11 @@ public class ClickRequest extends StringRequest {
     private Map<String, String> map;
     //private Map<String, String>parameters;
 
-    public ClickRequest(String title, int click_count, Response.Listener<String> listener) {
+    public ClickRequest(String r_id, int click_count, Response.Listener<String> listener) {
         super(Method.POST, URL, listener, null);
 
         map = new HashMap<>();
-        map.put("recipe_title", title);
+        map.put("recipe_id", r_id);
         map.put("click_count", Integer.toString(click_count));
     }
 

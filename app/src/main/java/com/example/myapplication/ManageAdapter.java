@@ -2,13 +2,11 @@ package com.example.myapplication;
 
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -28,7 +26,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 public class ManageAdapter extends RecyclerView.Adapter<ManageAdapter.ManageViewHolder>  {
 
@@ -54,8 +51,7 @@ public class ManageAdapter extends RecyclerView.Adapter<ManageAdapter.ManageView
                     int pos = getAbsoluteAdapterPosition();
                     ManageData manageData = mDataset.get(pos);
                     Intent intent = new Intent(view.getContext(), RecipeEditActivity.class);
-                    intent.putExtra("title", manageData.getTitle());
-                    intent.putExtra("id", manageData.getMember_id());
+                    intent.putExtra("r_id", manageData.getRecipe_id());
                     view.getContext().startActivity(intent);
                 }
             });
@@ -64,12 +60,6 @@ public class ManageAdapter extends RecyclerView.Adapter<ManageAdapter.ManageView
                 public void onClick(View v) {
                     int pos = getAbsoluteAdapterPosition();
                     ManageData manageData = mDataset.get(pos);
-//                    Intent intent = new Intent(view.getContext(), DeleteDialogActivity.class);
-//                    intent.putExtra("title", manageData.getTitle());
-//                    intent.putExtra("id", manageData.getMember_id());
-//                    v.getContext().startActivity(intent);
-
-
                     AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
                     builder.setTitle("삭제하시겠습니까?");
                     builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -87,8 +77,7 @@ public class ManageAdapter extends RecyclerView.Adapter<ManageAdapter.ManageView
 
                                             Toast.makeText(v.getContext(), String.format("레시피를 삭제했습니다."), Toast.LENGTH_SHORT).show();
                                             Intent intent = new Intent(v.getContext(), RecipeManageActivity.class);
-                                            intent.putExtra("title", manageData.getTitle());
-                                            intent.putExtra("id", manageData.getMember_id());
+                                            intent.putExtra("r_id", manageData.getRecipe_id());
                                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                             mDataset.remove(getAbsoluteAdapterPosition());
                                             notifyDataSetChanged();
@@ -101,7 +90,7 @@ public class ManageAdapter extends RecyclerView.Adapter<ManageAdapter.ManageView
                                 }
                             };
 
-                            DeleteRequest deleteRequest = new DeleteRequest(manageData.member_id, manageData.title, responseListener);
+                            DeleteRequest deleteRequest = new DeleteRequest(String.valueOf(manageData.recipe_id), responseListener);
                             RequestQueue queue = Volley.newRequestQueue( v.getContext());
                             queue.add( deleteRequest );
                         }

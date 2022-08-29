@@ -80,16 +80,16 @@ public class LikeActivity extends AppCompatActivity {
                         String category = jsonObject.getString("recipe_category");
                         String image = jsonObject.getString("image_main");
                         int click = jsonObject.getInt("click_count");
+                        int r_id = jsonObject.getInt("recipe_id");
 
                         Bitmap image_bit = StringToBitmap(image);
 
-                        MainData mainData = new MainData(title, category,click, image_bit);
+                        MainData mainData = new MainData(title, category,click, image_bit, r_id);
 
                         Cursor cursor = myDb.AllView();
                         while (cursor.moveToNext()) {
-                            String sql_mid = cursor.getString(1);
-                            String sql_title = cursor.getString(2);
-                            if(sql_mid.equals(id) && sql_title.equals(title))
+                            String sql_rid = cursor.getString(1);
+                            if(sql_rid.equals(String.valueOf(r_id)))
                                 adapter.addItem(mainData);
                         }
                     }

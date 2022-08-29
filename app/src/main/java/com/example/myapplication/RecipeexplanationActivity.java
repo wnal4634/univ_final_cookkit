@@ -32,7 +32,7 @@ public class RecipeexplanationActivity extends AppCompatActivity {
     private ImageButton btn_back_index;
     private Button btn_like, btn_thumbs;
     private TextView thumsup_count, favorite_count, title_main,
-            id, title, cate, mat, text1, text2, text3, text4, text5, text6, see_count;
+            id, title, cate, mat, text1, text2, text3, text4, text5, text6, see_count, rid;
     ImageView image_main, watch;
     boolean selected2 = false;
     MyDatabaseHelper myDb;
@@ -56,6 +56,7 @@ public class RecipeexplanationActivity extends AppCompatActivity {
         image_main = findViewById(R.id.image_main);
         see_count = findViewById(R.id.click);
         watch = findViewById(R.id.watch);
+        rid = findViewById(R.id.recipeID);
         Button btn_like = findViewById(R.id.favorite);
 
         myDb = new MyDatabaseHelper(this);
@@ -66,12 +67,15 @@ public class RecipeexplanationActivity extends AppCompatActivity {
             @Override
             public void onResponse(JSONArray response) {
                 String tt = getIntent().getStringExtra("title");
+                int rr = getIntent().getIntExtra("r_id", 0);
+                String rrtostr = String.valueOf(rr);
 
                 try {
 
                     for(int i=0; i< response.length(); i++) {
                         JSONObject jsonObject = response.getJSONObject(i);
 
+                        String r_id = jsonObject.getString("recipe_id");
                         String id1 = jsonObject.getString("member_id");
                         String title1 = jsonObject.getString("recipe_title");
                         String mat1 = jsonObject.getString("recipe_material");
@@ -88,7 +92,8 @@ public class RecipeexplanationActivity extends AppCompatActivity {
 
                         Bitmap image_bit = StringToBitmap(image);
 
-                        if (tt.equals(title1)) {
+                        if (rrtostr.equals(r_id)) {
+                            rid.setText(r_id);
                             title_main.setText(title1);
                             title.setText(title1);
                             id.setText(id1);
@@ -105,9 +110,8 @@ public class RecipeexplanationActivity extends AppCompatActivity {
 
                             Cursor cursor = myDb.AllView();
                             while (cursor.moveToNext()) {
-                                String sql_mid = cursor.getString(1);
-                                String sql_title = cursor.getString(2);
-                                if (sql_mid.equals(id1) && sql_title.equals(title1) && !selected2) {
+                                String sql_rid = cursor.getString(1);
+                                if (sql_rid.equals(r_id)) {
                                     btn_like.setSelected(true);
                                     selected2 = true;
                                 }
@@ -148,12 +152,12 @@ public class RecipeexplanationActivity extends AppCompatActivity {
                     btn_like.setSelected(false);
                     selected2 = false;
                     MyDatabaseHelper myDb = new MyDatabaseHelper(RecipeexplanationActivity.this);
-                    myDb.delLike((String) id.getText(), (String) title.getText());
+                    myDb.delLike((String) rid.getText());
                 }else {
                     btn_like.setSelected(true);
                     selected2 = true;
                     MyDatabaseHelper myDb = new MyDatabaseHelper(RecipeexplanationActivity.this);
-                    myDb.addLike((String) id.getText(), (String) title.getText());
+                    myDb.addLike((String) rid.getText());
                 }
             }
         });

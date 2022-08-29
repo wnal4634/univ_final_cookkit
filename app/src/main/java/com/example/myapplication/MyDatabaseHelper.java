@@ -16,8 +16,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper
     private static final int DATABASE_VERSION = 1;
     private static final String TABLE_NAME = "like_table";
     private static final String COLUMN_ID = "id";
-    private static final String COLUMN_MID = "m_id";
-    private static final String COLUMN_TITLE = "title";
+    private static final String COLUMN_RID = "r_id";
 
     public MyDatabaseHelper(@Nullable Context context)
     {
@@ -30,8 +29,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper
     {
         String query = "CREATE TABLE " + TABLE_NAME
                 + " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + COLUMN_MID + " TEXT, "
-                + COLUMN_TITLE + " TEXT); ";
+                + COLUMN_RID + " TEXT); ";
         db.execSQL(query);
     }
 
@@ -42,12 +40,11 @@ public class MyDatabaseHelper extends SQLiteOpenHelper
         onCreate(db);
     }
 
-    void addLike(String id, String title) {
+    void addLike(String id) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
-        cv.put(COLUMN_MID, id);
-        cv.put(COLUMN_TITLE, title);
+        cv.put(COLUMN_RID, id);
         long result = db.insert(TABLE_NAME, null, cv);
         if (result == -1) {
             Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show();
@@ -56,15 +53,15 @@ public class MyDatabaseHelper extends SQLiteOpenHelper
         }
     }
 
-    public Integer delLike(String id, String title) {
+    public Integer delLike(String id) {
         SQLiteDatabase db = this.getWritableDatabase();
         Toast.makeText(context, "좋아요를 취소했습니다", Toast.LENGTH_SHORT).show();
-        return db.delete(TABLE_NAME, "m_id = ? and title = ?", new String[] {id, title});
+        return db.delete(TABLE_NAME, "r_id = ?", new String[] {id});
     }
 
     public Cursor AllView() {
         SQLiteDatabase db = this.getWritableDatabase();
-        return db.query(TABLE_NAME, new String[] { COLUMN_ID, COLUMN_MID, COLUMN_TITLE }, null, null, null, null, null);
+        return db.query(TABLE_NAME, new String[] { COLUMN_ID, COLUMN_RID }, null, null, null, null, null);
     }
 
 }

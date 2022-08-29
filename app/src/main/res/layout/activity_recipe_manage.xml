@@ -47,13 +47,13 @@
         android:background="#DBDBDB"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/swipe_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/view123"
-        android:paddingBottom="60dp"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+<!--    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout-->
+<!--        android:id="@+id/swipe_layout"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/view123"-->
+<!--        android:paddingBottom="60dp"-->
+<!--        app:layout_behavior="@string/appbar_scrolling_view_behavior">-->
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/Recipemanage_recycler"
@@ -64,9 +64,10 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/view123"
             app:layout_constraintVertical_bias="0.0"
-
             tools:listitem="@layout/recipemanage_holder" />
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+<!--    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>-->
+
     <View
         android:id="@+id/view32"
         android:layout_width="match_parent"

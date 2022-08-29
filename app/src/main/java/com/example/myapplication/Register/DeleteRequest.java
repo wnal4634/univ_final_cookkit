@@ -14,12 +14,11 @@ public class DeleteRequest  extends StringRequest {
     private Map<String, String> map;
     //private Map<String, String>parameters;
 
-    public DeleteRequest(String UserId, String Title, Response.Listener<String> listener) {
+    public DeleteRequest(String r_id, Response.Listener<String> listener) {
         super(Method.POST, URL, listener, null);
 
         map = new HashMap<>();
-        map.put("member_id", UserId);
-        map.put("recipe_title", Title);
+        map.put("recipe_id", r_id);
     }
 
     @Override

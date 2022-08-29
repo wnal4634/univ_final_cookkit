@@ -43,7 +43,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
                     int pos = getAbsoluteAdapterPosition();
                     MainData mainData = mDataset.get(pos);
                     Intent intent = new Intent(v.getContext(), RecipeexplanationActivity.class);
-                    intent.putExtra("title", mainData.getTitle());
+                    intent.putExtra("r_id", mainData.getRecipe_id());
                     v.getContext().startActivity(intent);
                     Response.Listener<String> responseListener = new Response.Listener<String>() {
                         @Override
@@ -66,7 +66,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
                     };
 
                     //서버로 Volley를 이용해서 요청
-                    ClickRequest clickRequest = new ClickRequest(mainData.title, click_count, responseListener);
+                    ClickRequest clickRequest = new ClickRequest(String.valueOf(mainData.recipe_id), click_count, responseListener);
                     RequestQueue queue = Volley.newRequestQueue(v.getContext());
                     queue.add( clickRequest );
                 }

@@ -1,9 +1,5 @@
 package com.example.myapplication;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -16,11 +12,14 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -29,8 +28,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.myapplication.Register.RecipeEditRequest;
-import com.example.myapplication.Register.RecipewriteRequest;
-import com.example.myapplication.Register.UpdateRequest;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -102,8 +99,8 @@ public class RecipeEditActivity extends AppCompatActivity {
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST, serverUrl, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
-                String tt = getIntent().getStringExtra("title");
-                String ii = shared_preferences.get_user_email(RecipeEditActivity.this);
+                int rr = getIntent().getIntExtra("r_id", 0);
+                String rrtostr = String.valueOf(rr);
 
                 try {
 
@@ -125,7 +122,7 @@ public class RecipeEditActivity extends AppCompatActivity {
 
                         Bitmap image_bit = StringToBitmap(image);
 
-                        if (tt.equals(title1) && ii.equals(id1)) {
+                        if (rrtostr.equals(r_id)) {
                             rid.setText(r_id);
                             recipe_title.setText(title1);
                             recipe_mat.setText(mat1);

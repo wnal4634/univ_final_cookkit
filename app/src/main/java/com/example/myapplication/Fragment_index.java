@@ -81,10 +81,11 @@ public class Fragment_index extends Fragment {
                                 String category = jsonObject.getString("recipe_category");
                                 String image = jsonObject.getString("image_main");
                                 int click = jsonObject.getInt("click_count");
+                                int r_id = jsonObject.getInt("recipe_id");
 
                                 Bitmap image_bit = StringToBitmap(image);
 
-                                MainData mainData = new MainData(title, category, click, image_bit);
+                                MainData mainData = new MainData(title, category, click, image_bit, r_id);
                                 mAdapter.addItem(mainData);
                             }
                         } catch (JSONException e) {
@@ -130,10 +131,11 @@ public class Fragment_index extends Fragment {
                         String category = jsonObject.getString("recipe_category");
                         String image = jsonObject.getString("image_main");
                         int click = jsonObject.getInt("click_count");
+                        int r_id = jsonObject.getInt("recipe_id");
 
                         Bitmap image_bit = StringToBitmap(image);
 
-                        MainData mainData = new MainData(title, category,click, image_bit);
+                        MainData mainData = new MainData(title, category,click, image_bit, r_id);
                         mAdapter.addItem(mainData);
                     }
                 } catch (JSONException e) {
