@@ -10,7 +10,7 @@
     tools:layout_editor_absoluteY="-6dp">
 
     <Button
-        android:id="@+id/voteck"
+        android:id="@+id/vote_ck"
         android:layout_width="wrap_content"
         android:layout_height="38dp"
         android:backgroundTint="#FFFFFF"

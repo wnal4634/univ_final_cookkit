@@ -47,8 +47,8 @@ public class Fragment_index extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_index, container, false);
 
-        Button voteck = view.findViewById(R.id.voteck);
-        voteck.setOnClickListener(new View.OnClickListener() {
+        Button vote_ck = view.findViewById(R.id.vote_ck);
+        vote_ck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(),VoteActivity.class);
