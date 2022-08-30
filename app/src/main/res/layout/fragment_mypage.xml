@@ -25,19 +25,34 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
+        android:id="@+id/vote_go"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="투표하러 가기"
+        android:textColor="#BD9448"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        android:backgroundTint="@color/white"
+        android:stateListAnimator="@null"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view10" />
+
+    <Button
         android:id="@+id/imageButton4"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
         android:backgroundTint="#FFFFFF"
         android:gravity="start"
         android:stateListAnimator="@null"
         android:text="회원정보 수정"
         android:textColor="@color/black"
         android:textSize="14sp"
+        android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view10" />
+        app:layout_constraintTop_toBottomOf="@+id/vote_go" />
 
     <Button
         android:id="@+id/button13"
@@ -156,5 +171,7 @@
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view14" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

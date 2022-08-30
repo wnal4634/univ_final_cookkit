@@ -13,7 +13,7 @@ public class Fragment_mypage extends Fragment {
 
     private View view;
     private Button btn_noti, btn_reco, btn_like, btn_recipemanage, btn_mlorderstatus;
-    private Button imgbtn_edit, btn_setting, btn_logout;
+    private Button imgbtn_edit, btn_setting, btn_logout, vote_go;
 
 
     @Override
@@ -28,12 +28,21 @@ public class Fragment_mypage extends Fragment {
         String member_ad = bundle.getString("member_ad");
 
 
+        vote_go = view.findViewById(R.id.vote_go);
+        vote_go.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), VoteActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                startActivity(intent);
+            }
+        });
 
         btn_noti = (Button) view.findViewById(R.id.button19);
         btn_noti.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(),noticeActivity.class);
+                Intent intent = new Intent(getActivity(), noticeActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
             }
@@ -42,7 +51,7 @@ public class Fragment_mypage extends Fragment {
         btn_like.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(),LikeActivity.class);
+                Intent intent = new Intent(getActivity(), LikeActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
             }
@@ -51,7 +60,7 @@ public class Fragment_mypage extends Fragment {
         btn_recipemanage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(),RecipeManageActivity.class);
+                Intent intent = new Intent(getActivity(), RecipeManageActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 intent.putExtra("member_id", (String) member_id);
                 startActivity(intent);
@@ -61,7 +70,7 @@ public class Fragment_mypage extends Fragment {
         btn_mlorderstatus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(),MealOrderStatusActivity.class);
+                Intent intent = new Intent(getActivity(), MealOrderStatusActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
             }
@@ -70,10 +79,8 @@ public class Fragment_mypage extends Fragment {
         imgbtn_edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(),MemberInfoEditActivity.class);
+                Intent intent = new Intent(getActivity(), MemberInfoEditActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-//                String member_id = intent.getStringExtra("member_id");
-//                intent.putExtra("member_id", member_id);
                 intent.putExtra("member_id", (String) member_id);
                 intent.putExtra("phone_num", (String) phone_num);
                 intent.putExtra("post_num", (String) post_num);
@@ -85,7 +92,7 @@ public class Fragment_mypage extends Fragment {
         btn_setting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(),SettingActivity.class);
+                Intent intent = new Intent(getActivity(), SettingActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
             }
@@ -96,15 +103,13 @@ public class Fragment_mypage extends Fragment {
             @Override
             public void onClick(View view) {
                 shared_preferences.clear_user(getActivity());
-                Intent intent = new Intent(getActivity(),LoginActivity.class);
+                Intent intent = new Intent(getActivity(), LoginActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
             }
         });
         // Inflate the layout for this fragment
         return view;
-
-
 
     }
 
