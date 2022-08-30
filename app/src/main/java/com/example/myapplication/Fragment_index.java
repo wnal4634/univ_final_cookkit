@@ -7,6 +7,7 @@ import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
@@ -44,13 +45,7 @@ public class Fragment_index extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_index, container, false);
 
-        String[] values1 = {"최신순", "조회수순"};
-        indexSpinner = (Spinner) view.findViewById(R.id.reco);
-        ArrayAdapter<String> adapterSpinner = new ArrayAdapter(this.getActivity(), android.R.layout.simple_spinner_item);
-        adapterSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        indexSpinner.setPrompt("최신순");
-        indexSpinner.setAdapter(adapterSpinner);
-        adapterSpinner.addAll(values1);
+
 
 
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerview);
@@ -65,6 +60,8 @@ public class Fragment_index extends Fragment {
         mysrl.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                indexSpinner = (Spinner) view.findViewById(R.id.reco);
+                indexSpinner.setSelection(0);
                 String serverUrl = "http://admin0000.dothome.co.kr/index.php";
                 JsonArrayRequest jsonArrayRequest3 = new JsonArrayRequest(Request.Method.POST, serverUrl, null, new Response.Listener<JSONArray>() {
                     @Override
@@ -103,18 +100,110 @@ public class Fragment_index extends Fragment {
             }
         });
 
-        return view;
+
+
+       return view;
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        Data();
+
     }
 
     @Override
     public void onStart() {
         super.onStart();
+        String[] values1 = {"최신순", "조회수순"};
+        indexSpinner = (Spinner) view.findViewById(R.id.reco);
+        ArrayAdapter<String> adapterSpinner = new ArrayAdapter(this.getActivity(), android.R.layout.simple_spinner_item);
+        adapterSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        indexSpinner.setPrompt("최신순");
+        indexSpinner.setAdapter(adapterSpinner);
+        adapterSpinner.addAll(values1);
+
+        indexSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (indexSpinner.getSelectedItem().toString() == "조회수순") {
+                    String serverUrl4 = "http://admin0000.dothome.co.kr/index_highview.php";
+                    JsonArrayRequest jsonArrayRequest4 = new JsonArrayRequest(Request.Method.POST, serverUrl4, null, new Response.Listener<JSONArray>() {
+                        @Override
+                        public void onResponse(JSONArray response) {
+                            list.clear();
+                            mAdapter.notifyDataSetChanged();
+
+                            try {
+
+                                for (int i = 0; i < response.length(); i++) {
+                                    JSONObject jsonObject = response.getJSONObject(i);
+
+                                    String title = jsonObject.getString("recipe_title");
+                                    String category = jsonObject.getString("recipe_category");
+                                    String image = jsonObject.getString("image_main");
+                                    int click = jsonObject.getInt("click_count");
+                                    int r_id = jsonObject.getInt("recipe_id");
+
+                                    Bitmap image_bit = StringToBitmap(image);
+
+                                    MainData mainData = new MainData(title, category,click, image_bit, r_id);
+                                    mAdapter.addItem(mainData);
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                        }
+                    });
+                    RequestQueue requestQueue4 = Volley.newRequestQueue(getActivity());
+                    requestQueue4.add(jsonArrayRequest4);
+                } else {
+                    String serverUrl5 = "http://admin0000.dothome.co.kr/index.php";
+                    JsonArrayRequest jsonArrayRequest5 = new JsonArrayRequest(Request.Method.POST, serverUrl5, null, new Response.Listener<JSONArray>() {
+                        @Override
+                        public void onResponse(JSONArray response) {
+                            list.clear();
+                            mAdapter.notifyDataSetChanged();
+
+                            try {
+
+                                for (int i = 0; i < response.length(); i++) {
+                                    JSONObject jsonObject = response.getJSONObject(i);
+
+                                    String title = jsonObject.getString("recipe_title");
+                                    String category = jsonObject.getString("recipe_category");
+                                    String image = jsonObject.getString("image_main");
+                                    int click = jsonObject.getInt("click_count");
+                                    int r_id = jsonObject.getInt("recipe_id");
+
+                                    Bitmap image_bit = StringToBitmap(image);
+
+                                    MainData mainData = new MainData(title, category,click, image_bit, r_id);
+                                    mAdapter.addItem(mainData);
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                        }
+                    });
+                    RequestQueue requestQueue5 = Volley.newRequestQueue(getActivity());
+                    requestQueue5.add(jsonArrayRequest5);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
         String serverUrl = "http://admin0000.dothome.co.kr/index.php";
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST, serverUrl, null, new Response.Listener<JSONArray>() {
             @Override
