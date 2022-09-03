@@ -209,13 +209,13 @@ public class RecipewriteActivity extends AppCompatActivity {
                 final String text4 = recipe_text4.getText().toString();
                 final String text5 = recipe_text5.getText().toString();
                 final String text6 = recipe_text6.getText().toString();
-                final String image_main = imgpath.getText().toString();
-                final String image1 = imgpath1.getText().toString();
-                final String image2 = imgpath2.getText().toString();
-                final String image3 = imgpath3.getText().toString();
-                final String image4 = imgpath4.getText().toString();
-                final String image5 = imgpath5.getText().toString();
-                final String image6 = imgpath6.getText().toString();
+                final String image_main = (String) imgpath.getText();
+                final String image1 = (String) imgpath1.getText();
+                final String image2 = (String) imgpath2.getText();
+                final String image3 = (String) imgpath3.getText();
+                final String image4 = (String) imgpath4.getText();
+                final String image5 = (String) imgpath5.getText();
+                final String image6 = (String) imgpath6.getText();
 
                 if (title.equals("") || mat.equals("") || text1.equals("") || text2.equals("") || text3.equals("") || text4.equals("") || text5.equals("") || text6.equals("")) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(RecipewriteActivity.this);
@@ -378,9 +378,9 @@ public class RecipewriteActivity extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 try {
                     Bitmap bitmap1 = MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
-                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                    bitmap1.compress(Bitmap.CompressFormat.JPEG, 10, stream);
-                    byte[] bytes = stream.toByteArray();
+                    ByteArrayOutputStream stream1 = new ByteArrayOutputStream();
+                    bitmap1.compress(Bitmap.CompressFormat.JPEG, 10, stream1);
+                    byte[] bytes = stream1.toByteArray();
                     String imagepath1 = Base64.encodeToString(bytes, Base64.DEFAULT);
                     imgpath1.setText(imagepath1);
                     image1.setImageBitmap(bitmap1);
@@ -391,9 +391,9 @@ public class RecipewriteActivity extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 try {
                     Bitmap bitmap2 = MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
-                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                    bitmap2.compress(Bitmap.CompressFormat.JPEG, 10, stream);
-                    byte[] bytes = stream.toByteArray();
+                    ByteArrayOutputStream stream2 = new ByteArrayOutputStream();
+                    bitmap2.compress(Bitmap.CompressFormat.JPEG, 10, stream2);
+                    byte[] bytes = stream2.toByteArray();
                     String imagepath2 = Base64.encodeToString(bytes, Base64.DEFAULT);
                     imgpath2.setText(imagepath2);
                     image2.setImageBitmap(bitmap2);
@@ -405,9 +405,9 @@ public class RecipewriteActivity extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 try {
                     Bitmap bitmap3 = MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
-                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                    bitmap3.compress(Bitmap.CompressFormat.JPEG, 10, stream);
-                    byte[] bytes = stream.toByteArray();
+                    ByteArrayOutputStream stream3 = new ByteArrayOutputStream();
+                    bitmap3.compress(Bitmap.CompressFormat.JPEG, 10, stream3);
+                    byte[] bytes = stream3.toByteArray();
                     String imagepath3 = Base64.encodeToString(bytes, Base64.DEFAULT);
                     imgpath3.setText(imagepath3);
                     image3.setImageBitmap(bitmap3);
@@ -420,9 +420,9 @@ public class RecipewriteActivity extends AppCompatActivity {
 
                 try {
                     Bitmap bitmap4 = MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
-                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                    bitmap4.compress(Bitmap.CompressFormat.JPEG, 10, stream);
-                    byte[] bytes = stream.toByteArray();
+                    ByteArrayOutputStream stream4 = new ByteArrayOutputStream();
+                    bitmap4.compress(Bitmap.CompressFormat.JPEG, 10, stream4);
+                    byte[] bytes = stream4.toByteArray();
                     String imagepath4 = Base64.encodeToString(bytes, Base64.DEFAULT);
                     imgpath4.setText(imagepath4);
                     image4.setImageBitmap(bitmap4);
@@ -434,9 +434,9 @@ public class RecipewriteActivity extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 try {
                     Bitmap bitmap5 = MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
-                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                    bitmap5.compress(Bitmap.CompressFormat.JPEG, 10, stream);
-                    byte[] bytes = stream.toByteArray();
+                    ByteArrayOutputStream stream5 = new ByteArrayOutputStream();
+                    bitmap5.compress(Bitmap.CompressFormat.JPEG, 10, stream5);
+                    byte[] bytes = stream5.toByteArray();
                     String imagepath5 = Base64.encodeToString(bytes, Base64.DEFAULT);
                     imgpath5.setText(imagepath5);
                     image5.setImageBitmap(bitmap5);
@@ -448,9 +448,9 @@ public class RecipewriteActivity extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 try {
                     Bitmap bitmap6 = MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
-                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                    bitmap6.compress(Bitmap.CompressFormat.JPEG, 10, stream);
-                    byte[] bytes = stream.toByteArray();
+                    ByteArrayOutputStream stream6 = new ByteArrayOutputStream();
+                    bitmap6.compress(Bitmap.CompressFormat.JPEG, 10, stream6);
+                    byte[] bytes = stream6.toByteArray();
                     String imagepath6 = Base64.encodeToString(bytes, Base64.DEFAULT);
                     imgpath6.setText(imagepath6);
                     image6.setImageBitmap(bitmap6);
