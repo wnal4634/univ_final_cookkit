@@ -1,5 +1,7 @@
 package com.example.myapplication;
 
+import static android.net.sip.SipErrorCode.TIME_OUT;
+
 import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -10,6 +12,8 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.provider.MediaStore;
 import android.util.Base64;
 import android.view.View;
@@ -233,6 +237,19 @@ public class RecipewriteActivity extends AppCompatActivity {
 
                 progressDialog = ProgressDialog.show(RecipewriteActivity.this, "", "업로드 중입니다.\n시간이 걸리는 작업이니 잠시만 기다려주세요.", true);
 
+                Handler mHandler = new Handler()
+                {
+                    public void handleMessage(Message msg)
+                    {
+                        if (msg.what == TIME_OUT)
+                        { // 타임아웃이 발생하면
+                            progressDialog.dismiss();// ProgressDialog를 종료
+                            Intent intent = new Intent(RecipewriteActivity.this, Fragment_index.class);
+                            finish();
+                        }
+                    }
+                };
+                mHandler.sendEmptyMessageDelayed(TIME_OUT, 25000);
                 Response.Listener<String> responseListener = new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
