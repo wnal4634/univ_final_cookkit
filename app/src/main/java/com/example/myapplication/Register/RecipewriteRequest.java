@@ -35,12 +35,12 @@ public class RecipewriteRequest extends StringRequest {
         map.put("recipe_text5", text5);
         map.put("recipe_text6", text6);
         map.put("image_main", image_main);
-        map.put("image1", image_main);
-        map.put("image2", image_main);
-        map.put("image3", image_main);
-        map.put("image4", image_main);
-        map.put("image5", image_main);
-        map.put("image6", image_main);
+        map.put("image1", image1);
+        map.put("image2", image2);
+        map.put("image3", image3);
+        map.put("image4", image4);
+        map.put("image5", image5);
+        map.put("image6", image6);
 
     }
 

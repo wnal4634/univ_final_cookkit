@@ -356,19 +356,19 @@ public class RecipewriteActivity extends AppCompatActivity {
         if (requestCode == 0) {
             if (resultCode == RESULT_OK) {
                 Uri uri = data.getData();
-
                 try {
 //                        InputStream in = getContentResolver().openInputStream(data.getData());
 //                        Bitmap img = BitmapFactory.decodeStream(in);
 //                        in.close();
 //                        main.setImageBitmap(img);
 
-                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
-                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                    bitmap.compress(Bitmap.CompressFormat.JPEG, 10, stream);
-                    byte[] bytes = stream.toByteArray();
-                    String imagepath = Base64.encodeToString(bytes, Base64.DEFAULT);
-                    imgpath.setText(imagepath);
+                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
+//                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
+//                    bitmap.compress(Bitmap.CompressFormat.JPEG, 10, stream);
+//                    byte[] bytes = stream.toByteArray();
+//                    String imagepath = Base64.encodeToString(bytes, Base64.DEFAULT);
+//                    imgpath.setText(imagepath);
+                    imgpath.setText(BitmapToString(bitmap));
                     main.setImageBitmap(bitmap);
 
                 } catch (Exception e) {
@@ -378,11 +378,7 @@ public class RecipewriteActivity extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 try {
                     Bitmap bitmap1 = MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
-                    ByteArrayOutputStream stream1 = new ByteArrayOutputStream();
-                    bitmap1.compress(Bitmap.CompressFormat.JPEG, 10, stream1);
-                    byte[] bytes = stream1.toByteArray();
-                    String imagepath1 = Base64.encodeToString(bytes, Base64.DEFAULT);
-                    imgpath1.setText(imagepath1);
+                    imgpath1.setText(BitmapToString(bitmap1));
                     image1.setImageBitmap(bitmap1);
                 } catch (Exception e) {
                 }
@@ -391,11 +387,7 @@ public class RecipewriteActivity extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 try {
                     Bitmap bitmap2 = MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
-                    ByteArrayOutputStream stream2 = new ByteArrayOutputStream();
-                    bitmap2.compress(Bitmap.CompressFormat.JPEG, 10, stream2);
-                    byte[] bytes = stream2.toByteArray();
-                    String imagepath2 = Base64.encodeToString(bytes, Base64.DEFAULT);
-                    imgpath2.setText(imagepath2);
+                    imgpath2.setText(BitmapToString(bitmap2));
                     image2.setImageBitmap(bitmap2);
                 } catch (Exception e) {
                 }
@@ -405,11 +397,7 @@ public class RecipewriteActivity extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 try {
                     Bitmap bitmap3 = MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
-                    ByteArrayOutputStream stream3 = new ByteArrayOutputStream();
-                    bitmap3.compress(Bitmap.CompressFormat.JPEG, 10, stream3);
-                    byte[] bytes = stream3.toByteArray();
-                    String imagepath3 = Base64.encodeToString(bytes, Base64.DEFAULT);
-                    imgpath3.setText(imagepath3);
+                    imgpath3.setText(BitmapToString(bitmap3));
                     image3.setImageBitmap(bitmap3);
                 } catch (Exception e) {
                 }
@@ -420,11 +408,7 @@ public class RecipewriteActivity extends AppCompatActivity {
 
                 try {
                     Bitmap bitmap4 = MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
-                    ByteArrayOutputStream stream4 = new ByteArrayOutputStream();
-                    bitmap4.compress(Bitmap.CompressFormat.JPEG, 10, stream4);
-                    byte[] bytes = stream4.toByteArray();
-                    String imagepath4 = Base64.encodeToString(bytes, Base64.DEFAULT);
-                    imgpath4.setText(imagepath4);
+                    imgpath4.setText(BitmapToString(bitmap4));
                     image4.setImageBitmap(bitmap4);
                 } catch (Exception e) {
                 }
@@ -434,11 +418,7 @@ public class RecipewriteActivity extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 try {
                     Bitmap bitmap5 = MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
-                    ByteArrayOutputStream stream5 = new ByteArrayOutputStream();
-                    bitmap5.compress(Bitmap.CompressFormat.JPEG, 10, stream5);
-                    byte[] bytes = stream5.toByteArray();
-                    String imagepath5 = Base64.encodeToString(bytes, Base64.DEFAULT);
-                    imgpath5.setText(imagepath5);
+                    imgpath5.setText(BitmapToString(bitmap5));
                     image5.setImageBitmap(bitmap5);
                 } catch (Exception e) {
                 }
@@ -448,11 +428,7 @@ public class RecipewriteActivity extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 try {
                     Bitmap bitmap6 = MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
-                    ByteArrayOutputStream stream6 = new ByteArrayOutputStream();
-                    bitmap6.compress(Bitmap.CompressFormat.JPEG, 10, stream6);
-                    byte[] bytes = stream6.toByteArray();
-                    String imagepath6 = Base64.encodeToString(bytes, Base64.DEFAULT);
-                    imgpath6.setText(imagepath6);
+                    imgpath6.setText(BitmapToString(bitmap6));
                     image6.setImageBitmap(bitmap6);
                 } catch (Exception e) {
                 }
@@ -463,10 +439,9 @@ public class RecipewriteActivity extends AppCompatActivity {
         }
     }
 
-
     public static String BitmapToString(Bitmap bitmap) {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 70, baos);
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 10, baos);
         byte[] bytes = baos.toByteArray();
         String temp = Base64.encodeToString(bytes, Base64.DEFAULT);
         return temp;
