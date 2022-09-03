@@ -47,7 +47,7 @@ public class RecipewriteActivity extends AppCompatActivity {
             ,recipe_text5, recipe_text6;
     String member_id;
     //    String imagepath;
-    TextView imgpath;
+    TextView imgpath,imgpath1;
     String imgPath;
     private AlertDialog dialog;
     ProgressDialog progressDialog;
@@ -114,6 +114,7 @@ public class RecipewriteActivity extends AppCompatActivity {
         recipe_text5 = findViewById(R.id.recipe_text5);
         recipe_text6 = findViewById(R.id.recipe_text6);
         imgpath = findViewById(R.id.imgpath);
+        imgpath1 = findViewById(R.id.imgpath1);
 
         main.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -128,6 +129,7 @@ public class RecipewriteActivity extends AppCompatActivity {
         image1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                imgpath1.setText("");
                 Intent intent = new Intent();
                 intent.setType("image/*");
                 intent.setAction(Intent.ACTION_GET_CONTENT);
@@ -200,6 +202,12 @@ public class RecipewriteActivity extends AppCompatActivity {
                 final String text5 = recipe_text5.getText().toString();
                 final String text6 = recipe_text6.getText().toString();
                 final String image_main = imgpath.getText().toString();
+                final String image1 = imgpath.getText().toString();
+                final String image2 = imgpath.getText().toString();
+                final String image3 = imgpath.getText().toString();
+                final String image4 = imgpath.getText().toString();
+                final String image5 = imgpath.getText().toString();
+                final String image6 = imgpath.getText().toString();
 
                 if (title.equals("") || mat.equals("") || text1.equals("") || text2.equals("") || text3.equals("") || text4.equals("") || text5.equals("") || text6.equals("")) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(RecipewriteActivity.this);
@@ -245,7 +253,8 @@ public class RecipewriteActivity extends AppCompatActivity {
                 };
 
                 //서버로 Volley를 이용해서 요청
-                RecipewriteRequest recipewriteRequest = new RecipewriteRequest( id, title, mat, cate, text1, text2, text3, text4, text5, text6, image_main, responseListener);
+                RecipewriteRequest recipewriteRequest = new RecipewriteRequest( id, title, mat, cate, text1, text2, text3, text4, text5, text6,
+                        image_main, image1, image2, image3, image4, image5, image6, responseListener);
                 RequestQueue queue = Volley.newRequestQueue( RecipewriteActivity.this );
                 queue.add( recipewriteRequest );
             }
@@ -360,20 +369,26 @@ public class RecipewriteActivity extends AppCompatActivity {
         } else if (requestCode == 1) {
             if (resultCode == RESULT_OK) {
                 try {
-                    InputStream in = getContentResolver().openInputStream(data.getData());
-                    Bitmap img = BitmapFactory.decodeStream(in);
-                    in.close();
-                    image1.setImageBitmap(img);
+                    Bitmap bitmap1 = MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
+                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                    bitmap1.compress(Bitmap.CompressFormat.JPEG, 10, stream);
+                    byte[] bytes = stream.toByteArray();
+                    String imagepath1 = Base64.encodeToString(bytes, Base64.DEFAULT);
+                    imgpath.setText(imagepath1);
+                    image1.setImageBitmap(bitmap1);
                 } catch (Exception e) {
                 }
             }
         }else if (requestCode == 2) {
             if (resultCode == RESULT_OK) {
                 try {
-                    InputStream in = getContentResolver().openInputStream(data.getData());
-                    Bitmap img = BitmapFactory.decodeStream(in);
-                    in.close();
-                    image2.setImageBitmap(img);
+                    Bitmap bitmap2 = MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
+                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                    bitmap2.compress(Bitmap.CompressFormat.JPEG, 10, stream);
+                    byte[] bytes = stream.toByteArray();
+                    String imagepath2 = Base64.encodeToString(bytes, Base64.DEFAULT);
+                    imgpath.setText(imagepath2);
+                    image2.setImageBitmap(bitmap2);
                 } catch (Exception e) {
                 }
             }
@@ -381,10 +396,13 @@ public class RecipewriteActivity extends AppCompatActivity {
         else if (requestCode == 3) {
             if (resultCode == RESULT_OK) {
                 try {
-                    InputStream in = getContentResolver().openInputStream(data.getData());
-                    Bitmap img = BitmapFactory.decodeStream(in);
-                    in.close();
-                    image3.setImageBitmap(img);
+                    Bitmap bitmap3 = MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
+                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                    bitmap3.compress(Bitmap.CompressFormat.JPEG, 10, stream);
+                    byte[] bytes = stream.toByteArray();
+                    String imagepath3 = Base64.encodeToString(bytes, Base64.DEFAULT);
+                    imgpath.setText(imagepath3);
+                    image3.setImageBitmap(bitmap3);
                 } catch (Exception e) {
                 }
             }
@@ -393,10 +411,13 @@ public class RecipewriteActivity extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
 
                 try {
-                    InputStream in = getContentResolver().openInputStream(data.getData());
-                    Bitmap img = BitmapFactory.decodeStream(in);
-                    in.close();
-                    image4.setImageBitmap(img);
+                    Bitmap bitmap4 = MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
+                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                    bitmap4.compress(Bitmap.CompressFormat.JPEG, 10, stream);
+                    byte[] bytes = stream.toByteArray();
+                    String imagepath4 = Base64.encodeToString(bytes, Base64.DEFAULT);
+                    imgpath.setText(imagepath4);
+                    image4.setImageBitmap(bitmap4);
                 } catch (Exception e) {
                 }
             }
@@ -404,10 +425,13 @@ public class RecipewriteActivity extends AppCompatActivity {
         else if (requestCode == 5) {
             if (resultCode == RESULT_OK) {
                 try {
-                    InputStream in = getContentResolver().openInputStream(data.getData());
-                    Bitmap img = BitmapFactory.decodeStream(in);
-                    in.close();
-                    image5.setImageBitmap(img);
+                    Bitmap bitmap5 = MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
+                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                    bitmap5.compress(Bitmap.CompressFormat.JPEG, 10, stream);
+                    byte[] bytes = stream.toByteArray();
+                    String imagepath5 = Base64.encodeToString(bytes, Base64.DEFAULT);
+                    imgpath.setText(imagepath5);
+                    image5.setImageBitmap(bitmap5);
                 } catch (Exception e) {
                 }
             }
@@ -415,10 +439,13 @@ public class RecipewriteActivity extends AppCompatActivity {
         else if (requestCode == 6) {
             if (resultCode == RESULT_OK) {
                 try {
-                    InputStream in = getContentResolver().openInputStream(data.getData());
-                    Bitmap img = BitmapFactory.decodeStream(in);
-                    in.close();
-                    image6.setImageBitmap(img);
+                    Bitmap bitmap6 = MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
+                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                    bitmap6.compress(Bitmap.CompressFormat.JPEG, 10, stream);
+                    byte[] bytes = stream.toByteArray();
+                    String imagepath6 = Base64.encodeToString(bytes, Base64.DEFAULT);
+                    imgpath.setText(imagepath6);
+                    image6.setImageBitmap(bitmap6);
                 } catch (Exception e) {
                 }
             }

@@ -295,7 +295,7 @@
                     android:layout_gravity="right">
 
                     <ImageView
-                        android:id="@+id/ImageView3"
+                        android:id="@+id/Image1"
                         android:layout_width="100dp"
                         android:scaleType="centerCrop"
                         android:layout_height="100dp"
@@ -352,7 +352,7 @@
                     android:layout_gravity="right">
 
                     <ImageView
-                        android:id="@+id/ImageView4"
+                        android:id="@+id/Image2"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:scaleType="centerCrop"
@@ -409,7 +409,7 @@
                     android:layout_gravity="right">
 
                     <ImageView
-                        android:id="@+id/iImageView5"
+                        android:id="@+id/Image3"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:layout_marginTop="16dp"
@@ -466,7 +466,7 @@
                     android:layout_gravity="right">
 
                     <ImageView
-                        android:id="@+id/ImageView6"
+                        android:id="@+id/Image4"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:scaleType="centerCrop"
@@ -524,7 +524,7 @@
                     android:layout_gravity="right">
 
                     <ImageView
-                        android:id="@+id/ImageView7"
+                        android:id="@+id/Image5"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:scaleType="centerCrop"
@@ -581,7 +581,7 @@
                     android:layout_gravity="right">
 
                     <ImageView
-                        android:id="@+id/ImageView8"
+                        android:id="@+id/Image6"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:scaleType="centerCrop"
