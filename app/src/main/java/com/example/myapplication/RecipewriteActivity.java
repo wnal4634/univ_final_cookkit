@@ -4,7 +4,6 @@ import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -38,7 +37,6 @@ import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
-import java.io.InputStream;
 
 public class RecipewriteActivity extends AppCompatActivity {
 
@@ -47,7 +45,7 @@ public class RecipewriteActivity extends AppCompatActivity {
             ,recipe_text5, recipe_text6;
     String member_id;
     //    String imagepath;
-    TextView imgpath,imgpath1;
+    TextView imgpath, imgpath1, imgpath2, imgpath3, imgpath4, imgpath5, imgpath6;
     String imgPath;
     private AlertDialog dialog;
     ProgressDialog progressDialog;
@@ -115,6 +113,11 @@ public class RecipewriteActivity extends AppCompatActivity {
         recipe_text6 = findViewById(R.id.recipe_text6);
         imgpath = findViewById(R.id.imgpath);
         imgpath1 = findViewById(R.id.imgpath1);
+        imgpath2 = findViewById(R.id.imgpath2);
+        imgpath3 = findViewById(R.id.imgpath3);
+        imgpath4 = findViewById(R.id.imgpath4);
+        imgpath5 = findViewById(R.id.imgpath5);
+        imgpath6 = findViewById(R.id.imgpath6);
 
         main.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -139,6 +142,7 @@ public class RecipewriteActivity extends AppCompatActivity {
         image2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                imgpath2.setText("");
                 Intent intent = new Intent();
                 intent.setType("image/*");
                 intent.setAction(Intent.ACTION_GET_CONTENT);
@@ -148,6 +152,7 @@ public class RecipewriteActivity extends AppCompatActivity {
         image3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                imgpath3.setText("");
                 Intent intent = new Intent();
                 intent.setType("image/*");
                 intent.setAction(Intent.ACTION_GET_CONTENT);
@@ -157,6 +162,7 @@ public class RecipewriteActivity extends AppCompatActivity {
         image4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                imgpath4.setText("");
                 Intent intent = new Intent();
                 intent.setType("image/*");
                 intent.setAction(Intent.ACTION_GET_CONTENT);
@@ -166,6 +172,7 @@ public class RecipewriteActivity extends AppCompatActivity {
         image5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                imgpath5.setText("");
                 Intent intent = new Intent();
                 intent.setType("image/*");
                 intent.setAction(Intent.ACTION_GET_CONTENT);
@@ -175,6 +182,7 @@ public class RecipewriteActivity extends AppCompatActivity {
         image6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                imgpath6.setText("");
                 Intent intent = new Intent();
                 intent.setType("image/*");
                 intent.setAction(Intent.ACTION_GET_CONTENT);
@@ -202,12 +210,12 @@ public class RecipewriteActivity extends AppCompatActivity {
                 final String text5 = recipe_text5.getText().toString();
                 final String text6 = recipe_text6.getText().toString();
                 final String image_main = imgpath.getText().toString();
-                final String image1 = imgpath.getText().toString();
-                final String image2 = imgpath.getText().toString();
-                final String image3 = imgpath.getText().toString();
-                final String image4 = imgpath.getText().toString();
-                final String image5 = imgpath.getText().toString();
-                final String image6 = imgpath.getText().toString();
+                final String image1 = imgpath1.getText().toString();
+                final String image2 = imgpath2.getText().toString();
+                final String image3 = imgpath3.getText().toString();
+                final String image4 = imgpath4.getText().toString();
+                final String image5 = imgpath5.getText().toString();
+                final String image6 = imgpath6.getText().toString();
 
                 if (title.equals("") || mat.equals("") || text1.equals("") || text2.equals("") || text3.equals("") || text4.equals("") || text5.equals("") || text6.equals("")) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(RecipewriteActivity.this);
@@ -374,7 +382,7 @@ public class RecipewriteActivity extends AppCompatActivity {
                     bitmap1.compress(Bitmap.CompressFormat.JPEG, 10, stream);
                     byte[] bytes = stream.toByteArray();
                     String imagepath1 = Base64.encodeToString(bytes, Base64.DEFAULT);
-                    imgpath.setText(imagepath1);
+                    imgpath1.setText(imagepath1);
                     image1.setImageBitmap(bitmap1);
                 } catch (Exception e) {
                 }
@@ -387,7 +395,7 @@ public class RecipewriteActivity extends AppCompatActivity {
                     bitmap2.compress(Bitmap.CompressFormat.JPEG, 10, stream);
                     byte[] bytes = stream.toByteArray();
                     String imagepath2 = Base64.encodeToString(bytes, Base64.DEFAULT);
-                    imgpath.setText(imagepath2);
+                    imgpath2.setText(imagepath2);
                     image2.setImageBitmap(bitmap2);
                 } catch (Exception e) {
                 }
@@ -401,7 +409,7 @@ public class RecipewriteActivity extends AppCompatActivity {
                     bitmap3.compress(Bitmap.CompressFormat.JPEG, 10, stream);
                     byte[] bytes = stream.toByteArray();
                     String imagepath3 = Base64.encodeToString(bytes, Base64.DEFAULT);
-                    imgpath.setText(imagepath3);
+                    imgpath3.setText(imagepath3);
                     image3.setImageBitmap(bitmap3);
                 } catch (Exception e) {
                 }
@@ -416,7 +424,7 @@ public class RecipewriteActivity extends AppCompatActivity {
                     bitmap4.compress(Bitmap.CompressFormat.JPEG, 10, stream);
                     byte[] bytes = stream.toByteArray();
                     String imagepath4 = Base64.encodeToString(bytes, Base64.DEFAULT);
-                    imgpath.setText(imagepath4);
+                    imgpath4.setText(imagepath4);
                     image4.setImageBitmap(bitmap4);
                 } catch (Exception e) {
                 }
@@ -430,7 +438,7 @@ public class RecipewriteActivity extends AppCompatActivity {
                     bitmap5.compress(Bitmap.CompressFormat.JPEG, 10, stream);
                     byte[] bytes = stream.toByteArray();
                     String imagepath5 = Base64.encodeToString(bytes, Base64.DEFAULT);
-                    imgpath.setText(imagepath5);
+                    imgpath5.setText(imagepath5);
                     image5.setImageBitmap(bitmap5);
                 } catch (Exception e) {
                 }
@@ -444,7 +452,7 @@ public class RecipewriteActivity extends AppCompatActivity {
                     bitmap6.compress(Bitmap.CompressFormat.JPEG, 10, stream);
                     byte[] bytes = stream.toByteArray();
                     String imagepath6 = Base64.encodeToString(bytes, Base64.DEFAULT);
-                    imgpath.setText(imagepath6);
+                    imgpath6.setText(imagepath6);
                     image6.setImageBitmap(bitmap6);
                 } catch (Exception e) {
                 }

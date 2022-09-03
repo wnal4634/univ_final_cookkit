@@ -34,6 +34,46 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
     <TextView
+        android:id="@+id/imgpath2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text=""
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/imgpath3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text=""
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/imgpath4"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text=""
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/imgpath5"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text=""
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/imgpath6"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text=""
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <TextView
         android:id="@+id/memberID"
         android:layout_width="0dp"
         android:layout_height="0dp"
