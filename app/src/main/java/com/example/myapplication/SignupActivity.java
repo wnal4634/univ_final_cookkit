@@ -3,6 +3,7 @@ package com.example.myapplication;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -23,6 +24,9 @@ import com.example.myapplication.consent.Consent3Activity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class SignupActivity extends AppCompatActivity {
 
@@ -210,10 +214,54 @@ public class SignupActivity extends AppCompatActivity {
 
         ImageButton btn_go_consent3 = (ImageButton) findViewById(R.id.go_consent3);
         btn_go_consent3.setOnClickListener(new View.OnClickListener() {
+            final List<String> list = new ArrayList<String>();
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), Consent3Activity.class);
-                startActivity(intent);
+                final String[] items = new String[]{"SMS 수신 동의 (선택)", "E-Mail 수신 동의 (선택)"};
+
+                AlertDialog.Builder dialog = new AlertDialog.Builder(SignupActivity.this);
+                dialog.setTitle("마케팅 활용 동의 및 광고 수신 동의")
+                        .setMultiChoiceItems(
+                                items
+                                , new boolean[]{false, false}
+                                , new DialogInterface.OnMultiChoiceClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int which, boolean isChecked) {
+
+                                        if (isChecked) {
+                                            Toast.makeText(SignupActivity.this
+                                            , items[which]
+                                            , Toast.LENGTH_SHORT).show();
+                                            list.add(items[which]);
+                                        } else {
+                                            list.remove(items[which]);
+                                        }
+                                    }
+                                }
+                        )
+                        .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int which) {
+                                String selectedItem = "";
+                                for (String item : list) {
+                                    selectedItem += item + ", ";
+                                }
+
+                                Toast.makeText(SignupActivity.this
+                                , selectedItem
+                                , Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .setNeutralButton("취소", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                Toast.makeText(SignupActivity.this
+                                , "취소 버튼을 눌렀습니다."
+                                , Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                dialog.create();
+                dialog.show();
             }
         });
 
