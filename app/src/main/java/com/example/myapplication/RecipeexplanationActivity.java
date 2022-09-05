@@ -193,7 +193,7 @@ public class RecipeexplanationActivity extends AppCompatActivity {
                 Intent Sharing_intent=new Intent(Intent.ACTION_SEND);
                 Sharing_intent.setType("text/plain");
 
-                String Test_Message = "공유할 text";
+                String Test_Message = "링크";
 
                 Sharing_intent.putExtra(Intent.EXTRA_TEXT, Test_Message);
 
