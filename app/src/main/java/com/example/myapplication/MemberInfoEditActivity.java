@@ -1,12 +1,6 @@
 package com.example.myapplication;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -15,21 +9,20 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.myapplication.Register.RegisterRequest;
 import com.example.myapplication.Register.UpdateRequest;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class MemberInfoEditActivity extends AppCompatActivity {
     private static final int SEARCH_ADDRESS_ACTIVITY = 10000;
@@ -56,14 +49,37 @@ public class MemberInfoEditActivity extends AppCompatActivity {
         phoneNumber = findViewById( R.id.phoneNumber );
         Address = findViewById(R.id.Address);
 
-//        EditText editText = (EditText)findViewById(R.id.phoneN);
-//        editText.setText(phone_num);
-//
-//        EditText editText2 = (EditText)findViewById(R.id.postN);
-//        editText2.setText(post_num);
-//
-//        EditText editText3 = (EditText)findViewById(R.id.AddressN);
-//        editText3.setText(member_ad);
+        String serverUrl = "http://admin0000.dothome.co.kr/mem_info.php";
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST, serverUrl, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                try {
+
+                    for (int i = 0; i < response.length(); i++) {
+                        JSONObject jsonObject = response.getJSONObject(i);
+
+                        String id = jsonObject.getString("member_id");
+                        String phone = jsonObject.getString("phone_num");
+                        String post = jsonObject.getString("post_num");
+                        String add = jsonObject.getString("member_ad");
+
+                        if(member_id.equals(id)){
+                            phoneNumber.setText(phone);
+                            postNum.setText(post);
+                            Address.setText(add);
+                        }
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+            }
+        });
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(jsonArrayRequest);
 
 
 
@@ -71,11 +87,6 @@ public class MemberInfoEditActivity extends AppCompatActivity {
         btn_back_mypage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-////                final String UserPost = correction_post.getText().toString();
-////                final String UserAd = correction_ad.getText().toString();
-//                Intent intent = new Intent(
-//                        MemberInfoEditActivity.this, Fragment_mypage.class);
-//                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 finish();
             }
         });
@@ -84,15 +95,10 @@ public class MemberInfoEditActivity extends AppCompatActivity {
         btn_info_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent intent = new Intent(
-//                        MemberInfoEditActivity.this, Fragment_mypage.class);
-//                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//                finish();
-                final String UserPhone = postNum.getText().toString();
-                final String UserPost = phoneNumber.getText().toString();
+                final String UserPhone = phoneNumber.getText().toString();
+                final String UserPost = postNum.getText().toString();
                 final String UserAd = Address.getText().toString();
                 final String UserId = (String) textview.getText();
-
 
                 //한 칸이라도 입력 안했을 경우
                 if (UserPhone.equals("") || UserPost.equals("") || UserAd.equals("")) {
