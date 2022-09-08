@@ -203,8 +203,8 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <!--<Button
-                    android:id="@+id/btnaddresssearch"
+                <Button
+                    android:id="@+id/existingDeli"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
@@ -215,7 +215,7 @@
                     android:stateListAnimator="@null"
                     android:text="기존배송지 >"
                     android:textColor="#818181"
-                    android:textSize="12dp" />-->
+                    android:textSize="12dp" />
             </LinearLayout>
 
         </LinearLayout>
