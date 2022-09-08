@@ -7,8 +7,10 @@ import android.view.View;
 import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -21,6 +23,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.myapplication.Register.RecipewriteRequest;
+import com.example.myapplication.Register.VoteRequest;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -33,13 +37,16 @@ public class VoteActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     ArrayList<voteItem> list7 = new ArrayList<>();
     VoteAdapter vAdapter;
-    String member_id;
+    String member_id, rid;
     ItemClickListener itemClickListener;
+    Button btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vote);
+
+        member_id = shared_preferences.get_user_email(VoteActivity.this);
 
         ImageButton back = findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
@@ -57,6 +64,7 @@ public class VoteActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         vAdapter.notifyDataSetChanged();
+
                     }
                 });
             }
@@ -68,7 +76,45 @@ public class VoteActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(vAdapter);
+        btn = findViewById(R.id.vote_btn);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                Response.Listener<String> responseListener = new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                        try {
+                            JSONObject jsonObject = new JSONObject( response );
+                            boolean success = jsonObject.getBoolean( "success" );
+
+                            if (success) {
+
+                                Toast.makeText(getApplicationContext(), "투표가 완료되었습니다.", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(VoteActivity.this, Fragment_index.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                finish();
+
+                            } else {
+                                Toast.makeText(getApplicationContext(), "실패하였습니다.", Toast.LENGTH_SHORT).show();
+                                return;
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                };
+
+                //서버로 Volley를 이용해서 요청
+                VoteRequest voteRequest = new VoteRequest(rid, member_id, responseListener);
+                RequestQueue queue = Volley.newRequestQueue( VoteActivity.this );
+                queue.add( voteRequest );
+
+            }
+        });
 
         String serverUrl = "http://admin0000.dothome.co.kr/vote_display.php";
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST, serverUrl, null, new Response.Listener<JSONArray>() {
@@ -86,6 +132,7 @@ public class VoteActivity extends AppCompatActivity {
                         String category = jsonObject.getString("recipe_category");
                         String id = jsonObject.getString("member_id");
                         int r_id = jsonObject.getInt("recipe_id");
+                        rid = String.valueOf(r_id);
 
                         voteItem voteItem = new voteItem(id, r_id, title, category);
                         vAdapter.addItem(voteItem);

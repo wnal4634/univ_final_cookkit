@@ -9,6 +9,7 @@ import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -85,6 +86,7 @@ public class VoteAdapter extends RecyclerView.Adapter<VoteAdapter.VoteViewHolder
                     selectedPosition = holder.getAbsoluteAdapterPosition();
                     //클릭 이벤트
                     itemClickListener.onclick(holder.radioButton.getText().toString());
+                    Toast.makeText(buttonView.getContext(), holder.title.getText().toString(), Toast.LENGTH_SHORT).show();
                 }
             }
         });
