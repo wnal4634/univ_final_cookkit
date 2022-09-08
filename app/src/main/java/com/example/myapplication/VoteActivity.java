@@ -34,6 +34,7 @@ public class VoteActivity extends AppCompatActivity {
     ArrayList<voteItem> list7 = new ArrayList<>();
     VoteAdapter vAdapter;
     String member_id;
+    ItemClickListener itemClickListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,14 +50,25 @@ public class VoteActivity extends AppCompatActivity {
                 finish();
             }
         });
-
+        itemClickListener = new ItemClickListener() {
+            @Override
+            public void onclick(String s) {
+                recyclerView.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        vAdapter.notifyDataSetChanged();
+                    }
+                });
+            }
+        };
         recyclerView = findViewById(R.id.listview);
         recyclerView.setHasFixedSize(true);
-        vAdapter = new VoteAdapter(list7);
+        vAdapter = new VoteAdapter(list7, itemClickListener);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(vAdapter);
+
 
         String serverUrl = "http://admin0000.dothome.co.kr/vote_display.php";
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST, serverUrl, null, new Response.Listener<JSONArray>() {

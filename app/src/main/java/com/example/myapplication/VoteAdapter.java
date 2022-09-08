@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
@@ -26,6 +27,8 @@ public class VoteAdapter extends RecyclerView.Adapter<VoteAdapter.VoteViewHolder
     private Context context;
     private Intent intent;
     private ArrayList<voteItem> mDataset;
+    int selectedPosition = -1;
+    ItemClickListener itemClickListener;
 
     public class VoteViewHolder extends RecyclerView.ViewHolder {
         public TextView title, category, m_id;
@@ -49,11 +52,13 @@ public class VoteAdapter extends RecyclerView.Adapter<VoteAdapter.VoteViewHolder
 
                 }
             });
+
         }
     }
 
-    public VoteAdapter(ArrayList<voteItem> voteItem) {
+    public VoteAdapter(ArrayList<voteItem> voteItem, ItemClickListener itemClickListener) {
         this.mDataset = voteItem;
+        this.itemClickListener = itemClickListener;
     }
 
     @NonNull
@@ -69,6 +74,20 @@ public class VoteAdapter extends RecyclerView.Adapter<VoteAdapter.VoteViewHolder
         holder.title.setText(mDataset.get(position).title);
         holder.category.setText(mDataset.get(position).category);
         holder.m_id.setText(mDataset.get(position).member_id);
+        //라디오 체크 설정
+        holder.radioButton.setChecked(position == selectedPosition);
+
+        holder.radioButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked){
+                    //선택한 값 변수에 담기
+                    selectedPosition = holder.getAbsoluteAdapterPosition();
+                    //클릭 이벤트
+                    itemClickListener.onclick(holder.radioButton.getText().toString());
+                }
+            }
+        });
     }
 
     @Override
