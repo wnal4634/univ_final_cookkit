@@ -8,6 +8,7 @@ import android.util.Base64;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -32,6 +33,7 @@ public class LikeActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     LikeAdapter adapter;
     MyDatabaseHelper myDb;
+    TextView no_content;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +48,8 @@ public class LikeActivity extends AppCompatActivity {
             }
         });
 
+        no_content = findViewById(R.id.no_content);
+
         recyclerView = findViewById(R.id.Like_recycler);
         recyclerView.setHasFixedSize(true);
         adapter = new LikeAdapter(list);
@@ -53,7 +57,6 @@ public class LikeActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
-
 
     }
 
@@ -91,7 +94,9 @@ public class LikeActivity extends AppCompatActivity {
                             String sql_rid = cursor.getString(1);
                             if(sql_rid.equals(String.valueOf(r_id)))
                                 adapter.addItem(mainData);
+                                no_content.setText("");
                         }
+                        adapter.notifyDataSetChanged();
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
