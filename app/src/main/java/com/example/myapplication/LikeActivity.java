@@ -48,8 +48,6 @@ public class LikeActivity extends AppCompatActivity {
             }
         });
 
-        no_content = findViewById(R.id.no_content);
-
         recyclerView = findViewById(R.id.Like_recycler);
         recyclerView.setHasFixedSize(true);
         adapter = new LikeAdapter(list);
@@ -57,6 +55,8 @@ public class LikeActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
+
+        recyclerView.bringToFront();
 
     }
 
@@ -94,9 +94,7 @@ public class LikeActivity extends AppCompatActivity {
                             String sql_rid = cursor.getString(1);
                             if(sql_rid.equals(String.valueOf(r_id)))
                                 adapter.addItem(mainData);
-                                no_content.setText("");
                         }
-                        adapter.notifyDataSetChanged();
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

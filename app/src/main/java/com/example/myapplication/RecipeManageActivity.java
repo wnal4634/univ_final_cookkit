@@ -63,6 +63,8 @@ public class RecipeManageActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(maAdapter);
+
+        recyclerView.bringToFront();
     }
 
     @Override

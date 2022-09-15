@@ -54,6 +54,8 @@ public class MealOrderStatusActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter4);
 
         recipeView = findViewById(R.id.recipeView);
+
+        recyclerView.bringToFront();
     }
 
     @Override

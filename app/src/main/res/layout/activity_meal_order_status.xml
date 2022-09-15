@@ -47,7 +47,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view123" />
 
-
+    <TextView
+        android:id="@+id/no_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="주문한 밀키트가 없습니다"
+        android:textColor="#8E8E8E"
+        android:textSize="14dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view123" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
