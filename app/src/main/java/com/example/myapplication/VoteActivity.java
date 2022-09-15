@@ -41,6 +41,7 @@ public class VoteActivity extends AppCompatActivity {
     ItemClickListener itemClickListener;
     Button btn;
     int position;
+    String m_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,6 +114,31 @@ public class VoteActivity extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(jsonArrayRequest);
 
+        String serverUrl1 = "http://admin0000.dothome.co.kr/meal_vote_check.php";
+        JsonArrayRequest jsonArrayRequest1 = new JsonArrayRequest(Request.Method.POST, serverUrl1, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                try {
+
+                    for(int i=0; i< response.length(); i++){
+                        JSONObject jsonObject1 = response.getJSONObject(i);
+                        String id1 = jsonObject1.getString("member_id");
+                        m_id = id1;
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(VoteActivity.this, "ERROR", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        RequestQueue requestQueue1 = Volley.newRequestQueue(VoteActivity.this);
+        requestQueue1.add(jsonArrayRequest1);
+
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -120,37 +146,44 @@ public class VoteActivity extends AppCompatActivity {
                 String rid = String.valueOf(voteItem.recipe_id);
                 final String id = member_id;
 
-                Response.Listener<String> responseListener = new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
+                if (member_id.equals(m_id)) {
+                    Toast.makeText(getApplicationContext(), "이미 투표하였습니다.", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Response.Listener<String> responseListener = new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
 
-                        try {
-                            JSONObject jsonObject = new JSONObject( response );
-                            boolean success = jsonObject.getBoolean( "success" );
+                            try {
+                                JSONObject jsonObject = new JSONObject( response );
+                                boolean success = jsonObject.getBoolean( "success" );
 
-                            if (success) {
+                                if (success) {
 
-                                Toast.makeText(getApplicationContext(), "투표가 완료되었습니다.", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(VoteActivity.this, Fragment_index.class);
-                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                finish();
+                                    Toast.makeText(getApplicationContext(), "투표가 완료되었습니다.", Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(VoteActivity.this, Fragment_index.class);
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                    finish();
 
-                            } else {
-                                Toast.makeText(getApplicationContext(), "실패하였습니다.", Toast.LENGTH_SHORT).show();
-                                return;
+                                } else {
+                                    Toast.makeText(getApplicationContext(), "실패하였습니다.", Toast.LENGTH_SHORT).show();
+                                    return;
+                                }
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
                             }
 
-                        } catch (JSONException e) {
-                            e.printStackTrace();
                         }
+                    };
 
-                    }
-                };
+                    //서버로 Volley를 이용해서 요청
+                    VoteRequest voteRequest = new VoteRequest(rid, id, responseListener);
+                    RequestQueue queue = Volley.newRequestQueue( VoteActivity.this );
+                    queue.add( voteRequest );
+                }
 
-                //서버로 Volley를 이용해서 요청
-                VoteRequest voteRequest = new VoteRequest(rid, id, responseListener);
-                RequestQueue queue = Volley.newRequestQueue( VoteActivity.this );
-                queue.add( voteRequest );
+
 
             }
         });

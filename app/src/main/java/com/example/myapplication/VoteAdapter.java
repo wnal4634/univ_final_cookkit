@@ -86,7 +86,7 @@ public class VoteAdapter extends RecyclerView.Adapter<VoteAdapter.VoteViewHolder
                     selectedPosition = holder.getAbsoluteAdapterPosition();
                     //클릭 이벤트
                     itemClickListener.onclick(holder.radioButton.getText().toString(),position);
-                    Toast.makeText(buttonView.getContext(), holder.title.getText().toString(), Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(buttonView.getContext(), holder.title.getText().toString(), Toast.LENGTH_SHORT).show();
                 }
             }
         });
