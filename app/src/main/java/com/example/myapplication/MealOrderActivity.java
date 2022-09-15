@@ -1,6 +1,8 @@
 package com.example.myapplication;
 
 import android.Manifest;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -38,8 +40,8 @@ public class MealOrderActivity extends AppCompatActivity {
     private EditText postNum, phoneNumber, Address;
     private ImageButton meal_minus, meal_plus;
     private int count=1;
-    String member_id, phone_num, post_num, member_ad = "";
-    Button payment;
+    String member_id = "";
+    Button payment, existingDeli;
     static final int SMS_SEND_PERMISSION = 1;
     static final int SMS_RECIVE_PERMISSION = 1;
     int sum = 0;
@@ -57,6 +59,10 @@ public class MealOrderActivity extends AppCompatActivity {
         meal_price_fix = findViewById(R.id.meal_price_fix);
         meal_total_price = findViewById(R.id.meal_total_price);
         meal_detail_img = findViewById(R.id.meal_detail_img);
+        postNum = findViewById(R.id.postNum);
+        phoneNumber = findViewById(R.id.phoneNumber);
+        Address = findViewById(R.id.Address);
+        meal_name = findViewById(R.id.meal_name);
 
         String serverUrl = "http://admin0000.dothome.co.kr/meal_ex.php";
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST, serverUrl, null, new Response.Listener<JSONArray>() {
@@ -92,7 +98,44 @@ public class MealOrderActivity extends AppCompatActivity {
         RequestQueue requestQueue= Volley.newRequestQueue(this);
         requestQueue.add(jsonArrayRequest);
 
+        existingDeli = findViewById(R.id.existingDeli);
+        member_id = shared_preferences.get_user_email(MealOrderActivity.this);
+        existingDeli.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String serverUrl2 = "http://admin0000.dothome.co.kr/mem_info.php";
+                JsonArrayRequest jsonArrayRequest2 = new JsonArrayRequest(Request.Method.POST, serverUrl2, null, new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        try {
 
+                            for (int i = 0; i < response.length(); i++) {
+                                JSONObject jsonObject = response.getJSONObject(i);
+
+                                String id = jsonObject.getString("member_id");
+                                String phone = jsonObject.getString("phone_num");
+                                String post = jsonObject.getString("post_num");
+                                String add = jsonObject.getString("member_ad");
+
+                                if(member_id.equals(id)){
+                                    phoneNumber.setText(phone);
+                                    postNum.setText(post);
+                                    Address.setText(add);
+                                }
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                    }
+                });
+                RequestQueue requestQueue2 = Volley.newRequestQueue(MealOrderActivity.this);
+                requestQueue2.add(jsonArrayRequest2);
+            }
+        });
 
 
         meal_plus.setOnClickListener(new View.OnClickListener() {
@@ -127,7 +170,7 @@ public class MealOrderActivity extends AppCompatActivity {
             }
         });
 
-        ImageButton btn_back_index = (ImageButton) findViewById(R.id.back_index);
+        ImageButton btn_back_index = findViewById(R.id.back_index);
         btn_back_index.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -138,8 +181,7 @@ public class MealOrderActivity extends AppCompatActivity {
             }
         });
 
-        postNum = (EditText) findViewById(R.id.postNum);
-        Button btn_search = (Button) findViewById(R.id.adress_detail);
+        Button btn_search = findViewById(R.id.adress_detail);
         if (btn_search != null) {
             btn_search.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -177,34 +219,44 @@ public class MealOrderActivity extends AppCompatActivity {
             }
         }
 
-        phoneNumber = findViewById(R.id.phoneNumber);
-        Address = findViewById(R.id.Address);
-        meal_name = findViewById(R.id.meal_name);
-
         payment = findViewById(R.id.payment);
         payment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(MealOrderActivity.this);
+                builder.setMessage("주문하시겠습니까?");
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String phoneNo = phoneNumber.getText().toString();
+                        String add = Address.getText().toString();
+                        String postNo = postNum.getText().toString();
+                        String price = (String) meal_total_price.getText();
+                        String name = (String) meal_name.getText();
+                        String count = (String) meal_count.getText();
 
-                String phoneNo = phoneNumber.getText().toString();
-                String add = Address.getText().toString();
-                String postNo = postNum.getText().toString();
-                String price = (String) meal_total_price.getText();
-                String name = (String) meal_name.getText();
-                String count = (String) meal_count.getText();
+                        String txt = "CookKit 밀키트 구매 안내\n\n" + name + "\n" + count + "세트, "
+                                + price + "원\n" + "주소: " + postNo + ", " + add;
 
-                String txt = "CookKit 밀키트 구매 안내\n\n" + name + "\n" + count + "세트, "
-                        + price + "\n" + "주소: " + postNo + ", " + add;
-
-                try {
-                    SmsManager smsManager = SmsManager.getDefault();
-                    smsManager.sendTextMessage(phoneNo, null, txt, null, null);
-                    Toast.makeText(getApplicationContext(), "전송 완료!", Toast.LENGTH_SHORT).show();
-                } catch (Exception e) {
-                    Toast.makeText(getApplicationContext(), "전송 오류!", Toast.LENGTH_SHORT).show();
-                    Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_SHORT).show();//오류 원인이 찍힌다.
-                    e.printStackTrace();
-                }
+                        try {
+                            SmsManager smsManager = SmsManager.getDefault();
+                            smsManager.sendTextMessage(phoneNo, null, txt, null, null);
+                            Toast.makeText(getApplicationContext(), "주문을 완료했습니다!", Toast.LENGTH_SHORT).show();
+                        } catch (Exception e) {
+                            Toast.makeText(getApplicationContext(), "주문에 오류가 났습니다!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_SHORT).show();//오류 원인이 찍힌다.
+                            e.printStackTrace();
+                        }
+                    }
+                });
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(MealOrderActivity.this, String.format("취소"), Toast.LENGTH_SHORT).show();
+                    }
+                });
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
             }
         });
 
