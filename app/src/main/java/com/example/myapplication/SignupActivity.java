@@ -1,8 +1,5 @@
 package com.example.myapplication;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +10,9 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
@@ -20,7 +20,6 @@ import com.example.myapplication.Register.RegisterRequest;
 import com.example.myapplication.Register.ValidateRequest;
 import com.example.myapplication.consent.Consent1Activity;
 import com.example.myapplication.consent.Consent2Activity;
-import com.example.myapplication.consent.Consent3Activity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -255,9 +254,7 @@ public class SignupActivity extends AppCompatActivity {
                         .setNeutralButton("취소", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                Toast.makeText(SignupActivity.this
-                                , "취소 버튼을 눌렀습니다."
-                                , Toast.LENGTH_SHORT).show();
+
                             }
                         });
                 dialog.create();

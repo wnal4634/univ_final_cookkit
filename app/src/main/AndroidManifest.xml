@@ -38,9 +38,11 @@
             android:exported="true" />
         <activity
             android:name=".consent.Consent2Activity"
+            android:theme="@android:style/Theme.DeviceDefault.Light.Dialog"
             android:exported="true" />
         <activity
             android:name=".consent.Consent1Activity"
+            android:theme="@android:style/Theme.DeviceDefault.Light.Dialog"
             android:exported="true" />
         <activity
             android:name=".MealOrderStatusActivity"
