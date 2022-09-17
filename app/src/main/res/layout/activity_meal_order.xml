@@ -296,7 +296,7 @@
                 android:layout_gravity="center"
                 android:layout_marginRight="20dp"
                 android:layout_weight="1"
-                android:background="#BEA652"
+                android:background="#A5B8A0"
                 android:text="주소검색"
                 android:textColor="#ffffff"
                 android:textSize="14dp" />
