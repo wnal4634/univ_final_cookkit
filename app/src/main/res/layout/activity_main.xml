@@ -15,7 +15,7 @@
         android:layout_gravity="bottom|end"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        android:backgroundTint="#BD9448"
+        android:backgroundTint="#A5B8A0"
         app:borderWidth="0dp"
         app:srcCompat="@drawable/ic_baseline_add_24" />
 

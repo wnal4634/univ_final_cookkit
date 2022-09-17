@@ -10,6 +10,7 @@
         <entry key="..\:/CookAndroid/Project/finalproject/app/src/main/res/layout/fragment_index.xml" value="0.33" />
         <entry key="..\:/CookAndroid/Project/finalproject/app/src/main/res/layout/fragment_mypage.xml" value="0.5" />
         <entry key="..\:/CookAndroid/Project/finalproject/app/src/main/res/layout/fragment_search.xml" value="0.33" />
+        <entry key="..\:/Users/PC/AndroidStudioProjects/finalproject/app/src/main/res/drawable/button_stroke.xml" value="0.29444444444444445" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/finalproject/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.2759259259259259" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/finalproject/app/src/main/res/layout/activity_adress_api.xml" value="0.24537037037037038" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/finalproject/app/src/main/res/layout/activity_category.xml" value="0.2" />
@@ -46,6 +47,7 @@
         <entry key="..\:/Users/PC/AndroidStudioProjects/finalproject/app/src/main/res/layout/reco_holder.xml" value="0.264" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/finalproject/app/src/main/res/layout/vote_item.xml" value="0.264" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/finalproject/app/src/main/res/menu/bottom_menu.xml" value="0.1" />
+        <entry key="..\:/Users/PC/AndroidStudioProjects/finalproject/app/src/main/res/menu/search_menu.xml" value="0.2518518518518518" />
         <entry key="..\:/Users/anyone/AndroidStudioProjects/finalproject/app/src/main/res/layout/activity_meal_detail.xml" value="0.2" />
         <entry key="..\:/Users/anyone/AndroidStudioProjects/finalproject/app/src/main/res/layout/activity_recipe_manage.xml" value="0.192481884057971" />
         <entry key="..\:/Users/anyone/AndroidStudioProjects/finalproject/app/src/main/res/layout/activity_recipeexplanation.xml" value="0.264" />
