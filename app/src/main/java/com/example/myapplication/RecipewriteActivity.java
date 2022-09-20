@@ -50,7 +50,6 @@ public class RecipewriteActivity extends AppCompatActivity {
     String member_id;
     //    String imagepath;
     TextView imgpath, imgpath1, imgpath2, imgpath3, imgpath4, imgpath5, imgpath6;
-    String imgPath;
     private AlertDialog dialog;
     ProgressDialog progressDialog;
 
@@ -231,6 +230,13 @@ public class RecipewriteActivity extends AppCompatActivity {
                 if (cate.equals("--카테고리 선택--")) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(RecipewriteActivity.this);
                     dialog = builder.setMessage("카테고리를 선택해주세요.").setNegativeButton("확인", null).create();
+                    dialog.show();
+                    return;
+                }
+
+                if (image_main.equals("") || image1.equals("") || image2.equals("") || image3.equals("") || image4.equals("") || image5.equals("") || image6.equals("")) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(RecipewriteActivity.this);
+                    dialog = builder.setMessage("사진을 모두 넣어주세요.").setNegativeButton("확인", null).create();
                     dialog.show();
                     return;
                 }

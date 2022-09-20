@@ -34,9 +34,6 @@
             android:name=".AdressAPI"
             android:exported="true" />
         <activity
-            android:name=".consent.Consent3Activity"
-            android:exported="true" />
-        <activity
             android:name=".consent.Consent2Activity"
             android:theme="@android:style/Theme.DeviceDefault.Light.Dialog"
             android:exported="true" />
@@ -56,9 +53,6 @@
         <activity
             android:name=".RecipewriteActivity"
             android:exported="true" />
-        <activity
-            android:name=".RecoActivity"
-            android:exported="false" />
         <activity
             android:name=".LikeActivity"
             android:exported="false" />

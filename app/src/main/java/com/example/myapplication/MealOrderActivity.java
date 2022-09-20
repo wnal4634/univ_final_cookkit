@@ -46,7 +46,6 @@ public class MealOrderActivity extends AppCompatActivity {
     static final int SMS_SEND_PERMISSION = 1;
     static final int SMS_RECIVE_PERMISSION = 1;
     int sum = 0;
-    int price = 0;
     ImageView meal_detail_img;
 
     @Override
@@ -247,6 +246,12 @@ public class MealOrderActivity extends AppCompatActivity {
 
                         String txt = "CookKit 밀키트 구매 안내\n\n" + name + "\n" + count + "세트, "
                                 + price + "원\n" + "주소: " + postNo + ", " + add;
+
+                        if (phoneNo.equals("") || add.equals("") || postNo.equals("")) {
+                            AlertDialog.Builder builder = new AlertDialog.Builder(MealOrderActivity.this);
+                            builder.setMessage("배송정보를 모두 입력해주세요.").setNegativeButton("확인", null).create().show();
+                            return;
+                        }
 
                         try {
                             SmsManager smsManager = SmsManager.getDefault();

@@ -44,10 +44,7 @@
             android:layout_height="23dp"
             android:layout_marginStart="16dp"
             android:background="@drawable/ic_baseline_arrow_back_ios_new_24"
-            android:backgroundTint="#737373"
-            app:layout_constraintBottom_toTopOf="@+id/view123"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:backgroundTint="#737373" />
     </LinearLayout>
 
     <View
@@ -89,8 +86,9 @@
         <ImageView
             android:id="@+id/meal_detail_img"
             android:layout_width="match_parent"
-            android:layout_height="175dp"
+            android:layout_height="200dp"
             android:layout_gravity="center"
+            android:scaleType="centerCrop"
             android:background="@drawable/imageview_round2" />
 
         <TextView

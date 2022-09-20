@@ -64,16 +64,16 @@
         android:background="@drawable/rounding_square"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view123">
 
         <ImageView
             android:id="@+id/meal_detail_img"
             android:layout_width="350dp"
-            android:layout_height="165dp"
+            android:layout_height="200dp"
             android:layout_gravity="center"
             android:layout_marginTop="13dp"
+            android:scaleType="centerCrop"
             android:background="@drawable/imageview_round" />
 
         <TextView
