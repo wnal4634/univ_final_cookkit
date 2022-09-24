@@ -235,14 +235,14 @@
 
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="100dp"
                     android:orientation="vertical"
                     android:layout_weight="1">
 
                     <EditText
                         android:id="@+id/recipe_text1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:layout_marginLeft="16dp"
                         android:layout_marginTop="12dp"
                         android:layout_marginRight="16dp"
@@ -253,24 +253,6 @@
                         android:textSize="14dp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView3" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="right">
-
-                    <ImageView
-                        android:id="@+id/recipegallery1"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:scaleType="centerCrop"
-                        android:layout_marginRight="16dp"
-                        android:layout_marginBottom="12dp"
-                        android:layout_marginTop="12dp"
-                        android:src="@android:drawable/ic_menu_gallery"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
                 </LinearLayout>
             </LinearLayout>
             <View
@@ -290,14 +272,14 @@
 
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="100dp"
                     android:orientation="vertical"
                     android:layout_weight="1">
 
                     <EditText
                         android:id="@+id/recipe_text2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:layout_marginLeft="16dp"
                         android:layout_marginTop="12dp"
                         android:layout_marginRight="16dp"
@@ -310,23 +292,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/textView3" />
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="right">
 
-                    <ImageView
-                        android:id="@+id/recipegallery2"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:scaleType="centerCrop"
-                        android:layout_marginRight="16dp"
-                        android:layout_marginBottom="12dp"
-                        android:layout_marginTop="12dp"
-                        android:src="@android:drawable/ic_menu_gallery"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-                </LinearLayout>
             </LinearLayout>
             <View
                 android:id="@+id/view29"
@@ -344,14 +310,14 @@
 
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="100dp"
                     android:orientation="vertical"
                     android:layout_weight="1">
 
                     <EditText
                         android:id="@+id/recipe_text3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:layout_marginLeft="16dp"
                         android:layout_marginTop="12dp"
                         android:layout_marginRight="16dp"
@@ -364,23 +330,6 @@
                         app:layout_constraintTop_toBottomOf="@+id/textView3" />
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="right">
-
-                    <ImageView
-                        android:id="@+id/recipegallery3"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:scaleType="centerCrop"
-                        android:layout_marginRight="16dp"
-                        android:layout_marginBottom="12dp"
-                        android:layout_marginTop="12dp"
-                        android:src="@android:drawable/ic_menu_gallery"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-                </LinearLayout>
             </LinearLayout>
             <View
                 android:id="@+id/view17"
@@ -398,14 +347,14 @@
 
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:layout_height="100dp"
+                    android:orientation="vertical"
+                    android:layout_weight="1">
 
                     <EditText
                         android:id="@+id/recipe_text4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:layout_marginLeft="16dp"
                         android:layout_marginTop="12dp"
                         android:layout_marginRight="16dp"
@@ -418,23 +367,6 @@
                         app:layout_constraintTop_toBottomOf="@+id/textView3" />
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="right">
-
-                    <ImageView
-                        android:id="@+id/recipegallery4"
-                        android:layout_width="100dp"
-                        android:scaleType="centerCrop"
-                        android:layout_height="100dp"
-                        android:layout_marginRight="16dp"
-                        android:layout_marginBottom="12dp"
-                        android:layout_marginTop="12dp"
-                        android:src="@android:drawable/ic_menu_gallery"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-                </LinearLayout>
             </LinearLayout>
             <View
                 android:id="@+id/view19"
@@ -452,14 +384,14 @@
 
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:layout_height="100dp"
+                    android:orientation="vertical"
+                    android:layout_weight="1">
 
                     <EditText
                         android:id="@+id/recipe_text5"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:layout_marginLeft="16dp"
                         android:layout_marginTop="12dp"
                         android:layout_marginRight="16dp"
@@ -472,23 +404,6 @@
                         app:layout_constraintTop_toBottomOf="@+id/textView3" />
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="right">
-
-                    <ImageView
-                        android:id="@+id/recipegallery5"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:scaleType="centerCrop"
-                        android:layout_marginRight="16dp"
-                        android:layout_marginBottom="12dp"
-                        android:layout_marginTop="12dp"
-                        android:src="@android:drawable/ic_menu_gallery"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-                </LinearLayout>
             </LinearLayout>
             <View
                 android:id="@+id/view20"
@@ -506,14 +421,14 @@
 
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:layout_height="100dp"
+                    android:orientation="vertical"
+                    android:layout_weight="1">
 
                     <EditText
                         android:id="@+id/recipe_text6"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:layout_marginLeft="16dp"
                         android:layout_marginTop="12dp"
                         android:layout_marginRight="16dp"
@@ -526,23 +441,6 @@
                         app:layout_constraintTop_toBottomOf="@+id/textView3" />
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="right">
-
-                    <ImageView
-                        android:id="@+id/recipegallery6"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:scaleType="centerCrop"
-                        android:layout_marginRight="16dp"
-                        android:layout_marginBottom="12dp"
-                        android:layout_marginTop="12dp"
-                        android:src="@android:drawable/ic_menu_gallery"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-                </LinearLayout>
             </LinearLayout>
             <View
                 android:id="@+id/view18"

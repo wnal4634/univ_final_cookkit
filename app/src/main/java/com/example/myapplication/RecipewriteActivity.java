@@ -100,12 +100,12 @@ public class RecipewriteActivity extends AppCompatActivity {
         });
 
         main = findViewById(R.id.recipegallery_main);
-        image1 = findViewById(R.id.recipegallery1);
-        image2 = findViewById(R.id.recipegallery2);
-        image3 = findViewById(R.id.recipegallery3);
-        image4 = findViewById(R.id.recipegallery4);
-        image5 = findViewById(R.id.recipegallery5);
-        image6 = findViewById(R.id.recipegallery6);
+//        image1 = findViewById(R.id.recipegallery1);
+//        image2 = findViewById(R.id.recipegallery2);
+//        image3 = findViewById(R.id.recipegallery3);
+//        image4 = findViewById(R.id.recipegallery4);
+//        image5 = findViewById(R.id.recipegallery5);
+//        image6 = findViewById(R.id.recipegallery6);
         recipe_title = findViewById(R.id.recipe_title);
         recipe_mat = findViewById(R.id.recipe_mat);
         recipe_text1 = findViewById(R.id.recipe_text1);
@@ -115,12 +115,12 @@ public class RecipewriteActivity extends AppCompatActivity {
         recipe_text5 = findViewById(R.id.recipe_text5);
         recipe_text6 = findViewById(R.id.recipe_text6);
         imgpath = findViewById(R.id.imgpath);
-        imgpath1 = findViewById(R.id.imgpath1);
-        imgpath2 = findViewById(R.id.imgpath2);
-        imgpath3 = findViewById(R.id.imgpath3);
-        imgpath4 = findViewById(R.id.imgpath4);
-        imgpath5 = findViewById(R.id.imgpath5);
-        imgpath6 = findViewById(R.id.imgpath6);
+//        imgpath1 = findViewById(R.id.imgpath1);
+//        imgpath2 = findViewById(R.id.imgpath2);
+//        imgpath3 = findViewById(R.id.imgpath3);
+//        imgpath4 = findViewById(R.id.imgpath4);
+//        imgpath5 = findViewById(R.id.imgpath5);
+//        imgpath6 = findViewById(R.id.imgpath6);
 
         main.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -132,66 +132,66 @@ public class RecipewriteActivity extends AppCompatActivity {
                 startActivityForResult(intent, 0);
             }
         });
-        image1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                imgpath1.setText("");
-                Intent intent = new Intent();
-                intent.setType("image/*");
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(intent, 1);
-            }
-        });
-        image2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                imgpath2.setText("");
-                Intent intent = new Intent();
-                intent.setType("image/*");
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(intent, 2);
-            }
-        });
-        image3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                imgpath3.setText("");
-                Intent intent = new Intent();
-                intent.setType("image/*");
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(intent, 3);
-            }
-        });
-        image4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                imgpath4.setText("");
-                Intent intent = new Intent();
-                intent.setType("image/*");
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(intent, 4);
-            }
-        });
-        image5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                imgpath5.setText("");
-                Intent intent = new Intent();
-                intent.setType("image/*");
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(intent, 5);
-            }
-        });
-        image6.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                imgpath6.setText("");
-                Intent intent = new Intent();
-                intent.setType("image/*");
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(intent, 6);
-            }
-        });
+//        image1.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                imgpath1.setText("");
+//                Intent intent = new Intent();
+//                intent.setType("image/*");
+//                intent.setAction(Intent.ACTION_GET_CONTENT);
+//                startActivityForResult(intent, 1);
+//            }
+//        });
+//        image2.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                imgpath2.setText("");
+//                Intent intent = new Intent();
+//                intent.setType("image/*");
+//                intent.setAction(Intent.ACTION_GET_CONTENT);
+//                startActivityForResult(intent, 2);
+//            }
+//        });
+//        image3.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                imgpath3.setText("");
+//                Intent intent = new Intent();
+//                intent.setType("image/*");
+//                intent.setAction(Intent.ACTION_GET_CONTENT);
+//                startActivityForResult(intent, 3);
+//            }
+//        });
+//        image4.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                imgpath4.setText("");
+//                Intent intent = new Intent();
+//                intent.setType("image/*");
+//                intent.setAction(Intent.ACTION_GET_CONTENT);
+//                startActivityForResult(intent, 4);
+//            }
+//        });
+//        image5.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                imgpath5.setText("");
+//                Intent intent = new Intent();
+//                intent.setType("image/*");
+//                intent.setAction(Intent.ACTION_GET_CONTENT);
+//                startActivityForResult(intent, 5);
+//            }
+//        });
+//        image6.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                imgpath6.setText("");
+//                Intent intent = new Intent();
+//                intent.setType("image/*");
+//                intent.setAction(Intent.ACTION_GET_CONTENT);
+//                startActivityForResult(intent, 6);
+//            }
+//        });
 
         Button button_upload = findViewById(R.id.upload);
         button_upload.setOnClickListener(new View.OnClickListener() {
@@ -213,12 +213,12 @@ public class RecipewriteActivity extends AppCompatActivity {
                 final String text5 = recipe_text5.getText().toString();
                 final String text6 = recipe_text6.getText().toString();
                 final String image_main = (String) imgpath.getText();
-                final String image1 = (String) imgpath1.getText();
-                final String image2 = (String) imgpath2.getText();
-                final String image3 = (String) imgpath3.getText();
-                final String image4 = (String) imgpath4.getText();
-                final String image5 = (String) imgpath5.getText();
-                final String image6 = (String) imgpath6.getText();
+//                final String image1 = (String) imgpath1.getText();
+//                final String image2 = (String) imgpath2.getText();
+//                final String image3 = (String) imgpath3.getText();
+//                final String image4 = (String) imgpath4.getText();
+//                final String image5 = (String) imgpath5.getText();
+//                final String image6 = (String) imgpath6.getText();
 
                 if (title.equals("") || mat.equals("") || text1.equals("") || text2.equals("") || text3.equals("") || text4.equals("") || text5.equals("") || text6.equals("")) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(RecipewriteActivity.this);
@@ -234,9 +234,9 @@ public class RecipewriteActivity extends AppCompatActivity {
                     return;
                 }
 
-                if (image_main.equals("") || image1.equals("") || image2.equals("") || image3.equals("") || image4.equals("") || image5.equals("") || image6.equals("")) {
+                if (image_main.equals("")) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(RecipewriteActivity.this);
-                    dialog = builder.setMessage("사진을 모두 넣어주세요.").setNegativeButton("확인", null).create();
+                    dialog = builder.setMessage("사진을 넣어주세요.").setNegativeButton("확인", null).create();
                     dialog.show();
                     return;
                 }
@@ -285,7 +285,7 @@ public class RecipewriteActivity extends AppCompatActivity {
 
                 //서버로 Volley를 이용해서 요청
                 RecipewriteRequest recipewriteRequest = new RecipewriteRequest( id, title, mat, cate, text1, text2, text3, text4, text5, text6,
-                        image_main, image1, image2, image3, image4, image5, image6, responseListener);
+                        image_main,  responseListener);
                 RequestQueue queue = Volley.newRequestQueue( RecipewriteActivity.this );
                 queue.add( recipewriteRequest );
             }
@@ -397,65 +397,65 @@ public class RecipewriteActivity extends AppCompatActivity {
                 } catch (Exception e) {
                 }
             }
-        } else if (requestCode == 1) {
-            if (resultCode == RESULT_OK) {
-                try {
-                    Bitmap bitmap1 = MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
-                    imgpath1.setText(BitmapToString(bitmap1));
-                    image1.setImageBitmap(bitmap1);
-                } catch (Exception e) {
-                }
-            }
-        }else if (requestCode == 2) {
-            if (resultCode == RESULT_OK) {
-                try {
-                    Bitmap bitmap2 = MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
-                    imgpath2.setText(BitmapToString(bitmap2));
-                    image2.setImageBitmap(bitmap2);
-                } catch (Exception e) {
-                }
-            }
-        }
-        else if (requestCode == 3) {
-            if (resultCode == RESULT_OK) {
-                try {
-                    Bitmap bitmap3 = MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
-                    imgpath3.setText(BitmapToString(bitmap3));
-                    image3.setImageBitmap(bitmap3);
-                } catch (Exception e) {
-                }
-            }
-        }
-        else if (requestCode == 4) {
-            if (resultCode == RESULT_OK) {
-
-                try {
-                    Bitmap bitmap4 = MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
-                    imgpath4.setText(BitmapToString(bitmap4));
-                    image4.setImageBitmap(bitmap4);
-                } catch (Exception e) {
-                }
-            }
-        }
-        else if (requestCode == 5) {
-            if (resultCode == RESULT_OK) {
-                try {
-                    Bitmap bitmap5 = MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
-                    imgpath5.setText(BitmapToString(bitmap5));
-                    image5.setImageBitmap(bitmap5);
-                } catch (Exception e) {
-                }
-            }
-        }
-        else if (requestCode == 6) {
-            if (resultCode == RESULT_OK) {
-                try {
-                    Bitmap bitmap6 = MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
-                    imgpath6.setText(BitmapToString(bitmap6));
-                    image6.setImageBitmap(bitmap6);
-                } catch (Exception e) {
-                }
-            }
+//        } else if (requestCode == 1) {
+//            if (resultCode == RESULT_OK) {
+//                try {
+//                    Bitmap bitmap1 = MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
+//                    imgpath1.setText(BitmapToString(bitmap1));
+//                    image1.setImageBitmap(bitmap1);
+//                } catch (Exception e) {
+//                }
+//            }
+//        }else if (requestCode == 2) {
+//            if (resultCode == RESULT_OK) {
+//                try {
+//                    Bitmap bitmap2 = MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
+//                    imgpath2.setText(BitmapToString(bitmap2));
+//                    image2.setImageBitmap(bitmap2);
+//                } catch (Exception e) {
+//                }
+//            }
+//        }
+//        else if (requestCode == 3) {
+//            if (resultCode == RESULT_OK) {
+//                try {
+//                    Bitmap bitmap3 = MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
+//                    imgpath3.setText(BitmapToString(bitmap3));
+//                    image3.setImageBitmap(bitmap3);
+//                } catch (Exception e) {
+//                }
+//            }
+//        }
+//        else if (requestCode == 4) {
+//            if (resultCode == RESULT_OK) {
+//
+//                try {
+//                    Bitmap bitmap4 = MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
+//                    imgpath4.setText(BitmapToString(bitmap4));
+//                    image4.setImageBitmap(bitmap4);
+//                } catch (Exception e) {
+//                }
+//            }
+//        }
+//        else if (requestCode == 5) {
+//            if (resultCode == RESULT_OK) {
+//                try {
+//                    Bitmap bitmap5 = MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
+//                    imgpath5.setText(BitmapToString(bitmap5));
+//                    image5.setImageBitmap(bitmap5);
+//                } catch (Exception e) {
+//                }
+//            }
+//        }
+//        else if (requestCode == 6) {
+//            if (resultCode == RESULT_OK) {
+//                try {
+//                    Bitmap bitmap6 = MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
+//                    imgpath6.setText(BitmapToString(bitmap6));
+//                    image6.setImageBitmap(bitmap6);
+//                } catch (Exception e) {
+//                }
+//            }
         }
         else if (resultCode == RESULT_CANCELED) {
             Toast.makeText(this, "사진 선택 취소", Toast.LENGTH_LONG).show();

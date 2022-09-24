@@ -289,20 +289,6 @@
                         android:textSize="14dp" />
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="right">
-
-                    <ImageView
-                        android:id="@+id/Image1"
-                        android:layout_width="100dp"
-                        android:scaleType="centerCrop"
-                        android:layout_height="100dp"
-                        android:layout_marginRight="16dp"
-                        android:layout_marginBottom="16dp"
-                        android:layout_marginTop="16dp" />
-                </LinearLayout>
             </LinearLayout>
             <View
                 android:id="@+id/view25"
@@ -346,20 +332,6 @@
                         android:textSize="14dp"/>
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="right">
-
-                    <ImageView
-                        android:id="@+id/Image2"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:scaleType="centerCrop"
-                        android:layout_marginRight="16dp"
-                        android:layout_marginBottom="16dp"
-                        android:layout_marginTop="16dp" />
-                </LinearLayout>
             </LinearLayout>
             <View
                 android:id="@+id/view26"
@@ -403,20 +375,6 @@
                         android:textSize="14dp"/>
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="right">
-
-                    <ImageView
-                        android:id="@+id/Image3"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginRight="16dp"
-                        android:layout_marginBottom="16dp"
-                        android:scaleType="centerCrop"/>
-                </LinearLayout>
             </LinearLayout>
             <View
                 android:id="@+id/view27"
@@ -460,20 +418,6 @@
                         android:textSize="14dp" />
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="right">
-
-                    <ImageView
-                        android:id="@+id/Image4"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:scaleType="centerCrop"
-                        android:layout_marginRight="16dp"
-                        android:layout_marginBottom="16dp"
-                        android:layout_marginTop="16dp" />
-                </LinearLayout>
             </LinearLayout>
 
             <View
@@ -517,21 +461,6 @@
                         android:textColor="@color/black"
                         android:textSize="14dp" />
                 </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="right">
-
-                    <ImageView
-                        android:id="@+id/Image5"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:scaleType="centerCrop"
-                        android:layout_marginRight="16dp"
-                        android:layout_marginBottom="16dp"
-                        android:layout_marginTop="16dp" />
-                </LinearLayout>
             </LinearLayout>
             <View
                 android:id="@+id/view29"
@@ -573,21 +502,6 @@
                         android:text=""
                         android:textColor="@color/black"
                         android:textSize="14dp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="right">
-
-                    <ImageView
-                        android:id="@+id/Image6"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:scaleType="centerCrop"
-                        android:layout_marginRight="16dp"
-                        android:layout_marginBottom="16dp"
-                        android:layout_marginTop="16dp" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

@@ -18,8 +18,6 @@ public class RecipewriteRequest extends StringRequest {
                               String cate, String text1, String text2,
                               String text3, String text4, String text5,
                               String text6, String image_main,
-                              String image1, String image2, String image3,
-                              String image4, String image5, String image6,
                               Response.Listener<String> listener) {
         super(Method.POST, URL, listener, null);
 
@@ -35,12 +33,6 @@ public class RecipewriteRequest extends StringRequest {
         map.put("recipe_text5", text5);
         map.put("recipe_text6", text6);
         map.put("image_main", image_main);
-        map.put("image1", image1);
-        map.put("image2", image2);
-        map.put("image3", image3);
-        map.put("image4", image4);
-        map.put("image5", image5);
-        map.put("image6", image6);
 
     }
 
