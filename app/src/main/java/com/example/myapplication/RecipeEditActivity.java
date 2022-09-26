@@ -314,7 +314,7 @@ public class RecipeEditActivity extends AppCompatActivity {
 
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
                     ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                    bitmap.compress(Bitmap.CompressFormat.JPEG, 10, stream);
+                    bitmap.compress(Bitmap.CompressFormat.JPEG, 20, stream);
                     byte[] bytes = stream.toByteArray();
                     String imagepath = Base64.encodeToString(bytes, Base64.DEFAULT);
                     imgpath.setText(imagepath);
