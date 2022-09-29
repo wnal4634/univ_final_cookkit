@@ -74,7 +74,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="13dp"
             android:scaleType="centerCrop"
-            android:background="@drawable/imageview_round" />
+            android:background="@drawable/no_sale" />
 
         <TextView
             android:id="@+id/meal_name"
@@ -82,7 +82,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="16dp"
-            android:text="밀키트명"
+            android:text=""
             android:textColor="#000000"
             android:textSize="16dp"
             android:textStyle="bold" />
@@ -95,7 +95,7 @@
             android:layout_marginBottom="32dp"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:text="밀키트 설명을 넣는 곳입니다."
+            android:text=""
             android:textColor="#000000"
             android:textSize="14dp" />
 
@@ -120,7 +120,7 @@
             android:layout_gravity="bottom|center_horizontal"
             android:gravity="center"
             android:paddingBottom="24dp"
-            android:text="밀키트 판매기간을 넣는 곳입니다."
+            android:text="밀키트 판매기간이 아닙니다"
             android:textColor="#000000"
             android:textSize="14dp" />
 

@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import com.android.volley.Request;
@@ -31,18 +32,13 @@ public class Fragment_mealDetail extends Fragment {
     private View view;
     ImageView meal_detail_img;
     TextView meal_name, meal_explain, meal_sale_date;
+    AlertDialog dialog;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view =  inflater.inflate(R.layout.fragment_meal_detail, container, false);
-
-//        Bundle bundle = getArguments();
-//        String member_id = bundle.getString("member_id");
-//        String phone_num = bundle.getString("phone_num");
-//        String post_num = bundle.getString("post_num");
-//        String member_ad = bundle.getString("member_ad");
 
         meal_detail_img = view.findViewById(R.id.meal_detail_img);
         meal_name = view.findViewById(R.id.meal_name);
@@ -53,22 +49,18 @@ public class Fragment_mealDetail extends Fragment {
         btn_ordergo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), MealOrderActivity.class);
-//                intent.putExtra("member_id", (String) member_id);
-//                intent.putExtra("phone_num", (String) phone_num);
-//                intent.putExtra("post_num", (String) post_num);
-//                intent.putExtra("member_ad", (String) member_ad);
-                startActivity(intent);
+                if (meal_sale_date.getText().equals("밀키트 판매기간이 아닙니다")) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    dialog = builder.setMessage("밀키트 판매기간이 아닙니다.\n다음 밀키트를 기다려주세요.").setNegativeButton("확인", null).create();
+                    dialog.show();
+                    return;
+                } else {
+                    Intent intent = new Intent(getActivity(), MealOrderActivity.class);
+                    startActivity(intent);
+                }
             }
         });
 
-//        ImageButton btn_back_index = (ImageButton) view.findViewById(R.id.back_index);
-//        btn_back_index.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//            }
-//        });
         String serverUrl = "http://admin0000.dothome.co.kr/meal_ex.php";
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST, serverUrl, null, new Response.Listener<JSONArray>() {
             @Override
@@ -84,14 +76,10 @@ public class Fragment_mealDetail extends Fragment {
                         String price = jsonObject.getString("meal_price");
                         String image = jsonObject.getString("meal_image");
                         Glide.with(getActivity()).load(image).into(meal_detail_img);
-//                        Bitmap image_bit = StringToBitmap(image);
 
                         meal_name.setText(title);
                         meal_explain.setText(ex);
                         meal_sale_date.setText(sale);
-//                        meal_detail_img.setImageBitmap(image_bit);
-
-
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
