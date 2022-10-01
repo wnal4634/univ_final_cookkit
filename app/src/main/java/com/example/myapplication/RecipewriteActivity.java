@@ -48,8 +48,7 @@ public class RecipewriteActivity extends AppCompatActivity {
     EditText recipe_title, recipe_mat, recipe_text1, recipe_text2, recipe_text3, recipe_text4
             ,recipe_text5, recipe_text6;
     String member_id;
-    //    String imagepath;
-    TextView imgpath, imgpath1, imgpath2, imgpath3, imgpath4, imgpath5, imgpath6;
+    TextView imgpath;
     private AlertDialog dialog;
     ProgressDialog progressDialog;
 

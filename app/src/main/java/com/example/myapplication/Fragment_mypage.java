@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,12 +10,23 @@ import android.widget.Button;
 
 import androidx.fragment.app.Fragment;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class Fragment_mypage extends Fragment {
 
     private View view;
-    private Button btn_noti, btn_reco, btn_like, btn_recipemanage, btn_mlorderstatus;
+    private Button btn_noti, btn_like, btn_recipemanage, btn_mlorderstatus;
     private Button imgbtn_edit, btn_setting, btn_logout, vote_go;
-
+    AlertDialog dialog;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -32,9 +44,35 @@ public class Fragment_mypage extends Fragment {
         vote_go.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), VoteActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                startActivity(intent);
+                String serverUrl7 = "http://admin0000.dothome.co.kr/vote_recipe_count.php";
+                JsonArrayRequest jsonArrayRequest7 = new JsonArrayRequest(Request.Method.POST, serverUrl7, null, new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        try {
+                            for (int i = 0; i < response.length(); i++) {
+                                JSONObject jsonObject = response.getJSONObject(i);
+                                String vote_count = jsonObject.getString("num");
+                                if (vote_count.equals("0")) {
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                                    dialog = builder.setMessage("투표기간이 아닙니다.").setNegativeButton("확인", null).create();
+                                    dialog.show();
+                                } else {
+                                    Intent intent = new Intent(getActivity(), VoteActivity.class);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                                    startActivity(intent);
+                                }
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                    }
+                });
+                RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
+                requestQueue.add(jsonArrayRequest7);
             }
         });
 

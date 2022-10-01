@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -9,18 +10,9 @@ import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.toolbox.Volley;
-import com.example.myapplication.Register.ClickRequest;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -33,6 +25,7 @@ public class VoteAdapter extends RecyclerView.Adapter<VoteAdapter.VoteViewHolder
 
     public class VoteViewHolder extends RecyclerView.ViewHolder {
         public TextView title, category, m_id;
+        public ImageView image;
         public RadioButton radioButton;
 
         public VoteViewHolder(View view) {
@@ -40,6 +33,7 @@ public class VoteAdapter extends RecyclerView.Adapter<VoteAdapter.VoteViewHolder
             title = (TextView) view.findViewById(R.id.meal_title);
             category = (TextView) view.findViewById(R.id.category);
             m_id = view.findViewById(R.id.writer);
+            image = (ImageView) view.findViewById(R.id.recipeView);
             radioButton = view.findViewById(R.id.radio);
 
             view.setOnClickListener(new View.OnClickListener() {
@@ -50,7 +44,6 @@ public class VoteAdapter extends RecyclerView.Adapter<VoteAdapter.VoteViewHolder
                     Intent intent = new Intent(v.getContext(), RecipeexplanationActivity.class);
                     intent.putExtra("r_id", voteItem.getRecipe_id());
                     v.getContext().startActivity(intent);
-
                 }
             });
 
@@ -71,13 +64,14 @@ public class VoteAdapter extends RecyclerView.Adapter<VoteAdapter.VoteViewHolder
     }
 
     @Override
-    public void onBindViewHolder(@NonNull VoteAdapter.VoteViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull VoteAdapter.VoteViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.title.setText(mDataset.get(position).title);
         holder.category.setText(mDataset.get(position).category);
         holder.m_id.setText(mDataset.get(position).member_id);
+        holder.image.setImageBitmap(mDataset.get(position).getImage());
+
         //라디오 체크 설정
         holder.radioButton.setChecked(position == selectedPosition);
-
         holder.radioButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {

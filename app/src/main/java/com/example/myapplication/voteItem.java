@@ -1,16 +1,20 @@
 package com.example.myapplication;
 
 
+import android.graphics.Bitmap;
+
 public class voteItem {
     public String title;
     public String category;
     public String member_id;
+    public Bitmap image;
     public int recipe_id;
 
-    public voteItem( String member_id, int recipe_id, String title, String category) {
+    public voteItem( String member_id, int recipe_id, String title, String category, Bitmap image) {
         this.title = title;
         this.category = category;
         this.member_id = member_id;
+        this.setImage(image);
         this.recipe_id = recipe_id;
     }
     //
@@ -26,6 +30,13 @@ public class voteItem {
     }
     public void setCategory(String category){
         this.category = category;
+    }
+
+    public Bitmap getImage() {
+        return image;
+    }
+    public void setImage(Bitmap image) {
+        this.image = image;
     }
 
     public String getMember_id(){

@@ -1,6 +1,5 @@
 package com.example.myapplication;
 
-import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,8 +21,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainViewHolder>{
-    private Context context;
-    private Intent intent;
     private ArrayList<MainData> mDataset;
     int click_count;
 
@@ -79,11 +76,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainViewHolder
     public MainAdapter(ArrayList<MainData> mainData){
         this.mDataset = mainData;
     }
-    //
-//    @Override
-//    public int getItemViewType(final int position) {
-//        return R.layout.main_holder;
-//    }
+
     @NonNull
     @Override
     public MainViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

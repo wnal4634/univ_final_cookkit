@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -40,6 +41,7 @@ public class Fragment_index extends Fragment {
     private MainAdapter mAdapter;
     private Spinner indexSpinner;
     private SwipeRefreshLayout mysrl;
+    AlertDialog dialog;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -51,9 +53,35 @@ public class Fragment_index extends Fragment {
         vote_ck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(),VoteActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                startActivity(intent);
+                String serverUrl7 = "http://admin0000.dothome.co.kr/vote_recipe_count.php";
+                JsonArrayRequest jsonArrayRequest7 = new JsonArrayRequest(Request.Method.POST, serverUrl7, null, new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        try {
+                            for (int i = 0; i < response.length(); i++) {
+                                JSONObject jsonObject = response.getJSONObject(i);
+                                String vote_count = jsonObject.getString("num");
+                                if (vote_count.equals("0")) {
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                                    dialog = builder.setMessage("투표기간이 아닙니다.").setNegativeButton("확인", null).create();
+                                    dialog.show();
+                                } else {
+                                    Intent intent = new Intent(getActivity(), VoteActivity.class);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                                    startActivity(intent);
+                                }
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                    }
+                });
+                RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
+                requestQueue.add(jsonArrayRequest7);
             }
         });
 
@@ -108,8 +136,6 @@ public class Fragment_index extends Fragment {
                 mysrl.setRefreshing(false);
             }
         });
-
-
 
        return view;
     }

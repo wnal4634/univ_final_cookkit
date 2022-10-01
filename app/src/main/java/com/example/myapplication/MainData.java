@@ -9,14 +9,14 @@ public class MainData {
     public int click;
     public int recipe_id;
 
-    public MainData(String title, String category, int click,Bitmap image, int recipe_id) {
+    public MainData(String title, String category, int click, Bitmap image, int recipe_id) {
         this.title = title;
         this.category = category;
         this.click = click;
         this.setImage(image);
         this.recipe_id = recipe_id;
     }
-    //
+
     public String getTitle(){
         return title;
     }
@@ -30,14 +30,14 @@ public class MainData {
     public void setCategory(String category){
         this.category = category;
     }
-    //
+
     public Bitmap getImage() {
         return image;
     }
-
     public void setImage(Bitmap image) {
         this.image = image;
     }
+
     public int getClick() {
         return click;
     }

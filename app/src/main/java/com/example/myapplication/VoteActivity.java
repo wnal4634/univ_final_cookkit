@@ -2,14 +2,12 @@ package com.example.myapplication;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.View;
-import android.widget.Adapter;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,7 +21,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.myapplication.Register.RecipewriteRequest;
 import com.example.myapplication.Register.VoteRequest;
 
 import org.json.JSONArray;
@@ -79,6 +76,7 @@ public class VoteActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(vAdapter);
+
         btn = findViewById(R.id.vote_btn);
 
         String serverUrl = "http://admin0000.dothome.co.kr/vote_display.php";
@@ -97,8 +95,10 @@ public class VoteActivity extends AppCompatActivity {
                         String category = jsonObject.getString("recipe_category");
                         String id = jsonObject.getString("member_id");
                         int r_id = jsonObject.getInt("recipe_id");
+                        String image = jsonObject.getString("image_main");
+                        Bitmap image_bit = StringToBitmap(image);
 
-                        voteItem voteItem = new voteItem(id, r_id, title, category);
+                        voteItem voteItem = new voteItem(id, r_id, title, category, image_bit);
                         vAdapter.addItem(voteItem);
                     }
                 } catch (JSONException e) {
@@ -187,5 +187,16 @@ public class VoteActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    public static Bitmap StringToBitmap(String encodedString) {
+        try {
+            byte[] encodeByte = Base64.decode(encodedString, Base64.DEFAULT);
+            Bitmap bitmap = BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
+            return bitmap;
+        } catch (Exception e) {
+            e.getMessage();
+            return null;
+        }
     }
 }
