@@ -13,12 +13,13 @@ public class VoteRequest extends StringRequest {
     private Map<String, String> map;
     //private Map<String, String>parameters;
 
-    public VoteRequest(String rid, String id, Response.Listener<String> listener) {
+    public VoteRequest(String rid, String id, String title, Response.Listener<String> listener) {
         super(Request.Method.POST, URL, listener, null);
 
         map = new HashMap<>();
         map.put("recipe_id", rid);
         map.put("member_id", id);
+        map.put("recipe_title", title);
     }
 
     @Override

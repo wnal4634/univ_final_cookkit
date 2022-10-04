@@ -144,6 +144,7 @@ public class VoteActivity extends AppCompatActivity {
             public void onClick(View v) {
                 voteItem voteItem = list7.get(position);
                 String rid = String.valueOf(voteItem.recipe_id);
+                String title = voteItem.title;
                 final String id = member_id;
 
                 if (member_id.equals(m_id)) {
@@ -178,7 +179,7 @@ public class VoteActivity extends AppCompatActivity {
                     };
 
                     //서버로 Volley를 이용해서 요청
-                    VoteRequest voteRequest = new VoteRequest(rid, id, responseListener);
+                    VoteRequest voteRequest = new VoteRequest(rid, id, title, responseListener);
                     RequestQueue queue = Volley.newRequestQueue( VoteActivity.this );
                     queue.add( voteRequest );
                 }
