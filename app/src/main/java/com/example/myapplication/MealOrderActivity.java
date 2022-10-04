@@ -66,7 +66,7 @@ public class MealOrderActivity extends AppCompatActivity {
         meal_id = findViewById(R.id.meal_id);
         saving_image = findViewById(R.id.saving_image);
 
-        String serverUrl = "http://admin0000.dothome.co.kr/meal_ex.php";
+        String serverUrl = "http://admin0000.dothome.co.kr/meal_ex2.php";
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST, serverUrl, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
@@ -78,10 +78,8 @@ public class MealOrderActivity extends AppCompatActivity {
 
                         int id = jsonObject.getInt("meal_id");
                         String title = jsonObject.getString("meal_title");
-                        String ex = jsonObject.getString("meal_text");
-                        String sale = jsonObject.getString("meal_sale_period");
                         String price = jsonObject.getString("meal_price");
-                        String image = jsonObject.getString("meal_image");
+                        String image = jsonObject.getString("meal_image_sub");
                         Glide.with(getApplicationContext()).load(image).into(meal_detail_img);
 
                         saving_image.setText(image);
@@ -284,7 +282,7 @@ public class MealOrderActivity extends AppCompatActivity {
                             };
 
                             //서버로 Volley를 이용해서 요청
-                            MealOrderRequest mealOrderRequest = new MealOrderRequest( m_id1, m_id2, name, count, price, image, responseListener);
+                            MealOrderRequest mealOrderRequest = new MealOrderRequest( m_id1, m_id2, name, count, price, phoneNo, postNo, add, image, responseListener);
                             RequestQueue queue = Volley.newRequestQueue( MealOrderActivity.this );
                             queue.add( mealOrderRequest );
 

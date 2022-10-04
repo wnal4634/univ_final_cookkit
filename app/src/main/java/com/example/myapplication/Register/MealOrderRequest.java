@@ -15,7 +15,8 @@ public class MealOrderRequest  extends StringRequest {
     //private Map<String, String>parameters;
 
     public MealOrderRequest(String meal_id, String member_id, String title,
-                              String count, String price, String image, Response.Listener<String> listener) {
+                              String count, String price, String phone,
+                            String post, String add, String image, Response.Listener<String> listener) {
         super(Method.POST, URL, listener, null);
 
         map = new HashMap<>();
@@ -24,6 +25,9 @@ public class MealOrderRequest  extends StringRequest {
         map.put("meal_title", title);
         map.put("meal_set_count", count);
         map.put("meal_price", price);
+        map.put("phone_num", phone);
+        map.put("post_num", post);
+        map.put("member_ad", add);
         map.put("meal_image", image);
     }
 
