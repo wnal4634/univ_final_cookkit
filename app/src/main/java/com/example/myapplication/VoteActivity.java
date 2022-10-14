@@ -184,8 +184,6 @@ public class VoteActivity extends AppCompatActivity {
                     queue.add( voteRequest );
                 }
 
-
-
             }
         });
     }
