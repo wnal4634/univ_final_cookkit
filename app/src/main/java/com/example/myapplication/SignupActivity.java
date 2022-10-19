@@ -122,8 +122,6 @@ public class SignupActivity extends AppCompatActivity {
                 final String UserPost = join_post.getText().toString();
                 final String UserAd = join_ad.getText().toString();
 
-
-
                 //아이디 중복체크 했는지 확인
                 if (!validate) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(SignupActivity.this);
@@ -261,7 +259,6 @@ public class SignupActivity extends AppCompatActivity {
                 dialog.show();
             }
         });
-
 
         join_post = (EditText) findViewById(R.id.join_post);
         Button btn_search = (Button) findViewById(R.id.adress_detail);

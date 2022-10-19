@@ -34,8 +34,6 @@ public class noticeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notice);
 
-
-
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
@@ -44,20 +42,14 @@ public class noticeActivity extends AppCompatActivity {
         adapter = new RecyclerVierAdapter();
         recyclerView.setAdapter(adapter);
 
-//        addDTO();
-
         ImageButton btn_back_mypage = (ImageButton) findViewById(R.id.back_mypage);
         btn_back_mypage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent intent = new Intent(
-//                        noticeActivity.this, Fragment_mypage.class);
-//                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 finish();
             }
         });
     }
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

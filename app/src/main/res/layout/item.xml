@@ -14,7 +14,7 @@
         android:padding="16dp"
         android:orientation="vertical">
 
-        <GridLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal">
@@ -28,20 +28,7 @@
                 android:textColor="@color/black"
                 android:textSize="16dp"
                 android:layout_gravity="center"/>
-
-            <ImageView
-                android:id="@+id/noti_open"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:clickable="false"
-                android:focusable="false"
-                android:layout_row="0"
-                android:layout_column="1"
-                android:backgroundTint="#737373"
-                android:layout_gravity="right"
-                android:src="@drawable/ic_baseline_keyboard_arrow_down_24" />
-
-        </GridLayout>
+        </LinearLayout>
         <TextView
             android:id="@+id/noti_insert_date"
             android:layout_width="match_parent"

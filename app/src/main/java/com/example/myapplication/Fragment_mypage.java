@@ -39,7 +39,6 @@ public class Fragment_mypage extends Fragment {
         String post_num = bundle.getString("post_num");
         String member_ad = bundle.getString("member_ad");
 
-
         vote_go = view.findViewById(R.id.vote_go);
         vote_go.setOnClickListener(new View.OnClickListener() {
             @Override

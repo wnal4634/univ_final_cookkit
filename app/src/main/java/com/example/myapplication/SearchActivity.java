@@ -58,8 +58,6 @@ public class SearchActivity extends AppCompatActivity {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(saAdapter);
 
-
-
         String serverUrl = "http://admin0000.dothome.co.kr/Search.php";
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST, serverUrl, null, new Response.Listener<JSONArray>() {
             @Override
@@ -138,7 +136,6 @@ public class SearchActivity extends AppCompatActivity {
         });
         RequestQueue requestQueue = Volley.newRequestQueue(SearchActivity.this);
         requestQueue.add(jsonArrayRequest);
-
     }
 
     public static Bitmap StringToBitmap(String encodedString) {
@@ -151,5 +148,4 @@ public class SearchActivity extends AppCompatActivity {
             return null;
         }
     }
-
 }

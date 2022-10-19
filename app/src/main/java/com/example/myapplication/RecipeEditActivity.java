@@ -34,7 +34,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
 
 public class RecipeEditActivity extends AppCompatActivity {
     ImageView main, image1, image2, image3, image4, image5, image6;
@@ -85,12 +84,6 @@ public class RecipeEditActivity extends AppCompatActivity {
         recipe_text5 = findViewById(R.id.recipe_text5);
         recipe_text6 = findViewById(R.id.recipe_text6);
         main = findViewById(R.id.recipegallery_main);
-//        image1 = findViewById(R.id.recipegallery1);
-//        image2 = findViewById(R.id.recipegallery2);
-//        image3 = findViewById(R.id.recipegallery3);
-//        image4 = findViewById(R.id.recipegallery4);
-//        image5 = findViewById(R.id.recipegallery5);
-//        image6 = findViewById(R.id.recipegallery6);
         imgpath = findViewById(R.id.imgpath);
         rid = findViewById(R.id.recipeID);
 
@@ -161,60 +154,6 @@ public class RecipeEditActivity extends AppCompatActivity {
                 startActivityForResult(intent, 0);
             }
         });
-//        image1.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent();
-//                intent.setType("image/*");
-//                intent.setAction(Intent.ACTION_GET_CONTENT);
-//                startActivityForResult(intent, 1);
-//            }
-//        });
-//        image2.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent();
-//                intent.setType("image/*");
-//                intent.setAction(Intent.ACTION_GET_CONTENT);
-//                startActivityForResult(intent, 2);
-//            }
-//        });
-//        image3.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent();
-//                intent.setType("image/*");
-//                intent.setAction(Intent.ACTION_GET_CONTENT);
-//                startActivityForResult(intent, 3);
-//            }
-//        });
-//        image4.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent();
-//                intent.setType("image/*");
-//                intent.setAction(Intent.ACTION_GET_CONTENT);
-//                startActivityForResult(intent, 4);
-//            }
-//        });
-//        image5.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent();
-//                intent.setType("image/*");
-//                intent.setAction(Intent.ACTION_GET_CONTENT);
-//                startActivityForResult(intent, 5);
-//            }
-//        });
-//        image6.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent();
-//                intent.setType("image/*");
-//                intent.setAction(Intent.ACTION_GET_CONTENT);
-//                startActivityForResult(intent, 6);
-//            }
-//        });
 
         String member_id = getIntent().getStringExtra("id");
         TextView textview = findViewById(R.id.memberID);
@@ -307,11 +246,6 @@ public class RecipeEditActivity extends AppCompatActivity {
                 Uri uri = data.getData();
 
                 try {
-//                        InputStream in = getContentResolver().openInputStream(data.getData());
-//                        Bitmap img = BitmapFactory.decodeStream(in);
-//                        in.close();
-//                        main.setImageBitmap(img);
-
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
                     ByteArrayOutputStream stream = new ByteArrayOutputStream();
                     bitmap.compress(Bitmap.CompressFormat.JPEG, 20, stream);
@@ -323,71 +257,6 @@ public class RecipeEditActivity extends AppCompatActivity {
                 } catch (Exception e) {
                 }
             }
-//        } else if (requestCode == 1) {
-//            if (resultCode == RESULT_OK) {
-//                try {
-//                    InputStream in = getContentResolver().openInputStream(data.getData());
-//                    Bitmap img = BitmapFactory.decodeStream(in);
-//                    in.close();
-//                    image1.setImageBitmap(img);
-//                } catch (Exception e) {
-//                }
-//            }
-//        }else if (requestCode == 2) {
-//            if (resultCode == RESULT_OK) {
-//                try {
-//                    InputStream in = getContentResolver().openInputStream(data.getData());
-//                    Bitmap img = BitmapFactory.decodeStream(in);
-//                    in.close();
-//                    image2.setImageBitmap(img);
-//                } catch (Exception e) {
-//                }
-//            }
-//        }
-//        else if (requestCode == 3) {
-//            if (resultCode == RESULT_OK) {
-//                try {
-//                    InputStream in = getContentResolver().openInputStream(data.getData());
-//                    Bitmap img = BitmapFactory.decodeStream(in);
-//                    in.close();
-//                    image3.setImageBitmap(img);
-//                } catch (Exception e) {
-//                }
-//            }
-//        }
-//        else if (requestCode == 4) {
-//            if (resultCode == RESULT_OK) {
-//
-//                try {
-//                    InputStream in = getContentResolver().openInputStream(data.getData());
-//                    Bitmap img = BitmapFactory.decodeStream(in);
-//                    in.close();
-//                    image4.setImageBitmap(img);
-//                } catch (Exception e) {
-//                }
-//            }
-//        }
-//        else if (requestCode == 5) {
-//            if (resultCode == RESULT_OK) {
-//                try {
-//                    InputStream in = getContentResolver().openInputStream(data.getData());
-//                    Bitmap img = BitmapFactory.decodeStream(in);
-//                    in.close();
-//                    image5.setImageBitmap(img);
-//                } catch (Exception e) {
-//                }
-//            }
-//        }
-//        else if (requestCode == 6) {
-//            if (resultCode == RESULT_OK) {
-//                try {
-//                    InputStream in = getContentResolver().openInputStream(data.getData());
-//                    Bitmap img = BitmapFactory.decodeStream(in);
-//                    in.close();
-//                    image6.setImageBitmap(img);
-//                } catch (Exception e) {
-//                }
-//            }
         }
         else if (resultCode == RESULT_CANCELED) {
             Toast.makeText(this, "사진 선택 취소", Toast.LENGTH_LONG).show();

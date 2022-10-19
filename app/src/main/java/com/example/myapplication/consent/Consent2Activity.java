@@ -13,6 +13,5 @@ public class Consent2Activity extends Activity {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_consent2);
-
     }
 }

@@ -123,7 +123,6 @@ public class MemberInfoEditActivity extends AppCompatActivity {
                                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                 finish();
 
-                                //회원가입 실패시
                             } else {
                                 Toast.makeText(getApplicationContext(), "실패하였습니다.", Toast.LENGTH_SHORT).show();
                                 return;
@@ -172,6 +171,4 @@ public class MemberInfoEditActivity extends AppCompatActivity {
                 break;
         }
     }
-
-
 }

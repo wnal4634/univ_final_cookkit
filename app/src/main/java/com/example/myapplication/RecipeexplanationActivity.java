@@ -31,9 +31,9 @@ public class RecipeexplanationActivity extends AppCompatActivity {
     private View view;
     private ImageButton btn_back_index;
     private Button btn_like, btn_thumbs;
-    private TextView thumsup_count, favorite_count, title_main,
+    private TextView title_main,
             id, title, cate, mat, text1, text2, text3, text4, text5, text6, see_count, rid;
-    ImageView image_main, watch, image1, image2, image3, image4, image5, image6;
+    ImageView image_main, watch;
     boolean selected2 = false;
     MyDatabaseHelper myDb;
 
@@ -54,12 +54,6 @@ public class RecipeexplanationActivity extends AppCompatActivity {
         text5 = findViewById(R.id.text5);
         text6 = findViewById(R.id.text6);
         image_main = findViewById(R.id.image_main);
-//        image1 = findViewById(R.id.Image1);
-//        image2 = findViewById(R.id.Image2);
-//        image3 = findViewById(R.id.Image3);
-//        image4 = findViewById(R.id.Image4);
-//        image5 = findViewById(R.id.Image5);
-//        image6 = findViewById(R.id.Image6);
         see_count = findViewById(R.id.click);
         watch = findViewById(R.id.watch);
         rid = findViewById(R.id.recipeID);
@@ -93,22 +87,10 @@ public class RecipeexplanationActivity extends AppCompatActivity {
                         String t5 = jsonObject.getString("recipe_text5");
                         String t6 = jsonObject.getString("recipe_text6");
                         String image = jsonObject.getString("image_main");
-//                        String image_1 = jsonObject.getString("image1");
-//                        String image_2 = jsonObject.getString("image2");
-//                        String image_3 = jsonObject.getString("image3");
-//                        String image_4 = jsonObject.getString("image4");
-//                        String image_5 = jsonObject.getString("image5");
-//                        String image_6 = jsonObject.getString("image6");
                         int click = jsonObject.getInt("click_count");
 
 
                         Bitmap image_bit = StringToBitmap(image);
-//                        Bitmap image_bit1 = StringToBitmap(image_1);
-//                        Bitmap image_bit2 = StringToBitmap(image_2);
-//                        Bitmap image_bit3 = StringToBitmap(image_3);
-//                        Bitmap image_bit4 = StringToBitmap(image_4);
-//                        Bitmap image_bit5 = StringToBitmap(image_5);
-//                        Bitmap image_bit6 = StringToBitmap(image_6);
 
                         if (rrtostr.equals(r_id)) {
                             rid.setText(r_id);
@@ -124,12 +106,6 @@ public class RecipeexplanationActivity extends AppCompatActivity {
                             text5.setText(t5);
                             text6.setText(t6);
                             image_main.setImageBitmap(image_bit);
-//                            image1.setImageBitmap(image_bit1);
-//                            image2.setImageBitmap(image_bit2);
-//                            image3.setImageBitmap(image_bit3);
-//                            image4.setImageBitmap(image_bit4);
-//                            image5.setImageBitmap(image_bit5);
-//                            image6.setImageBitmap(image_bit6);
                             see_count.setText(click + "");
 
                             Cursor cursor = myDb.AllView();
@@ -165,9 +141,6 @@ public class RecipeexplanationActivity extends AppCompatActivity {
                 finish();
             }
         });
-
-
-
 
         btn_like.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -5,12 +5,9 @@ import static android.net.sip.SipErrorCode.TIME_OUT;
 import android.Manifest;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -40,11 +37,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
-import java.io.FileNotFoundException;
 
 public class RecipewriteActivity extends AppCompatActivity {
 
-    ImageView main, image1, image2, image3, image4, image5, image6;
+    ImageView main;
     EditText recipe_title, recipe_mat, recipe_text1, recipe_text2, recipe_text3, recipe_text4
             ,recipe_text5, recipe_text6;
     String member_id;
@@ -99,12 +95,6 @@ public class RecipewriteActivity extends AppCompatActivity {
         });
 
         main = findViewById(R.id.recipegallery_main);
-//        image1 = findViewById(R.id.recipegallery1);
-//        image2 = findViewById(R.id.recipegallery2);
-//        image3 = findViewById(R.id.recipegallery3);
-//        image4 = findViewById(R.id.recipegallery4);
-//        image5 = findViewById(R.id.recipegallery5);
-//        image6 = findViewById(R.id.recipegallery6);
         recipe_title = findViewById(R.id.recipe_title);
         recipe_mat = findViewById(R.id.recipe_mat);
         recipe_text1 = findViewById(R.id.recipe_text1);
@@ -114,12 +104,6 @@ public class RecipewriteActivity extends AppCompatActivity {
         recipe_text5 = findViewById(R.id.recipe_text5);
         recipe_text6 = findViewById(R.id.recipe_text6);
         imgpath = findViewById(R.id.imgpath);
-//        imgpath1 = findViewById(R.id.imgpath1);
-//        imgpath2 = findViewById(R.id.imgpath2);
-//        imgpath3 = findViewById(R.id.imgpath3);
-//        imgpath4 = findViewById(R.id.imgpath4);
-//        imgpath5 = findViewById(R.id.imgpath5);
-//        imgpath6 = findViewById(R.id.imgpath6);
 
         main.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -131,75 +115,11 @@ public class RecipewriteActivity extends AppCompatActivity {
                 startActivityForResult(intent, 0);
             }
         });
-//        image1.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                imgpath1.setText("");
-//                Intent intent = new Intent();
-//                intent.setType("image/*");
-//                intent.setAction(Intent.ACTION_GET_CONTENT);
-//                startActivityForResult(intent, 1);
-//            }
-//        });
-//        image2.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                imgpath2.setText("");
-//                Intent intent = new Intent();
-//                intent.setType("image/*");
-//                intent.setAction(Intent.ACTION_GET_CONTENT);
-//                startActivityForResult(intent, 2);
-//            }
-//        });
-//        image3.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                imgpath3.setText("");
-//                Intent intent = new Intent();
-//                intent.setType("image/*");
-//                intent.setAction(Intent.ACTION_GET_CONTENT);
-//                startActivityForResult(intent, 3);
-//            }
-//        });
-//        image4.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                imgpath4.setText("");
-//                Intent intent = new Intent();
-//                intent.setType("image/*");
-//                intent.setAction(Intent.ACTION_GET_CONTENT);
-//                startActivityForResult(intent, 4);
-//            }
-//        });
-//        image5.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                imgpath5.setText("");
-//                Intent intent = new Intent();
-//                intent.setType("image/*");
-//                intent.setAction(Intent.ACTION_GET_CONTENT);
-//                startActivityForResult(intent, 5);
-//            }
-//        });
-//        image6.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                imgpath6.setText("");
-//                Intent intent = new Intent();
-//                intent.setType("image/*");
-//                intent.setAction(Intent.ACTION_GET_CONTENT);
-//                startActivityForResult(intent, 6);
-//            }
-//        });
 
         Button button_upload = findViewById(R.id.upload);
         button_upload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                insertToDatabase((String) textview.getText(), recipe_title.getText().toString(), recipe_mat.getText().toString(),
-//                        spinner.getSelectedItem().toString(), recipe_text1.getText().toString(), recipe_text2.getText().toString(), recipe_text3.getText().toString(),
-//                        recipe_text4.getText().toString(), recipe_text5.getText().toString(), recipe_text6.getText().toString(),
-//                        imgpath.getText().toString());
 
                 final String id = (String) textview.getText();
                 final String title = recipe_title.getText().toString();
@@ -212,12 +132,6 @@ public class RecipewriteActivity extends AppCompatActivity {
                 final String text5 = recipe_text5.getText().toString();
                 final String text6 = recipe_text6.getText().toString();
                 final String image_main = (String) imgpath.getText();
-//                final String image1 = (String) imgpath1.getText();
-//                final String image2 = (String) imgpath2.getText();
-//                final String image3 = (String) imgpath3.getText();
-//                final String image4 = (String) imgpath4.getText();
-//                final String image5 = (String) imgpath5.getText();
-//                final String image6 = (String) imgpath6.getText();
 
                 if (title.equals("") || mat.equals("") || text1.equals("") || text2.equals("") || text3.equals("") || text4.equals("") || text5.equals("") || text6.equals("")) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(RecipewriteActivity.this);
@@ -288,173 +202,21 @@ public class RecipewriteActivity extends AppCompatActivity {
                 RequestQueue queue = Volley.newRequestQueue( RecipewriteActivity.this );
                 queue.add( recipewriteRequest );
             }
-
-//                Intent intent = new Intent(RecipewriteActivity.this, RecipeexplanationActivity.class);
-//                startActivity(intent);
-//                finish();
-
         });
     }
-
-//    private void insertToDatabase(final String ed1, String ed2, String ed3, String ed4, String ed5, String ed6, String ed7, String ed8, String ed9, String ed10,
-//                                  String ed11) {
-//        class InsertData extends AsyncTask<String, Void, String> {
-//            ProgressDialog loading;
-//
-//            @Override
-//            protected void onPreExecute() {
-//                super.onPreExecute();
-//                loading = ProgressDialog.show(RecipewriteActivity.this, "Please Wait", null, true, true);
-//            }
-//            @Override
-//            protected void onPostExecute(String s) {
-//                super.onPostExecute(s);
-//                loading.dismiss();
-//                //Log.d("Tag : ", s); // php에서 가져온 값을 최종 출력함
-//                Toast.makeText(getApplicationContext(), s, Toast.LENGTH_LONG).show();
-//            }
-//            @Override
-//            protected String doInBackground(String... params) {
-//
-//                try {
-//                    String edt1Text = (String) params[0];
-//                    String edt2Text = (String) params[1];
-//                    String edt3Text = (String) params[2];
-//                    String edt4Text = (String) params[3];
-//                    String edt5Text = (String) params[4]; //text1
-//                    String edt6Text = (String) params[5];
-//                    String edt7Text = (String) params[6];
-//                    String edt8Text = (String) params[7];
-//                    String edt9Text = (String) params[8];
-//                    String edt10Text = (String) params[9];
-//                    String edt11Text = (String) params[10];
-//
-//                    String link = "http://admin0000.dothome.co.kr/insert.php";
-//                    String data = URLEncoder.encode("member_id", "UTF-8") + "=" + URLEncoder.encode(edt1Text, "UTF-8");
-//                    data += "&" + URLEncoder.encode("recipe_title", "UTF-8") + "=" + URLEncoder.encode(edt2Text, "UTF-8");
-//                    data += "&" + URLEncoder.encode("recipe_material", "UTF-8") + "=" + URLEncoder.encode(edt3Text, "UTF-8");
-//                    data += "&" + URLEncoder.encode("recipe_category", "UTF-8") + "=" + URLEncoder.encode(edt4Text, "UTF-8");
-//                    data += "&" + URLEncoder.encode("recipe_text1", "UTF-8") + "=" + URLEncoder.encode(edt5Text, "UTF-8");
-//                    data += "&" + URLEncoder.encode("recipe_text2", "UTF-8") + "=" + URLEncoder.encode(edt6Text, "UTF-8");
-//                    data += "&" + URLEncoder.encode("recipe_text3", "UTF-8") + "=" + URLEncoder.encode(edt7Text, "UTF-8");
-//                    data += "&" + URLEncoder.encode("recipe_text4", "UTF-8") + "=" + URLEncoder.encode(edt8Text, "UTF-8");
-//                    data += "&" + URLEncoder.encode("recipe_text5", "UTF-8") + "=" + URLEncoder.encode(edt9Text, "UTF-8");
-//                    data += "&" + URLEncoder.encode("recipe_text6", "UTF-8") + "=" + URLEncoder.encode(edt10Text, "UTF-8");
-//                    data += "&" + URLEncoder.encode("image_main", "UTF-8") + "=" + URLEncoder.encode(edt11Text, "UTF-8");
-//
-//                    URL url = new URL(link);
-//                    URLConnection conn = url.openConnection();
-//
-//                    conn.setDoOutput(true);
-//                    OutputStreamWriter outputStreamWriter = new OutputStreamWriter(conn.getOutputStream());
-//                    outputStreamWriter.write(data);
-//                    outputStreamWriter.flush();
-//
-//                    BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-//
-//                    StringBuilder sb = new StringBuilder();
-//                    String line = null;
-//
-//                    // Read Server Response
-//                    while ((line = reader.readLine()) != null) {
-//                        sb.append(line);
-//                        break;
-//                    }
-//                    Log.d("tag : ", sb.toString()); // php에서 결과값을 리턴
-//                    return sb.toString();
-//
-//                } catch (Exception e) {
-//                    return new String("Exception: " + e.getMessage());
-//                }
-//            }
-//        }
-//        InsertData task = new InsertData();
-//        task.execute(ed1,ed2,ed3,ed4,ed5,ed6,ed7,ed8,ed9,ed10,ed11);
-//    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 0) {
             if (resultCode == RESULT_OK) {
-                Uri uri = data.getData();
                 try {
-//                        InputStream in = getContentResolver().openInputStream(data.getData());
-//                        Bitmap img = BitmapFactory.decodeStream(in);
-//                        in.close();
-//                        main.setImageBitmap(img);
-
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
-//                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
-//                    bitmap.compress(Bitmap.CompressFormat.JPEG, 10, stream);
-//                    byte[] bytes = stream.toByteArray();
-//                    String imagepath = Base64.encodeToString(bytes, Base64.DEFAULT);
-//                    imgpath.setText(imagepath);
                     imgpath.setText(BitmapToString(bitmap));
                     main.setImageBitmap(bitmap);
-
                 } catch (Exception e) {
                 }
             }
-//        } else if (requestCode == 1) {
-//            if (resultCode == RESULT_OK) {
-//                try {
-//                    Bitmap bitmap1 = MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
-//                    imgpath1.setText(BitmapToString(bitmap1));
-//                    image1.setImageBitmap(bitmap1);
-//                } catch (Exception e) {
-//                }
-//            }
-//        }else if (requestCode == 2) {
-//            if (resultCode == RESULT_OK) {
-//                try {
-//                    Bitmap bitmap2 = MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
-//                    imgpath2.setText(BitmapToString(bitmap2));
-//                    image2.setImageBitmap(bitmap2);
-//                } catch (Exception e) {
-//                }
-//            }
-//        }
-//        else if (requestCode == 3) {
-//            if (resultCode == RESULT_OK) {
-//                try {
-//                    Bitmap bitmap3 = MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
-//                    imgpath3.setText(BitmapToString(bitmap3));
-//                    image3.setImageBitmap(bitmap3);
-//                } catch (Exception e) {
-//                }
-//            }
-//        }
-//        else if (requestCode == 4) {
-//            if (resultCode == RESULT_OK) {
-//
-//                try {
-//                    Bitmap bitmap4 = MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
-//                    imgpath4.setText(BitmapToString(bitmap4));
-//                    image4.setImageBitmap(bitmap4);
-//                } catch (Exception e) {
-//                }
-//            }
-//        }
-//        else if (requestCode == 5) {
-//            if (resultCode == RESULT_OK) {
-//                try {
-//                    Bitmap bitmap5 = MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
-//                    imgpath5.setText(BitmapToString(bitmap5));
-//                    image5.setImageBitmap(bitmap5);
-//                } catch (Exception e) {
-//                }
-//            }
-//        }
-//        else if (requestCode == 6) {
-//            if (resultCode == RESULT_OK) {
-//                try {
-//                    Bitmap bitmap6 = MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
-//                    imgpath6.setText(BitmapToString(bitmap6));
-//                    image6.setImageBitmap(bitmap6);
-//                } catch (Exception e) {
-//                }
-//            }
         }
         else if (resultCode == RESULT_CANCELED) {
             Toast.makeText(this, "사진 선택 취소", Toast.LENGTH_LONG).show();
@@ -467,31 +229,6 @@ public class RecipewriteActivity extends AppCompatActivity {
         byte[] bytes = baos.toByteArray();
         String temp = Base64.encodeToString(bytes, Base64.DEFAULT);
         return temp;
-    }
-
-    private Bitmap resize(Context context,Uri uri,int resize){
-        Bitmap resizeBitmap=null;
-        BitmapFactory.Options options = new BitmapFactory.Options();
-        try {
-            BitmapFactory.decodeStream(context.getContentResolver().openInputStream(uri), null, options);
-            int width = options.outWidth;
-            int height = options.outHeight;
-            int samplesize = 1;
-            while (true) {
-                if (width / 2 < resize || height / 2 < resize)
-                    break;
-                width /= 2;
-                height /= 2;
-                samplesize *= 2;
-            }
-            options.inSampleSize = samplesize;
-            Bitmap bitmap = BitmapFactory.decodeStream(context.getContentResolver().openInputStream(uri), null, options);
-            resizeBitmap=bitmap;
-        }
-        catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        return resizeBitmap;
     }
 
     @Override
