@@ -240,7 +240,8 @@ public class MealOrderActivity extends AppCompatActivity {
                         String m_id1 = (String) meal_id.getText();
 
                         String txt = "CookKit 밀키트 구매 안내\n\n" + name + "\n" + count + "세트, "
-                                + price + "원\n" + "주소: " + postNo + ", " + add;
+                                + price + "원";
+//                                + "주소: " + postNo + ", " + add;
 
                         if (phoneNo.equals("") || add.equals("") || postNo.equals("")) {
                             AlertDialog.Builder builder = new AlertDialog.Builder(MealOrderActivity.this);
@@ -261,7 +262,7 @@ public class MealOrderActivity extends AppCompatActivity {
 
                                         if (success) {
 
-                                            Toast.makeText(getApplicationContext(), String.format("업로드를 완료했습니다."), Toast.LENGTH_SHORT).show();
+//                                            Toast.makeText(getApplicationContext(), String.format("업로드를 완료했습니다."), Toast.LENGTH_SHORT).show();
                                             Intent intent = new Intent(MealOrderActivity.this, Fragment_mealDetail.class);
                                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                             finish();
