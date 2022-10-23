@@ -3,7 +3,6 @@ package com.example.myapplication;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Base64;
@@ -174,7 +173,7 @@ public class RecipeEditActivity extends AppCompatActivity {
                 final String text4 = recipe_text4.getText().toString();
                 final String text5 = recipe_text5.getText().toString();
                 final String text6 = recipe_text6.getText().toString();
-                final String image_main = imgpath.getText().toString();
+                final String image_main = (String) imgpath.getText();
 
                 if (title.equals("") || mat.equals("") || text1.equals("") || text2.equals("") || text3.equals("") || text4.equals("") || text5.equals("") || text6.equals("")) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(RecipeEditActivity.this);
@@ -236,19 +235,15 @@ public class RecipeEditActivity extends AppCompatActivity {
         }
     }
 
-
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 0) {
             if (resultCode == RESULT_OK) {
-                Uri uri = data.getData();
-
                 try {
-                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
+                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
                     ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                    bitmap.compress(Bitmap.CompressFormat.JPEG, 20, stream);
+                    bitmap.compress(Bitmap.CompressFormat.JPEG, 10, stream);
                     byte[] bytes = stream.toByteArray();
                     String imagepath = Base64.encodeToString(bytes, Base64.DEFAULT);
                     imgpath.setText(imagepath);

@@ -121,17 +121,17 @@ public class RecipewriteActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                final String id = (String) textview.getText();
-                final String title = recipe_title.getText().toString();
-                final String mat = recipe_mat.getText().toString();
-                final String cate = spinner.getSelectedItem().toString();
-                final String text1 = recipe_text1.getText().toString();
-                final String text2 = recipe_text2.getText().toString();
-                final String text3 = recipe_text3.getText().toString();
-                final String text4 = recipe_text4.getText().toString();
-                final String text5 = recipe_text5.getText().toString();
-                final String text6 = recipe_text6.getText().toString();
-                final String image_main = (String) imgpath.getText();
+                String id = (String) textview.getText();
+                String title = recipe_title.getText().toString();
+                String mat = recipe_mat.getText().toString();
+                String cate = spinner.getSelectedItem().toString();
+                String text1 = recipe_text1.getText().toString();
+                String text2 = recipe_text2.getText().toString();
+                String text3 = recipe_text3.getText().toString();
+                String text4 = recipe_text4.getText().toString();
+                String text5 = recipe_text5.getText().toString();
+                String text6 = recipe_text6.getText().toString();
+                String image_main = (String) imgpath.getText();
 
                 if (title.equals("") || mat.equals("") || text1.equals("") || text2.equals("") || text3.equals("") || text4.equals("") || text5.equals("") || text6.equals("")) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(RecipewriteActivity.this);
@@ -168,7 +168,8 @@ public class RecipewriteActivity extends AppCompatActivity {
                         }
                     }
                 };
-                mHandler.sendEmptyMessageDelayed(TIME_OUT, 25000);
+                mHandler.sendEmptyMessageDelayed(TIME_OUT, 7000);
+
                 Response.Listener<String> responseListener = new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -212,7 +213,13 @@ public class RecipewriteActivity extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 try {
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
-                    imgpath.setText(BitmapToString(bitmap));
+//                    imgpath.setText(BitmapToString(bitmap));
+//                    main.setImageBitmap(bitmap);
+                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                    bitmap.compress(Bitmap.CompressFormat.JPEG, 10, stream);
+                    byte[] bytes = stream.toByteArray();
+                    String imagepath = Base64.encodeToString(bytes, Base64.DEFAULT);
+                    imgpath.setText(imagepath);
                     main.setImageBitmap(bitmap);
                 } catch (Exception e) {
                 }
@@ -221,14 +228,6 @@ public class RecipewriteActivity extends AppCompatActivity {
         else if (resultCode == RESULT_CANCELED) {
             Toast.makeText(this, "사진 선택 취소", Toast.LENGTH_LONG).show();
         }
-    }
-
-    public static String BitmapToString(Bitmap bitmap) {
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 20, baos);
-        byte[] bytes = baos.toByteArray();
-        String temp = Base64.encodeToString(bytes, Base64.DEFAULT);
-        return temp;
     }
 
     @Override
