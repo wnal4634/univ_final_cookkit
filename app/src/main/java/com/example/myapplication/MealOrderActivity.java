@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.telephony.SmsManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -32,6 +34,20 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import kr.co.bootpay.Bootpay;
+import kr.co.bootpay.BootpayAnalytics;
+import kr.co.bootpay.enums.Method;
+import kr.co.bootpay.enums.PG;
+import kr.co.bootpay.enums.UX;
+import kr.co.bootpay.listener.CancelListener;
+import kr.co.bootpay.listener.CloseListener;
+import kr.co.bootpay.listener.ConfirmListener;
+import kr.co.bootpay.listener.DoneListener;
+import kr.co.bootpay.listener.ErrorListener;
+import kr.co.bootpay.listener.ReadyListener;
+import kr.co.bootpay.model.BootExtra;
+import kr.co.bootpay.model.BootUser;
+
 public class MealOrderActivity extends AppCompatActivity {
     private TextView meal_count, meal_total_price, meal_name, meal_price_fix, meal_id, saving_image;
     private static final int SEARCH_ADDRESS_ACTIVITY = 10000;
@@ -44,11 +60,15 @@ public class MealOrderActivity extends AppCompatActivity {
     static final int SMS_RECIVE_PERMISSION = 1;
     int sum = 0;
     ImageView meal_detail_img;
+    private int stuck = 100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meal_order);
+
+        BootpayAnalytics.init(this, "63562be4d01c7e002096a5e4");
+
         meal_count = findViewById(R.id.meal_count);
         meal_count.setText(count+"");
         meal_plus = findViewById(R.id.meal_plus);
@@ -249,46 +269,103 @@ public class MealOrderActivity extends AppCompatActivity {
                             return;
                         }
 
-                        try {
-                            SmsManager smsManager = SmsManager.getDefault();
-                            smsManager.sendTextMessage(phoneNo, null, txt, null, null);
-                            Toast.makeText(getApplicationContext(), "밀키트를 구매했습니다", Toast.LENGTH_LONG).show();
-                            Response.Listener<String> responseListener = new Response.Listener<String>() {
-                                @Override
-                                public void onResponse(String response) {
-                                    try {
-                                        JSONObject jsonObject = new JSONObject( response );
-                                        boolean success = jsonObject.getBoolean( "success" );
+                        BootUser bootUser = new BootUser();
+                        BootExtra bootExtra = new BootExtra().setQuotas(new int[] {0,2,3});
 
-                                        if (success) {
+                        Bootpay.init(getFragmentManager())
+                                .setApplicationId("63562be4d01c7e002096a5e4") // 해당 프로젝트(안드로이드)의 application id 값
+                .setPG(PG.INICIS) // 결제할 PG 사
+                                .setMethod(Method.PHONE) // 결제수단
+                                .setContext(MealOrderActivity.this)
+                                .setBootUser(bootUser)
+                                .setBootExtra(bootExtra)
+                                .setUX(UX.PG_DIALOG)
+//                .setUserPhone("010-1234-5678") // 구매자 전화번호
+                                .setName(name) // 결제할 상품명
+                                .setOrderId("1234") // 결제 고유번호expire_month
+                                .setPrice(Integer.parseInt(price)) // 결제할 금액
+                                .onConfirm(new ConfirmListener() { // 결제가 진행되기 바로 직전 호출되는 함수로, 주로 재고처리 등의 로직이 수행
+                                    @Override
+                                    public void onConfirm(@Nullable String message) {
 
-//                                            Toast.makeText(getApplicationContext(), String.format("업로드를 완료했습니다."), Toast.LENGTH_SHORT).show();
-                                            Intent intent = new Intent(MealOrderActivity.this, Fragment_mealDetail.class);
-                                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                            finish();
-
-                                        } else {
-                                            Toast.makeText(getApplicationContext(), "실패하였습니다.", Toast.LENGTH_SHORT).show();
-                                            return;
-                                        }
-
-                                    } catch (JSONException e) {
-                                        e.printStackTrace();
+                                        if (0 < stuck) Bootpay.confirm(message); // 재고가 있을 경우.
+                                        else Bootpay.removePaymentWindow(); // 재고가 없어 중간에 결제창을 닫고 싶을 경우
+                                        Log.d("confirm", message);
                                     }
+                                })
+                                .onDone(new DoneListener() { // 결제완료시 호출, 아이템 지급 등 데이터 동기화 로직을 수행합니다
+                                    @Override
+                                    public void onDone(@Nullable String message) {
+                                        Log.d("done", message);
+                                        try {
+                                            SmsManager smsManager = SmsManager.getDefault();
+                                            smsManager.sendTextMessage(phoneNo, null, txt, null, null);
+                                            Toast.makeText(getApplicationContext(), "밀키트를 구매했습니다", Toast.LENGTH_LONG).show();
+                                            Response.Listener<String> responseListener = new Response.Listener<String>() {
+                                                @Override
+                                                public void onResponse(String response) {
+                                                    try {
+                                                        JSONObject jsonObject = new JSONObject( response );
+                                                        boolean success = jsonObject.getBoolean( "success" );
 
-                                }
-                            };
+                                                        if (success) {
 
-                            //서버로 Volley를 이용해서 요청
-                            MealOrderRequest mealOrderRequest = new MealOrderRequest( m_id1, m_id2, name, count, price, phoneNo, postNo, add, image, responseListener);
-                            RequestQueue queue = Volley.newRequestQueue( MealOrderActivity.this );
-                            queue.add( mealOrderRequest );
+                                                            Intent intent = new Intent(MealOrderActivity.this, Fragment_mealDetail.class);
+                                                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                                            finish();
 
-                        } catch (Exception e) {
-                            Toast.makeText(getApplicationContext(), "전송 오류!", Toast.LENGTH_SHORT).show();
-                            Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_SHORT).show();//오류 원인이 찍힌다.
-                            e.printStackTrace();
-                        }
+                                                        } else {
+                                                            Toast.makeText(getApplicationContext(), "실패하였습니다.", Toast.LENGTH_SHORT).show();
+                                                            return;
+                                                        }
+
+                                                    } catch (JSONException e) {
+                                                        e.printStackTrace();
+                                                    }
+
+                                                }
+                                            };
+
+                                            //서버로 Volley를 이용해서 요청
+                                            MealOrderRequest mealOrderRequest = new MealOrderRequest( m_id1, m_id2, name, count, price, phoneNo, postNo, add, image, responseListener);
+                                            RequestQueue queue = Volley.newRequestQueue( MealOrderActivity.this );
+                                            queue.add( mealOrderRequest );
+
+                                        } catch (Exception e) {
+                                            Toast.makeText(getApplicationContext(), "전송 오류!", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_SHORT).show();//오류 원인이 찍힌다.
+                                            e.printStackTrace();
+                                        }
+                                    }
+                                })
+                                .onReady(new ReadyListener() { // 가상계좌 입금 계좌번호가 발급되면 호출되는 함수입니다.
+                                    @Override
+                                    public void onReady(@Nullable String message) {
+                                        Log.d("ready", message);
+                                    }
+                                })
+                                .onCancel(new CancelListener() { // 결제 취소시 호출
+                                    @Override
+                                    public void onCancel(@Nullable String message) {
+                                        Log.d("cancel", message);
+                                    }
+                                })
+                                .onError(new ErrorListener() { // 에러가 났을때 호출되는 부분
+                                    @Override
+                                    public void onError(@Nullable String message) {
+                                        Log.d("error", message);
+                                    }
+                                })
+                                .onClose(
+                                        new CloseListener() { //결제창이 닫힐때 실행되는 부분
+                                            @Override
+                                            public void onClose(String message) {
+                                                Log.d("close", "close");
+                                            }
+                                        })
+                                .request();
+
+
                     }
                 });
                 builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
