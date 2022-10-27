@@ -42,7 +42,7 @@ public class RecipewriteActivity extends AppCompatActivity {
 
     ImageView main;
     EditText recipe_title, recipe_mat, recipe_text1, recipe_text2, recipe_text3, recipe_text4
-            ,recipe_text5, recipe_text6;
+            ,recipe_text5, recipe_text6, comment;
     String member_id;
     TextView imgpath;
     private AlertDialog dialog;
@@ -104,6 +104,7 @@ public class RecipewriteActivity extends AppCompatActivity {
         recipe_text5 = findViewById(R.id.recipe_text5);
         recipe_text6 = findViewById(R.id.recipe_text6);
         imgpath = findViewById(R.id.imgpath);
+        comment = findViewById(R.id.health);
 
         main.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -131,11 +132,12 @@ public class RecipewriteActivity extends AppCompatActivity {
                 String text4 = recipe_text4.getText().toString();
                 String text5 = recipe_text5.getText().toString();
                 String text6 = recipe_text6.getText().toString();
+                String comm = comment.getText().toString();
                 String image_main = (String) imgpath.getText();
 
                 if (title.equals("") || mat.equals("") || text1.equals("") || text2.equals("") || text3.equals("") || text4.equals("") || text5.equals("") || text6.equals("")) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(RecipewriteActivity.this);
-                    dialog = builder.setMessage("모두 입력해주세요.").setNegativeButton("확인", null).create();
+                    dialog = builder.setMessage("모두 입력해주세요. (코멘트 제외)").setNegativeButton("확인", null).create();
                     dialog.show();
                     return;
                 }
@@ -198,8 +200,8 @@ public class RecipewriteActivity extends AppCompatActivity {
                 };
 
                 //서버로 Volley를 이용해서 요청
-                RecipewriteRequest recipewriteRequest = new RecipewriteRequest( id, title, mat, cate, text1, text2, text3, text4, text5, text6,
-                        image_main,  responseListener);
+                RecipewriteRequest recipewriteRequest = new RecipewriteRequest( id, title, mat, cate, text1,
+                        text2, text3, text4, text5, text6, comm, image_main,  responseListener);
                 RequestQueue queue = Volley.newRequestQueue( RecipewriteActivity.this );
                 queue.add( recipewriteRequest );
             }

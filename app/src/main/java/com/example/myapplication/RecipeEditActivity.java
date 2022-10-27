@@ -37,7 +37,7 @@ import java.io.ByteArrayOutputStream;
 public class RecipeEditActivity extends AppCompatActivity {
     ImageView main, image1, image2, image3, image4, image5, image6;
     EditText recipe_title, recipe_mat, recipe_text1, recipe_text2, recipe_text3, recipe_text4,
-            recipe_text5, recipe_text6, rid;
+            recipe_text5, recipe_text6, rid, comment;
     Button closebutton;
     TextView imgpath;
     private AlertDialog dialog;
@@ -85,6 +85,7 @@ public class RecipeEditActivity extends AppCompatActivity {
         main = findViewById(R.id.recipegallery_main);
         imgpath = findViewById(R.id.imgpath);
         rid = findViewById(R.id.recipeID);
+        comment = findViewById(R.id.health);
 
 
         String serverUrl = "http://admin0000.dothome.co.kr/recipe_edit_import.php";
@@ -110,6 +111,7 @@ public class RecipeEditActivity extends AppCompatActivity {
                         String t4 = jsonObject.getString("recipe_text4");
                         String t5 = jsonObject.getString("recipe_text5");
                         String t6 = jsonObject.getString("recipe_text6");
+                        String com = jsonObject.getString("comment");
                         String image = jsonObject.getString("image_main");
 
                         Bitmap image_bit = StringToBitmap(image);
@@ -124,6 +126,7 @@ public class RecipeEditActivity extends AppCompatActivity {
                             recipe_text4.setText(t4);
                             recipe_text5.setText(t5);
                             recipe_text6.setText(t6);
+                            comment.setText(com);
                             main.setImageBitmap(image_bit);
                         }
 
@@ -173,6 +176,7 @@ public class RecipeEditActivity extends AppCompatActivity {
                 final String text4 = recipe_text4.getText().toString();
                 final String text5 = recipe_text5.getText().toString();
                 final String text6 = recipe_text6.getText().toString();
+                final String comm = comment.getText().toString();
                 final String image_main = (String) imgpath.getText();
 
                 if (title.equals("") || mat.equals("") || text1.equals("") || text2.equals("") || text3.equals("") || text4.equals("") || text5.equals("") || text6.equals("")) {
@@ -217,7 +221,7 @@ public class RecipeEditActivity extends AppCompatActivity {
                 };
 
                 //서버로 Volley를 이용해서 요청
-                RecipeEditRequest recipeEditRequest = new RecipeEditRequest( r_id, id, title, mat, cate, text1, text2, text3, text4, text5, text6, image_main, responseListener);
+                RecipeEditRequest recipeEditRequest = new RecipeEditRequest( r_id, id, title, mat, cate, text1, text2, text3, text4, text5, text6, comm, image_main, responseListener);
                 RequestQueue queue = Volley.newRequestQueue( RecipeEditActivity.this );
                 queue.add( recipeEditRequest );
             }

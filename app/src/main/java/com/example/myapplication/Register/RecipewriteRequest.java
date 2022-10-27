@@ -17,7 +17,7 @@ public class RecipewriteRequest extends StringRequest {
     public RecipewriteRequest(String id, String title, String mat,
                               String cate, String text1, String text2,
                               String text3, String text4, String text5,
-                              String text6, String image_main,
+                              String text6, String comment, String image_main,
                               Response.Listener<String> listener) {
         super(Method.POST, URL, listener, null);
 
@@ -32,6 +32,7 @@ public class RecipewriteRequest extends StringRequest {
         map.put("recipe_text4", text4);
         map.put("recipe_text5", text5);
         map.put("recipe_text6", text6);
+        map.put("comment", comment);
         map.put("image_main", image_main);
 
     }

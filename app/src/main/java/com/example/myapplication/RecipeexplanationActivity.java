@@ -27,12 +27,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class RecipeexplanationActivity extends AppCompatActivity {
-
-    private View view;
-    private ImageButton btn_back_index;
-    private Button btn_like, btn_thumbs;
     private TextView title_main,
-            id, title, cate, mat, text1, text2, text3, text4, text5, text6, see_count, rid;
+            id, title, cate, mat, text1, text2, text3, text4, text5, text6, see_count, rid, comment;
     ImageView image_main, watch;
     boolean selected2 = false;
     MyDatabaseHelper myDb;
@@ -58,6 +54,7 @@ public class RecipeexplanationActivity extends AppCompatActivity {
         watch = findViewById(R.id.watch);
         rid = findViewById(R.id.recipeID);
         Button btn_like = findViewById(R.id.favorite);
+        comment = findViewById(R.id.health);
 
         myDb = new MyDatabaseHelper(this);
         myDb.getWritableDatabase();
@@ -66,7 +63,6 @@ public class RecipeexplanationActivity extends AppCompatActivity {
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST, serverUrl, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
-                String tt = getIntent().getStringExtra("title");
                 int rr = getIntent().getIntExtra("r_id", 0);
                 String rrtostr = String.valueOf(rr);
 
@@ -86,6 +82,7 @@ public class RecipeexplanationActivity extends AppCompatActivity {
                         String t4 = jsonObject.getString("recipe_text4");
                         String t5 = jsonObject.getString("recipe_text5");
                         String t6 = jsonObject.getString("recipe_text6");
+                        String comm = jsonObject.getString("comment");
                         String image = jsonObject.getString("image_main");
                         int click = jsonObject.getInt("click_count");
 
@@ -105,6 +102,7 @@ public class RecipeexplanationActivity extends AppCompatActivity {
                             text4.setText(t4);
                             text5.setText(t5);
                             text6.setText(t6);
+                            comment.setText(comm);
                             image_main.setImageBitmap(image_bit);
                             see_count.setText(click + "");
 
