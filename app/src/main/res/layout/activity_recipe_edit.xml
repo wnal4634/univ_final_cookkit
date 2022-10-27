@@ -444,7 +444,7 @@
                         android:layout_marginRight="16dp"
                         android:layout_marginBottom="12dp"
                         android:background="@null"
-                        android:hint="내용을 입력해주세요 (선택)"
+                        android:hint="내용을 입력해주세요 (선택)\n(ex) 건강 정보"
                         android:textColor="@color/black"
                         android:text=""
                         android:textSize="14dp"
