@@ -98,14 +98,14 @@ public class MealOrderActivity extends AppCompatActivity {
                         int id = jsonObject.getInt("meal_id");
                         String title = jsonObject.getString("meal_title");
                         String price = jsonObject.getString("meal_price");
-                        int remain = jsonObject.getInt("remain_num");
+                        String remain = jsonObject.getString("remain_num");
                         String image = jsonObject.getString("meal_image_sub");
                         Glide.with(getApplicationContext()).load(image).into(meal_detail_img);
 
                         saving_image.setText(image);
                         meal_id.setText(id+"");
                         meal_name.setText(title);
-                        remain_num.setText(Integer.toString(remain));
+                        remain_num.setText(remain);
                         meal_total_price.setText(price);
                         meal_price_fix.setText(price);
                     }
@@ -260,6 +260,8 @@ public class MealOrderActivity extends AppCompatActivity {
                         String count = (String) meal_count.getText();
                         String re_num = (String) remain_num.getText();
 
+                        int f_num = Integer.parseInt(re_num) - Integer.parseInt(count);
+
                         String image = (String) saving_image.getText();
                         String m_id2 = shared_preferences.get_user_email(MealOrderActivity.this);
                         String m_id1 = (String) meal_id.getText();
@@ -315,9 +317,9 @@ public class MealOrderActivity extends AppCompatActivity {
 
                                                         if (success) {
 
-                                                            Intent intent = new Intent(MealOrderActivity.this, Fragment_mealDetail.class);
-                                                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                                            finish();
+//                                                            Intent intent = new Intent(MealOrderActivity.this, Fragment_mealDetail.class);
+//                                                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                                                            finish();
 
                                                         } else {
                                                             Toast.makeText(getApplicationContext(), "실패하였습니다.", Toast.LENGTH_SHORT).show();
@@ -340,10 +342,10 @@ public class MealOrderActivity extends AppCompatActivity {
                                                 @Override
                                                 public void onResponse(String response) {
                                                     try {
-                                                        JSONObject jsonObject = new JSONObject( response );
-                                                        boolean success = jsonObject.getBoolean( "success" );
+                                                        JSONObject jsonObject2 = new JSONObject( response );
+                                                        boolean success2 = jsonObject2.getBoolean( "success" );
 
-                                                        if (success) {
+                                                        if (success2) {
 
                                                             Intent intent = new Intent(MealOrderActivity.this, Fragment_mealDetail.class);
                                                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -362,7 +364,7 @@ public class MealOrderActivity extends AppCompatActivity {
                                             };
 
                                             //서버로 Volley를 이용해서 요청
-                                            RemainRequest remainRequest = new RemainRequest( re_num, count, responseListener2);
+                                            RemainRequest remainRequest = new RemainRequest( Integer.toString(f_num), responseListener2);
                                             RequestQueue queue2 = Volley.newRequestQueue( MealOrderActivity.this );
                                             queue2.add( remainRequest );
 

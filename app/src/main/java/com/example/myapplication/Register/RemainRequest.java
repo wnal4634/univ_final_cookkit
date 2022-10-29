@@ -14,12 +14,11 @@ public class RemainRequest extends StringRequest {
     private Map<String, String> map;
     //private Map<String, String>parameters;
 
-    public RemainRequest(String remain_num, String count, Response.Listener<String> listener) {
+    public RemainRequest(String remain_num, Response.Listener<String> listener) {
         super(Method.POST, URL, listener, null);
 
         map = new HashMap<>();
         map.put("remain_num", remain_num);
-        map.put("count", count);
     }
 
     @Override
