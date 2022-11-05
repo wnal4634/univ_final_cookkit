@@ -28,11 +28,15 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.myapplication.Register.RecipewriteRequest;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -155,6 +159,42 @@ public class RecipewriteActivity extends AppCompatActivity {
                     dialog.show();
                     return;
                 }
+
+                String serverUrl = "http://admin0000.dothome.co.kr/copy_warning.php";
+                JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST, serverUrl, null, new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        try {
+
+                            for (int i = 0; i < response.length(); i++) {
+                                JSONObject jsonObject = response.getJSONObject(i);
+
+                                String t1 = jsonObject.getString("recipe_text1");
+                                String t2 = jsonObject.getString("recipe_text2");
+                                String t3 = jsonObject.getString("recipe_text3");
+                                String t4 = jsonObject.getString("recipe_text4");
+                                String t5 = jsonObject.getString("recipe_text5");
+                                String t6 = jsonObject.getString("recipe_text6");
+
+                                if(t1.equals(text1) || t2.equals(text2) || t3.equals(text3) || t4.equals(text4)
+                                        || t5.equals(text5) || t6.equals(text6)) {
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(RecipewriteActivity.this);
+                                    dialog = builder.setMessage("같은 글이 있어 카피가 의심될 수 있습니다. 추후 확인 및 수정 부탁드립니다.").setNegativeButton("확인", null).create();
+                                    dialog.show();
+                                    return;
+                                }
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                    }
+                });
+                RequestQueue requestQueue = Volley.newRequestQueue(RecipewriteActivity.this);
+                requestQueue.add(jsonArrayRequest);
 
                 progressDialog = ProgressDialog.show(RecipewriteActivity.this, "", "업로드 중입니다.\n시간이 걸리는 작업이니 잠시만 기다려주세요.", true);
 
