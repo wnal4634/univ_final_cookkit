@@ -9,6 +9,14 @@
     tools:layout_editor_absoluteX="10dp"
     tools:layout_editor_absoluteY="-6dp">
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_baseline_how_to_vote_24"
+        app:layout_constraintBottom_toTopOf="@+id/view21"
+        app:layout_constraintEnd_toStartOf="@+id/vote_ck"
+        app:layout_constraintTop_toTopOf="parent" />
     <Button
         android:id="@+id/vote_ck"
         android:layout_width="wrap_content"
@@ -17,8 +25,9 @@
         android:gravity="right"
         android:stateListAnimator="@null"
         android:text="투표하러 가기  >"
-        android:textColor="#000000"
-        android:textSize="14dp"
+        android:textColor="#A5B8A0"
+        android:textSize="16dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/view21"
         android:layout_marginEnd="10dp"
         app:layout_constraintEnd_toEndOf="parent"
