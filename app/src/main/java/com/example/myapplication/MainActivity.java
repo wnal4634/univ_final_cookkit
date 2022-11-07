@@ -1,25 +1,17 @@
 package com.example.myapplication;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import android.os.Bundle;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.TextView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.Stack;
 
@@ -28,27 +20,18 @@ public class MainActivity extends AppCompatActivity {
     final static int FRAGMENT_SECOND = 1002;
     final static int FRAGMENT_THIRD = 1003;
     final static int FRAGMENT_FOURTH = 1004;
-
     public static Fragment_index fragment_index;
     public static Fragment_search fragment_search;
     public static Fragment_mypage fragment_mypage;
     public static Fragment_mealDetail fragment_mealDetail;
     public static FragmentManager manager;
-
     public static Stack<Fragment> fragmentStack;
-
     FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        Intent intent = getIntent();
-        String id = intent.getStringExtra("member_id");
-        String phone = intent.getStringExtra("phone_num");
-        String post = intent.getStringExtra("post_num");
-        String ad = intent.getStringExtra("member_ad");
 
         fragment_index = new Fragment_index();
         fragment_search = new Fragment_search();
@@ -59,21 +42,14 @@ public class MainActivity extends AppCompatActivity {
         fragmentStack.push(fragment_index);
         manager = getSupportFragmentManager();
         manager.beginTransaction().replace(R.id.container, fragment_index).commit();
-        fab = (FloatingActionButton)findViewById(R.id.fab);
-
-        Bundle bundle = new Bundle();
-        bundle.putString("member_id", id);
-        bundle.putString("phone_num", phone);
-        bundle.putString("post_num", post);
-        bundle.putString("member_ad", ad);
-        fragment_mypage.setArguments(bundle);
+        fab = findViewById(R.id.fab);
 
         getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment_index).commit();
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_menu);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
+                switch (item.getItemId()) {  //하단메뉴 클릭 시 프래그먼트 변경
                     case R.id.item1:
                         getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment_index).commit();
                         fab.show();
@@ -100,12 +76,11 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this,RecipewriteActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                intent.putExtra("member_id", (String) id);
                 startActivity(intent);
             }
         });
-
     }
+
     public static void changeFragment(int index) {
         switch (index) {
             case FRAGMENT_FIRST:
@@ -131,4 +106,5 @@ public class MainActivity extends AppCompatActivity {
         } else {
             super.onBackPressed();
         }
-    }}
+    }
+}

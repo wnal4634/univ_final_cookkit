@@ -25,7 +25,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class Fragment_mealDetail extends Fragment {
+public class Fragment_mealDetail extends Fragment {  //밀키트 상세 설명 프래그먼트
     private View view;
     ImageView meal_detail_img;
     TextView meal_name, meal_explain, meal_sale_date;
@@ -42,28 +42,27 @@ public class Fragment_mealDetail extends Fragment {
         meal_explain = view.findViewById(R.id.meal_explain);
         meal_sale_date = view.findViewById(R.id.meal_sale_date);
 
-        Button btn_ordergo = (Button) view.findViewById(R.id.ordergo);
-        btn_ordergo.setOnClickListener(new View.OnClickListener() {
+        Button btn_ordergo = view.findViewById(R.id.ordergo);
+        btn_ordergo.setOnClickListener(new View.OnClickListener() {  //버튼 클릭 시 구매페이지로 이동
             @Override
             public void onClick(View view) {
-                if (meal_sale_date.getText().equals("밀키트 판매기간이 아닙니다")) {
+                if (meal_sale_date.getText().equals("밀키트 판매기간이 아닙니다")) {  //판매기간이 아니라면 다이얼로그 띄움
                     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                     dialog = builder.setMessage("밀키트 판매기간이 아닙니다.\n다음 밀키트를 기다려주세요.").setNegativeButton("확인", null).create();
                     dialog.show();
                     return;
-                } else {
+                } else {  //판매기간이면 그냥 페이지 이동
                     Intent intent = new Intent(getActivity(), MealOrderActivity.class);
                     startActivity(intent);
                 }
             }
         });
 
-        String serverUrl = "http://admin0000.dothome.co.kr/meal_ex.php";
+        String serverUrl = "http://admin0000.dothome.co.kr/meal_ex.php";  //DB에 저장된 밀키트 설명 불러오기
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST, serverUrl, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
                 try {
-
                     for(int i=0; i< response.length(); i++){
                         JSONObject jsonObject= response.getJSONObject(i);
 
@@ -88,15 +87,14 @@ public class Fragment_mealDetail extends Fragment {
                 Toast.makeText(getActivity(), "ERROR", Toast.LENGTH_SHORT).show();
             }
         });
-
+        //서버로 Volley를 이용해서 요청
         RequestQueue requestQueue= Volley.newRequestQueue(getActivity());
         requestQueue.add(jsonArrayRequest);
-
         return view;
     }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         }
-
 }

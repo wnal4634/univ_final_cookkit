@@ -104,7 +104,6 @@
                     android:textColor="#000000"
                     android:textSize="16dp" />
 
-
                 <EditText
                     android:id="@+id/join_password"
                     android:layout_width="match_parent"
@@ -118,7 +117,6 @@
                     android:textSize="14dp"
                     app:layout_constraintStart_toStartOf="parent" />
 
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -127,7 +125,6 @@
                     android:text="비밀번호 확인"
                     android:textColor="#000000"
                     android:textSize="16dp" />
-
 
                 <EditText
                     android:id="@+id/join_pwck"
@@ -142,7 +139,6 @@
                     android:textSize="14dp"
                     app:layout_constraintStart_toStartOf="parent" />
 
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -151,7 +147,6 @@
                     android:text="이름"
                     android:textColor="#000000"
                     android:textSize="16dp" />
-
 
                 <EditText
                     android:id="@+id/join_name"
@@ -166,7 +161,6 @@
                     android:textSize="14dp"
                     app:layout_constraintStart_toStartOf="parent" />
 
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -175,7 +169,6 @@
                     android:text="이메일"
                     android:textColor="#000000"
                     android:textSize="16dp" />
-
 
                 <EditText
                     android:id="@+id/join_email"
@@ -257,12 +250,10 @@
                     </GridLayout>
                 </LinearLayout>
 
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
-
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/join_ad"
@@ -390,7 +381,6 @@
                             android:rotationY="180" />
                     </GridLayout>
                 </LinearLayout>
-
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

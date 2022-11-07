@@ -2,7 +2,7 @@ package com.example.myapplication;
 
 import android.graphics.Bitmap;
 
-public class ManageData {
+public class ManageData {  //레시피 관리 페이지에서 사용하는 데이터(DB에서 불러온 데이터 저장)
     public String title;
     public String category;
     public Bitmap image;
@@ -16,7 +16,7 @@ public class ManageData {
         this.member_id = member_id;
         this.recipe_id = recipe_id;
     }
-    //
+
     public String getTitle(){
         return title;
     }
@@ -30,7 +30,7 @@ public class ManageData {
     public void setCategory(String category){
         this.category = category;
     }
-    //
+
     public Bitmap getImage() {
         return image;
     }

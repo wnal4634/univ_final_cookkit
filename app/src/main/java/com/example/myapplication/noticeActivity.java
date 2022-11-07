@@ -1,6 +1,5 @@
 package com.example.myapplication;
 
-
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,8 +23,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class noticeActivity extends AppCompatActivity {
-
+public class noticeActivity extends AppCompatActivity {  //공지사항 페이지
     RecyclerVierAdapter adapter;
     ArrayList<ItemDTO> itemDTOS = new ArrayList<>();
 
@@ -42,8 +40,8 @@ public class noticeActivity extends AppCompatActivity {
         adapter = new RecyclerVierAdapter();
         recyclerView.setAdapter(adapter);
 
-        ImageButton btn_back_mypage = (ImageButton) findViewById(R.id.back_mypage);
-        btn_back_mypage.setOnClickListener(new View.OnClickListener() {
+        ImageButton btn_back_mypage = findViewById(R.id.back_mypage);
+        btn_back_mypage.setOnClickListener(new View.OnClickListener() { //뒤로가기
             @Override
             public void onClick(View view) {
                 finish();
@@ -65,15 +63,13 @@ public class noticeActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        String serverUrl = "http://admin0000.dothome.co.kr/notice_list.php";
+        String serverUrl = "http://admin0000.dothome.co.kr/notice_list.php";  //공지사항 불러오기
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST, serverUrl, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
                 itemDTOS.clear();
                 adapter.notifyDataSetChanged();
-
                 try {
-
                     for(int i=0; i< response.length(); i++){
                         JSONObject jsonObject= response.getJSONObject(i);
 
@@ -94,7 +90,7 @@ public class noticeActivity extends AppCompatActivity {
                 Toast.makeText(noticeActivity.this, "ERROR", Toast.LENGTH_SHORT).show();
             }
         });
-
+        //서버로 Volley를 이용해서 요청
         RequestQueue requestQueue= Volley.newRequestQueue(this);
         requestQueue.add(jsonArrayRequest);
     }

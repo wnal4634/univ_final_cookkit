@@ -1,7 +1,6 @@
 package com.example.myapplication;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,8 +16,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 public class VoteAdapter extends RecyclerView.Adapter<VoteAdapter.VoteViewHolder> {
-    private Context context;
-    private Intent intent;
     private ArrayList<voteItem> mDataset;
     int selectedPosition = -1;
     ItemClickListener itemClickListener;
@@ -30,15 +27,14 @@ public class VoteAdapter extends RecyclerView.Adapter<VoteAdapter.VoteViewHolder
 
         public VoteViewHolder(View view) {
             super(view);
-            title = (TextView) view.findViewById(R.id.meal_title);
-            category = (TextView) view.findViewById(R.id.category);
+            title = view.findViewById(R.id.meal_title);
+            category = view.findViewById(R.id.category);
             m_id = view.findViewById(R.id.writer);
-            image = (ImageView) view.findViewById(R.id.recipeView);
+            image = view.findViewById(R.id.recipeView);
             radioButton = view.findViewById(R.id.radio);
-
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v) {
+                public void onClick(View v) {  //클릭 시 해당 레시피로 이동
                     int pos = getAbsoluteAdapterPosition();
                     voteItem voteItem  = mDataset.get(pos);
                     Intent intent = new Intent(v.getContext(), RecipeexplanationActivity.class);
@@ -46,7 +42,6 @@ public class VoteAdapter extends RecyclerView.Adapter<VoteAdapter.VoteViewHolder
                     v.getContext().startActivity(intent);
                 }
             });
-
         }
     }
 
@@ -65,6 +60,7 @@ public class VoteAdapter extends RecyclerView.Adapter<VoteAdapter.VoteViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull VoteAdapter.VoteViewHolder holder, @SuppressLint("RecyclerView") int position) {
+        //리사이클러뷰로 타이틀 및 카테고리 등 보여줌
         holder.title.setText(mDataset.get(position).title);
         holder.category.setText(mDataset.get(position).category);
         holder.m_id.setText(mDataset.get(position).member_id);
@@ -80,7 +76,6 @@ public class VoteAdapter extends RecyclerView.Adapter<VoteAdapter.VoteViewHolder
                     selectedPosition = holder.getAbsoluteAdapterPosition();
                     //클릭 이벤트
                     itemClickListener.onclick(holder.radioButton.getText().toString(),position);
-//                    Toast.makeText(buttonView.getContext(), holder.title.getText().toString(), Toast.LENGTH_SHORT).show();
                 }
             }
         });

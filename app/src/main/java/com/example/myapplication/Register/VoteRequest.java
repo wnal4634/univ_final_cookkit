@@ -8,7 +8,7 @@ import com.android.volley.toolbox.StringRequest;
 import java.util.HashMap;
 import java.util.Map;
 
-public class VoteRequest extends StringRequest {
+public class VoteRequest extends StringRequest {  //투표 php와 연동
     final static private String URL = "http://admin0000.dothome.co.kr/vote_upload.php";
     private Map<String, String> map;
     //private Map<String, String>parameters;

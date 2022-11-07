@@ -9,8 +9,7 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
-public class MyDatabaseHelper extends SQLiteOpenHelper
-{
+public class MyDatabaseHelper extends SQLiteOpenHelper {  //좋아요 버튼 저장 위해 로컬DB 사용
     private Context context;
     private static final String DATABASE_NAME = "like_db.db";
     private static final int DATABASE_VERSION = 1;
@@ -18,15 +17,13 @@ public class MyDatabaseHelper extends SQLiteOpenHelper
     private static final String COLUMN_ID = "id";
     private static final String COLUMN_RID = "r_id";
 
-    public MyDatabaseHelper(@Nullable Context context)
-    {
+    public MyDatabaseHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         this.context = context;
     }
 
     @Override
-    public void onCreate(SQLiteDatabase db)
-    {
+    public void onCreate(SQLiteDatabase db) {
         String query = "CREATE TABLE " + TABLE_NAME
                 + " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + COLUMN_RID + " TEXT); ";
@@ -34,8 +31,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion)
-    {
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         onCreate(db);
     }

@@ -28,7 +28,7 @@ public class MealOrderStatusAdapter extends RecyclerView.Adapter<MealOrderStatus
             this.kittitle = view.findViewById(R.id.mealkit_title);
             this.price = view.findViewById(R.id.mealkit_price);
             this.set = view.findViewById(R.id.mealkit_set);
-            this.image = (ImageView) view.findViewById(R.id.recipeView);
+            this.image = view.findViewById(R.id.recipeView);
             this.meal_date = view.findViewById(R.id.meal_date);
         }
     }
@@ -42,11 +42,11 @@ public class MealOrderStatusAdapter extends RecyclerView.Adapter<MealOrderStatus
 
     @Override
     public void onBindViewHolder(@NonNull MealOrderStatusAdapter.MealOrderStatusHolder mealOrderStatusHolder, int position){
+        //리사이클러뷰로 타이틀 및 가격 등 보여줌
         mealOrderStatusHolder.kittitle.setText(oDataset.get(position).title);
         mealOrderStatusHolder.price.setText(oDataset.get(position).price);
         mealOrderStatusHolder.set.setText(oDataset.get(position).count);
         mealOrderStatusHolder.meal_date.setText(oDataset.get(position).date);
-//        mealOrderStatusHolder.image.setImageBitmap(oDataset.get(position).image);
         String imageURL = oDataset.get(position).getImage();
         Glide.with(mealOrderStatusHolder.image.getContext()).load(imageURL).into(mealOrderStatusHolder.image);
     }

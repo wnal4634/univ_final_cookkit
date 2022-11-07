@@ -1,6 +1,6 @@
 package com.example.myapplication;
 
-public class MealOrderData {
+public class MealOrderData {  //밀키트 주문 시 사용하는 데이터(DB에서 불러온 데이터 저장)
     public String count;
     public String price;
     public String title;

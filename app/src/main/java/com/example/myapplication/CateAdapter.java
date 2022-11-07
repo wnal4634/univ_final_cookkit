@@ -31,24 +31,24 @@ public class CateAdapter extends RecyclerView.Adapter<CateAdapter.CateViewHolder
 
         public CateViewHolder(View view){
             super(view);
-            title = (TextView) view.findViewById(R.id.meal_title);
-            category = (TextView) view.findViewById(R.id.category);
-            image = (ImageView) view.findViewById(R.id.recipeView);
-            click = (TextView) view.findViewById(R.id.click);
+            title = view.findViewById(R.id.meal_title);
+            category = view.findViewById(R.id.category);
+            image = view.findViewById(R.id.recipeView);
+            click = view.findViewById(R.id.click);
             click.setText(count+"");
 
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v) {
+                public void onClick(View v) {  //클릭하면 해당 레시피로 이동
                     int pos = getAbsoluteAdapterPosition();
                     MainData mainData = mDataset.get(pos);
                     Intent intent = new Intent(v.getContext(), RecipeexplanationActivity.class);
                     intent.putExtra("r_id", mainData.getRecipe_id());
                     v.getContext().startActivity(intent);
                     Response.Listener<String> responseListener = new Response.Listener<String>() {
+                        //이동하며 조회수 +1
                         @Override
                         public void onResponse(String response) {
-
                             try {
                                 JSONObject jsonObject = new JSONObject( response );
                                 boolean success = jsonObject.getBoolean( "success" );
@@ -64,7 +64,6 @@ public class CateAdapter extends RecyclerView.Adapter<CateAdapter.CateViewHolder
                             }
                         }
                     };
-
                     //서버로 Volley를 이용해서 요청
                     ClickRequest clickRequest = new ClickRequest(String.valueOf(mainData.recipe_id), click_count, responseListener);
                     RequestQueue queue = Volley.newRequestQueue(v.getContext());
@@ -84,6 +83,7 @@ public class CateAdapter extends RecyclerView.Adapter<CateAdapter.CateViewHolder
     }
     @Override
     public void onBindViewHolder(@NonNull CateAdapter.CateViewHolder holder, int position) {
+        //리사이클러뷰로 제목 및 카테고리 등을 보여줌
         holder.title.setText(mDataset.get(position).title);
         holder.category.setText(mDataset.get(position).category);
         holder.image.setImageBitmap(mDataset.get(position).getImage());

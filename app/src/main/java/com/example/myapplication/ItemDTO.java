@@ -1,10 +1,9 @@
 package com.example.myapplication;
 
-public class ItemDTO {
+public class ItemDTO {  //공지사항 데이터(DB에서 불러온 데이터 저장)
     String title;
     String date;
     String content;
-
 
     public ItemDTO(String title, String date, String content) {
         this.title = title;
@@ -45,5 +44,4 @@ public class ItemDTO {
     public void setContent(String content) {
         this.content = content;
     }
-
 }

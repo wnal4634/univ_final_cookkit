@@ -34,7 +34,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class Fragment_index extends Fragment {
+public class Fragment_index extends Fragment {  //메인페이지 프래그먼트
     private View view;
     private RecyclerView recyclerView;
     private ArrayList<MainData> list = new ArrayList<>();
@@ -53,6 +53,7 @@ public class Fragment_index extends Fragment {
         vote_ck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //DB값 불러와 투표기간인지 아닌지 확인
                 String serverUrl7 = "http://admin0000.dothome.co.kr/vote_recipe_count.php";
                 JsonArrayRequest jsonArrayRequest7 = new JsonArrayRequest(Request.Method.POST, serverUrl7, null, new Response.Listener<JSONArray>() {
                     @Override
@@ -61,7 +62,7 @@ public class Fragment_index extends Fragment {
                             for (int i = 0; i < response.length(); i++) {
                                 JSONObject jsonObject = response.getJSONObject(i);
                                 String vote_count = jsonObject.getString("num");
-                                if (vote_count.equals("0")) {
+                                if (vote_count.equals("0")) {  //투표기간이 아니라면 다이얼로그 띄움
                                     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                                     dialog = builder.setMessage("투표기간이 아닙니다.").setNegativeButton("확인", null).create();
                                     dialog.show();
@@ -85,7 +86,7 @@ public class Fragment_index extends Fragment {
             }
         });
 
-        recyclerView = (RecyclerView) view.findViewById(R.id.recyclerview);
+        recyclerView = view.findViewById(R.id.recyclerview);
         recyclerView.setHasFixedSize(true);
         mAdapter = new MainAdapter(list);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
@@ -96,18 +97,16 @@ public class Fragment_index extends Fragment {
         mysrl =  view.findViewById(R.id.swipe_layout);
         mysrl.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
-            public void onRefresh() {
+            public void onRefresh() {  //메인페이지 리사이클러뷰 새로고침
                 indexSpinner = (Spinner) view.findViewById(R.id.reco);
                 indexSpinner.setSelection(0);
-                String serverUrl = "http://admin0000.dothome.co.kr/index.php";
+                String serverUrl = "http://admin0000.dothome.co.kr/index.php";  //DB에 저장된 레시피 불러오기
                 JsonArrayRequest jsonArrayRequest3 = new JsonArrayRequest(Request.Method.POST, serverUrl, null, new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
                         list.clear();
                         mAdapter.notifyDataSetChanged();
-
                         try {
-
                             for (int i = 0; i < response.length(); i++) {
                                 JSONObject jsonObject = response.getJSONObject(i);
 
@@ -131,45 +130,42 @@ public class Fragment_index extends Fragment {
                     public void onErrorResponse(VolleyError error) {
                     }
                 });
+                //서버로 Volley를 이용해서 요청
                 RequestQueue requestQueue3 = Volley.newRequestQueue(getActivity());
                 requestQueue3.add(jsonArrayRequest3);
-                mysrl.setRefreshing(false);
+                mysrl.setRefreshing(false);  //새로고침 멈추기(없으면 무한로딩)
             }
         });
-
        return view;
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
     public void onStart() {
         super.onStart();
         String[] values1 = {"최신순", "조회수순"};
-        indexSpinner = (Spinner) view.findViewById(R.id.reco);
+        indexSpinner = view.findViewById(R.id.reco);
         ArrayAdapter<String> adapterSpinner = new ArrayAdapter(this.getActivity(), android.R.layout.simple_spinner_item);
         adapterSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        indexSpinner.setPrompt("최신순");
+        indexSpinner.setPrompt("최신순");  //스피너 기본값은 최신순
         indexSpinner.setAdapter(adapterSpinner);
         adapterSpinner.addAll(values1);
 
         indexSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                if (indexSpinner.getSelectedItem().toString() == "조회수순") {
-                    String serverUrl4 = "http://admin0000.dothome.co.kr/index_highview.php";
+                if (indexSpinner.getSelectedItem().toString() == "조회수순") {  //조회수순을 클릭하면 조회수순으로 정렬
+                    String serverUrl4 = "http://admin0000.dothome.co.kr/index_highview.php";  //조회수순을 불러오는 php 연동
                     JsonArrayRequest jsonArrayRequest4 = new JsonArrayRequest(Request.Method.POST, serverUrl4, null, new Response.Listener<JSONArray>() {
                         @Override
                         public void onResponse(JSONArray response) {
                             list.clear();
                             mAdapter.notifyDataSetChanged();
-
                             try {
-
                                 for (int i = 0; i < response.length(); i++) {
                                     JSONObject jsonObject = response.getJSONObject(i);
 
@@ -193,10 +189,11 @@ public class Fragment_index extends Fragment {
                         public void onErrorResponse(VolleyError error) {
                         }
                     });
+                    //서버로 Volley를 이용해서 요청
                     RequestQueue requestQueue4 = Volley.newRequestQueue(getActivity());
                     requestQueue4.add(jsonArrayRequest4);
                 } else {
-                    String serverUrl5 = "http://admin0000.dothome.co.kr/index.php";
+                    String serverUrl5 = "http://admin0000.dothome.co.kr/index.php";  //최신순을 클릭하면 기본값로 정렬
                     JsonArrayRequest jsonArrayRequest5 = new JsonArrayRequest(Request.Method.POST, serverUrl5, null, new Response.Listener<JSONArray>() {
                         @Override
                         public void onResponse(JSONArray response) {
@@ -228,26 +225,23 @@ public class Fragment_index extends Fragment {
                         public void onErrorResponse(VolleyError error) {
                         }
                     });
+                    //서버로 Volley를 이용해서 요청
                     RequestQueue requestQueue5 = Volley.newRequestQueue(getActivity());
                     requestQueue5.add(jsonArrayRequest5);
                 }
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-
             }
         });
 
-        String serverUrl = "http://admin0000.dothome.co.kr/index.php";
+        String serverUrl = "http://admin0000.dothome.co.kr/index.php";  //시작할 때마다 기본값으로 정렬
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST, serverUrl, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
                 list.clear();
                 mAdapter.notifyDataSetChanged();
-
                 try {
-
                     for (int i = 0; i < response.length(); i++) {
                         JSONObject jsonObject = response.getJSONObject(i);
 
@@ -271,14 +265,15 @@ public class Fragment_index extends Fragment {
             public void onErrorResponse(VolleyError error) {
             }
         });
+        //서버로 Volley를 이용해서 요청
         RequestQueue requestQueue = Volley.newRequestQueue(this.getActivity());
         requestQueue.add(jsonArrayRequest);
 
         String serverUrl2 = "http://admin0000.dothome.co.kr/del_overlab.php";
+        //레시피 작성 시 이미지가 들어가면 DB에 두번씩 저장되는 문제가 있어 사진을 기준으로 두번 저장된 값 삭제(이에 대한 해결방안은 찾을 수 없어 이렇게 진행함)
         JsonArrayRequest jsonArrayRequest2 = new JsonArrayRequest(Request.Method.POST, serverUrl2, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
-
                 try {
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -289,11 +284,12 @@ public class Fragment_index extends Fragment {
             public void onErrorResponse(VolleyError error) {
             }
         });
+        //서버로 Volley를 이용해서 요청
         RequestQueue requestQueue2 = Volley.newRequestQueue(this.getActivity());
         requestQueue2.add(jsonArrayRequest2);
     }
 
-    public static Bitmap StringToBitmap(String encodedString) {
+    public static Bitmap StringToBitmap(String encodedString) {  //String으로 저장된 이미지를 비트맵으로 변환
         try {
             byte[] encodeByte = Base64.decode(encodedString, Base64.DEFAULT);
             Bitmap bitmap = BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);

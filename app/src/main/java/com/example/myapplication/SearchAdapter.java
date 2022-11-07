@@ -31,15 +31,15 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
 
         public SearchViewHolder(View view){
             super(view);
-            title = (TextView) view.findViewById(R.id.meal_title);
-            category = (TextView) view.findViewById(R.id.category);
-            image = (ImageView) view.findViewById(R.id.recipeView);
-            click = (TextView) view.findViewById(R.id.click);
+            title = view.findViewById(R.id.meal_title);
+            category = view.findViewById(R.id.category);
+            image = view.findViewById(R.id.recipeView);
+            click = view.findViewById(R.id.click);
             click.setText(count+"");
 
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v) {
+                public void onClick(View v) {  //클릭 시 해당 레시피로 이동
                     int pos = getAbsoluteAdapterPosition();
                     MainData mainData = mDataset.get(pos);
                     Intent intent = new Intent(v.getContext(), RecipeexplanationActivity.class);
@@ -48,23 +48,19 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
                     Response.Listener<String> responseListener = new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
-
                             try {
                                 JSONObject jsonObject = new JSONObject( response );
                                 boolean success = jsonObject.getBoolean( "success" );
-
                                 if (success) {
                                     click_count = count;
                                 } else {
                                     return;
                                 }
-
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
                         }
                     };
-
                     //서버로 Volley를 이용해서 요청
                     ClickRequest clickRequest = new ClickRequest(String.valueOf(mainData.recipe_id), click_count, responseListener);
                     RequestQueue queue = Volley.newRequestQueue(v.getContext());
@@ -73,6 +69,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
             });
         }
     }
+
     public SearchAdapter(ArrayList<MainData> mainData){this.mDataset = mainData;}
 
     @NonNull
@@ -84,6 +81,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
     }
     @Override
     public void onBindViewHolder(@NonNull SearchAdapter.SearchViewHolder holder, int position) {
+        //리사이클러뷰로 타이틀 및 카테고리 등을 보여줌
         holder.title.setText(mDataset.get(position).title);
         holder.category.setText(mDataset.get(position).category);
         holder.image.setImageBitmap(mDataset.get(position).getImage());

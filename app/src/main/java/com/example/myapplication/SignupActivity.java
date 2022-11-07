@@ -27,7 +27,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SignupActivity extends AppCompatActivity {
+public class SignupActivity extends AppCompatActivity {  //회원가입 페이지
 
     private static final int SEARCH_ADDRESS_ACTIVITY = 10000;
     private EditText join_id, join_password, join_name, join_pwck, join_email, join_phone, join_post,join_ad;
@@ -51,19 +51,19 @@ public class SignupActivity extends AppCompatActivity {
         join_ad = findViewById(R.id.join_ad);
         CheckBox checkBox = findViewById(R.id.checkBox);
 
-        ImageButton btn_back_login = (ImageButton) findViewById(R.id.back_login);
+        ImageButton btn_back_login = findViewById(R.id.back_login);
         btn_back_login.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view) {  //뒤로가기
                 Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(intent);
                 finish();
             }
         });
+
         //아이디 중복 체크
         check_button = findViewById(R.id.check_button);
         check_button.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View view) {
                 String UserId = join_id.getText().toString();
@@ -71,7 +71,7 @@ public class SignupActivity extends AppCompatActivity {
                     return; //검증 완료
                 }
 
-                if (UserId.equals("")) {
+                if (UserId.equals("")) {  //아이디 입력이 안 된 경우
                     AlertDialog.Builder builder = new AlertDialog.Builder(SignupActivity.this);
                     dialog = builder.setMessage("아이디를 입력하세요.").setPositiveButton("확인", null).create();
                     dialog.show();
@@ -82,10 +82,8 @@ public class SignupActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         try {
-
                             JSONObject jsonResponse = new JSONObject(response);
                             boolean success = jsonResponse.getBoolean("success");
-
                             if (success) {
                                 AlertDialog.Builder builder = new AlertDialog.Builder(SignupActivity.this);
                                 dialog = builder.setMessage("사용할 수 있는 아이디입니다.").setPositiveButton("확인", null).create();
@@ -103,11 +101,13 @@ public class SignupActivity extends AppCompatActivity {
                         }
                     }
                 };
+                //서버로 Volley를 이용해서 요청
                 ValidateRequest validateRequest = new ValidateRequest(UserId, responseListener);
                 RequestQueue queue = Volley.newRequestQueue(SignupActivity.this);
                 queue.add(validateRequest);
             }
         });
+
         //회원가입 버튼 클릭 시 수행
         join_button = findViewById( R.id.join_button );
         join_button.setOnClickListener( new View.OnClickListener() {
@@ -130,7 +130,7 @@ public class SignupActivity extends AppCompatActivity {
                     return;
                 }
 
-                //한 칸이라도 입력 안했을 경우
+                //한 칸이라도 입력 안 했을 경우
                 if (UserId.equals("") || UserPwd.equals("") || UserName.equals("") || UserEmail.equals("") || UserPhone.equals("") ||
                 UserPost.equals("") || UserAd.equals("")) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(SignupActivity.this);
@@ -140,22 +140,19 @@ public class SignupActivity extends AppCompatActivity {
                 }
 
                 if(checkBox.isChecked()){
-                } else {
+                } else {  //동의사항 체크 안 된 경우
                     AlertDialog.Builder builder = new AlertDialog.Builder(SignupActivity.this);
                     dialog = builder.setMessage("동의사항을 체크해주세요.").setNegativeButton("확인", null).create();
                     dialog.show();
                     return;
                 }
 
-
                 Response.Listener<String> responseListener = new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-
                         try {
                             JSONObject jsonObject = new JSONObject( response );
                             boolean success = jsonObject.getBoolean( "success" );
-
                             //회원가입 성공시
                             if(UserPwd.equals(PassCk)) {
                                 if (success) {
@@ -163,9 +160,7 @@ public class SignupActivity extends AppCompatActivity {
                                     Toast.makeText(getApplicationContext(), String.format("가입을 환영합니다."), Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
                                     startActivity(intent);
-
-                                    //회원가입 실패시
-                                } else {
+                                } else {  //회원가입 실패
                                     Toast.makeText(getApplicationContext(), "회원가입에 실패하였습니다.", Toast.LENGTH_SHORT).show();
                                     return;
                                 }
@@ -175,14 +170,11 @@ public class SignupActivity extends AppCompatActivity {
                                 dialog.show();
                                 return;
                             }
-
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-
                     }
                 };
-
                 //서버로 Volley를 이용해서 요청
                 RegisterRequest registerRequest = new RegisterRequest( UserId, UserPwd, UserName, UserEmail, UserPhone,
                         UserPost, UserAd, responseListener);
@@ -191,31 +183,30 @@ public class SignupActivity extends AppCompatActivity {
             }
         });
 
-        ImageButton btn_go_consent1 = (ImageButton) findViewById(R.id.go_consent1);
+        ImageButton btn_go_consent1 = findViewById(R.id.go_consent1);
         btn_go_consent1.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view) {  //동의사항1 확인
                 Intent intent = new Intent(getApplicationContext(), Consent1Activity.class);
                 startActivity(intent);
             }
         });
 
-        ImageButton btn_go_consent2 = (ImageButton) findViewById(R.id.go_consent2);
+        ImageButton btn_go_consent2 = findViewById(R.id.go_consent2);
         btn_go_consent2.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view) {  //동의사항2 확인
                 Intent intent = new Intent(getApplicationContext(), Consent2Activity.class);
                 startActivity(intent);
             }
         });
 
-        ImageButton btn_go_consent3 = (ImageButton) findViewById(R.id.go_consent3);
-        btn_go_consent3.setOnClickListener(new View.OnClickListener() {
+        ImageButton btn_go_consent3 = findViewById(R.id.go_consent3);
+        btn_go_consent3.setOnClickListener(new View.OnClickListener() {  //동의사항3 확인
             final List<String> list = new ArrayList<String>();
             @Override
             public void onClick(View view) {
                 final String[] items = new String[]{"SMS 수신 동의 (선택)", "E-Mail 수신 동의 (선택)"};
-
                 AlertDialog.Builder dialog = new AlertDialog.Builder(SignupActivity.this);
                 dialog.setTitle("마케팅 활용 동의 및 광고 수신 동의")
                         .setMultiChoiceItems(
@@ -224,7 +215,6 @@ public class SignupActivity extends AppCompatActivity {
                                 , new DialogInterface.OnMultiChoiceClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int which, boolean isChecked) {
-
                                         if (isChecked) {
                                             Toast.makeText(SignupActivity.this
                                             , items[which]
@@ -234,8 +224,7 @@ public class SignupActivity extends AppCompatActivity {
                                             list.remove(items[which]);
                                         }
                                     }
-                                }
-                        )
+                                })
                         .setPositiveButton("확인", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int which) {
@@ -243,7 +232,6 @@ public class SignupActivity extends AppCompatActivity {
                                 for (String item : list) {
                                     selectedItem += item + ", ";
                                 }
-
                                 Toast.makeText(SignupActivity.this
                                 , selectedItem
                                 , Toast.LENGTH_SHORT).show();
@@ -252,7 +240,6 @@ public class SignupActivity extends AppCompatActivity {
                         .setNeutralButton("취소", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-
                             }
                         });
                 dialog.create();
@@ -260,23 +247,20 @@ public class SignupActivity extends AppCompatActivity {
             }
         });
 
-        join_post = (EditText) findViewById(R.id.join_post);
-        Button btn_search = (Button) findViewById(R.id.adress_detail);
-        if (btn_search != null) {
+        join_post = findViewById(R.id.join_post);
+        Button btn_search = findViewById(R.id.adress_detail);
+        if (btn_search != null) {  //주소검색 API 사용
             btn_search.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v)
-                {
+                public void onClick(View v) {
                     Intent i = new Intent(SignupActivity.this, AdressAPI.class);
                     startActivityForResult(i, SEARCH_ADDRESS_ACTIVITY);
                 }
             });
         }
-
     }
 
-    public void onActivityResult(int requestCode, int resultCode, Intent intent)
-    {
+    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
         switch (requestCode) {
             case SEARCH_ADDRESS_ACTIVITY:

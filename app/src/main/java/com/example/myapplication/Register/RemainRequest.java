@@ -7,7 +7,7 @@ import com.android.volley.toolbox.StringRequest;
 import java.util.HashMap;
 import java.util.Map;
 
-public class RemainRequest extends StringRequest {
+public class RemainRequest extends StringRequest {  //밀키트 남은 수량 변경 php와 연동
 
     //서버 URL 설정(php 파일 연동)
     final static private String URL = "http://admin0000.dothome.co.kr/meal_remain_num.php";

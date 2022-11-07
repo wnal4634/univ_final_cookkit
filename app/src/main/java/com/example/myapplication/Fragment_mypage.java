@@ -21,8 +21,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class Fragment_mypage extends Fragment {
-
+public class Fragment_mypage extends Fragment {  //마이페이지 프래그먼트
     private View view;
     private Button btn_noti, btn_like, btn_recipemanage, btn_mlorderstatus;
     private Button imgbtn_edit, btn_setting, btn_logout, vote_go;
@@ -33,16 +32,10 @@ public class Fragment_mypage extends Fragment {
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_mypage,container,false);
 
-        Bundle bundle = getArguments();
-        String member_id = bundle.getString("member_id");
-        String phone_num = bundle.getString("phone_num");
-        String post_num = bundle.getString("post_num");
-        String member_ad = bundle.getString("member_ad");
-
         vote_go = view.findViewById(R.id.vote_go);
         vote_go.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view) {  //DB값 불러와 투표기간인지 아닌지 확인
                 String serverUrl7 = "http://admin0000.dothome.co.kr/vote_recipe_count.php";
                 JsonArrayRequest jsonArrayRequest7 = new JsonArrayRequest(Request.Method.POST, serverUrl7, null, new Response.Listener<JSONArray>() {
                     @Override
@@ -51,7 +44,7 @@ public class Fragment_mypage extends Fragment {
                             for (int i = 0; i < response.length(); i++) {
                                 JSONObject jsonObject = response.getJSONObject(i);
                                 String vote_count = jsonObject.getString("num");
-                                if (vote_count.equals("0")) {
+                                if (vote_count.equals("0")) {  //투표기간이 아니면 다이얼로그 띄움
                                     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                                     dialog = builder.setMessage("투표기간이 아닙니다.").setNegativeButton("확인", null).create();
                                     dialog.show();
@@ -70,12 +63,14 @@ public class Fragment_mypage extends Fragment {
                     public void onErrorResponse(VolleyError error) {
                     }
                 });
+                //서버로 Volley를 이용해서 요청
                 RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
                 requestQueue.add(jsonArrayRequest7);
             }
         });
 
-        btn_noti = (Button) view.findViewById(R.id.button19);
+        //버튼 클릭 시 해당 페이지로 이동
+        btn_noti = view.findViewById(R.id.button19);
         btn_noti.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -84,7 +79,7 @@ public class Fragment_mypage extends Fragment {
                 startActivity(intent);
             }
         });
-        btn_like = (Button) view.findViewById(R.id.button15);
+        btn_like = view.findViewById(R.id.button15);
         btn_like.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -93,17 +88,16 @@ public class Fragment_mypage extends Fragment {
                 startActivity(intent);
             }
         });
-        btn_recipemanage = (Button) view.findViewById(R.id.button13);
+        btn_recipemanage = view.findViewById(R.id.button13);
         btn_recipemanage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), RecipeManageActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                intent.putExtra("member_id", (String) member_id);
                 startActivity(intent);
             }
         });
-        btn_mlorderstatus = (Button) view.findViewById(R.id.button14);
+        btn_mlorderstatus = view.findViewById(R.id.button14);
         btn_mlorderstatus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -112,20 +106,16 @@ public class Fragment_mypage extends Fragment {
                 startActivity(intent);
             }
         });
-        imgbtn_edit = (Button) view.findViewById(R.id.imageButton4);
+        imgbtn_edit = view.findViewById(R.id.imageButton4);
         imgbtn_edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), MemberInfoEditActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                intent.putExtra("member_id", (String) member_id);
-                intent.putExtra("phone_num", (String) phone_num);
-                intent.putExtra("post_num", (String) post_num);
-                intent.putExtra("member_ad", (String) member_ad);
                 startActivity(intent);
             }
         });
-        btn_setting = (Button) view.findViewById(R.id.button17);
+        btn_setting = view.findViewById(R.id.button17);
         btn_setting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -134,8 +124,7 @@ public class Fragment_mypage extends Fragment {
                 startActivity(intent);
             }
         });
-
-        btn_logout = (Button) view.findViewById(R.id.logout);
+        btn_logout = view.findViewById(R.id.logout);
         btn_logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -145,9 +134,6 @@ public class Fragment_mypage extends Fragment {
                 startActivity(intent);
             }
         });
-        // Inflate the layout for this fragment
         return view;
-
     }
-
 }

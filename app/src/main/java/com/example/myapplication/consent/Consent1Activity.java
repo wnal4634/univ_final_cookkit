@@ -6,8 +6,7 @@ import android.view.Window;
 
 import com.example.myapplication.R;
 
-public class Consent1Activity extends Activity {
-
+public class Consent1Activity extends Activity {  //동의약관 1번째(타이틀 없이)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

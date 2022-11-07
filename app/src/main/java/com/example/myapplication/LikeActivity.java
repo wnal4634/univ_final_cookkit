@@ -28,7 +28,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class LikeActivity extends AppCompatActivity {
+public class LikeActivity extends AppCompatActivity {  //좋아요한 레시피를 모아보는 페이지
     ArrayList<MainData> list = new ArrayList<>();
     RecyclerView recyclerView;
     LikeAdapter adapter;
@@ -41,7 +41,7 @@ public class LikeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_like);
 
         ImageButton btn_back_mypage = (ImageButton) findViewById(R.id.back_mypage);
-        btn_back_mypage.setOnClickListener(new View.OnClickListener() {
+        btn_back_mypage.setOnClickListener(new View.OnClickListener() {  //뒤로가기
             @Override
             public void onClick(View view) {
                 finish();
@@ -49,7 +49,6 @@ public class LikeActivity extends AppCompatActivity {
         });
 
         no_content = findViewById(R.id.no_content);
-
         recyclerView = findViewById(R.id.Like_recycler);
         recyclerView.setHasFixedSize(true);
         adapter = new LikeAdapter(list);
@@ -57,13 +56,12 @@ public class LikeActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
-
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        myDb = new MyDatabaseHelper(this);
+        myDb = new MyDatabaseHelper(this);  //로컬 데이터베이스
         myDb.getWritableDatabase();
 
         String serverUrl = "http://admin0000.dothome.co.kr/like_list.php";
@@ -72,9 +70,7 @@ public class LikeActivity extends AppCompatActivity {
             public void onResponse(JSONArray response) {
                 list.clear();
                 adapter.notifyDataSetChanged();
-
                 try {
-
                     for (int i = 0; i < response.length(); i++) {
                         JSONObject jsonObject = response.getJSONObject(i);
 
@@ -90,7 +86,7 @@ public class LikeActivity extends AppCompatActivity {
                         MainData mainData = new MainData(title, category,click, image_bit, r_id);
 
                         Cursor cursor = myDb.AllView();
-                        while (cursor.moveToNext()) {
+                        while (cursor.moveToNext()) {  //좋아요를 누른 기록이 있으면 띄움
                             String sql_rid = cursor.getString(1);
                             if(sql_rid.equals(String.valueOf(r_id)))
                                 adapter.addItem(mainData);
@@ -107,6 +103,7 @@ public class LikeActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
             }
         });
+        //서버로 Volley를 이용해서 요청
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(jsonArrayRequest);
     }
@@ -122,7 +119,7 @@ public class LikeActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public static Bitmap StringToBitmap(String encodedString) {
+    public static Bitmap StringToBitmap(String encodedString) {  //String으로 저잗된 이미지를 비트맵으로 변환
         try {
             byte[] encodeByte = Base64.decode(encodedString, Base64.DEFAULT);
             Bitmap bitmap = BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);

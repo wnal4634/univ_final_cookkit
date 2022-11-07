@@ -6,8 +6,7 @@ import android.view.Window;
 
 import com.example.myapplication.R;
 
-public class Consent2Activity extends Activity {
-
+public class Consent2Activity extends Activity {  //동의약관 2번째(타이틀 없이)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

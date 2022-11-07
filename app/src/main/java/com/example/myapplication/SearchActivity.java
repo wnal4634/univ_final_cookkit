@@ -26,27 +26,27 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class SearchActivity extends AppCompatActivity {
-    View view;
+public class SearchActivity extends AppCompatActivity {  //검색 결과 페이지
     RecyclerView recyclerView;
     ArrayList<MainData> list4 = new ArrayList<>();
     SearchAdapter saAdapter;
     TextView result;
     String result2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
-        //뒤로가기
-        ImageButton btn_back = (ImageButton) findViewById(R.id.back_btn);
-        btn_back.setOnClickListener(new View.OnClickListener() {
+
+        ImageButton btn_back = findViewById(R.id.back_btn);
+        btn_back.setOnClickListener(new View.OnClickListener() {  //뒤로가기
             @Override
             public void onClick(View view) {
                 finish();
             }
         });
 
-         result2 = getIntent().getStringExtra("result");
+        result2 = getIntent().getStringExtra("result");
         result = findViewById(R.id.result);
         result.setText(result2);
 
@@ -58,15 +58,13 @@ public class SearchActivity extends AppCompatActivity {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(saAdapter);
 
-        String serverUrl = "http://admin0000.dothome.co.kr/Search.php";
+        String serverUrl = "http://admin0000.dothome.co.kr/Search.php";  //겸색 결과에 해당하는 결과 불러옴
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST, serverUrl, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
                 list4.clear();
                 saAdapter.notifyDataSetChanged();
-
                 try {
-
                     for (int i = 0; i < response.length(); i++) {
                         JSONObject jsonObject = response.getJSONObject(i);
 
@@ -92,7 +90,7 @@ public class SearchActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
             }
         });
-
+        //서버로 Volley를 이용해서 요청
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(jsonArrayRequest);
     }
@@ -106,9 +104,7 @@ public class SearchActivity extends AppCompatActivity {
             public void onResponse(JSONArray response) {
                 list4.clear();
                 saAdapter.notifyDataSetChanged();
-
                 try {
-
                     for (int i = 0; i < response.length(); i++) {
                         JSONObject jsonObject = response.getJSONObject(i);
 
@@ -134,12 +130,13 @@ public class SearchActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
             }
         });
+        //서버로 Volley를 이용해서 요청
         RequestQueue requestQueue = Volley.newRequestQueue(SearchActivity.this);
         requestQueue.add(jsonArrayRequest);
     }
 
     public static Bitmap StringToBitmap(String encodedString) {
-        try {
+        try {  //String으로 저장된 이미지를 비트맵으로 변환
             byte[] encodeByte = Base64.decode(encodedString, Base64.DEFAULT);
             Bitmap bitmap = BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
             return bitmap;

@@ -26,8 +26,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class CategoryActivity extends AppCompatActivity {
-    View view;
+public class CategoryActivity extends AppCompatActivity {  //카테고리를 누르면 나오는 결과창
     RecyclerView recyclerView;
     ArrayList<MainData> list5 = new ArrayList<>();
     CateAdapter caAdapter;
@@ -38,7 +37,7 @@ public class CategoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category);
 
-        ImageButton btn_back = (ImageButton) findViewById(R.id.back_btn);
+        ImageButton btn_back = findViewById(R.id.back_btn);
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -46,11 +45,11 @@ public class CategoryActivity extends AppCompatActivity {
             }
         });
 
-         result2 = getIntent().getStringExtra("cate");
+        result2 = getIntent().getStringExtra("cate");  //클릭한 카테고리 받기
         result = findViewById(R.id.result);
         result.setText(result2);
 
-        recyclerView = findViewById(R.id.Cate_recycler);
+        recyclerView = findViewById(R.id.Cate_recycler);  //리사이클러뷰 사용
         recyclerView.setHasFixedSize(true);
         caAdapter = new CateAdapter(list5);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
@@ -62,15 +61,13 @@ public class CategoryActivity extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
-        String serverUrl = "http://admin0000.dothome.co.kr/Search.php";
+        String serverUrl = "http://admin0000.dothome.co.kr/Search.php";  //DB값 php와 연동해 불러오기
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST, serverUrl, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
                 list5.clear();
                 caAdapter.notifyDataSetChanged();
-
                 try {
-
                     for (int i = 0; i < response.length(); i++) {
                         JSONObject jsonObject = response.getJSONObject(i);
 
@@ -96,12 +93,12 @@ public class CategoryActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
             }
         });
+        //서버로 Volley를 이용해서 요청
         RequestQueue requestQueue = Volley.newRequestQueue(CategoryActivity.this);
         requestQueue.add(jsonArrayRequest);
-
     }
 
-    public static Bitmap StringToBitmap(String encodedString) {
+    public static Bitmap StringToBitmap(String encodedString) {  //String 형식인 이미지를 비트맵으로 변환
         try {
             byte[] encodeByte = Base64.decode(encodedString, Base64.DEFAULT);
             Bitmap bitmap = BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
@@ -111,5 +108,4 @@ public class CategoryActivity extends AppCompatActivity {
             return null;
         }
     }
-
 }

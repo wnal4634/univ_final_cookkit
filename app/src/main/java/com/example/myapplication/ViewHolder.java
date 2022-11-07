@@ -1,18 +1,15 @@
 package com.example.myapplication;
 
 import android.animation.ValueAnimator;
-import android.annotation.SuppressLint;
 import android.util.SparseBooleanArray;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class ViewHolder extends RecyclerView.ViewHolder {
-//공지사항 뷰홀더
+public class ViewHolder extends RecyclerView.ViewHolder {  //공지사항 뷰홀더
     TextView title;
     TextView date;
     TextView content;
@@ -23,13 +20,11 @@ public class ViewHolder extends RecyclerView.ViewHolder {
 
     public ViewHolder(@NonNull View itemView) {
         super(itemView);
-
         title = itemView.findViewById(R.id.noti_title);
         date = itemView.findViewById(R.id.noti_insert_date);
         content = itemView.findViewById(R.id.noti_content);
         linearLayout = itemView.findViewById(R.id.linearlayout);
         detailLayout = itemView.findViewById(R.id.detail_layout);
-
         linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -37,6 +32,7 @@ public class ViewHolder extends RecyclerView.ViewHolder {
             }
         });
     }
+
     public void onBind(ItemDTO data, int position, SparseBooleanArray selectedItems){
         title.setText(data.getTitle());
         date.setText(data.getDate());

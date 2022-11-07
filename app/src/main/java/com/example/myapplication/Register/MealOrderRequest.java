@@ -7,7 +7,7 @@ import com.android.volley.toolbox.StringRequest;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MealOrderRequest  extends StringRequest {
+public class MealOrderRequest  extends StringRequest { //레시피 주문 php와 연동
 
     //서버 URL 설정(php 파일 연동)
     final static private String URL = "http://admin0000.dothome.co.kr/meal_order.php";

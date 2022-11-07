@@ -1,6 +1,5 @@
 package com.example.myapplication;
 
-
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -28,9 +27,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class RecipeManageActivity extends AppCompatActivity {
-
-    View view;
+public class RecipeManageActivity extends AppCompatActivity {  //레시피 관리 페이지
     RecyclerView recyclerView;
     ArrayList<ManageData> list3 = new ArrayList<>();
     ManageAdapter maAdapter;
@@ -42,14 +39,13 @@ public class RecipeManageActivity extends AppCompatActivity {
         setContentView(R.layout.activity_recipe_manage);
 
         member_id = shared_preferences.get_user_email(RecipeManageActivity.this);
-        TextView textview = (TextView)findViewById(R.id.memberID);
+        TextView textview = findViewById(R.id.memberID);
         textview.setText(member_id);
 
-        ImageButton btn_back_mypage = (ImageButton) findViewById(R.id.back_mypage);
+        ImageButton btn_back_mypage = findViewById(R.id.back_mypage);
         btn_back_mypage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 finish();
             }
         });
@@ -61,7 +57,6 @@ public class RecipeManageActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(maAdapter);
-
         recyclerView.bringToFront();
     }
 
@@ -74,9 +69,7 @@ public class RecipeManageActivity extends AppCompatActivity {
             public void onResponse(JSONArray response) {
                 list3.clear();
                 maAdapter.notifyDataSetChanged();
-
                 try {
-
                     for (int i = 0; i < response.length(); i++) {
                         JSONObject jsonObject = response.getJSONObject(i);
 
@@ -89,7 +82,7 @@ public class RecipeManageActivity extends AppCompatActivity {
                         Bitmap image_bit = StringToBitmap(image);
 
                         ManageData manageData = new ManageData(title, category, image_bit, id, r_id);
-                        if(id.equals(member_id)) {
+                        if(id.equals(member_id)) {  //유저 확인 후 작성한 레시피 데이터 저장
                             maAdapter.addItem(manageData);
                         }
                     }
@@ -102,12 +95,12 @@ public class RecipeManageActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
             }
         });
-
+        //유저 확인 후 작성한 레시피 불러오기
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(jsonArrayRequest);
     }
 
-    public static Bitmap StringToBitmap(String encodedString) {
+    public static Bitmap StringToBitmap(String encodedString) {  //String으로 저장된 이미지를 비트맵으로 변환
         try {
             byte[] encodeByte = Base64.decode(encodedString, Base64.DEFAULT);
             Bitmap bitmap = BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
@@ -128,5 +121,4 @@ public class RecipeManageActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
 }

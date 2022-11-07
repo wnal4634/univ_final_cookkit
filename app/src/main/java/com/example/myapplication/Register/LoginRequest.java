@@ -7,7 +7,7 @@ import com.android.volley.toolbox.StringRequest;
 import java.util.HashMap;
 import java.util.Map;
 
-public class LoginRequest extends StringRequest {
+public class LoginRequest extends StringRequest {  //로그인 php와 연동
 
     //서버 URL 설정(php 파일 연동)
     final static private String URL = "http://admin0000.dothome.co.kr/Login.php";

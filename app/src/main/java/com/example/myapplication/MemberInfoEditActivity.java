@@ -24,13 +24,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class MemberInfoEditActivity extends AppCompatActivity {
+public class MemberInfoEditActivity extends AppCompatActivity {  //회원정보 수정 페이지
     private static final int SEARCH_ADDRESS_ACTIVITY = 10000;
     private EditText postNum, phoneNumber, Address;
     private TextView textview;
     private AlertDialog dialog;
-
-    String member_id, phone_num, post_num, member_ad;
+    String member_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,9 +37,6 @@ public class MemberInfoEditActivity extends AppCompatActivity {
         setContentView(R.layout.activity_member_info_edit);
 
         member_id = shared_preferences.get_user_email(MemberInfoEditActivity.this);
-        phone_num = getIntent().getStringExtra("phone_num");
-        post_num = getIntent().getStringExtra("post_num");
-        member_ad = getIntent().getStringExtra("member_ad");
 
         textview = findViewById(R.id.memberID);
         textview.setText(member_id);
@@ -49,15 +45,13 @@ public class MemberInfoEditActivity extends AppCompatActivity {
         phoneNumber = findViewById( R.id.phoneNumber );
         Address = findViewById(R.id.Address);
 
-        String serverUrl = "http://admin0000.dothome.co.kr/mem_info.php";
+        String serverUrl = "http://admin0000.dothome.co.kr/mem_info.php";  //DB에 저장된 회원정보 불러오기
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST, serverUrl, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
                 try {
-
                     for (int i = 0; i < response.length(); i++) {
                         JSONObject jsonObject = response.getJSONObject(i);
-
                         String id = jsonObject.getString("member_id");
                         String phone = jsonObject.getString("phone_num");
                         String post = jsonObject.getString("post_num");
@@ -78,23 +72,22 @@ public class MemberInfoEditActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
             }
         });
+        //서버로 Volley를 이용해서 요청
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(jsonArrayRequest);
 
-
-
-        ImageButton btn_back_mypage = (ImageButton) findViewById(R.id.back_mypage);
-        btn_back_mypage.setOnClickListener(new View.OnClickListener() {
+        ImageButton btn_back_mypage = findViewById(R.id.back_mypage);
+        btn_back_mypage.setOnClickListener(new View.OnClickListener() {  //뒤로가기
             @Override
             public void onClick(View view) {
                 finish();
             }
         });
 
-        Button btn_info_save = (Button) findViewById(R.id.info_save);
+        Button btn_info_save = findViewById(R.id.info_save);
         btn_info_save.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view) {  //저장 버튼 클릭 시 회원정보 수정
                 final String UserPhone = phoneNumber.getText().toString();
                 final String UserPost = postNum.getText().toString();
                 final String UserAd = Address.getText().toString();
@@ -111,30 +104,24 @@ public class MemberInfoEditActivity extends AppCompatActivity {
                 Response.Listener<String> responseListener = new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-
                         try {
                             JSONObject jsonObject = new JSONObject( response );
                             boolean success = jsonObject.getBoolean( "success" );
 
                             if (success) {
-
                                 Toast.makeText(getApplicationContext(), String.format("수정되었습니다."), Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(MemberInfoEditActivity.this, Fragment_mypage.class);
                                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                 finish();
-
                             } else {
                                 Toast.makeText(getApplicationContext(), "실패하였습니다.", Toast.LENGTH_SHORT).show();
                                 return;
                             }
-
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-
                     }
                 };
-
                 //서버로 Volley를 이용해서 요청
                 UpdateRequest updateRequest = new UpdateRequest( UserPhone, UserPost, UserAd, UserId, responseListener);
                 RequestQueue queue = Volley.newRequestQueue( MemberInfoEditActivity.this );
@@ -142,24 +129,21 @@ public class MemberInfoEditActivity extends AppCompatActivity {
             }
         });
 
-        postNum = (EditText) findViewById(R.id.postNum);
-        Button btn_search = (Button) findViewById(R.id.adress_detail);
-        if (btn_search != null) {
+        postNum = findViewById(R.id.postNum);
+        Button btn_search = findViewById(R.id.adress_detail);
+        if (btn_search != null) {  //주소검색 카카오 API 사용
             btn_search.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v)
-                {
+                public void onClick(View v) {
                     Intent i = new Intent(MemberInfoEditActivity.this, AdressAPI.class);
                     startActivityForResult(i, SEARCH_ADDRESS_ACTIVITY);
                 }
             });
         }
-
     }
 
-    public void onActivityResult(int requestCode, int resultCode, Intent intent)
-    {
-        super.onActivityResult(requestCode, resultCode, intent);
+    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);  //카카오 API에서 주소 클릭하면 주소창에 입력됨
         switch (requestCode) {
             case SEARCH_ADDRESS_ACTIVITY:
                 if (resultCode == RESULT_OK) {

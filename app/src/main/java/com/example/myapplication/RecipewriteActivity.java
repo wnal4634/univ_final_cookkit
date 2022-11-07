@@ -42,8 +42,7 @@ import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 
-public class RecipewriteActivity extends AppCompatActivity {
-
+public class RecipewriteActivity extends AppCompatActivity {  //레시피 작성 페이지
     ImageView main;
     EditText recipe_title, recipe_mat, recipe_text1, recipe_text2, recipe_text3, recipe_text4
             ,recipe_text5, recipe_text6, comment;
@@ -66,19 +65,19 @@ public class RecipewriteActivity extends AppCompatActivity {
         }
 
         member_id = shared_preferences.get_user_email(RecipewriteActivity.this);
-        TextView textview = (TextView)findViewById(R.id.memberID);
+        TextView textview = findViewById(R.id.memberID);
         textview.setText(member_id);
 
         Button close;
-        close = (Button) findViewById(R.id.closebutton);
-        close.setOnClickListener(new View.OnClickListener() {
+        close = findViewById(R.id.closebutton);
+        close.setOnClickListener(new View.OnClickListener() {  //뒤로가기
             @Override
             public void onClick(View view) {
                 finish();
             }
         });
 
-        Spinner spinner = (Spinner) findViewById(R.id.categorysellect);
+        Spinner spinner = findViewById(R.id.categorysellect);
 
         ArrayAdapter<CharSequence> spinner_adapter = ArrayAdapter.createFromResource(
                 this, R.array.spinnerArray, android.R.layout.simple_spinner_item);
@@ -91,10 +90,8 @@ public class RecipewriteActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String a = spinner.getItemAtPosition(i).toString();
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-
             }
         });
 
@@ -110,7 +107,7 @@ public class RecipewriteActivity extends AppCompatActivity {
         imgpath = findViewById(R.id.imgpath);
         comment = findViewById(R.id.health);
 
-        main.setOnClickListener(new View.OnClickListener() {
+        main.setOnClickListener(new View.OnClickListener() {  //이미지 불러오기
             @Override
             public void onClick(View v) {
                 imgpath.setText("");
@@ -125,7 +122,6 @@ public class RecipewriteActivity extends AppCompatActivity {
         button_upload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 String id = (String) textview.getText();
                 String title = recipe_title.getText().toString();
                 String mat = recipe_mat.getText().toString();
@@ -139,6 +135,7 @@ public class RecipewriteActivity extends AppCompatActivity {
                 String comm = comment.getText().toString();
                 String image_main = (String) imgpath.getText();
 
+                //하나라도 입력하지 않은 경우(코멘트 제외)
                 if (title.equals("") || mat.equals("") || text1.equals("") || text2.equals("") || text3.equals("") || text4.equals("") || text5.equals("") || text6.equals("")) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(RecipewriteActivity.this);
                     dialog = builder.setMessage("모두 입력해주세요. (코멘트 제외)").setNegativeButton("확인", null).create();
@@ -146,26 +143,26 @@ public class RecipewriteActivity extends AppCompatActivity {
                     return;
                 }
 
-                if (cate.equals("--카테고리 선택--")) {
+                if (cate.equals("--카테고리 선택--")) {  //카테고리를 선택하지 않은 경우
                     AlertDialog.Builder builder = new AlertDialog.Builder(RecipewriteActivity.this);
                     dialog = builder.setMessage("카테고리를 선택해주세요.").setNegativeButton("확인", null).create();
                     dialog.show();
                     return;
                 }
 
-                if (image_main.equals("")) {
+                if (image_main.equals("")) {  //이미지를 넣지 않은 경우
                     AlertDialog.Builder builder = new AlertDialog.Builder(RecipewriteActivity.this);
                     dialog = builder.setMessage("사진을 넣어주세요.").setNegativeButton("확인", null).create();
                     dialog.show();
                     return;
                 }
 
+                //카피가 의심되는 경우 경고 문구 띄움
                 String serverUrl = "http://admin0000.dothome.co.kr/copy_warning.php";
                 JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST, serverUrl, null, new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
                         try {
-
                             for (int i = 0; i < response.length(); i++) {
                                 JSONObject jsonObject = response.getJSONObject(i);
 
@@ -193,6 +190,7 @@ public class RecipewriteActivity extends AppCompatActivity {
                     public void onErrorResponse(VolleyError error) {
                     }
                 });
+                //서버로 Volley를 이용해서 요청
                 RequestQueue requestQueue = Volley.newRequestQueue(RecipewriteActivity.this);
                 requestQueue.add(jsonArrayRequest);
 
@@ -215,30 +213,23 @@ public class RecipewriteActivity extends AppCompatActivity {
                 Response.Listener<String> responseListener = new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-
                         try {
                             JSONObject jsonObject = new JSONObject( response );
                             boolean success = jsonObject.getBoolean( "success" );
-
-                            if (success) {
-
+                            if (success) {  //업로드 완료
                                 Toast.makeText(getApplicationContext(), String.format("업로드를 완료했습니다."), Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(RecipewriteActivity.this, Fragment_index.class);
                                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                 finish();
-
                             } else {
                                 Toast.makeText(getApplicationContext(), "실패하였습니다.", Toast.LENGTH_SHORT).show();
                                 return;
                             }
-
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-
                     }
                 };
-
                 //서버로 Volley를 이용해서 요청
                 RecipewriteRequest recipewriteRequest = new RecipewriteRequest( id, title, mat, cate, text1,
                         text2, text3, text4, text5, text6, comm, image_main,  responseListener);
@@ -253,10 +244,8 @@ public class RecipewriteActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 0) {
             if (resultCode == RESULT_OK) {
-                try {
+                try {  //비트맵을 String으로 변환
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
-//                    imgpath.setText(BitmapToString(bitmap));
-//                    main.setImageBitmap(bitmap);
                     ByteArrayOutputStream stream = new ByteArrayOutputStream();
                     bitmap.compress(Bitmap.CompressFormat.JPEG, 10, stream);
                     byte[] bytes = stream.toByteArray();
@@ -275,7 +264,7 @@ public class RecipewriteActivity extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        switch(requestCode){
+        switch(requestCode){  //권한 확인
             case 10:
                 if(grantResults[0]==PackageManager.PERMISSION_GRANTED){
                     Toast.makeText(this, "외부 메모리 읽기/쓰기 사용 가능", Toast.LENGTH_SHORT).show();

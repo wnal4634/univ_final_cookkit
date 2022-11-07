@@ -6,8 +6,6 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     tools:context=".Fragment_mypage">
-
-
     <TextView
         android:id="@+id/memberID"
         android:layout_width="0dp"
@@ -76,7 +74,6 @@
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageButton4" />
-
 
     <Button
         android:id="@+id/button14"
@@ -191,6 +188,5 @@
         android:src="@drawable/ic_baseline_how_to_vote_24"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view10" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -28,8 +28,8 @@ public class LikeAdapter extends RecyclerView.Adapter<LikeAdapter.LikeViewHolder
             super(view);
             this.title = view.findViewById(R.id.meal_title);
             this.category = view.findViewById(R.id.category);
-            this.image = (ImageView) view.findViewById(R.id.recipeView);
-            view.setOnClickListener(new View.OnClickListener() {
+            this.image = view.findViewById(R.id.recipeView);
+            view.setOnClickListener(new View.OnClickListener() {  //클릭하면 해당 레시피로 이동
                 @Override
                 public void onClick(View v) {
                     int pos = getAbsoluteAdapterPosition();
@@ -58,6 +58,7 @@ public class LikeAdapter extends RecyclerView.Adapter<LikeAdapter.LikeViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull LikeViewHolder likeViewHolder, int position){
+        //리사이클러뷰로 제목 및 카테고리 등을 보여줌
         likeViewHolder.title.setText(like.get(position).title);
         likeViewHolder.category.setText(like.get(position).category);
         likeViewHolder.image.setImageBitmap(like.get(position).image);

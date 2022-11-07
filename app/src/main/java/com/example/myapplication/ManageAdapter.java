@@ -3,7 +3,6 @@ package com.example.myapplication;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -31,7 +30,6 @@ public class ManageAdapter extends RecyclerView.Adapter<ManageAdapter.ManageView
 
     private ArrayList<ManageData> mDataset;
     TextView member_id;
-    Context context;
 
     public class ManageViewHolder extends RecyclerView.ViewHolder {
         TextView title;
@@ -40,14 +38,14 @@ public class ManageAdapter extends RecyclerView.Adapter<ManageAdapter.ManageView
         Button deletebtn;
         public ManageViewHolder(View view) {
             super(view);
-            title = (TextView) view.findViewById(R.id.meal_title);
-            image = (ImageView) view.findViewById(R.id.recipeView);
-            deletebtn = (Button) view.findViewById(R.id.deletebtn);
-            member_id = (TextView)view.findViewById(R.id.memberID);
+            title = view.findViewById(R.id.meal_title);
+            image = view.findViewById(R.id.recipeView);
+            deletebtn = view.findViewById(R.id.deletebtn);
+            member_id = view.findViewById(R.id.memberID);
             modifybtn = view.findViewById(R.id.modifybtn);
             modifybtn.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View view) {
+                public void onClick(View view) {  //클릭 시 해당 레시피에 대한 수정페이지로 이동
                     int pos = getAbsoluteAdapterPosition();
                     ManageData manageData = mDataset.get(pos);
                     Intent intent = new Intent(view.getContext(), RecipeEditActivity.class);
@@ -57,24 +55,22 @@ public class ManageAdapter extends RecyclerView.Adapter<ManageAdapter.ManageView
             });
             deletebtn.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v) {
+                public void onClick(View v) {  //레시피 삭제
                     int pos = getAbsoluteAdapterPosition();
                     ManageData manageData = mDataset.get(pos);
                     AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
                     builder.setTitle("삭제하시겠습니까?");
                     builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        //ok 버튼을 누르면 레시피 아이디 확인 후 해당 레시피 삭제
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             Response.Listener<String> responseListener = new Response.Listener<String>() {
                                 @Override
                                 public void onResponse(String response) {
-
                                     try {
                                         JSONObject jsonObject = new JSONObject( response );
                                         boolean success = jsonObject.getBoolean( "success" );
-
                                         if (success) {
-
                                             Toast.makeText(v.getContext(), String.format("레시피를 삭제했습니다."), Toast.LENGTH_SHORT).show();
                                             Intent intent = new Intent(v.getContext(), RecipeManageActivity.class);
                                             intent.putExtra("r_id", manageData.getRecipe_id());
@@ -82,20 +78,18 @@ public class ManageAdapter extends RecyclerView.Adapter<ManageAdapter.ManageView
                                             mDataset.remove(getAbsoluteAdapterPosition());
                                             notifyDataSetChanged();
                                         }
-
                                     } catch (JSONException e) {
                                         e.printStackTrace();
                                     }
-
                                 }
                             };
-
+                            //서버로 Volley를 이용해서 요청
                             DeleteRequest deleteRequest = new DeleteRequest(String.valueOf(manageData.recipe_id), responseListener);
                             RequestQueue queue = Volley.newRequestQueue( v.getContext());
                             queue.add( deleteRequest );
                         }
                     });
-                    builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {  //취소
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             Toast.makeText(v.getContext(), String.format("취소"), Toast.LENGTH_SHORT).show();
@@ -103,11 +97,9 @@ public class ManageAdapter extends RecyclerView.Adapter<ManageAdapter.ManageView
                     });
                     AlertDialog alertDialog = builder.create();
                     alertDialog.show();
-
                 }
             });
         }
-
     }
 
     public ManageAdapter(ArrayList<ManageData> manageData){
@@ -119,7 +111,6 @@ public class ManageAdapter extends RecyclerView.Adapter<ManageAdapter.ManageView
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.recipemanage_holder, parent, false);
         return new ManageViewHolder(view);
-
     }
 
     @Override
@@ -139,12 +130,7 @@ public class ManageAdapter extends RecyclerView.Adapter<ManageAdapter.ManageView
         mDataset.add(data);
     }
 
-    public String getItem(int position) {
-        return mDataset.get(position).getTitle();
-    }
-
     public long getItemId(int position) {
         return position;
     }
-
 }

@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,20 +24,18 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-
-public class MealOrderStatusActivity extends AppCompatActivity {
+public class MealOrderStatusActivity extends AppCompatActivity {  //밀키트 주문 내역 페이지
     RecyclerView recyclerView;
     ArrayList<MealOrderData> list4 = new ArrayList<>();
     MealOrderStatusAdapter adapter4;
-    ImageView recipeView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meal_order_status);
 
-        ImageButton btn_back_mypage = (ImageButton) findViewById(R.id.back_mypage);
-        btn_back_mypage.setOnClickListener(new View.OnClickListener() {
+        ImageButton btn_back_mypage = findViewById(R.id.back_mypage);
+        btn_back_mypage.setOnClickListener(new View.OnClickListener() {  //뒤로가기
             @Override
             public void onClick(View view) {
                 finish();
@@ -52,8 +49,6 @@ public class MealOrderStatusActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter4);
-
-        recipeView = findViewById(R.id.recipeView);
 
         recyclerView.bringToFront();
     }
@@ -73,15 +68,13 @@ public class MealOrderStatusActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         String member_id = shared_preferences.get_user_email(MealOrderStatusActivity.this);
-        String serverUrl = "http://admin0000.dothome.co.kr/meal_order_list.php";
+        String serverUrl = "http://admin0000.dothome.co.kr/meal_order_list.php";  //작성한 레시피 아이디 비교 후 DB에서 불러오기
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST, serverUrl, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
                 list4.clear();
                 adapter4.notifyDataSetChanged();
-
                 try {
-
                     for(int i=0; i< response.length(); i++){
                         JSONObject jsonObject= response.getJSONObject(i);
 
@@ -106,7 +99,7 @@ public class MealOrderStatusActivity extends AppCompatActivity {
                 Toast.makeText(MealOrderStatusActivity.this, "ERROR", Toast.LENGTH_SHORT).show();
             }
         });
-
+        //서버로 Volley를 이용해서 요청
         RequestQueue requestQueue= Volley.newRequestQueue(this);
         requestQueue.add(jsonArrayRequest);
     }

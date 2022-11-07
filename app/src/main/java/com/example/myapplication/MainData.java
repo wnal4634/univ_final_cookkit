@@ -2,7 +2,7 @@ package com.example.myapplication;
 
 import android.graphics.Bitmap;
 
-public class MainData {
+public class MainData {  //메인 이미지 등에서 사용하는 데이터(DB에서 불러온 데이터 저장)
     public String title;
     public String category;
     public Bitmap image;

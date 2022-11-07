@@ -13,14 +13,13 @@ import java.util.ArrayList;
 
 public class RecyclerVierAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    // adapter에 들어갈 list 입니다.
+    // adapter에 들어갈 list
     private ArrayList<ItemDTO> listData = new ArrayList<>();
 
     // Item의 클릭 상태를 저장할 array 객체
     private SparseBooleanArray selectedItems = new SparseBooleanArray();
     // 직전에 클릭됐던 Item의 position
     private int prePosition = -1;
-
 
     @NonNull
     @Override
@@ -31,7 +30,8 @@ public class RecyclerVierAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, @SuppressLint("RecyclerView") final int position) {
-        ViewHolder viewHolder = (ViewHolder)holder;
+        //리사이클러뷰로 타이틀 등을 보여줌줌
+       ViewHolder viewHolder = (ViewHolder)holder;
         ItemDTO itemDTO = listData.get(position);
         viewHolder.title.setText(itemDTO.getTitle());
         viewHolder.date.setText(itemDTO.getDate());

@@ -29,8 +29,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class VoteActivity extends AppCompatActivity {
-    View view;
+public class VoteActivity extends AppCompatActivity {  //투표페이지
     RecyclerView recyclerView;
     ArrayList<voteItem> list7 = new ArrayList<>();
     VoteAdapter vAdapter;
@@ -48,7 +47,7 @@ public class VoteActivity extends AppCompatActivity {
         member_id = shared_preferences.get_user_email(VoteActivity.this);
 
         ImageButton back = findViewById(R.id.back);
-        back.setOnClickListener(new View.OnClickListener() {
+        back.setOnClickListener(new View.OnClickListener() {  //뒤로가기
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(VoteActivity.this, Fragment_index.class);
@@ -64,7 +63,6 @@ public class VoteActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         vAdapter.notifyDataSetChanged();
-
                     }
                 });
             }
@@ -79,15 +77,13 @@ public class VoteActivity extends AppCompatActivity {
 
         btn = findViewById(R.id.vote_btn);
 
-        String serverUrl = "http://admin0000.dothome.co.kr/vote_display.php";
+        String serverUrl = "http://admin0000.dothome.co.kr/vote_display.php";  //투표 리사이클러뷰 확인
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST, serverUrl, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
                 list7.clear();
                 vAdapter.notifyDataSetChanged();
-
                 try {
-
                     for (int i = 0; i < response.length(); i++) {
                         JSONObject jsonObject = response.getJSONObject(i);
 
@@ -110,16 +106,15 @@ public class VoteActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
             }
         });
-
+        //서버로 Volley를 이용해서 요청
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(jsonArrayRequest);
 
-        String serverUrl1 = "http://admin0000.dothome.co.kr/meal_vote_check.php";
+        String serverUrl1 = "http://admin0000.dothome.co.kr/meal_vote_check.php";  //레시피 투표
         JsonArrayRequest jsonArrayRequest1 = new JsonArrayRequest(Request.Method.POST, serverUrl1, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
                 try {
-
                     for(int i=0; i< response.length(); i++){
                         JSONObject jsonObject1 = response.getJSONObject(i);
                         String id1 = jsonObject1.getString("member_id");
@@ -135,7 +130,7 @@ public class VoteActivity extends AppCompatActivity {
                 Toast.makeText(VoteActivity.this, "ERROR", Toast.LENGTH_SHORT).show();
             }
         });
-
+        //서버로 Volley를 이용해서 요청
         RequestQueue requestQueue1 = Volley.newRequestQueue(VoteActivity.this);
         requestQueue1.add(jsonArrayRequest1);
 
@@ -147,48 +142,40 @@ public class VoteActivity extends AppCompatActivity {
                 String title = voteItem.title;
                 final String id = member_id;
 
-                if (member_id.equals(m_id)) {
+                if (member_id.equals(m_id)) {  //이미 투표를 완료한 경우
                     Toast.makeText(getApplicationContext(), "이미 투표하였습니다.", Toast.LENGTH_SHORT).show();
                 }
                 else {
                     Response.Listener<String> responseListener = new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
-
                             try {
                                 JSONObject jsonObject = new JSONObject( response );
                                 boolean success = jsonObject.getBoolean( "success" );
-
                                 if (success) {
-
                                     Toast.makeText(getApplicationContext(), "투표가 완료되었습니다.", Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(VoteActivity.this, Fragment_index.class);
                                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                     finish();
-
                                 } else {
                                     Toast.makeText(getApplicationContext(), "실패하였습니다.", Toast.LENGTH_SHORT).show();
                                     return;
                                 }
-
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
-
                         }
                     };
-
                     //서버로 Volley를 이용해서 요청
                     VoteRequest voteRequest = new VoteRequest(rid, id, title, responseListener);
                     RequestQueue queue = Volley.newRequestQueue( VoteActivity.this );
                     queue.add( voteRequest );
                 }
-
             }
         });
     }
 
-    public static Bitmap StringToBitmap(String encodedString) {
+    public static Bitmap StringToBitmap(String encodedString) {  //String으로 저장된 이미지를 비트맵으로 변환
         try {
             byte[] encodeByte = Base64.decode(encodedString, Base64.DEFAULT);
             Bitmap bitmap = BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);

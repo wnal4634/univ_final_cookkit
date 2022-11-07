@@ -49,8 +49,9 @@ import kr.co.bootpay.listener.ReadyListener;
 import kr.co.bootpay.model.BootExtra;
 import kr.co.bootpay.model.BootUser;
 
-public class MealOrderActivity extends AppCompatActivity {
-    private TextView meal_count, meal_total_price, meal_name, meal_price_fix, meal_id, saving_image, remain_num;
+public class MealOrderActivity extends AppCompatActivity {  //밀키트 주문 페이지
+    private TextView meal_count, meal_total_price, meal_name, meal_price_fix,
+            meal_id, saving_image, remain_num;
     private static final int SEARCH_ADDRESS_ACTIVITY = 10000;
     private EditText postNum, phoneNumber, Address;
     private ImageButton meal_minus, meal_plus;
@@ -85,13 +86,11 @@ public class MealOrderActivity extends AppCompatActivity {
         saving_image = findViewById(R.id.saving_image);
         remain_num = findViewById(R.id.remain_num);
 
-        String serverUrl = "http://admin0000.dothome.co.kr/meal_ex2.php";
+        String serverUrl = "http://admin0000.dothome.co.kr/meal_ex2.php";  //DB에 저장된 레시피 설명 불러오기
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST, serverUrl, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
-
                 try {
-
                     for(int i=0; i< response.length(); i++){
                         JSONObject jsonObject= response.getJSONObject(i);
 
@@ -127,12 +126,11 @@ public class MealOrderActivity extends AppCompatActivity {
         existingDeli.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String serverUrl2 = "http://admin0000.dothome.co.kr/mem_info.php";
+                String serverUrl2 = "http://admin0000.dothome.co.kr/mem_info.php";  //회원정보 불러오기
                 JsonArrayRequest jsonArrayRequest2 = new JsonArrayRequest(Request.Method.POST, serverUrl2, null, new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
                         try {
-
                             for (int i = 0; i < response.length(); i++) {
                                 JSONObject jsonObject = response.getJSONObject(i);
 
@@ -156,13 +154,13 @@ public class MealOrderActivity extends AppCompatActivity {
                     public void onErrorResponse(VolleyError error) {
                     }
                 });
+                //서버로 Volley를 이용해서 요청
                 RequestQueue requestQueue2 = Volley.newRequestQueue(MealOrderActivity.this);
                 requestQueue2.add(jsonArrayRequest2);
             }
         });
 
-
-        meal_plus.setOnClickListener(new View.OnClickListener() {
+        meal_plus.setOnClickListener(new View.OnClickListener() {  //플러스 버튼 누르면 숫자 증가
             @Override
             public void onClick(View v) {
                 count++;
@@ -175,7 +173,7 @@ public class MealOrderActivity extends AppCompatActivity {
             }
         });
 
-        meal_minus.setOnClickListener(new View.OnClickListener() {
+        meal_minus.setOnClickListener(new View.OnClickListener() {  //마이너스 버튼 누르면 숫자 감소
             @Override
             public void onClick(View v) {
                 sum = Integer.parseInt(meal_total_price.getText().toString());
@@ -195,7 +193,7 @@ public class MealOrderActivity extends AppCompatActivity {
         });
 
         ImageButton btn_back_index = findViewById(R.id.back_index);
-        btn_back_index.setOnClickListener(new View.OnClickListener() {
+        btn_back_index.setOnClickListener(new View.OnClickListener() {  //뒤로가기
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(
@@ -207,7 +205,7 @@ public class MealOrderActivity extends AppCompatActivity {
 
         Button btn_search = findViewById(R.id.adress_detail);
         if (btn_search != null) {
-            btn_search.setOnClickListener(new View.OnClickListener() {
+            btn_search.setOnClickListener(new View.OnClickListener() {  //주소검색 API
                 @Override
                 public void onClick(View v)
                 {
@@ -217,6 +215,7 @@ public class MealOrderActivity extends AppCompatActivity {
             });
         }
 
+        //발신권환 받기
         int permissonCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS);
         if(permissonCheck == PackageManager.PERMISSION_GRANTED){
             Toast.makeText(getApplicationContext(), "SMS 발신권한 있음", Toast.LENGTH_SHORT).show();
@@ -230,6 +229,7 @@ public class MealOrderActivity extends AppCompatActivity {
             }
         }
 
+        //수신권한 받기
         int permissonCheck2 = ContextCompat.checkSelfPermission(this, Manifest.permission.RECEIVE_SMS);
         if(permissonCheck2 == PackageManager.PERMISSION_GRANTED){
             Toast.makeText(getApplicationContext(), "SMS 수신권한 있음", Toast.LENGTH_SHORT).show();
@@ -268,15 +268,15 @@ public class MealOrderActivity extends AppCompatActivity {
 
                         String txt = "CookKit 밀키트 구매 안내\n\n" + name + "\n" + count + "세트, "
                                 + price + "원";
-//                                + "주소: " + postNo + ", " + add;
 
+                        //하나라도 입력 안 됐을 때
                         if (phoneNo.equals("") || add.equals("") || postNo.equals("")) {
                             AlertDialog.Builder builder = new AlertDialog.Builder(MealOrderActivity.this);
                             builder.setMessage("배송정보를 모두 입력해주세요.").setNegativeButton("확인", null).create().show();
                             return;
                         }
 
-                        BootUser bootUser = new BootUser();
+                        BootUser bootUser = new BootUser();  //결제시스템 연동
                         BootExtra bootExtra = new BootExtra().setQuotas(new int[] {0,2,3});
 
                         Bootpay.init(getFragmentManager())
@@ -287,7 +287,6 @@ public class MealOrderActivity extends AppCompatActivity {
                                 .setBootUser(bootUser)
                                 .setBootExtra(bootExtra)
                                 .setUX(UX.PG_DIALOG)
-//                .setUserPhone("010-1234-5678") // 구매자 전화번호
                                 .setName(name) // 결제할 상품명
                                 .setOrderId("1234") // 결제 고유번호expire_month
                                 .setPrice(Integer.parseInt(price)) // 결제할 금액
@@ -305,7 +304,7 @@ public class MealOrderActivity extends AppCompatActivity {
                                     public void onDone(@Nullable String message) {
                                         Log.d("done", message);
                                         try {
-                                            SmsManager smsManager = SmsManager.getDefault();
+                                            SmsManager smsManager = SmsManager.getDefault();  //밀키트 구매안내 메세지 전송
                                             smsManager.sendTextMessage(phoneNo, null, txt, null, null);
                                             Toast.makeText(getApplicationContext(), "밀키트를 구매했습니다", Toast.LENGTH_LONG).show();
                                             Response.Listener<String> responseListener = new Response.Listener<String>() {
@@ -314,25 +313,16 @@ public class MealOrderActivity extends AppCompatActivity {
                                                     try {
                                                         JSONObject jsonObject = new JSONObject( response );
                                                         boolean success = jsonObject.getBoolean( "success" );
-
                                                         if (success) {
-
-//                                                            Intent intent = new Intent(MealOrderActivity.this, Fragment_mealDetail.class);
-//                                                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//                                                            finish();
-
                                                         } else {
                                                             Toast.makeText(getApplicationContext(), "실패하였습니다.", Toast.LENGTH_SHORT).show();
                                                             return;
                                                         }
-
                                                     } catch (JSONException e) {
                                                         e.printStackTrace();
                                                     }
-
                                                 }
                                             };
-
                                             //서버로 Volley를 이용해서 요청
                                             MealOrderRequest mealOrderRequest = new MealOrderRequest( m_id1, m_id2, name, count, price, phoneNo, postNo, add, image, responseListener);
                                             RequestQueue queue = Volley.newRequestQueue( MealOrderActivity.this );
@@ -340,17 +330,14 @@ public class MealOrderActivity extends AppCompatActivity {
 
                                             Response.Listener<String> responseListener2 = new Response.Listener<String>() {
                                                 @Override
-                                                public void onResponse(String response) {
+                                                public void onResponse(String response) {  //밀키트 남은 수량 변경
                                                     try {
                                                         JSONObject jsonObject2 = new JSONObject( response );
                                                         boolean success2 = jsonObject2.getBoolean( "success" );
-
                                                         if (success2) {
-
                                                             Intent intent = new Intent(MealOrderActivity.this, Fragment_mealDetail.class);
                                                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                                             finish();
-
                                                         } else {
                                                             Toast.makeText(getApplicationContext(), "실패하였습니다.", Toast.LENGTH_SHORT).show();
                                                             return;
@@ -362,7 +349,6 @@ public class MealOrderActivity extends AppCompatActivity {
 
                                                 }
                                             };
-
                                             //서버로 Volley를 이용해서 요청
                                             RemainRequest remainRequest = new RemainRequest( Integer.toString(f_num), responseListener2);
                                             RequestQueue queue2 = Volley.newRequestQueue( MealOrderActivity.this );
@@ -415,11 +401,9 @@ public class MealOrderActivity extends AppCompatActivity {
                 alertDialog.show();
             }
         });
-
     }
 
-    public void onActivityResult(int requestCode, int resultCode, Intent intent)
-    {
+    public void onActivityResult(int requestCode, int resultCode, Intent intent) {  //주소검색 후 입력해줌
         super.onActivityResult(requestCode, resultCode, intent);
         switch (requestCode) {
             case SEARCH_ADDRESS_ACTIVITY:
@@ -432,5 +416,4 @@ public class MealOrderActivity extends AppCompatActivity {
                 break;
         }
     }
-
 }

@@ -26,7 +26,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class RecipeexplanationActivity extends AppCompatActivity {
+public class RecipeexplanationActivity extends AppCompatActivity {  //레시피 상세 설명 페이지
     private TextView title_main,
             id, title, cate, mat, text1, text2, text3, text4, text5, text6, see_count, rid, comment;
     ImageView image_main, watch;
@@ -59,18 +59,15 @@ public class RecipeexplanationActivity extends AppCompatActivity {
         myDb = new MyDatabaseHelper(this);
         myDb.getWritableDatabase();
 
-        String serverUrl = "http://admin0000.dothome.co.kr/explain.php";
+        String serverUrl = "http://admin0000.dothome.co.kr/explain.php";  //저장된 레시피 불러오기
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST, serverUrl, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
                 int rr = getIntent().getIntExtra("r_id", 0);
                 String rrtostr = String.valueOf(rr);
-
                 try {
-
                     for(int i=0; i< response.length(); i++) {
                         JSONObject jsonObject = response.getJSONObject(i);
-
                         String r_id = jsonObject.getString("recipe_id");
                         String id1 = jsonObject.getString("member_id");
                         String title1 = jsonObject.getString("recipe_title");
@@ -85,7 +82,6 @@ public class RecipeexplanationActivity extends AppCompatActivity {
                         String comm = jsonObject.getString("comment");
                         String image = jsonObject.getString("image_main");
                         int click = jsonObject.getInt("click_count");
-
 
                         Bitmap image_bit = StringToBitmap(image);
 
@@ -107,7 +103,7 @@ public class RecipeexplanationActivity extends AppCompatActivity {
                             see_count.setText(click + "");
 
                             Cursor cursor = myDb.AllView();
-                            while (cursor.moveToNext()) {
+                            while (cursor.moveToNext()) {  //좋아요 버튼을 이전에 눌렀는지 확인
                                 String sql_rid = cursor.getString(1);
                                 if (sql_rid.equals(r_id)) {
                                     btn_like.setSelected(true);
@@ -115,8 +111,6 @@ public class RecipeexplanationActivity extends AppCompatActivity {
                                 }
                             }
                         }
-
-
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -128,19 +122,19 @@ public class RecipeexplanationActivity extends AppCompatActivity {
                 Toast.makeText(RecipeexplanationActivity.this, "ERROR", Toast.LENGTH_SHORT).show();
             }
         });
-
+        //서버로 Volley를 이용해서 요청
         RequestQueue requestQueue= Volley.newRequestQueue(this);
         requestQueue.add(jsonArrayRequest);
 
         ImageButton btn_back_index = findViewById(R.id.back_index);
-        btn_back_index.setOnClickListener(new View.OnClickListener() {
+        btn_back_index.setOnClickListener(new View.OnClickListener() {  //뒤로가기
             @Override
             public void onClick(View view) {
                 finish();
             }
         });
 
-        btn_like.setOnClickListener(new View.OnClickListener() {
+        btn_like.setOnClickListener(new View.OnClickListener() {  //좋아요 버튼 누르면 로컬DB에 저장, 재차 클릭 시 로컬DB에서 삭제
             @Override
             public void onClick(View v) {
                 if (selected2){
@@ -158,7 +152,7 @@ public class RecipeexplanationActivity extends AppCompatActivity {
         });
 
         Button share=findViewById(R.id.share);
-        share.setOnClickListener(new View.OnClickListener(){
+        share.setOnClickListener(new View.OnClickListener(){  //공유버튼
             @Override
             public void onClick(View v){
                 Intent Sharing_intent=new Intent(Intent.ACTION_SEND);
@@ -171,12 +165,10 @@ public class RecipeexplanationActivity extends AppCompatActivity {
                 Intent Sharing = Intent.createChooser(Sharing_intent, "공유하기");
                 startActivity(Sharing);
             }
-
         });
-
     }
 
-    public static Bitmap StringToBitmap(String encodedString) {
+    public static Bitmap StringToBitmap(String encodedString) {  //String으로 저장된 이미지 비트맵으로 변환
         try {
             byte[] encodeByte = Base64.decode(encodedString, Base64.DEFAULT);
             Bitmap bitmap = BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);

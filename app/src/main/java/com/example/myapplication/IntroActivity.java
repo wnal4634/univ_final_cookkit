@@ -6,8 +6,7 @@ import android.os.Handler;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class IntroActivity extends AppCompatActivity {
-
+public class IntroActivity extends AppCompatActivity {  //앱 시작 시 보이는 인트로(3초 후 자동으로 로그인 페이지로 이동)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
