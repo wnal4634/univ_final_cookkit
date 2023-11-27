@@ -5,7 +5,7 @@
 <img src="" width="150"/> <br/><br/>
 
 인트로 화면이 자동으로 넘어가면 로그인페이지로 이동합니다. 아래 '자동로그인' 체크박스를 체크하면 sharedpreferences에 아이디 정보를 저장해 다음 접속 시 별도의 로그인 없이 실행할 수 있습니다.<br/>
-<img src="https://github.com/wnal4634/univ_final_cookkit/assets/90739311/80b9f729-042f-4f99-91ba-9d84073c25ec" width="150"/> <img src="https://github.com/wnal4634/univ_final_cookkit/assets/90739311/4727c260-e625-4c38-9335-e55a8885a185" width="150"/> <br/><br/>
+<img src="https://github.com/wnal4634/univ_final_cookkit/assets/90739311/80b9f729-042f-4f99-91ba-9d84073c25ec" width="150" border="1"/> <img src="https://github.com/wnal4634/univ_final_cookkit/assets/90739311/4727c260-e625-4c38-9335-e55a8885a185" width="150"/> <br/><br/>
 
 로그인페이지에서 이동할 수 있는 회원가입 페이지입니다. 아이디는 중복확인해 다른 사용자와 중복되지 않게 설정합니다. 비밀번호는 비밀번호 확인을 위해 두 번 작성합니다. 
 비밀번호와 비밀번호 확인이 다를 경우엔 토스트 메시지가 뜨며 회원가입을 진행할 수 없습니다. 우편번호는 카카오주소 API를 사용해 쉽게 작성할 수 있습니다.
