@@ -6,7 +6,7 @@
 
 인트로 화면이 자동으로 넘어가면 로그인페이지로 이동합니다. 아래 '자동로그인' 체크박스를 체크하면 sharedpreferences에 아이디 정보를 저장해 다음 접속 시 별도의 로그인 없이 실행할 수 있습니다.
 
-<kbd><img src="https://github.com/wnal4634/univ_final_cookkit/assets/90739311/a0f6240b-d884-40a7-8bd9-1a597ae77df7" width="150""/>
+<kbd><img src="https://github.com/wnal4634/univ_final_cookkit/assets/90739311/a0f6240b-d884-40a7-8bd9-1a597ae77df7" width="150"/>
 <img src="https://github.com/wnal4634/univ_final_cookkit/assets/90739311/4727c260-e625-4c38-9335-e55a8885a185" width="150"/></kbd> <br/><br/>
 
 
