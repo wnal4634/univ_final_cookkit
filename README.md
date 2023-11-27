@@ -5,8 +5,8 @@
 
 인트로 화면이 자동으로 넘어가면 로그인페이지로 이동합니다. 아래 '자동로그인' 체크박스를 체크하면 sharedpreferences에 아이디 정보를 저장해 다음 접속 시 별도의 로그인 없이 실행할 수 있습니다.
 
-
 <kbd><img src="https://github.com/wnal4634/univ_final_cookkit/assets/90739311/e03ebfba-f903-4350-a73b-2683f4ff95d2" width="150""/> <img src="https://github.com/wnal4634/univ_final_cookkit/assets/90739311/4727c260-e625-4c38-9335-e55a8885a185" width="150"/></kbd> <br/><br/>
+
 
 로그인페이지에서 이동할 수 있는 회원가입 페이지입니다. 아이디는 중복확인해 다른 사용자와 중복되지 않게 설정합니다. 비밀번호는 비밀번호 확인을 위해 두 번 작성합니다. 
 비밀번호와 비밀번호 확인이 다를 경우엔 토스트 메시지가 뜨며 회원가입을 진행할 수 없습니다. 우편번호는 카카오주소 API를 사용해 쉽게 작성할 수 있습니다.
@@ -46,9 +46,9 @@
 
 <kbd><img src="https://github.com/wnal4634/univ_final_cookkit/assets/90739311/875e03ca-a484-410e-aaa4-edf1e275fdbe" width="150"/> 
 <img src="https://github.com/wnal4634/univ_final_cookkit/assets/90739311/c22b67c9-f9c8-4af6-99ce-94de63588410" width="150"/> 
-<img src="https://github.com/wnal4634/univ_final_cookkit/assets/90739311/af8f9cbd-3cc3-480c-a358-f944664be178" width="150"/> 
-<img src="https://github.com/wnal4634/univ_final_cookkit/assets/90739311/fe3d3f50-3440-4888-bb80-f79a52a76b09" width="150"/> 
-<img src="https://github.com/wnal4634/univ_final_cookkit/assets/90739311/9626a0c4-ca3b-4b2e-bc83-49502c1f487c" width="150"/></kbd> <br/><br/>
+<img src="https://github.com/wnal4634/univ_final_cookkit/assets/90739311/af8f9cbd-3cc3-480c-a358-f944664be178" width="150"/>  
+<img src="https://github.com/wnal4634/univ_final_cookkit/assets/90739311/9626a0c4-ca3b-4b2e-bc83-49502c1f487c" width="150"/>
+<img src="https://github.com/wnal4634/univ_final_cookkit/assets/90739311/fe3d3f50-3440-4888-bb80-f79a52a76b09" width="150"/></kbd> <br/><br/>
 
 
 하단 메뉴바의 '마이페이지'를 클릭하면 회원정보 수정 및 작성한 레시피 등을 관리할 수 있습니다. 밀키트 투표하러 가기 버튼은 메인페이지의 우측 상단과 동일한 페이지로 이동합니다.
@@ -80,5 +80,6 @@
 
 공지사항은 웹 관리자페이지에서 작성한 공지사항들이 목록으로 나옵니다. 이때 공지를 클릭하면 펼쳐지면서 내용을 확인할 수 있습니다. 
 마찬가지로 펼쳐진 공지를 재클릭하면 접는 상태로 만들 수 있습니다.
+
 <kbd><img src="https://github.com/wnal4634/univ_final_cookkit/assets/90739311/e61f1114-6459-4611-9b5c-30cd7468d959" width="150"/> <img src="https://github.com/wnal4634/univ_final_cookkit/assets/90739311/c8d98dd4-20ff-427e-86f8-db5822e78578" width="150"/> </kbd>
 
