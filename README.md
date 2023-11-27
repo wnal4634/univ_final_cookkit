@@ -3,9 +3,11 @@
 졸업작품으로 제작한 레시피 공유 및 밀키트 판매 앱입니다.
 
 
+
 인트로 화면이 자동으로 넘어가면 로그인페이지로 이동합니다. 아래 '자동로그인' 체크박스를 체크하면 sharedpreferences에 아이디 정보를 저장해 다음 접속 시 별도의 로그인 없이 실행할 수 있습니다.
 
-<kbd><img src="https://github.com/wnal4634/univ_final_cookkit/assets/90739311/e03ebfba-f903-4350-a73b-2683f4ff95d2" width="150""/> <img src="https://github.com/wnal4634/univ_final_cookkit/assets/90739311/4727c260-e625-4c38-9335-e55a8885a185" width="150"/></kbd> <br/><br/>
+<kbd><img src="https://github.com/wnal4634/univ_final_cookkit/assets/90739311/a0f6240b-d884-40a7-8bd9-1a597ae77df7" width="150""/>
+<img src="https://github.com/wnal4634/univ_final_cookkit/assets/90739311/4727c260-e625-4c38-9335-e55a8885a185" width="150"/></kbd> <br/><br/>
 
 
 로그인페이지에서 이동할 수 있는 회원가입 페이지입니다. 아이디는 중복확인해 다른 사용자와 중복되지 않게 설정합니다. 비밀번호는 비밀번호 확인을 위해 두 번 작성합니다. 
