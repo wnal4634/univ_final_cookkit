@@ -77,7 +77,7 @@
 좋아요한 레시피는 북마크처럼 이용할 수 있습니다. 각 레시피를 클릭하면 해당하는 레시피창으로 이동합니다. 좋아요를 누른 레시피라면 레시피 상세페이지의 좋아요 버튼이 채워진 상태로 나타납니다.
 그 상태에서 다시 한 번 누른다면 좋아요를 취소할 수 있습니다.
 
-<kbd><img src="https://github.com/wnal4634/univ_final_cookkit/assets/90739311/b0d4e97a-8356-47f4-ad52-e5599a9f042f" width="150"/> </kbd>
+<kbd><img src="https://github.com/wnal4634/univ_final_cookkit/assets/90739311/b0d4e97a-8356-47f4-ad52-e5599a9f042f" width="150"/> </kbd> <br/><br/>
 
 
 공지사항은 웹 관리자페이지에서 작성한 공지사항들이 목록으로 나옵니다. 이때 공지를 클릭하면 펼쳐지면서 내용을 확인할 수 있습니다. 
